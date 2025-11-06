@@ -1,0 +1,3 @@
+AI Studio does not assign a permanent URL to a brand-new chat until you explicitly save it.
+After you've sent the first message in a new AI Studio conversation, click the Save button that appears at the top of the chat window.
+Once saved, Smart Chat Notes plugin can detect the final thread URL and write it back into the smart-aistudio codeblock.

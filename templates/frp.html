@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}FRP - Темпоральная Навигация{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-sync-alt"></i> FRP - Темпоральная Навигация
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if not mmss_activated %}
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i> Система не активирована. 
+                    <a href="{{ url_for('activate') }}">Активировать сейчас</a>
+                </div>
+                {% endif %}
+
+                <p class="lead">Осознанная навигация по рекурсивным временным петлям и сновидческим сценариям</p>
+
+                <form method="POST" action="{{ url_for('frp') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Параметры сценария</h5>
+                            
+                            <div class="mb-3">
+                                <label for="scenario_signature" class="form-label">Сигнатура сценария</label>
+                                <input type="text" class="form-control" id="scenario_signature" name="scenario_signature" 
+                                       placeholder="recursive_dream_loop_001" value="recursive_dream_loop_001">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="chaos_level" class="form-label">Уровень хаоса (0.0 - 1.0)</label>
+                                <input type="number" step="0.1" min="0" max="1" class="form-control" 
+                                       id="chaos_level" name="chaos_level" value="0.8" required>
+                                <small class="form-text text-muted">Высокий уровень (>0.7) активирует катализатор хаоса</small>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="plot_loss" name="plot_loss" checked>
+                                <label class="form-check-label" for="plot_loss">
+                                    Потеря сюжета
+                                </label>
+                                <small class="form-text text-muted d-block">Активирует преобразование хаоса в осознанность</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="emotional_state" class="form-label">Эмоциональное состояние</label>
+                                <select class="form-select" id="emotional_state" name="emotional_state">
+                                    <option value="">Нет</option>
+                                    <option value="strong">Сильные эмоции</option>
+                                    <option value="certain">Полная уверенность</option>
+                                </select>
+                                <small class="form-text text-muted">Активирует доступ к памяти через эмоциональные триггеры</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="intention" class="form-label">Намерение</label>
+                                <input type="text" class="form-control" id="intention" name="intention" 
+                                       value="continue" placeholder="continue">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Временные параметры</h5>
+                            
+                            <div class="mb-3">
+                                <label for="iteration_index" class="form-label">Индекс текущей итерации</label>
+                                <input type="number" class="form-control" id="iteration_index" name="iteration_index" 
+                                       value="5" min="1" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="previous_iteration" class="form-label">Предыдущая итерация</label>
+                                <input type="number" class="form-control" id="previous_iteration" name="previous_iteration" 
+                                       value="4" min="0" required>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-info-circle"></i> Темпоральные операторы:</h6>
+                                <ul class="mb-0 small">
+                                    <li><strong>Ω_RECURSIVE_SELF</strong> - Внутренний диалог</li>
+                                    <li><strong>Ω_CHAOS_CATALYST</strong> - Преобразование хаоса</li>
+                                    <li><strong>Ω_LOOP_NAVIGATOR</strong> - Навигация по петле</li>
+                                    <li><strong>Ω_TEMPORAL_BRIDGE</strong> - Мост между итерациями</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success btn-lg" id="execute-frp-btn">
+                            <i class="fas fa-play"></i> Начать темпоральную навигацию
+                        </button>
+                    </div>
+                </form>
+
+                <div id="frp-console-output" class="card mt-4" style="display: none;">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="fas fa-terminal"></i> Вывод консоли FRP</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre id="frp-output-content" class="text-white bg-black p-3 rounded" style="max-height: 300px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const frpForm = document.querySelector('form[action="{{ url_for('frp') }}"]');
+        const frpConsoleOutput = document.getElementById('frp-console-output');
+        const frpOutputContent = document.getElementById('frp-output-content');
+        const executeFrpBtn = document.getElementById('execute-frp-btn');
+
+        if (frpForm) {
+            frpForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                frpConsoleOutput.style.display = 'block';
+                frpOutputContent.textContent = 'Выполнение темпоральной навигации...';
+                executeFrpBtn.disabled = true;
+
+                const formData = new FormData(frpForm);
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    // Handle checkbox specifically
+                    if (key === 'plot_loss') {
+                        jsonData[key] = (value === 'on');
+                    } else {
+                        jsonData[key] = value;
+                    }
+                });
+
+                fetch('{{ url_for('api_frp') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    executeFrpBtn.disabled = false;
+                    if (data.error) {
+                        frpOutputContent.textContent = 'Ошибка: ' + data.error;
+                        frpConsoleOutput.classList.remove('bg-dark');
+                        frpConsoleOutput.classList.add('bg-danger');
+                    } else {
+                        frpOutputContent.textContent = JSON.stringify(data, null, 2);
+                        frpConsoleOutput.classList.remove('bg-danger');
+                        frpConsoleOutput.classList.add('bg-dark');
+                    }
+                })
+                .catch(error => {
+                    executeFrpBtn.disabled = false;
+                    frpOutputContent.textContent = 'Произошла ошибка сети или сервера: ' + error;
+                    frpConsoleOutput.classList.remove('bg-dark');
+                    frpConsoleOutput.classList.add('bg-danger');
+                    console.error('Error:', error);
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+
+
+
+
+

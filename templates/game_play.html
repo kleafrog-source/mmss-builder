@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+
+{% block title %}MMSS Game - {{ game_type }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="fas fa-gamepad"></i> MMSS Game - {{ game_type|replace('_', ' ')|title }}
+                </h4>
+                <div id="gameStats" class="text-end">
+                    <small>Загрузка...</small>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Выбор сложности -->
+                <div id="gameSetup" class="mb-4">
+                    <h5>Выберите уровень сложности:</h5>
+                    <div class="btn-group d-grid gap-2" role="group">
+                        <button type="button" class="btn btn-outline-success" onclick="startGame('easy')">
+                            <i class="fas fa-seedling"></i> Легкий
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="startGame('medium')">
+                            <i class="fas fa-balance-scale"></i> Средний
+                        </button>
+                        <button type="button" class="btn btn-outline-warning" onclick="startGame('hard')">
+                            <i class="fas fa-fire"></i> Сложный
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" onclick="startGame('expert')">
+                            <i class="fas fa-skull"></i> Эксперт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Игровая область -->
+                <div id="gameArea" style="display: none;">
+                    <!-- Информация о челлендже -->
+                    <div id="challengeInfo" class="mb-4"></div>
+
+                    <!-- Игровое поле -->
+                    <div id="gameBoard" class="mb-4"></div>
+
+                    <!-- Доступные действия -->
+                    <div id="actionsArea" class="mb-4">
+                        <h5>Доступные действия:</h5>
+                        <div id="actionsList" class="row g-2"></div>
+                    </div>
+
+                    <!-- Подсказки -->
+                    <div id="hintsArea" class="alert alert-info">
+                        <h6><i class="fas fa-lightbulb"></i> Подсказки:</h6>
+                        <ul id="hintsList"></ul>
+                    </div>
+
+                    <!-- Результат действия -->
+                    <div id="actionResult" class="alert" style="display: none;"></div>
+                </div>
+
+                <!-- Кнопки управления -->
+                <div id="gameControls" class="mt-4" style="display: none;">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary" onclick="resetGame()">
+                            <i class="fas fa-redo"></i> Начать заново
+                        </button>
+                        <button class="btn btn-primary" onclick="nextLevel()" id="nextLevelBtn" style="display: none;">
+                            <i class="fas fa-arrow-right"></i> Следующий уровень
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentGameState = null;
+const gameType = '{{ game_type }}';
+
+function startGame(difficulty) {
+    document.getElementById('gameSetup').style.display = 'none';
+    document.getElementById('gameArea').style.display = 'block';
+    document.getElementById('gameControls').style.display = 'block';
+
+    fetch('{{ url_for("game_start") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            game_type: gameType,
+            difficulty: difficulty
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        currentGameState = data;
+        updateGameDisplay(data);
+    })
+    .catch(error => {
+        console.error('Error starting game:', error);
+        alert('Ошибка запуска игры');
+    });
+}
+
+function updateGameDisplay(data) {
+    // Обновление статистики
+    if (data.state) {
+        const stats = document.getElementById('gameStats');
+        stats.innerHTML = `
+            <div>
+                <strong>Очки:</strong> ${data.state.score} | 
+                <strong>Уровень:</strong> ${data.state.level} | 
+                <strong>Жизни:</strong> ${data.state.lives} | 
+                <strong>Ходы:</strong> ${data.state.moves}
+            </div>
+        `;
+    }
+
+    // Обновление информации о челлендже
+    if (data.challenge) {
+        const challengeInfo = document.getElementById('challengeInfo');
+        challengeInfo.innerHTML = `
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h5>${data.challenge.title || 'Челлендж'}</h5>
+                    <p>${data.challenge.description || data.challenge.goal || ''}</p>
+                    ${renderChallengeDetails(data.challenge)}
+                </div>
+            </div>
+        `;
+
+        // Обновление действий
+        renderActions(data.challenge);
+
+        // Обновление подсказок
+        if (data.challenge.hints) {
+            const hintsList = document.getElementById('hintsList');
+            hintsList.innerHTML = data.challenge.hints.map(hint => `<li>${hint}</li>`).join('');
+        }
+    }
+
+    // Проверка статуса игры
+    if (data.status === 'win') {
+        showResult('success', data.message || 'Поздравляем! Вы выиграли!');
+        document.getElementById('nextLevelBtn').style.display = 'block';
+    } else if (data.status === 'game_over') {
+        showResult('danger', data.message || 'Игра окончена');
+    } else if (data.status === 'lose_life') {
+        showResult('warning', data.message || 'Потеряна жизнь');
+    }
+}
+
+function renderChallengeDetails(challenge) {
+    if (challenge.type === 'pfr_puzzle') {
+        const state = challenge.initial_state || {};
+        return `
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <strong>Текущее состояние:</strong>
+                    <ul>
+                        <li>Энтропия (S): ${state.S || 'N/A'}</li>
+                        <li>Топологический дефект (Ξ_topo): ${state.Xi_topo || 'N/A'}</li>
+                        <li>Площадь проблемы: ${state.area || 'N/A'}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <strong>Цель:</strong>
+                    <ul>
+                        <li>Ценность (V): ≥ ${challenge.target?.V || 0.95}</li>
+                        <li>Эффективность (η_R): ≥ ${challenge.target?.eta_R || 1.5}</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    } else if (challenge.type === 'temporal_navigator') {
+        const scenario = challenge.scenario || {};
+        return `
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <strong>Сценарий:</strong>
+                    <ul>
+                        <li>Уровень хаоса: ${(scenario.chaos_level * 100).toFixed(0)}%</li>
+                        <li>Потеря сюжета: ${scenario.plot_loss ? 'Да' : 'Нет'}</li>
+                        <li>Итерация: ${scenario.iteration || 1}</li>
+                    </ul>
+                    <p><strong>Цель:</strong> ${challenge.goal || 'Преобразовать хаос в осознанность'}</p>
+                </div>
+            </div>
+        `;
+    } else if (challenge.type === 'context_weaver') {
+        const context = challenge.initial_context || {};
+        const target = challenge.target || {};
+        return `
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <strong>Текущий контекст:</strong>
+                    <ul>
+                        <li>G_S^(2): ${context.G_S_2 || 'N/A'}</li>
+                        <li>V^(2): ${context.V_2 || 'N/A'}</li>
+                        <li>Cost_eth^(2): ${context.Cost_eth_2 || 'N/A'}</li>
+                        <li>Φ_cohesion: ${context.Phi_universal_cohesion || 'N/A'}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <strong>Цель:</strong>
+                    <ul>
+                        <li>V^(2): ≥ ${target.V_2 || 0.95}</li>
+                        <li>Φ_cohesion: ≥ ${target.Phi_universal_cohesion || 0.95}</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    }
+    return '';
+}
+
+function renderActions(challenge) {
+    const actionsList = document.getElementById('actionsList');
+    
+    if (challenge.available_actions) {
+        actionsList.innerHTML = challenge.available_actions.map(action => `
+            <div class="col-md-6 col-lg-3">
+                <button class="btn btn-outline-primary w-100 mb-2" onclick="makeMove('${action.id}')">
+                    <strong>${action.name}</strong><br>
+                    <small>${action.description || action.effect || ''}</small>
+                </button>
+            </div>
+        `).join('');
+    } else if (challenge.temporal_operators) {
+        actionsList.innerHTML = challenge.temporal_operators.map(op => `
+            <div class="col-md-6 col-lg-3">
+                <button class="btn btn-outline-success w-100 mb-2" onclick="makeMove('${op.id}')">
+                    <strong>${op.name}</strong><br>
+                    <small>${op.description || ''}</small>
+                </button>
+            </div>
+        `).join('');
+    } else if (challenge.weaving_operators) {
+        actionsList.innerHTML = challenge.weaving_operators.map(op => `
+            <div class="col-md-6 col-lg-3">
+                <button class="btn btn-outline-warning w-100 mb-2" onclick="makeMove('${op.id}')">
+                    <strong>${op.name}</strong><br>
+                    <small>${op.effect || ''}</small>
+                </button>
+            </div>
+        `).join('');
+    }
+}
+
+function makeMove(actionId) {
+    if (!currentGameState) return;
+
+    fetch('{{ url_for("game_move") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            action_id: actionId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'continue') {
+            currentGameState = data;
+            updateGameDisplay(data);
+            showActionResult('info', data.result?.effect || 'Действие выполнено');
+        } else if (data.status === 'win') {
+            showResult('success', data.message);
+            document.getElementById('nextLevelBtn').style.display = 'block';
+        } else if (data.status === 'game_over') {
+            showResult('danger', data.message);
+        } else if (data.status === 'lose_life') {
+            showResult('warning', data.message);
+            currentGameState = data;
+            updateGameDisplay(data);
+        }
+    })
+    .catch(error => {
+        console.error('Error making move:', error);
+        showActionResult('danger', 'Ошибка выполнения действия');
+    });
+}
+
+function nextLevel() {
+    fetch('{{ url_for("game_next_level") }}', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'level_up') {
+            currentGameState = data;
+            updateGameDisplay(data);
+            document.getElementById('nextLevelBtn').style.display = 'none';
+            showActionResult('success', `Уровень ${data.new_level}!`);
+        }
+    })
+    .catch(error => {
+        console.error('Error going to next level:', error);
+    });
+}
+
+function resetGame() {
+    document.getElementById('gameSetup').style.display = 'block';
+    document.getElementById('gameArea').style.display = 'none';
+    document.getElementById('gameControls').style.display = 'none';
+    document.getElementById('nextLevelBtn').style.display = 'none';
+    currentGameState = null;
+}
+
+function showResult(type, message) {
+    const resultDiv = document.getElementById('actionResult');
+    resultDiv.className = `alert alert-${type}`;
+    resultDiv.innerHTML = `<strong>${message}</strong>`;
+    resultDiv.style.display = 'block';
+    setTimeout(() => {
+        resultDiv.style.display = 'none';
+    }, 5000);
+}
+
+function showActionResult(type, message) {
+    showResult(type, message);
+}
+</script>
+{% endblock %}

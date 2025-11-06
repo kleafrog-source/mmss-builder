@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Активация MMSS System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-power-off"></i> Активация MMSS System</h4>
+            </div>
+            <div class="card-body">
+                <p class="lead">Активация всех трех компонентов системы MMSS</p>
+                
+                <form method="POST" action="{{ url_for('activate') }}" id="activateForm">
+                    <div class="mb-3">
+                        <label for="domain" class="form-label">Домен применения</label>
+                        {% from "domain_subdomains.html" import render_domain_select_with_subdomains %}
+                        {{ render_domain_select_with_subdomains('domain', 'domain', 'Финансовый Анализ', true, true) }}
+                        <small class="form-text text-muted">Выберите домен для оптимизации PFR (70 доступных доменов с подспециализациями)</small>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" id="activateBtn">
+                            <i class="fas fa-power-off"></i> Активировать MMSS System
+                        </button>
+                    </div>
+                </form>
+
+                <div id="activationResult" class="mt-4" style="display: none;">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Результат активации:</h5>
+                            <pre id="resultContent" class="bg-light p-3 rounded"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> Компоненты системы</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>PFR</strong> - Практическая Фрактальная Пересборка
+                        <br><small class="text-muted">MMSS_PRACTICAL_REASSEMBLY_V1.0_PFR</small>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>FRP</strong> - Темпоральная Навигация
+                        <br><small class="text-muted">FRP_RECURSIVE_TEMPORAL_NAVIGATOR</small>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>A-MMSS</strong> - Плетение Контекста
+                        <br><small class="text-muted">A-MMSS_CONTEXTWEAVER_V2.0_EC</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('activateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const btn = document.getElementById('activateBtn');
+    const resultDiv = document.getElementById('activationResult');
+    const resultContent = document.getElementById('resultContent');
+    
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Активация...';
+    
+    fetch('{{ url_for("api_activate") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            domain: formData.get('domain')
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        resultContent.textContent = JSON.stringify(data, null, 2);
+        resultDiv.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-power-off"></i> Активировать MMSS System';
+        
+        if (data.all_systems_operational) {
+            setTimeout(() => {
+                window.location.href = '{{ url_for("dashboard") }}';
+            }, 2000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-power-off"></i> Активировать MMSS System';
+    });
+});
+</script>
+{% endblock %}

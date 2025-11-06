@@ -1,0 +1,10 @@
+{
+	"id": "back-it-up",
+	"name": "BackItUp",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Quickly make a copy or snapshot of a note in Obsidian.",
+	"author": "hammadXP",
+	"authorUrl": "https://github.com/hammadxp",
+	"isDesktopOnly": false
+}

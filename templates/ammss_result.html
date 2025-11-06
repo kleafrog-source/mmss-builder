@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}A-MMSS Результаты{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">
+                    <i class="fas fa-check-circle"></i> Результаты плетения контекста
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-{{ 'success' if result.completion_condition_met else 'info' }}">
+                    <h5><i class="fas fa-{{ 'check' if result.completion_condition_met else 'info-circle' }}"></i> Статус: {{ result.status }}</h5>
+                    {% if result.completion_condition_met %}
+                    <p class="mb-0"><strong>Условие завершения выполнено!</strong></p>
+                    {% else %}
+                    <p class="mb-0">Плетение продолжается...</p>
+                    {% endif %}
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="metric-card bg-primary text-white p-3 rounded mb-3">
+                            <h3>{{ "%.4f"|format(result.W_context_2) }}</h3>
+                            <p class="mb-0">W_context^(2)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card bg-success text-white p-3 rounded mb-3">
+                            <h3>{{ "%.4f"|format(result.opt_A_MMSS) }}</h3>
+                            <p class="mb-0">opt_A-MMSS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card bg-warning text-dark p-3 rounded mb-3">
+                            <h3>{{ "%.4f"|format(result.metrics.V_2) }}</h3>
+                            <p class="mb-0">V^(2)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="mb-3">Детальные метрики:</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Семантическая гравитация 2-го порядка (G_S^(2))</td>
+                                <td>{{ "%.6f"|format(result.metrics.G_S_2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Ценность 2-го порядка (V^(2))</td>
+                                <td>{{ "%.6f"|format(result.metrics.V_2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Этическая стоимость 2-го порядка (Cost_eth^(2))</td>
+                                <td>{{ "%.6f"|format(result.metrics.Cost_eth_2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Универсальная когерентность (Φ_universal_cohesion)</td>
+                                <td>{{ "%.4f"|format(result.metrics.Phi_universal_cohesion) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Абсолютная контекстуальность</td>
+                                <td>{{ "%.4f"|format(result.metrics.absolute_contextuality) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="mb-0">Верификация</h6>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Метод:</strong> {{ result.verification.method }}</p>
+                        <p><strong>Критерий успеха:</strong> {{ result.verification.success_criteria }}</p>
+                        <p><strong>Финальное состояние:</strong> {{ result.verification.final_state }}</p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="{{ url_for('ammss') }}" class="btn btn-warning">
+                        <i class="fas fa-redo"></i> Новое плетение
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> Дашборд
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+

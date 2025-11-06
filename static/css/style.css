@@ -1,0 +1,335 @@
+/* MMSS System - Custom Styles */
+
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #0dcaf0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.hero-content {
+    padding: 2rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Liquid Glass Cards */
+.liquid-glass-card {
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: inherit; /* Ensure text color adapts */
+}
+
+.liquid-glass-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+[data-theme="dark"] .liquid-glass-card {
+    background-color: rgba(0, 0, 0, 0.2); /* Darker translucent for dark theme */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Metric Boxes */
+.metric-box {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    transition: transform 0.3s ease;
+}
+
+.metric-box:hover {
+    transform: scale(1.05);
+}
+
+.metric-box h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.metric-card {
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: scale(1.05);
+}
+
+.metric-card h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Formula Boxes */
+.formula-box {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.formula {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: #495057;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+/* Navigation */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-brand i {
+    margin-right: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Forms */
+.form-control, .form-select {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Tables */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .metric-box h3 {
+        font-size: 2rem;
+    }
+    
+    .metric-card h3 {
+        font-size: 2rem;
+    }
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0b5ed7;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --primary-color: #6a99ed;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] body {
+    background-color: #212529;
+}
+
+[data-theme="dark"] .navbar {
+    background-color: #343a40 !important;
+}
+
+[data-theme="dark"] .navbar-brand,
+[data-theme="dark"] .nav-link {
+    color: #e2e6ea !important;
+}
+
+[data-theme="dark"] .hero-section {
+    background: linear-gradient(135deg, #4a69bd 0%, #5f4b8b 100%);
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .card {
+    background-color: #343a40;
+    color: #e2e6ea;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .metric-box {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .metric-card {
+    background-color: #343a40;
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .formula-box {
+    background: #343a40;
+    border-left-color: var(--primary-color);
+}
+
+[data-theme="dark"] .formula {
+    background: #495057;
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: #495057;
+    color: #e2e6ea;
+    border-color: #6c757d;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: #ced4da;
+}
+
+[data-theme="dark"] .table {
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .table thead {
+    background: var(--primary-color);
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .alert {
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] footer {
+    background-color: #343a40 !important;
+    color: #e2e6ea !important;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #343a40;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: #343a40;
+    border-color: #495057;
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: #e2e6ea;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: #495057;
+    color: #e2e6ea;
+}
+
+
+
+
+
+

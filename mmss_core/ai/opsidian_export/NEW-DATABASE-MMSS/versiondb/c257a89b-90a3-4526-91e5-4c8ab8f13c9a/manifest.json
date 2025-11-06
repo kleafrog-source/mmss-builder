@@ -1,0 +1,20 @@
+{
+  "noteId": "c257a89b-90a3-4526-91e5-4c8ab8f13c9a",
+  "notePath": "Untitled 3в.md",
+  "currentBranch": "main",
+  "branches": {
+    "main": {
+      "versions": {
+        "fd28349d-36f1-4516-b128-26c31ddd7466": {
+          "versionNumber": 1,
+          "timestamp": "2025-10-26T22:29:48.961Z",
+          "size": 36248,
+          "name": "v7.2"
+        }
+      },
+      "totalVersions": 1
+    }
+  },
+  "createdAt": "2025-10-26T22:29:48.884Z",
+  "lastModified": "2025-10-28T19:15:00.958Z"
+}

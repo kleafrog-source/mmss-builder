@@ -1,0 +1,13 @@
+nodes:
+  system_analysis_report:
+    self: [System Analysis Report]
+    type: [system_analysis, value]
+    timestamp: [2024-10-19T12:00:00Z, value]
+    analyzed_system: [META_FRACTAL_CRAFT_v4.Ω, value]
+  meta_formulas_analysis:
+    self: [Meta Formulas Analysis]
+    formula_MF_061: [Ψ_absolute_context = lim..., value]
+    formula_MF_062: [Φ_fractal = ∑..., value]
+
+edges:
+  edge1: [system_analysis_report, bottom, meta_formulas_analysis, top]

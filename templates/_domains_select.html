@@ -1,0 +1,118 @@
+{# Макрос для выбора домена - используется в нескольких формах #}
+{% macro render_domain_select(select_id='domain', select_name='domain', default_value='', required=true, include_other=true) %}
+<select class="form-select" id="{{ select_id }}" name="{{ select_name }}" {% if required %}required{% endif %}>
+    {% if not default_value %}
+    <option value="">Выберите домен...</option>
+    {% endif %}
+    
+    {# Финансы и экономика #}
+    <optgroup label="Финансы и экономика">
+        <option value="Финансовый Анализ" {% if default_value == 'Финансовый Анализ' %}selected{% endif %}>Финансовый Анализ</option>
+        <option value="Инвестиционное управление" {% if default_value == 'Инвестиционное управление' %}selected{% endif %}>Инвестиционное управление</option>
+        <option value="Риск-менеджмент" {% if default_value == 'Риск-менеджмент' %}selected{% endif %}>Риск-менеджмент</option>
+        <option value="Алгоритмическая торговля" {% if default_value == 'Алгоритмическая торговля' %}selected{% endif %}>Алгоритмическая торговля</option>
+        <option value="Кредитный скоринг" {% if default_value == 'Кредитный скоринг' %}selected{% endif %}>Кредитный скоринг</option>
+        <option value="Финтех и платежи" {% if default_value == 'Финтех и платежи' %}selected{% endif %}>Финтех и платежи</option>
+        <option value="Страховое моделирование" {% if default_value == 'Страховое моделирование' %}selected{% endif %}>Страховое моделирование</option>
+        <option value="Макроэкономический анализ" {% if default_value == 'Макроэкономический анализ' %}selected{% endif %}>Макроэкономический анализ</option>
+    </optgroup>
+    
+    {# Биотехнологии и медицина #}
+    <optgroup label="Биотехнологии и медицина">
+        <option value="Биотехнологии/R&D" {% if default_value == 'Биотехнологии/R&D' %}selected{% endif %}>Биотехнологии/R&D</option>
+        <option value="Разработка лекарств" {% if default_value == 'Разработка лекарств' %}selected{% endif %}>Разработка лекарств</option>
+        <option value="Фармацевтический синтез" {% if default_value == 'Фармацевтический синтез' %}selected{% endif %}>Фармацевтический синтез</option>
+        <option value="Геномный анализ" {% if default_value == 'Геномный анализ' %}selected{% endif %}>Геномный анализ</option>
+        <option value="Протеомика и метаболомика" {% if default_value == 'Протеомика и метаболомика' %}selected{% endif %}>Протеомика и метаболомика</option>
+        <option value="Персонализированная медицина" {% if default_value == 'Персонализированная медицина' %}selected{% endif %}>Персонализированная медицина</option>
+        <option value="Биоинформатика" {% if default_value == 'Биоинформатика' %}selected{% endif %}>Биоинформатика</option>
+        <option value="Медицинская диагностика" {% if default_value == 'Медицинская диагностика' %}selected{% endif %}>Медицинская диагностика</option>
+    </optgroup>
+    
+    {# Логистика и транспорт #}
+    <optgroup label="Логистика и транспорт">
+        <option value="Оптимизация логистики" {% if default_value == 'Оптимизация логистики' %}selected{% endif %}>Оптимизация логистики</option>
+        <option value="Управление цепочками поставок" {% if default_value == 'Управление цепочками поставок' %}selected{% endif %}>Управление цепочками поставок</option>
+        <option value="Маршрутизация транспорта" {% if default_value == 'Маршрутизация транспорта' %}selected{% endif %}>Маршрутизация транспорта</option>
+        <option value="Управление складом" {% if default_value == 'Управление складом' %}selected{% endif %}>Управление складом</option>
+        <option value="Прогнозирование спроса" {% if default_value == 'Прогнозирование спроса' %}selected{% endif %}>Прогнозирование спроса</option>
+        <option value="Управление флотом" {% if default_value == 'Управление флотом' %}selected{% endif %}>Управление флотом</option>
+    </optgroup>
+    
+    {# Наука и исследования #}
+    <optgroup label="Наука и исследования">
+        <option value="Научные исследования" {% if default_value == 'Научные исследования' %}selected{% endif %}>Научные исследования</option>
+        <option value="Климатическое моделирование" {% if default_value == 'Климатическое моделирование' %}selected{% endif %}>Климатическое моделирование</option>
+        <option value="Астрофизика и космология" {% if default_value == 'Астрофизика и космология' %}selected{% endif %}>Астрофизика и космология</option>
+        <option value="Квантовая физика" {% if default_value == 'Квантовая физика' %}selected{% endif %}>Квантовая физика</option>
+        <option value="Материаловедение" {% if default_value == 'Материаловедение' %}selected{% endif %}>Материаловедение</option>
+        <option value="Химический синтез" {% if default_value == 'Химический синтез' %}selected{% endif %}>Химический синтез</option>
+    </optgroup>
+    
+    {# Технологии и IT #}
+    <optgroup label="Технологии и IT">
+        <option value="Машинное обучение" {% if default_value == 'Машинное обучение' %}selected{% endif %}>Машинное обучение</option>
+        <option value="Обработка естественного языка" {% if default_value == 'Обработка естественного языка' %}selected{% endif %}>Обработка естественного языка</option>
+        <option value="Компьютерное зрение" {% if default_value == 'Компьютерное зрение' %}selected{% endif %}>Компьютерное зрение</option>
+        <option value="Кибербезопасность" {% if default_value == 'Кибербезопасность' %}selected{% endif %}>Кибербезопасность</option>
+        <option value="Оптимизация программного обеспечения" {% if default_value == 'Оптимизация программного обеспечения' %}selected{% endif %}>Оптимизация программного обеспечения</option>
+        <option value="DevOps и автоматизация" {% if default_value == 'DevOps и автоматизация' %}selected{% endif %}>DevOps и автоматизация</option>
+    </optgroup>
+    
+    {# Энергетика #}
+    <optgroup label="Энергетика">
+        <option value="Управление энергосетями" {% if default_value == 'Управление энергосетями' %}selected{% endif %}>Управление энергосетями</option>
+        <option value="Возобновляемая энергетика" {% if default_value == 'Возобновляемая энергетика' %}selected{% endif %}>Возобновляемая энергетика</option>
+        <option value="Оптимизация энергопотребления" {% if default_value == 'Оптимизация энергопотребления' %}selected{% endif %}>Оптимизация энергопотребления</option>
+        <option value="Нефтегазовая отрасль" {% if default_value == 'Нефтегазовая отрасль' %}selected{% endif %}>Нефтегазовая отрасль</option>
+    </optgroup>
+    
+    {# Производство #}
+    <optgroup label="Производство">
+        <option value="Промышленное производство" {% if default_value == 'Промышленное производство' %}selected{% endif %}>Промышленное производство</option>
+        <option value="Управление качеством" {% if default_value == 'Управление качеством' %}selected{% endif %}>Управление качеством</option>
+        <option value="Предиктивное обслуживание" {% if default_value == 'Предиктивное обслуживание' %}selected{% endif %}>Предиктивное обслуживание</option>
+        <option value="Оптимизация производственных процессов" {% if default_value == 'Оптимизация производственных процессов' %}selected{% endif %}>Оптимизация производственных процессов</option>
+    </optgroup>
+    
+    {# Другие области #}
+    <optgroup label="Другие области">
+        <option value="Недвижимость и строительство" {% if default_value == 'Недвижимость и строительство' %}selected{% endif %}>Недвижимость и строительство</option>
+        <option value="Сельское хозяйство" {% if default_value == 'Сельское хозяйство' %}selected{% endif %}>Сельское хозяйство</option>
+        <option value="Реклама и маркетинг" {% if default_value == 'Реклама и маркетинг' %}selected{% endif %}>Реклама и маркетинг</option>
+        <option value="HR и управление персоналом" {% if default_value == 'HR и управление персоналом' %}selected{% endif %}>HR и управление персоналом</option>
+        <option value="Образование и обучение" {% if default_value == 'Образование и обучение' %}selected{% endif %}>Образование и обучение</option>
+        <option value="Юриспруденция" {% if default_value == 'Юриспруденция' %}selected{% endif %}>Юриспруденция</option>
+        <option value="Государственное управление" {% if default_value == 'Государственное управление' %}selected{% endif %}>Государственное управление</option>
+    </optgroup>
+    
+    {# Креативные и инновационные домены #}
+    <optgroup label="🎨 Креативные и инновационные домены">
+        <option value="Генеративный дизайн и искусство" {% if default_value == 'Генеративный дизайн и искусство' %}selected{% endif %}>Генеративный дизайн и искусство</option>
+        <option value="Музыкальная композиция и аудио-синтез" {% if default_value == 'Музыкальная композиция и аудио-синтез' %}selected{% endif %}>Музыкальная композиция и аудио-синтез</option>
+        <option value="Геймдизайн и интерактивные миры" {% if default_value == 'Геймдизайн и интерактивные миры' %}selected{% endif %}>Геймдизайн и интерактивные миры</option>
+        <option value="Виртуальная и дополненная реальность" {% if default_value == 'Виртуальная и дополненная реальность' %}selected{% endif %}>Виртуальная и дополненная реальность</option>
+        <option value="Квантовые вычисления" {% if default_value == 'Квантовые вычисления' %}selected{% endif %}>Квантовые вычисления</option>
+        <option value="Космические исследования и колонизация" {% if default_value == 'Космические исследования и колонизация' %}selected{% endif %}>Космические исследования и колонизация</option>
+        <option value="Подводные технологии и океанология" {% if default_value == 'Подводные технологии и океанология' %}selected{% endif %}>Подводные технологии и океанология</option>
+        <option value="Робототехника и автономные системы" {% if default_value == 'Робототехника и автономные системы' %}selected{% endif %}>Робототехника и автономные системы</option>
+        <option value="Нейроинтерфейсы и BCI" {% if default_value == 'Нейроинтерфейсы и BCI' %}selected{% endif %}>Нейроинтерфейсы и BCI</option>
+        <option value="Бионический дизайн и кибернетика" {% if default_value == 'Бионический дизайн и кибернетика' %}selected{% endif %}>Бионический дизайн и кибернетика</option>
+        <option value="Квантовая криптография" {% if default_value == 'Квантовая криптография' %}selected{% endif %}>Квантовая криптография</option>
+        <option value="Квантовая связь" {% if default_value == 'Квантовая связь' %}selected{% endif %}>Квантовая связь</option>
+        <option value="Телепортация данных" {% if default_value == 'Телепортация данных' %}selected{% endif %}>Телепортация данных</option>
+        <option value="Синтетическая биология" {% if default_value == 'Синтетическая биология' %}selected{% endif %}>Синтетическая биология</option>
+        <option value="Наномедицина" {% if default_value == 'Наномедицина' %}selected{% endif %}>Наномедицина</option>
+        <option value="Спортивная аналитика и биомеханика" {% if default_value == 'Спортивная аналитика и биомеханика' %}selected{% endif %}>Спортивная аналитика и биомеханика</option>
+        <option value="Киберспорт и киберспортивная аналитика" {% if default_value == 'Киберспорт и киберспортивная аналитика' %}selected{% endif %}>Киберспорт и киберспортивная аналитика</option>
+        <option value="Виртуальные миры и метавселенные" {% if default_value == 'Виртуальные миры и метавселенные' %}selected{% endif %}>Виртуальные миры и метавселенные</option>
+        <option value="Блокчейн и Web3 технологии" {% if default_value == 'Блокчейн и Web3 технологии' %}selected{% endif %}>Блокчейн и Web3 технологии</option>
+        <option value="Квантовая машинное обучение" {% if default_value == 'Квантовая машинное обучение' %}selected{% endif %}>Квантовая машинное обучение</option>
+        <option value="Молекулярная кухня и пищевой дизайн" {% if default_value == 'Молекулярная кухня и пищевой дизайн' %}selected{% endif %}>Молекулярная кухня и пищевой дизайн</option>
+    </optgroup>
+    
+    {% if include_other %}
+    <option value="Другое">Другое (указать в контексте)</option>
+    {% endif %}
+</select>
+{% endmacro %}

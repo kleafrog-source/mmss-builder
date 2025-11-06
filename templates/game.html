@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}MMSS Game - Интерактивная игра{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-gamepad"></i> MMSS Game - Интерактивная игра
+                </h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Изучайте принципы MMSS системы через интерактивную игру!</p>
+                <p>Выберите тип игры и уровень сложности, чтобы начать ваше путешествие в мир фрактальной пересборки.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- PFR Puzzle -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="card-icon mb-3 text-center">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
+                </div>
+                <h5 class="card-title">PFR Puzzle</h5>
+                <p class="card-subtitle text-muted">Головоломка фрактальной пересборки</p>
+                <p class="card-text">
+                    Преобразуйте энтропию в порядок через фрактальную дезинтеграцию и когерентную сборку.
+                    Максимизируйте эффективность пересборки η_R.
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('game_play', game_type='pfr_puzzle') }}" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Играть
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Temporal Navigator -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="card-icon mb-3 text-center">
+                    <i class="fas fa-sync-alt fa-3x text-success"></i>
+                </div>
+                <h5 class="card-title">Temporal Navigator</h5>
+                <p class="card-subtitle text-muted">Темпоральная навигация</p>
+                <p class="card-text">
+                    Навигируйте по рекурсивным временным петлям. Используйте темпоральные операторы
+                    для преобразования хаоса в осознанность.
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('game_play', game_type='temporal_navigator') }}" class="btn btn-success">
+                        <i class="fas fa-play"></i> Играть
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Weaver -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="card-icon mb-3 text-center">
+                    <i class="fas fa-magic fa-3x text-warning"></i>
+                </div>
+                <h5 class="card-title">Context Weaver</h5>
+                <p class="card-subtitle text-muted">Плетение контекста</p>
+                <p class="card-text">
+                    Примените оператор W_context^(2) для творения реальности. Используйте все четыре
+                    оператора плетения для достижения универсальной когерентности.
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('game_play', game_type='context_weaver') }}" class="btn btn-warning">
+                        <i class="fas fa-play"></i> Играть
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MMSS Master -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-danger">
+            <div class="card-body">
+                <div class="card-icon mb-3 text-center">
+                    <i class="fas fa-crown fa-3x text-danger"></i>
+                </div>
+                <h5 class="card-title">MMSS Master</h5>
+                <p class="card-subtitle text-muted">Комплексная игра</p>
+                <p class="card-text">
+                    <strong>Экспертный режим!</strong> Примените все компоненты MMSS одновременно.
+                    Достигните идеального состояния: S^(2)=0.0, V^(2)=1.0, Φ_cohesion=1.0
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('game_play', game_type='mmss_master') }}" class="btn btn-danger">
+                        <i class="fas fa-play"></i> Играть (Эксперт)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-trophy"></i> Таблица лидеров</h5>
+            </div>
+            <div class="card-body">
+                <div id="leaderboard">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Загрузка...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Загрузка таблицы лидеров
+    fetch('{{ url_for("game_leaderboard") }}')
+        .then(response => response.json())
+        .then(data => {
+            const leaderboard = document.getElementById('leaderboard');
+            if (data.leaderboard && data.leaderboard.length > 0) {
+                let html = '<table class="table table-striped"><thead><tr><th>Место</th><th>Игрок</th><th>Очки</th><th>Уровень</th></tr></thead><tbody>';
+                data.leaderboard.forEach((player, index) => {
+                    html += `<tr>
+                        <td>${index + 1}</td>
+                        <td>${player.player}</td>
+                        <td>${player.score}</td>
+                        <td>${player.level}</td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+                leaderboard.innerHTML = html;
+            } else {
+                leaderboard.innerHTML = '<p class="text-muted text-center">Таблица лидеров пуста. Станьте первым!</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error loading leaderboard:', error);
+            document.getElementById('leaderboard').innerHTML = '<p class="text-danger text-center">Ошибка загрузки таблицы лидеров</p>';
+        });
+});
+</script>
+{% endblock %}
+
+
+
+
+

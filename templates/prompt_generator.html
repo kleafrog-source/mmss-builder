@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Генератор Промптов MMSS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-robot"></i> Генератор Промптов MMSS для Нейросетей
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="lead">Создайте структурированный промпт для нейросетей на основе конфигурации MMSS системы</p>
+
+                <form method="POST" action="{{ url_for('prompt_generator_page') }}" id="promptForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Основные настройки</h5>
+                            
+                            <div class="mb-3">
+                                <label for="prompt_type" class="form-label">Тип промпта</label>
+                                <select class="form-select" id="prompt_type" name="prompt_type" required>
+                                    <option value="full" selected>Полный MMSS промпт</option>
+                                    <option value="pfr">PFR - Фрактальная Пересборка</option>
+                                    <option value="frp">FRP - Темпоральная Навигация</option>
+                                    <option value="ammss">A-MMSS - Плетение Контекста</option>
+                                </select>
+                                <small class="form-text text-muted">Выберите тип промпта для генерации</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="domain" class="form-label">Домен применения</label>
+                                {% from "domain_subdomains.html" import render_domain_select_with_subdomains %}
+                                {{ render_domain_select_with_subdomains('domain', 'domain', '', false, true) }}
+                                <small class="form-text text-muted">70 доступных доменов применения с подспециализациями</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="task_context" class="form-label">Контекст задачи</label>
+                                <textarea class="form-control" id="task_context" name="task_context" rows="4"
+                                          placeholder="Опишите задачу, которую нужно решить..."></textarea>
+                                <small class="form-text text-muted">Детальное описание задачи для нейросети</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="role_description" class="form-label">Описание роли (опционально)</label>
+                                <textarea class="form-control" id="role_description" name="role_description" rows="3"
+                                          placeholder="Оставьте пустым для использования описания по умолчанию"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Компоненты MMSS</h5>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="enable_pfr" name="enable_pfr" checked>
+                                    <label class="form-check-label" for="enable_pfr">
+                                        <strong>PFR</strong> - Практическая Фрактальная Пересборка
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="enable_frp" name="enable_frp" checked>
+                                    <label class="form-check-label" for="enable_frp">
+                                        <strong>FRP</strong> - Темпоральная Навигация
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="enable_ammss" name="enable_ammss" checked>
+                                    <label class="form-check-label" for="enable_ammss">
+                                        <strong>A-MMSS</strong> - Плетение Контекста
+                                    </label>
+                                </div>
+                            </div>
+
+                            <h5 class="mb-3 mt-4">Целевые метрики</h5>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="target_eta_r" name="target_eta_r" checked>
+                                    <label class="form-check-label" for="target_eta_r">
+                                        η_R (Эффективность пересборки) → ∞
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="target_value" name="target_value" checked>
+                                    <label class="form-check-label" for="target_value">
+                                        V (Прикладная ценность) → 1.0
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="target_coherence" name="target_coherence" checked>
+                                    <label class="form-check-label" for="target_coherence">
+                                        Ψ_ops (Когерентность) > 0.95
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="target_cohesion" name="target_cohesion" checked>
+                                    <label class="form-check-label" for="target_cohesion">
+                                        Φ_universal_cohesion → 1.0
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="export_format" class="form-label">Формат экспорта</label>
+                                <select class="form-select" id="export_format" name="export_format">
+                                    <option value="text" selected>Текст</option>
+                                    <option value="markdown">Markdown</option>
+                                    <option value="json">JSON</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="mb-3">Дополнительные инструкции</h5>
+                            
+                            <div class="mb-3">
+                                <label for="instructions" class="form-label">Инструкции для выполнения (опционально)</label>
+                                <textarea class="form-control" id="instructions" name="instructions" rows="3"
+                                          placeholder="Оставьте пустым для использования инструкций по умолчанию"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="expected_result" class="form-label">Ожидаемый результат (опционально)</label>
+                                <textarea class="form-control" id="expected_result" name="expected_result" rows="2"
+                                          placeholder="Опишите ожидаемый результат..."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="ethical_constraints" class="form-label">Этические ограничения (опционально)</label>
+                                <textarea class="form-control" id="ethical_constraints" name="ethical_constraints" rows="2"
+                                          placeholder="Оставьте пустым для использования ограничений по умолчанию"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-info btn-lg">
+                            <i class="fas fa-magic"></i> Сгенерировать промпт
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> Информация о генераторе</h5>
+            </div>
+            <div class="card-body">
+                <p>Генератор промптов создает структурированные промпты для нейросетей (LLM), основанные на принципах MMSS системы:</p>
+                <ul>
+                    <li><strong>Полный промпт</strong> - включает все компоненты MMSS и метрики</li>
+                    <li><strong>PFR промпт</strong> - специализированный для фрактальной пересборки</li>
+                    <li><strong>FRP промпт</strong> - для темпоральной навигации по рекурсивным сценариям</li>
+                    <li><strong>A-MMSS промпт</strong> - для плетения контекста с этической стабилизацией</li>
+                </ul>
+                <p class="mb-0">Сгенерированные промпты можно использовать с ChatGPT, Claude, Gemini и другими LLM.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

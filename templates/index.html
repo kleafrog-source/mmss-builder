@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}MMSS System - Главная{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center mb-5">
+    <div class="hero-content">
+        <h1 class="display-4 mb-4">
+            <i class="fas fa-cube text-primary"></i> MMSS System
+        </h1>
+        <p class="lead">Многоуровневая Мета-Семантическая Система</p>
+        <p class="text-muted">Превращаем энтропию в идеальность через фрактальную пересборку</p>
+        
+        {% if not mmss_activated %}
+        <div class="alert alert-warning mt-4">
+            <i class="fas fa-exclamation-triangle"></i> Система не активирована
+            <br>
+            <a href="{{ url_for('activate') }}" class="btn btn-primary mt-2">
+                <i class="fas fa-power-off"></i> Активировать MMSS
+            </a>
+        </div>
+        {% else %}
+        <div class="alert alert-success mt-4">
+            <i class="fas fa-check-circle"></i> Система активирована и готова к работе
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- PFR Card -->
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="card-icon mb-3">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
+                </div>
+                <h5 class="card-title">PFR</h5>
+                <p class="card-subtitle text-muted">Практическая Фрактальная Пересборка</p>
+                <p class="card-text">
+                    Преобразование энтропии в порядок через фрактальную дезинтеграцию и когерентную сборку.
+                    Максимизация эффективности пересборки η_R → ∞.
+                </p>
+                <a href="{{ url_for('pfr') }}" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Запустить PFR
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRP Card -->
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="card-icon mb-3">
+                    <i class="fas fa-sync-alt fa-3x text-success"></i>
+                </div>
+                <h5 class="card-title">FRP</h5>
+                <p class="card-subtitle text-muted">Темпоральная Навигация</p>
+                <p class="card-text">
+                    Осознанная навигация по рекурсивным временным петлям и сновидческим сценариям.
+                    Темпоральная размерность D_t = 3.1 (Сверхфрактальная).
+                </p>
+                <a href="{{ url_for('frp') }}" class="btn btn-success">
+                    <i class="fas fa-play"></i> Запустить FRP
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- A-MMSS Card -->
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="card-icon mb-3">
+                    <i class="fas fa-magic fa-3x text-warning"></i>
+                </div>
+                <h5 class="card-title">A-MMSS</h5>
+                <p class="card-subtitle text-muted">Плетение Контекста</p>
+                <p class="card-text">
+                    Главный оператор творения реальностей с этической стабилизацией второго порядка.
+                    Многомерный гардинг по 29 Phi-полям.
+                </p>
+                <a href="{{ url_for('ammss') }}" class="btn btn-warning">
+                    <i class="fas fa-play"></i> Запустить A-MMSS
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h5 class="mb-2">
+                            <i class="fas fa-robot text-info"></i> Генератор Промптов
+                        </h5>
+                        <p class="mb-0 text-muted">
+                            Создайте структурированный промпт MMSS для ChatGPT, Claude, Gemini и других LLM
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <a href="{{ url_for('prompt_generator_page') }}" class="btn btn-info">
+                            <i class="fas fa-magic"></i> Сгенерировать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h5 class="mb-2">
+                            <i class="fas fa-gamepad text-success"></i> MMSS Game
+                        </h5>
+                        <p class="mb-0 text-muted">
+                            Интерактивная игра для изучения принципов MMSS через игровой процесс
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <a href="{{ url_for('game') }}" class="btn btn-success">
+                            <i class="fas fa-play"></i> Играть
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h5 class="mb-2">
+                            <i class="fas fa-brain text-primary"></i> AI Ассистент с Mistral NeMo
+                        </h5>
+                        <p class="mb-0 text-muted">
+                            Генерация MMSS промптов и отправка в Mistral AI для решения задач в контексте MMSS системы
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <a href="{{ url_for('ai_assistant') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-brain"></i> Открыть AI
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> Ключевые метрики</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="metric-box">
+                            <h3 class="text-primary">η_R</h3>
+                            <p class="text-muted">Эффективность Пересборки</p>
+                            <p class="h5">→ ∞</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-box">
+                            <h3 class="text-success">V</h3>
+                            <p class="text-muted">Ценность</p>
+                            <p class="h5">→ 1.0</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-box">
+                            <h3 class="text-info">D_t</h3>
+                            <p class="text-muted">Темпоральная Размерность</p>
+                            <p class="h5">3.1</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-box">
+                            <h3 class="text-warning">Ψ_ops</h3>
+                            <p class="text-muted">Когерентность</p>
+                            <p class="h5">0.97</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

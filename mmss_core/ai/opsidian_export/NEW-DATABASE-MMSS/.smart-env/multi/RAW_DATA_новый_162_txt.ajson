@@ -1,0 +1,4 @@
+
+"smart_sources:RAW_DATA/новый 162.txt": {"path":"RAW_DATA/новый 162.txt","last_embed":{"hash":null},"embeddings":{"TaylorAI/bge-micro-v2":{"last_embed":{"hash":"0"}}},"last_read":{"hash":"0","at":1761491528625},"class_name":"SmartSource"},
+"smart_sources:RAW_DATA/новый 162.txt": {"path":"RAW_DATA/новый 162.txt","last_embed":{"hash":null},"embeddings":{"TaylorAI/bge-micro-v2":{"last_embed":{"hash":"0"}}},"last_read":{"hash":"0","at":1761492059935},"class_name":"SmartSource"},
+"smart_sources:RAW_DATA/новый 162.txt": {"path":"RAW_DATA/новый 162.txt","last_embed":{"hash":null},"embeddings":{"TaylorAI/bge-micro-v2":{"last_embed":{"hash":"0"}}},"last_read":{"hash":"0","at":1761499575612},"class_name":"SmartSource"},

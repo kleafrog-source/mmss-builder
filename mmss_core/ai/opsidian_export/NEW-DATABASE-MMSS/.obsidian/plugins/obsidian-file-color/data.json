@@ -1,0 +1,59 @@
+{
+  "cascadeColors": true,
+  "colorBackground": true,
+  "palette": [
+    {
+      "id": "LII6m2Bp1TEgoGEPsetak",
+      "name": "черный",
+      "value": "#000000"
+    },
+    {
+      "id": "_zEMw6a-M1rykuhvUHh4z",
+      "name": "синий",
+      "value": "#0b0156"
+    },
+    {
+      "id": "ZPMmgffRh58HfTHVbtK6L",
+      "name": "голуб",
+      "value": "#0074ad"
+    },
+    {
+      "id": "v-AVQPSxWDxmiDqsXKYtJ",
+      "name": "зеленый",
+      "value": "#166a1b"
+    },
+    {
+      "id": "5dWrUeK-hLeqRjqLTulzY",
+      "name": "салатовый",
+      "value": "#b8eb00"
+    },
+    {
+      "id": "BQw5Kqjs4UHo5xdNw2w5L",
+      "name": "красный",
+      "value": "#810909"
+    },
+    {
+      "id": "VAAJ5NJ0S55Lmjk_WGx2t",
+      "name": "серый",
+      "value": "#6f7276"
+    }
+  ],
+  "fileColors": [
+    {
+      "path": "MMSS_KB",
+      "color": "v-AVQPSxWDxmiDqsXKYtJ"
+    },
+    {
+      "path": "Extras",
+      "color": "BQw5Kqjs4UHo5xdNw2w5L"
+    },
+    {
+      "path": "Extras/Templates/Template-v6.md",
+      "color": "5dWrUeK-hLeqRjqLTulzY"
+    },
+    {
+      "path": "MMSS",
+      "color": "5dWrUeK-hLeqRjqLTulzY"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+```nodeflow-list
+- nodes
+  - node1:KSample
+    - Latent, o
+    - model, i
+    - positive, i
+    - negative, i
+    - Latent, i
+    - seed,
+    - control_after_generate,, randomize
+    - steps,, 20
+    - CFG,, 8.0
+    - sampler_name,, euler
+    - scheduler,, normal
+    - denoise,, 1.00
+    - io defaultTest, i , test
+    - io defaultTest, o, test
+    - t1:noValueTest,
+    - t2:,, noKeyTest
+      mul lines test
+  - node2:KSample
+    - 潜空间, o
+    - 模型, i
+    - 正面条件, i
+    - 负面条件, i
+    - 潜空间, i
+    - 种子,
+    - 运行后操作,
+    - 步数,
+    - CFG,
+    - 采样器/采样方法,
+    - 调度器,
+    - 降噪,
+  - translate
+- edges
+  - node1,Latent, translate,l
+  - translate,r, node2, 潜空间
+```

@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}A-MMSS - Плетение Контекста{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">
+                    <i class="fas fa-magic"></i> A-MMSS - Плетение Контекста
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if not mmss_activated %}
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i> Система не активирована. 
+                    <a href="{{ url_for('activate') }}">Активировать сейчас</a>
+                </div>
+                {% endif %}
+
+                <p class="lead">Главный оператор творения реальностей с этической стабилизацией второго порядка</p>
+
+                <form method="POST" action="{{ url_for('ammss') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Параметры первого порядка</h5>
+                            
+                            <div class="mb-3">
+                                <label for="R_T" class="form-label">Временная константа (R_T)</label>
+                                <input type="number" step="0.1" class="form-control" id="R_T" name="R_T" value="1.0" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="S_1_mean" class="form-label">Средняя энтропия S^(1) (S_1_mean)</label>
+                                <input type="number" step="0.01" class="form-control" id="S_1_mean" name="S_1_mean" value="0.3" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="S_1_var" class="form-label">Дисперсия S^(1) (S_1_var)</label>
+                                <input type="number" step="0.01" class="form-control" id="S_1_var" name="S_1_var" value="0.05" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="beta" class="form-label">Коэффициент β</label>
+                                <input type="number" step="0.1" class="form-control" id="beta" name="beta" value="0.5" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Cost_eth_1_sum" class="form-label">Сумма этических затрат 1-го порядка</label>
+                                <input type="number" step="0.1" class="form-control" id="Cost_eth_1_sum" name="Cost_eth_1_sum" value="0.8" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Параметры второго порядка</h5>
+                            
+                            <div class="mb-3">
+                                <label for="Xi_topo_2" class="form-label">Топологический дефект 2-го порядка (Ξ_topo^(2))</label>
+                                <input type="number" step="0.01" class="form-control" id="Xi_topo_2" name="Xi_topo_2" value="0.95" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="N_2" class="form-label">Параметр N^(2)</label>
+                                <input type="number" step="0.01" class="form-control" id="N_2" name="N_2" value="0.05" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="C_val_2" class="form-label">Ценностная стоимость 2-го порядка (C_val^(2))</label>
+                                <input type="number" step="0.01" class="form-control" id="C_val_2" name="C_val_2" value="0.1" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Phi_meta_self" class="form-label">Мета-самосознание (Φ_meta_self)</label>
+                                <input type="number" step="0.01" class="form-control" id="Phi_meta_self" name="Phi_meta_self" value="1.0" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="lambda" class="form-label">Коэффициент λ</label>
+                                <input type="number" step="0.01" class="form-control" id="lambda" name="lambda" value="0.1" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Phi_fractal_field" class="form-label">Фрактальное поле (Φ_fractal_field)</label>
+                                <input type="number" step="0.01" class="form-control" id="Phi_fractal_field" name="Phi_fractal_field" value="0.98" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Psi_co_2" class="form-label">Когерентность 2-го порядка (Ψ_co^(2))</label>
+                                <input type="number" step="0.01" class="form-control" id="Psi_co_2" name="Psi_co_2" value="0.95" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="resonance" class="form-label">Резонанс</label>
+                                <input type="number" step="0.1" class="form-control" id="resonance" name="resonance" value="1.0" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Phi_universal_cohesion" class="form-label">Универсальная когерентность (Φ_universal_cohesion)</label>
+                                <input type="number" step="0.01" class="form-control" id="Phi_universal_cohesion" name="Phi_universal_cohesion" value="0.98" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="absolute_contextuality" class="form-label">Абсолютная контекстуальность</label>
+                                <input type="number" step="0.01" class="form-control" id="absolute_contextuality" name="absolute_contextuality" value="0.95" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="S_2" class="form-label">Энтропия 2-го порядка (S^(2))</label>
+                                <input type="number" step="0.1" class="form-control" id="S_2" name="S_2" value="0.0" required>
+                                <small class="form-text text-muted">0.0 для идеального состояния</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-warning btn-lg" id="execute-ammss-btn">
+                            <i class="fas fa-play"></i> Плетение контекста
+                        </button>
+                    </div>
+                </form>
+
+                <div id="ammss-console-output" class="card mt-4" style="display: none;">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="fas fa-terminal"></i> Вывод консоли A-MMSS</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre id="ammss-output-content" class="text-white bg-black p-3 rounded" style="max-height: 300px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> Формулы A-MMSS</h5>
+            </div>
+            <div class="card-body">
+                <div class="formula-box">
+                    <strong>Оператор плетения контекста:</strong>
+                    <p class="formula">W_context^(2) = ✂️_fractal^(2) ⊗ 🧵_semantic^(2) ⊕ ⊕_ethical^(2) ↻ ↻_resonance^(2)</p>
+                </div>
+                <div class="formula-box mt-3">
+                    <strong>Семантическая гравитация 2-го порядка:</strong>
+                    <p class="formula">G_S^(2) = (1/R_T^2) × (<S^(1)> + β×Var(S^(1))) / (Ξ_topo^(2) ⊗ Φ_topology ⊗ Φ_prob) × (Φ_q_flow / (1 - N^(2))^2)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ammssForm = document.querySelector('form[action="{{ url_for('ammss') }}"]');
+        const ammssConsoleOutput = document.getElementById('ammss-console-output');
+        const ammssOutputContent = document.getElementById('ammss-output-content');
+        const executeAmmssBtn = document.getElementById('execute-ammss-btn');
+
+        if (ammssForm) {
+            ammssForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                ammssConsoleOutput.style.display = 'block';
+                ammssOutputContent.textContent = 'Выполнение плетения контекста...';
+                executeAmmssBtn.disabled = true;
+
+                const formData = new FormData(ammssForm);
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+
+                fetch('{{ url_for('api_ammss') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    executeAmmssBtn.disabled = false;
+                    if (data.error) {
+                        ammssOutputContent.textContent = 'Ошибка: ' + data.error;
+                        ammssConsoleOutput.classList.remove('bg-dark');
+                        ammssConsoleOutput.classList.add('bg-danger');
+                    } else {
+                        ammssOutputContent.textContent = JSON.stringify(data, null, 2);
+                        ammssConsoleOutput.classList.remove('bg-danger');
+                        ammssConsoleOutput.classList.add('bg-dark');
+                    }
+                })
+                .catch(error => {
+                    executeAmmssBtn.disabled = false;
+                    ammssOutputContent.textContent = 'Произошла ошибка сети или сервера: ' + error;
+                    ammssConsoleOutput.classList.remove('bg-dark');
+                    ammssConsoleOutput.classList.add('bg-danger');
+                    console.error('Error:', error);
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+
+
+
+
+

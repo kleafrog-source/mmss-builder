@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Дашборд MMSS System{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2><i class="fas fa-chart-line"></i> Дашборд системы</h2>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5>PFR</h5>
+                <h3>
+                    {% if status.PFR_ready %}
+                    <i class="fas fa-check-circle"></i> Активен
+                    {% else %}
+                    <i class="fas fa-times-circle"></i> Неактивен
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5>FRP</h5>
+                <h3>
+                    {% if status.FRP_ready %}
+                    <i class="fas fa-check-circle"></i> Активен
+                    {% else %}
+                    <i class="fas fa-times-circle"></i> Неактивен
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-dark">
+            <div class="card-body">
+                <h5>A-MMSS</h5>
+                <h3>
+                    {% if status.A_MMSS_ready %}
+                    <i class="fas fa-check-circle"></i> Активен
+                    {% else %}
+                    <i class="fas fa-times-circle"></i> Неактивен
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-{{ 'success' if status.all_operational else 'danger' }} text-white">
+            <div class="card-body">
+                <h5>Общий статус</h5>
+                <h3>
+                    {% if status.all_operational %}
+                    <i class="fas fa-check-circle"></i> Оперативна
+                    {% else %}
+                    <i class="fas fa-exclamation-triangle"></i> Частично
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="fas fa-cog"></i> Статус активации</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>PFR</span>
+                        <span class="badge bg-{{ 'success' if status.activation_status.PFR else 'danger' }}">
+                            {{ 'Активирован' if status.activation_status.PFR else 'Не активирован' }}
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>FRP</span>
+                        <span class="badge bg-{{ 'success' if status.activation_status.FRP else 'danger' }}">
+                            {{ 'Активирован' if status.activation_status.FRP else 'Не активирован' }}
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>A-MMSS</span>
+                        <span class="badge bg-{{ 'success' if status.activation_status.A_MMSS else 'danger' }}">
+                            {{ 'Активирован' if status.activation_status.A_MMSS else 'Не активирован' }}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-rocket"></i> Быстрые действия</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    {% if not mmss_activated %}
+                    <a href="{{ url_for('activate') }}" class="btn btn-primary">
+                        <i class="fas fa-power-off"></i> Активировать систему
+                    </a>
+                    {% endif %}
+                    <a href="{{ url_for('pfr') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-project-diagram"></i> PFR - Фрактальная Пересборка
+                    </a>
+                    <a href="{{ url_for('frp') }}" class="btn btn-outline-success">
+                        <i class="fas fa-sync-alt"></i> FRP - Темпоральная Навигация
+                    </a>
+                    <a href="{{ url_for('ammss') }}" class="btn btn-outline-warning">
+                        <i class="fas fa-magic"></i> A-MMSS - Плетение Контекста
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+

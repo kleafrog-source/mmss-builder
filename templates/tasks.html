@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+
+{% block title %}Task Board{% endblock %}
+
+{% block head %}
+<style>
+    .task-board {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .task-column {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.1); /* More translucent background */
+        padding: 15px;
+        border-radius: 10px; /* Slightly more rounded corners */
+        border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+        backdrop-filter: blur(5px); /* Subtle blur for the column */
+    }
+    .task-column h3 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .task-card {
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .task-card .card-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center mb-4">Task Board</h1>
+
+    <!-- Add Task Form -->
+    <div class="add-task-form mb-4">
+        <form action="{{ url_for('add_task') }}" method="POST">
+            <div class="input-group">
+                <input type="text" name="task_description" class="form-control" placeholder="Enter new task description..." required>
+                <button class="btn btn-primary" type="submit">Add Task</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal fade" id="editTaskModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTaskForm">
+                        <input type="hidden" id="editTaskId" name="task_id">
+                        <div class="mb-3">
+                            <label for="editTaskDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editTaskDescription" name="description" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-board">
+        <!-- To Do Column -->
+        <div class="task-column" id="todo">
+            <h3><i class="fas fa-list-ul"></i> To Do</h3>
+            {% for task in tasks if task.status == 'todo' %}
+                    <div class="task-card card liquid-glass-card" data-task-id="{{ task.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.description }}</h5>
+                            {% if task.sub_tasks %}
+                                <ul class="list-group list-group-flush">
+                                    {% for sub_task in task.sub_tasks %}
+                                        <li class="list-group-item"><small>{{ sub_task }}</small></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button class="btn btn-sm btn-primary btn-run" title="Run Task in Terminal">
+                                        <i class="fas fa-terminal"></i> Run
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary btn-edit">Edit</button>
+                                    <form action="{{ url_for('delete_task') }}" method="POST" style="display: inline;">
+                                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="mt-2 task-console-output" style="display: none;">
+                                <div class="card-header bg-dark text-white p-2 rounded-top">
+                                    <h6 class="mb-0"><i class="fas fa-terminal"></i> Вывод</h6>
+                                </div>
+                                <pre class="text-white bg-black p-2 rounded-bottom" style="max-height: 150px; overflow-y: auto; font-size: 0.8em;"></pre>
+                            </div>
+                             <div class="mt-2">
+                                {% if task.status == 'todo' %}
+                                    <button class="btn btn-sm btn-primary btn-move" data-new-status="in-progress">Start</button>
+                                {% elif task.status == 'in-progress' %}
+                                    <button class="btn btn-sm btn-success btn-move" data-new-status="done">Complete</button>
+                                    <button class="btn btn-sm btn-secondary btn-move" data-new-status="todo">Reopen</button>
+                                {% else %}
+                                    <button class="btn btn-sm btn-secondary btn-move" data-new-status="in-progress">Reopen</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+
+        <!-- In Progress Column -->
+        <div class="task-column" id="in-progress">
+            <h3><i class="fas fa-spinner fa-spin"></i> In Progress</h3>
+            {% for task in tasks if task.status == 'in-progress' %}
+                    <div class="task-card card shadow-sm" data-task-id="{{ task.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.description }}</h5>
+                            {% if task.sub_tasks %}
+                                <ul class="list-group list-group-flush">
+                                    {% for sub_task in task.sub_tasks %}
+                                        <li class="list-group-item"><small>{{ sub_task }}</small></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button class="btn btn-sm btn-primary btn-run" title="Run Task in Terminal">
+                                        <i class="fas fa-terminal"></i> Run
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary btn-edit">Edit</button>
+                                    <form action="{{ url_for('delete_task') }}" method="POST" style="display: inline;">
+                                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                             <div class="mt-2">
+                                {% if task.status == 'todo' %}
+                                    <button class="btn btn-sm btn-primary btn-move" data-new-status="in-progress">Start</button>
+                                {% elif task.status == 'in-progress' %}
+                                    <button class="btn btn-sm btn-success btn-move" data-new-status="done">Complete</button>
+                                    <button class="btn btn-sm btn-secondary btn-move" data-new-status="todo">Reopen</button>
+                                {% else %}
+                                    <button class="btn btn-sm btn-secondary btn-move" data-new-status="in-progress">Reopen</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+
+        <!-- Done Column -->
+        <div class="task-column" id="done">
+            <h3><i class="fas fa-check-circle"></i> Done</h3>
+            {% for task in tasks if task.status == 'done' %}
+                    <div class="task-card card shadow-sm" data-task-id="{{ task.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.description }}</h5>
+                            {% if task.sub_tasks %}
+                                <ul class="list-group list-group-flush">
+                                    {% for sub_task in task.sub_tasks %}
+                                        <li class="list-group-item"><small>{{ sub_task }}</small></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button class="btn btn-sm btn-primary btn-run" title="Run Task in Terminal">
+                                        <i class="fas fa-terminal"></i> Run
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary btn-edit">Edit</button>
+                                    <form action="{{ url_for('delete_task') }}" method="POST" style="display: inline;">
+                                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelectorAll('.btn-move').forEach(button => {
+        button.addEventListener('click', function() {
+            const taskCard = this.closest('.task-card');
+            const taskId = taskCard.dataset.taskId;
+            const newStatus = this.dataset.newStatus;
+
+            fetch("{{ url_for('update_task_status') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ task_id: parseInt(taskId), new_status: newStatus }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.reload();
+                }
+            });
+        });
+    });
+
+    document.querySelectorAll('.btn-run').forEach(button => {
+        button.addEventListener('click', function() {
+            const taskCard = this.closest('.task-card');
+            const taskId = taskCard.dataset.taskId;
+            const consoleOutputDiv = taskCard.querySelector('.task-console-output');
+            const consoleOutputPre = consoleOutputDiv.querySelector('pre');
+
+            consoleOutputDiv.style.display = 'block';
+            consoleOutputPre.textContent = 'Выполнение команды...';
+            this.disabled = true; // Disable button during execution
+
+            fetch("{{ url_for('run_task_in_terminal') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ task_id: parseInt(taskId) }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.disabled = false; // Re-enable button
+                if (data.status === 'success') {
+                    consoleOutputPre.textContent = data.output; // Display actual output
+                    consoleOutputDiv.querySelector('.card-header').classList.remove('bg-danger');
+                    consoleOutputDiv.querySelector('.card-header').classList.add('bg-dark');
+                } else {
+                    consoleOutputPre.textContent = 'Error: ' + data.message;
+                    consoleOutputDiv.querySelector('.card-header').classList.remove('bg-dark');
+                    consoleOutputDiv.querySelector('.card-header').classList.add('bg-danger');
+                }
+            })
+            .catch(error => {
+                this.disabled = false; // Re-enable button
+                consoleOutputPre.textContent = 'Произошла ошибка сети или сервера: ' + error;
+                consoleOutputDiv.querySelector('.card-header').classList.remove('bg-dark');
+                consoleOutputDiv.querySelector('.card-header').classList.add('bg-danger');
+                console.error('Error:', error);
+            });
+        });
+    });
+
+    const editTaskModal = new bootstrap.Modal(document.getElementById('editTaskModal'));
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function() {
+            const taskCard = this.closest('.task-card');
+            const taskId = taskCard.dataset.taskId;
+            const description = taskCard.querySelector('.card-title').textContent;
+
+            document.getElementById('editTaskId').value = taskId;
+            document.getElementById('editTaskDescription').value = description;
+
+            editTaskModal.show();
+        });
+    });
+
+    document.getElementById('editTaskForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const taskId = document.getElementById('editTaskId').value;
+        const newDescription = document.getElementById('editTaskDescription').value;
+
+        fetch("{{ url_for('edit_task') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ task_id: parseInt(taskId), description: newDescription }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                editTaskModal.hide();
+                window.location.reload();
+            }
+        });
+    });
+</script>
+{% endblock %}
