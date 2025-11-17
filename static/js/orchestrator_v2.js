@@ -99,25 +99,49 @@ document.addEventListener('DOMContentLoaded', () => {
         saveAsPresetCheckbox.checked = false;
     });
 
-    // --- Step 8: Restore MemoryTools ---
+    // --- Step 8 (Refactored): Restore MemoryTools ---
     const restoreMemoryToolsButton = document.getElementById('restore-memory-tools');
-    restoreMemoryToolsButton.addEventListener('click', () => {
-        if (!selectedNode) {
-            alert("Пожалуйста, сначала выделите текст в узле, к которому нужно добавить инструменты.");
-            return;
-        }
+    const memoryToolsPanel = document.getElementById('memory-tools-panel');
+    const memoryToolButtonsContainer = memoryToolsPanel.querySelector('.memory-tool-buttons');
 
+    restoreMemoryToolsButton.addEventListener('click', () => {
         const presets = JSON.parse(localStorage.getItem('mmss_tools_presets') || '[]');
         if (presets.length === 0) {
-            // showToast('Нет сохраненных пресетов.', 'info');
+            alert('Нет сохраненных пресетов.');
             return;
         }
 
-        presets.forEach(preset => {
-            addToolButtonToNode(selectedNode, preset);
-        });
+        // Clear previous buttons and show the panel
+        memoryToolButtonsContainer.innerHTML = '';
+        memoryToolsPanel.style.display = 'block';
 
-        // showToast(`Загружено ${presets.length} инструментов.`, 'success');
+        presets.forEach(preset => {
+            const toolButton = document.createElement('button');
+            toolButton.textContent = preset.name;
+            toolButton.dataset.toolId = preset.id;
+
+            toolButton.addEventListener('click', () => {
+                if (!selectedText || !selectedNode) {
+                    alert("Нет выделенного текста для применения инструмента. Сначала выделите текст в ответе агента.");
+                    return;
+                }
+                
+                const finalPrompt = preset.prompt.replace('{{selected_text}}', selectedText);
+
+                console.log(`Applying preset tool: ${preset.name}`);
+                console.log(`Node: ${selectedNode.id}`);
+                console.log(`Selected Text: ${selectedText}`);
+                console.log(`Final Prompt: ${finalPrompt}`);
+
+                const agentId = selectedNode.closest('[data-agent-id]').dataset.agentId;
+                if (typeof window.sendAgentRequest === 'function') {
+                    window.sendAgentRequest(agentId, finalPrompt, selectedNode.id);
+                } else {
+                    console.error('sendAgentRequest function not found.');
+                }
+            });
+            memoryToolButtonsContainer.appendChild(toolButton);
+        });
     });
 
     // --- Step 10: Semantic Markup (helpLinks-forAI) ---
