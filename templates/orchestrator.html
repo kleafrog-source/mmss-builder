@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}MMSS Orchestrator{% endblock %}
+
+{% block head %}
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    /* Custom styles for the orchestrator page */
+    .top-panel {
+        height: 30vh;
+    }
+    .grid-panel {
+        height: 65vh;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .agent-card {
+        background-color: #2d3748; /* gray-800 */
+        border: 1px solid #4a5568; /* gray-600 */
+        border-radius: 0.5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .metric-bar {
+        background-color: #4a5568; /* gray-600 */
+        border-radius: 0.25rem;
+        overflow: hidden;
+        height: 8px;
+    }
+    .metric-fill {
+        height: 100%;
+        transition: width 0.5s ease-in-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 text-gray-200 font-sans">
+    <div class="p-4">
+        <!-- Top Panel -->
+        <div class="top-panel bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col">
+            <h1 class="text-2xl font-bold mb-4">MMSS Orchestrator</h1>
+            <textarea id="question" class="w-full bg-gray-700 border-2 border-gray-600 rounded-lg p-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow resize-none" placeholder="Введите ваш вопрос..."></textarea>
+        </div>
+
+        <!-- Grid Panel -->
+        <div class="grid-panel mt-4">
+            <!-- Agent cards will be inserted here by JavaScript -->
+        </div>
+        <div class="mt-4 flex justify-end gap-4">
+            <button id="save-project" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Save Project</button>
+            <button id="download-results" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">Download JSON</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const questionInput = document.getElementById('question');
+        const gridPanel = document.querySelector('.grid-panel');
+        const downloadBtn = document.getElementById('download-results');
+        const saveProjectBtn = document.getElementById('save-project');
+        let agentData = {};
+
+        // Pre-defined agents
+        const agents = ["QUANTUM_MAP", "META_DERIVATION", "FRACTAL_ENTAILMENT", "TEMPORAL_GENERATION", "GOLDEN_DERIVATION", "CORRECTION_ENHANCED"];
+
+        // Initial render
+        renderAgents();
+
+        // Load from localStorage
+        const savedQuestion = localStorage.getItem('orchestrator_question');
+        if (savedQuestion) {
+            questionInput.value = savedQuestion;
+        }
+        const savedProject = localStorage.getItem('orchestrator_project');
+        if (savedProject) {
+            agentData = JSON.parse(savedProject);
+            renderAgents();
+        }
+
+        saveProjectBtn.addEventListener('click', () => {
+            const projectName = prompt("Enter project name:", `Orchestrator_Project_${new Date().toISOString().slice(0, 16).replace('T', '_')}`);
+            if (!projectName) return;
+
+            const projectData = {
+                project_name: projectName,
+                question: questionInput.value,
+                agents: agentData
+            };
+
+            fetch('/orchestrator/save_project', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(projectData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(`Error saving project: ${data.error}`);
+                } else {
+                    alert(`Project "${data.project_name}" saved successfully.`);
+                    localStorage.setItem('orchestrator_project', JSON.stringify(agentData));
+                }
+            })
+            .catch(error => console.error('Error saving project:', error));
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (Object.keys(agentData).length === 0) {
+                alert('Нет результатов для скачивания.');
+                return;
+            }
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(agentData, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "orchestration_results.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        });
+
+        function renderAgents() {
+            gridPanel.innerHTML = '';
+            agents.forEach(agentName => {
+                const data = agentData[agentName] || { answer: '', metrics: {} };
+                const card = document.createElement('div');
+                card.className = 'agent-card';
+                card.id = `agent-card-${agentName}`;
+
+                card.innerHTML = `
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">${getOperatorSymbol(agentName)}</span>
+                        <h2 class="text-lg font-bold">${agentName}</h2>
+                        <span class="ml-auto text-sm text-gray-400 status">Ready</span>
+                    </div>
+                    <div class="flex-grow overflow-y-auto p-2 bg-gray-900 rounded mb-2 answer-panel">
+                        <p class="text-sm">${data.answer}</p>
+                    </div>
+                    <div class="mb-2">
+                        <select class="w-full bg-gray-700 border border-gray-600 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 prompt-type">
+                            <option value="full">Full Prompt</option>
+                            <option value="short">Short Prompt</option>
+                        </select>
+                    </div>
+                    <textarea class="w-full bg-gray-700 border-2 border-gray-600 rounded-lg p-2 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none prompt-input" rows="3" placeholder="Enter prompt..."></textarea>
+                    <button class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg start-agent-btn">Start Agent</button>
+                `;
+                gridPanel.appendChild(card);
+
+                const startBtn = card.querySelector('.start-agent-btn');
+                startBtn.addEventListener('click', () => {
+                    const promptInput = card.querySelector('.prompt-input');
+                    const prompt = promptInput.value.trim();
+                    if (!prompt) {
+                        alert('Please enter a prompt.');
+                        return;
+                    }
+                    sendAgentRequest(agentName, prompt, card);
+                });
+            });
+        }
+
+        async function sendAgentRequest(agentName, prompt, card) {
+            const statusEl = card.querySelector('.status');
+            const answerPanel = card.querySelector('.answer-panel');
+            const startBtn = card.querySelector('.start-agent-btn');
+
+            statusEl.textContent = 'Running...';
+            statusEl.classList.remove('text-gray-400', 'text-green-400');
+            statusEl.classList.add('text-yellow-400');
+            startBtn.disabled = true;
+
+            try {
+                const response = await fetch('/orchestrate/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ agent_name: agentName, prompt: prompt }),
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok.');
+
+                const result = await response.json();
+                if (result.error) throw new Error(result.error);
+
+                // Basic parsing of "ANSWER --- METRICS: {...}"
+                const parts = result.answer.split('--- METRICS:');
+                const answer = parts[0].trim();
+                let metrics = {};
+                if (parts.length > 1) {
+                    try {
+                        metrics = JSON.parse(parts[1].trim());
+                    } catch (e) {
+                        console.error("Could not parse metrics JSON:", e);
+                    }
+                }
+
+                agentData[agentName] = { answer, metrics };
+                answerPanel.innerHTML = `<p class="text-sm">${answer}</p>`;
+                statusEl.textContent = 'Completed';
+                statusEl.classList.remove('text-yellow-400');
+                statusEl.classList.add('text-green-400');
+
+            } catch (error) {
+                console.error(`Error for agent ${agentName}:`, error);
+                answerPanel.innerHTML = `<p class="text-sm text-red-400">Error: ${error.message}</p>`;
+                statusEl.textContent = 'Error';
+                statusEl.classList.remove('text-yellow-400');
+                statusEl.classList.add('text-red-400');
+            } finally {
+                startBtn.disabled = false;
+            }
+        }
+
+        function getOperatorSymbol(agentName) {
+            const symbols = {
+                "QUANTUM_MAP": "Q",
+                "META_DERIVATION": "M",
+                "FRACTAL_ENTAILMENT": "F",
+                "TEMPORAL_GENERATION": "T",
+                "GOLDEN_DERIVATION": "G",
+                "CORRECTION_ENHANCED": "C"
+            };
+            return symbols[agentName] || '?';
+        }
+    });
+</script>
+{% endblock %}

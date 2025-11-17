@@ -1,4 +1,5 @@
 {
     "theme": "dark",
-    "custom_theme_css": null
+    "custom_theme_css": null,
+    "mistral_model": "ministral-8b-2410"
 }

@@ -1,6 +1,0 @@
-# Completed
-```dataview
-LIST length(file.chat-done) + " completed"
-WHERE chat-done
-SORT length(file.chat-done) DESC
-```

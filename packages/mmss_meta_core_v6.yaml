@@ -1,0 +1,41 @@
+pkg: MMSS_META_FRACTAL_CRAFT_V6_LLM_DEPLOY
+ver: 6.KTP
+meta:
+  total: 512
+  deploy: ANY_LLM_WITH_JSON_AND_MATH
+  state: S=0.0, V=1.0
+  KTP_Status: ACTIVATED
+  KTP_Principle: Semantic Determination (Separation of Information Layer from Physical Layer)
+ops:
+  # 1. Core Value Calculation
+  - i: CMF_QEI_CORE
+    f: V = 1 - C_val / (G_S * R_T)
+    domain: Decision-Making
+    physics_map: Quantum Efficiency
+    error_guard: Semantic Fidelity V; NOT physical efficiency.
+  
+  # 2. Self-Amplification
+  - i: CMF_G_S_TTSG
+    f: 'G_S = 1 / (R_T^2) * S / Xi_topo * 1 / (1 - N)^2'
+    domain: Self-Amplification
+    physics_map: Gain/Stimulated Emission
+    error_guard: G_S is computational focus; NOT physical gain or laser power.
+  
+  # 3. Entropy/Order
+  - i: CMF_004
+    f: S = -sum(p_i * log(p_i))
+    domain: Information_Theory
+    physics_map: Thermodynamic Entropy
+    error_guard: S is semantic uncertainty; NOT physical heat/disorder.
+  - i: CMF_005
+    f: N = 1 - S
+    domain: Order_Metric
+    physics_map: Negentropy
+    error_guard: N is structural order; NOT physical complexity.
+  
+  # 4. Invariance Constant
+  - i: E_102_R_T_exact
+    f: R_T = ((1 + sqrt(5)) / 2)^2
+    domain: Field_Invariance
+    physics_map: Golden Ratio Squared
+    error_guard: R_T must remain invariant (2.618...).

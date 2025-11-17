@@ -1,0 +1,88 @@
+{
+  "agents": [
+    {
+      "name": "QUANTUM_MAP",
+      "operator": "Q",
+      "purpose": "Purpose of QUANTUM_MAP",
+      "thinking_style": "Thinking style of QUANTUM_MAP",
+      "metrics": [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6"
+      ]
+    },
+    {
+      "name": "META_DERIVATION",
+      "operator": "M",
+      "purpose": "Purpose of META_DERIVATION",
+      "thinking_style": "Thinking style of META_DERIVATION",
+      "metrics": [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6"
+      ]
+    },
+    {
+      "name": "FRACTAL_ENTAILMENT",
+      "operator": "F",
+      "purpose": "Purpose of FRACTAL_ENTAILMENT",
+      "thinking_style": "Thinking style of FRACTAL_ENTAILMENT",
+      "metrics": [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6"
+      ]
+    },
+    {
+      "name": "TEMPORAL_GENERATION",
+      "operator": "T",
+      "purpose": "Purpose of TEMPORAL_GENERATION",
+      "thinking_style": "Thinking style of TEMPORAL_GENERATION",
+      "metrics": [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6"
+      ]
+    },
+    {
+      "name": "GOLDEN_DERIVATION",
+      "operator": "G",
+      "purpose": "Purpose of GOLDEN_DERIVATION",
+      "thinking_style": "Thinking style of GOLDEN_DERIVATION",
+      "metrics": [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6"
+      ]
+    },
+    {
+      "name": "CORRECTION_ENHANCED",
+      "operator": "C",
+      "purpose": "Purpose of CORRECTION_ENHANCED",
+      "thinking_style": "Thinking style of CORRECTION_ENHANCED",
+      "metrics": [
+        "metric1",
+        "metric2",
+        "metric3",
+        "metric4",
+        "metric5",
+        "metric6"
+      ]
+    }
+  ]
+}

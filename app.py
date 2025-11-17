@@ -13,12 +13,14 @@ from mmss_core.prompt_generator import MMSSPromptGenerator
 from mmss_core.ai.mistral import MistralNeMoAPI, MistralAPIError
 from mmss_game.game_engine import MMSSGameEngine
 from mmss_game.game_types import GameType, GameDifficulty
+from mmss_core.orchestrator_core import MMSOrchestrator
 from dotenv import load_dotenv
 import json
 import os
 from datetime import datetime
 import re
 import subprocess
+import xml.etree.ElementTree as ET
 
 # Загрузка переменных окружения из .env
 load_dotenv()
@@ -27,10 +29,15 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'mmss-system-secret-key-change-in-production')
 
 CONFIG_FILE = os.path.join(os.path.dirname(__file__), 'config.json')
+TASKS_FILE = os.path.join(os.path.dirname(__file__), 'TASKS.md')
 
 def load_config():
     """Loads configuration from config.json or returns default if not found/invalid."""
-    default_config = {"theme": "light", "custom_theme_css": None}
+    default_config = {
+        "theme": "light", 
+        "custom_theme_css": None,
+        "mistral_model": "mistral-small-latest" # Default model
+    }
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
@@ -58,6 +65,41 @@ app_config = load_config()
 CHATS_SENDEN_DIR = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'chats', 'senden')
 os.makedirs(CHATS_SENDEN_DIR, exist_ok=True) # Ensure the directory exists
 
+#--- Task Functions ---
+def read_tasks():
+    if not os.path.exists(TASKS_FILE):
+        return []
+    try:
+        tree = ET.parse(TASKS_FILE)
+        root = tree.getroot()
+        tasks = []
+        for task_elem in root.findall('task'):
+            task = {
+                'id': task_elem.find('id').text,
+                'title': task_elem.find('title').text,
+                'description': task_elem.find('description').text,
+                'status': task_elem.find('status').text,
+                'comments': [comment.text for comment in task_elem.find('comments').findall('comment')]
+            }
+            tasks.append(task)
+        return tasks
+    except ET.ParseError:
+        return []
+
+def write_tasks(tasks):
+    root = ET.Element('tasks')
+    for task_dict in tasks:
+        task_elem = ET.SubElement(root, 'task')
+        ET.SubElement(task_elem, 'id').text = task_dict['id']
+        ET.SubElement(task_elem, 'title').text = task_dict['title']
+        ET.SubElement(task_elem, 'description').text = task_dict['description']
+        ET.SubElement(task_elem, 'status').text = task_dict['status']
+        comments_elem = ET.SubElement(task_elem, 'comments')
+        for comment_text in task_dict.get('comments', []):
+            ET.SubElement(comments_elem, 'comment').text = comment_text
+    tree = ET.ElementTree(root)
+    tree.write(TASKS_FILE, encoding='utf-8', xml_declaration=True)
+
 # Добавляем фильтр для JSON в шаблонах
 @app.template_filter('tojsonfilter')
 def tojson_filter(obj):
@@ -75,8 +117,9 @@ mistral_api_error = None
 try:
     api_key = os.environ.get("MISTRAL_API_KEY")
     if api_key and api_key.strip() and api_key != "your_mistral_api_key_here":
-        mistral_api = MistralNeMoAPI()
-        print("✓ Mistral API инициализирован успешно")
+        # Pass the model from config to the constructor
+        mistral_api = MistralNeMoAPI(model=app_config.get('mistral_model'))
+        print(f"✓ Mistral API инициализирован успешно с моделью: {mistral_api.model}")
     else:
         mistral_api_error = "MISTRAL_API_KEY не установлен в .env файле"
         print(f"⚠ {mistral_api_error}")
@@ -538,11 +581,43 @@ def update_theme():
     return jsonify({"status": "error", "message": "Invalid theme"}), 400
 
 
-@app.route('/settings', methods=['GET'])
+@app.route('/settings', methods=['GET', 'POST'])
 def settings_page():
-    """Displays the settings page with current config.json content."""
-    config_content = json.dumps(app_config, ensure_ascii=False, indent=4)
-    return render_template('settings.html', config_content=config_content, theme=app_config['theme'], custom_theme_css=app_config['custom_theme_css'])
+    """Displays the settings page and handles settings updates."""
+    global app_config
+    if request.method == 'POST':
+        # Update theme
+        new_theme = request.form.get('theme')
+        if new_theme in ['light', 'dark']:
+            app_config['theme'] = new_theme
+
+        # Update Mistral model
+        new_model = request.form.get('mistral_model')
+        if new_model:
+            app_config['mistral_model'] = new_model
+            # Update the running mistral_api instance if it exists
+            if mistral_api:
+                mistral_api.model = new_model
+                print(f"[Settings] Mistral model updated to: {new_model}")
+
+        save_config(app_config)
+        flash('Настройки успешно сохранены!', 'success')
+        return redirect(url_for('settings_page'))
+
+    # GET request: display the page
+    mistral_models = []
+    if mistral_api:
+        try:
+            mistral_models = mistral_api.list_models()
+        except MistralAPIError as e:
+            flash(f'Не удалось получить список моделей Mistral: {e}', 'danger')
+
+    return render_template('settings.html', 
+                         config=app_config, 
+                         mistral_models=mistral_models,
+                         selected_model=app_config.get('mistral_model'),
+                         theme=app_config['theme'], 
+                         custom_theme_css=app_config['custom_theme_css'])
 
 
 @app.route('/settings/save', methods=['POST'])
@@ -574,22 +649,67 @@ def save_settings():
 @app.route('/tasks')
 def tasks_page():
     """Displays the tasks page."""
-    # Dummy task data
-    tasks = [
-        {"id": 1, "description": "Implement theme switching", "status": "done", "sub_tasks": []},
-        {"id": 2, "description": "Create settings page", "status": "done", "sub_tasks": []},
-        {"id": 3, "description": "Add console output to cards", "status": "in-progress", "sub_tasks": ["PFR", "FRP", "A-MMSS"]},
-        {"id": 4, "description": "Fix BuildError for tasks_page", "status": "todo", "sub_tasks": []}
-    ]
+    tasks = read_tasks()
     return render_template('tasks.html', tasks=tasks, theme=app_config['theme'], custom_theme_css=app_config.get('custom_theme_css'))
 
 
 @app.route('/tasks/add', methods=['POST'])
 def add_task():
     """Adds a new task."""
-    # In a real application, you would add the task to the database here.
-    flash('Task added successfully (simulation)!', 'success')
+    tasks = read_tasks()
+    new_task = {
+        'id': f'TASK-{len(tasks) + 1}',
+        'title': request.form.get('task_description'),
+        'description': request.form.get('task_description'),
+        'status': 'todo',
+        'comments': []
+    }
+    tasks.append(new_task)
+    write_tasks(tasks)
+    flash('Task added successfully!', 'success')
     return redirect(url_for('tasks_page'))
+
+
+@app.route('/tasks/delete', methods=['POST'])
+def delete_task():
+    """Deletes a task."""
+    tasks = read_tasks()
+    task_id_to_delete = request.form.get('task_id')
+    tasks = [task for task in tasks if task['id'] != task_id_to_delete]
+    write_tasks(tasks)
+    flash('Task deleted successfully!', 'success')
+    return redirect(url_for('tasks_page'))
+
+
+@app.route('/tasks/update_status', methods=['POST'])
+def update_task_status():
+    """Updates the status of a task."""
+    tasks = read_tasks()
+    data = request.get_json()
+    task_id = data.get('task_id')
+    new_status = data.get('new_status')
+    for task in tasks:
+        if task['id'] == task_id:
+            task['status'] = new_status
+            break
+    write_tasks(tasks)
+    return jsonify({'status': 'success'})
+
+
+@app.route('/tasks/edit', methods=['POST'])
+def edit_task():
+    """Edits a task."""
+    tasks = read_tasks()
+    data = request.get_json()
+    task_id = data.get('task_id')
+    new_description = data.get('description')
+    for task in tasks:
+        if task['id'] == task_id:
+            task['description'] = new_description
+            task['title'] = new_description.splitlines()[0] # Use first line as title
+            break
+    write_tasks(tasks)
+    return jsonify({'status': 'success'})
 
 
 PROJECTS_DIR = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'projects')
@@ -674,7 +794,6 @@ def save_project():
         return jsonify({"error": f"Failed to save project: {str(e)}"}), 500
 
 @app.route('/api/ai/project/<project_name>', methods=['GET'])
-
 def load_project(project_name):
 
     """Load an AI assistant project."""
@@ -710,7 +829,6 @@ def load_project(project_name):
 
 
 @app.route('/api/tasks/run', methods=['POST'])
-
 def run_task_in_terminal():
 
     """Simulates running a task in a terminal and returns dummy output."""
@@ -745,9 +863,65 @@ def run_task_in_terminal():
 
 
 
+@app.route('/orchestrator')
+def orchestrator():
+    """Renders the MMSS Orchestrator page."""
+    return render_template('orchestrator.html', theme=app_config['theme'], custom_theme_css=app_config.get('custom_theme_css'))
+
+@app.route('/orchestrate/send', methods=['POST'])
+def orchestrate_send():
+    """Handles sending a prompt for a single agent to the Mistral API."""
+    data = request.get_json()
+    agent_name = data.get('agent_name')
+    prompt = data.get('prompt')
+
+    if not agent_name or not prompt:
+        return jsonify({"error": "Agent name and prompt are required"}), 400
+
+    try:
+        orchestrator = MMSOrchestrator()
+        response = orchestrator.send_prompt_to_mistral(prompt)
+
+        # Save chat log
+        try:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")
+            filename = os.path.join(CHATS_SENDEN_DIR, f"prompt_{timestamp}.txt")
+            with open(filename, 'w', encoding='utf-8') as f:
+                f.write(f"--- PROMPT ---\n{prompt}\n\n--- RESPONSE ---\n{response}")
+        except Exception as e:
+            print(f"Error saving orchestrator chat log: {e}")
+
+        return jsonify({"answer": response})
+    except MistralAPIError as e:
+        return jsonify({"error": str(e)}), 500
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/orchestrator/save_project', methods=['POST'])
+def save_orchestrator_project():
+    """Saves the orchestrator project."""
+    data = request.get_json()
+    project_name = data.get('project_name', f"Orchestrator_Project_{datetime.now().strftime('%Y-%m-%d_%H-%M')}")
+    
+    # Sanitize project name
+    project_name = "".join(c for c in project_name if c.isalnum() or c in (' ', '_', '-')).rstrip()
+    if not project_name:
+        return jsonify({"error": "Invalid project name"}), 400
+
+    projects_dir = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'projects', 'orchestrator')
+    os.makedirs(projects_dir, exist_ok=True)
+    file_path = os.path.join(projects_dir, f"{project_name}.json")
+
+    try:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        return jsonify({"status": "success", "project_name": project_name})
+    except Exception as e:
+        return jsonify({"error": f"Failed to save project: {str(e)}"}), 500
 
 
 if __name__ == '__main__':
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 

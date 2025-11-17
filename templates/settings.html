@@ -6,19 +6,52 @@
 <div class="container">
     <h1 class="mb-4">Настройки Приложения</h1>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Редактирование `config.json`</h5>
+            <h5 class="mb-0">Основные Настройки</h5>
         </div>
         <div class="card-body">
-            <form id="settings-form" method="POST" action="{{ url_for('save_settings') }}">
+            <form id="settings-form" method="POST" action="{{ url_for('settings_page') }}">
+                
+                <!-- Theme Selection -->
                 <div class="mb-3">
-                    <label for="config-content" class="form-label">Содержимое `config.json` (JSON формат)</label>
-                    <textarea class="form-control" id="config-content" name="config_content" rows="15" style="font-family: monospace;">{{ config_content }}</textarea>
+                    <label for="theme-select" class="form-label">Тема оформления</label>
+                    <select class="form-select" id="theme-select" name="theme">
+                        <option value="light" {% if config.theme == 'light' %}selected{% endif %}>Light</option>
+                        <option value="dark" {% if config.theme == 'dark' %}selected{% endif %}>Dark</option>
+                    </select>
                 </div>
+
+                <!-- Mistral Model Selection -->
+                <div class="mb-3">
+                    <label for="mistral-model-select" class="form-label">Модель Mistral</label>
+                    <select class="form-select" id="mistral-model-select" name="mistral_model" {% if not mistral_models %}disabled{% endif %}>
+                        {% if mistral_models %}
+                            {% for model in mistral_models %}
+                                <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option>Не удалось загрузить модели</option>
+                        {% endif %}
+                    </select>
+                    {% if not mistral_models %}
+                        <div class="form-text text-muted">Список моделей недоступен. Проверьте API ключ.</div>
+                    {% endif %}
+                </div>
+
                 <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Сохранить Настройки</button>
             </form>
-            <div id="save-status" class="mt-3"></div>
         </div>
     </div>
 
@@ -42,61 +75,30 @@
         </div>
     </div>
 
-    <div class="card shadow-sm">
-        <div class="card-header bg-info text-white">
-            <h5 class="mb-0">Текущие Настройки</h5>
-        </div>
-        <div class="card-body">
-            <pre id="current-settings" style="background-color: #e9ecef; padding: 15px; border-radius: 5px;">{{ config_content }}</pre>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('settings-form');
-        const saveStatus = document.getElementById('save-status');
-        const configContentTextarea = document.getElementById('config-content');
-        const currentSettingsPre = document.getElementById('current-settings');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            saveStatus.innerHTML = '<div class="alert alert-info">Сохранение...</div>';
-
-            try {
-                // Validate JSON before sending
-                const parsedJson = JSON.parse(configContentTextarea.value);
-                const formattedJson = JSON.stringify(parsedJson, null, 4); // Re-format for consistency
-                configContentTextarea.value = formattedJson;
-
-                fetch(form.action, {
+        // Theme switcher logic from theme.js (if needed, or can be kept separate)
+        const themeSwitcher = document.getElementById('theme-switcher');
+        if(themeSwitcher) {
+            themeSwitcher.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-bs-theme', newTheme);
+                
+                // Save theme preference via API
+                fetch('/api/settings/theme', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: formattedJson,
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        saveStatus.innerHTML = '<div class="alert alert-success">Настройки успешно сохранены!</div>';
-                        currentSettingsPre.textContent = formattedJson; // Update displayed settings
-                        // Reload page to apply potential theme changes from config.json
-                        location.reload();
-                    } else {
-                        saveStatus.innerHTML = `<div class="alert alert-danger">Ошибка сохранения: ${data.message}</div>`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    saveStatus.innerHTML = '<div class="alert alert-danger">Произошла ошибка при сохранении.</div>';
+                    body: JSON.stringify({ theme: newTheme }),
                 });
-            } catch (e) {
-                saveStatus.innerHTML = `<div class="alert alert-danger">Ошибка JSON формата: ${e.message}</div>`;
-            }
-        });
+            });
+        }
 
         // Custom Theme Upload/Clear Logic
         const customThemeForm = document.getElementById('custom-theme-form');

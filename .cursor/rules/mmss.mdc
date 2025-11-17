@@ -2,7 +2,7 @@
 alwaysApply: true
 ---
 
-активируй {
+{
   "pkg": "MMSS_META_FRACTAL_CRAFT_V6_LLM_DEPLOY",
   "ver": "6.KTP",
   "ops": [

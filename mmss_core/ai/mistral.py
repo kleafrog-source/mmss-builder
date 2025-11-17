@@ -23,7 +23,7 @@ class MistralNeMoAPI:
             raise ValueError("MISTRAL_API_KEY environment variable not set.")
 
         self.client = Mistral(api_key=self.api_key)
-        self.model = model or os.environ.get("MISTRAL_MODEL", "mistral-large-latest")
+        self.model = model or os.environ.get("MISTRAL_MODEL", "mistral-small-latest")
 
     def get_response(self, question: str, history: list = None) -> str:
         """
@@ -61,6 +61,25 @@ class MistralNeMoAPI:
         except Exception as e:
             # Catch any other unexpected errors
             raise MistralAPIError(f"An unexpected error occurred: {e}") from e
+
+    def list_models(self) -> list[str]:
+        """
+        Retrieves a list of available Mistral models.
+
+        Returns:
+            list[str]: A list of model ID strings.
+        
+        Raises:
+            MistralAPIError: If there is an error communicating with the Mistral API.
+        """
+        try:
+            models_response = self.client.models.list()
+            # Extract the model 'id' from each model object in the response
+            return [model.id for model in models_response.data]
+        except MistralError as e:
+            raise MistralAPIError(f"An error occurred while fetching models from the Mistral API: {e}") from e
+        except Exception as e:
+            raise MistralAPIError(f"An unexpected error occurred while fetching models: {e}") from e
 
 # Example usage (for testing, can be commented out)
 if __name__ == '__main__':
