@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}Результат генерации промпта{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-check-circle"></i> Промпт сгенерирован успешно
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle"></i> Информация о промпте</h5>
+                    <p class="mb-1"><strong>Тип:</strong> {{ config.prompt_type|upper }}</p>
+                    {% if config.domain %}
+                    <p class="mb-1"><strong>Домен:</strong> {{ config.domain }}</p>
+                    {% endif %}
+                    <p class="mb-0"><strong>Формат:</strong> {{ config.export_format }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5>Сгенерированный промпт:</h5>
+                        <button class="btn btn-sm btn-primary" onclick="copyPrompt()">
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="prompt-display-container">
+                        <pre id="promptContent" class="prompt-display">{{ prompt }}</pre>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0"><i class="fas fa-download"></i> Экспорт</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-primary" onclick="exportAsText()">
+                                        <i class="fas fa-file-alt"></i> Экспорт как текст
+                                    </button>
+                                    <button class="btn btn-outline-success" onclick="exportAsMarkdown()">
+                                        <i class="fas fa-file-code"></i> Экспорт как Markdown
+                                    </button>
+                                    <button class="btn btn-outline-info" onclick="exportAsJSON()">
+                                        <i class="fas fa-file-code"></i> Экспорт как JSON
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h6 class="mb-0"><i class="fas fa-share-alt"></i> Действия</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-2">
+                                    <a href="{{ url_for('prompt_generator_page') }}" class="btn btn-outline-secondary">
+                                        <i class="fas fa-redo"></i> Создать новый промпт
+                                    </a>
+                                    <button class="btn btn-outline-info" onclick="showConfig()">
+                                        <i class="fas fa-cog"></i> Показать конфигурацию
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning mt-4">
+                    <h6><i class="fas fa-lightbulb"></i> Как использовать:</h6>
+                    <ol class="mb-0">
+                        <li>Скопируйте промпт выше</li>
+                        <li>Вставьте его в ChatGPT, Claude, Gemini или другую LLM</li>
+                        <li>Добавьте конкретную задачу после промпта</li>
+                        <li>Нейросеть будет работать в контексте MMSS системы</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for configuration -->
+<div class="modal fade" id="configModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Конфигурация промпта</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                                <pre id="configContent" class="bg-light p-3 rounded">{{ config|tojsonfilter }}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const promptText = {{ original_prompt|tojsonfilter }};
+const config = {{ config|tojsonfilter }};
+
+function copyPrompt() {
+    const promptElement = document.getElementById('promptContent');
+    const text = promptElement.textContent;
+    
+    navigator.clipboard.writeText(text).then(function() {
+        // Show success message
+        const btn = event.target.closest('button');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+        btn.classList.add('btn-success');
+        btn.classList.remove('btn-primary');
+        
+        setTimeout(function() {
+            btn.innerHTML = originalHtml;
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-primary');
+        }, 2000);
+    });
+}
+
+function exportAsText() {
+    const blob = new Blob([promptText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mmss-prompt.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function exportAsMarkdown() {
+    const markdown = '```markdown\n' + promptText + '\n```';
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mmss-prompt.md';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function exportAsJSON() {
+    const data = {
+        prompt: promptText,
+        config: config,
+        version: '1.0',
+        system: 'MMSS'
+    };
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mmss-prompt.json';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function showConfig() {
+    const modal = new bootstrap.Modal(document.getElementById('configModal'));
+    modal.show();
+}
+</script>
+<style>
+.prompt-display-container {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.prompt-display {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    color: #212529;
+}
+</style>
+{% endblock %}

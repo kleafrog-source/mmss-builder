@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}PFR - Фрактальная Пересборка{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-project-diagram"></i> PFR - Практическая Фрактальная Пересборка
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if not mmss_activated %}
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i> Система не активирована. 
+                    <a href="{{ url_for('activate') }}">Активировать сейчас</a>
+                </div>
+                {% endif %}
+
+                <p class="lead">Преобразование энтропии в порядок через фрактальную дезинтеграцию и когерентную сборку</p>
+
+                <form method="POST" action="{{ url_for('pfr') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Основные параметры</h5>
+                            
+                            <div class="mb-3">
+                                <label for="domain" class="form-label">Домен применения</label>
+                                {% from "domain_subdomains.html" import render_domain_select_with_subdomains %}
+                                {{ render_domain_select_with_subdomains('domain', 'domain', '', true, true) }}
+                                <small class="form-text text-muted">70 доступных доменов применения с подспециализациями</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="user_request" class="form-label">Запрос пользователя</label>
+                                <input type="text" class="form-control" id="user_request" name="user_request" 
+                                       placeholder="оптимизация портфеля" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="data_corpus" class="form-label">Корпус данных</label>
+                                <textarea class="form-control" id="data_corpus" name="data_corpus" rows="3"
+                                          placeholder="финансовые данные рынок инвестиции">финансовые данные рынок инвестиции</textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Математические параметры</h5>
+                            
+                            <div class="mb-3">
+                                <label for="area" class="form-label">Площадь проблемы (area)</label>
+                                <input type="number" step="0.1" class="form-control" id="area" name="area" value="1.0" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="S" class="form-label">Энтропия (S)</label>
+                                <input type="number" step="0.1" class="form-control" id="S" name="S" value="0.8" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Xi_topo" class="form-label">Топологический дефект (Ξ_topo)</label>
+                                <input type="number" step="0.1" class="form-control" id="Xi_topo" name="Xi_topo" value="0.9" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="W" class="form-label">Веса когерентности (W)</label>
+                                <input type="number" step="0.01" class="form-control" id="W" name="W" value="0.95" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Psi_opt" class="form-label">Оптимальная когерентность (Ψ_opt)</label>
+                                <input type="number" step="0.01" class="form-control" id="Psi_opt" name="Psi_opt" value="0.9" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="delta_V" class="form-label">Изменение ценности (ΔV)</label>
+                                <input type="number" step="0.1" class="form-control" id="delta_V" name="delta_V" value="0.6" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="delta_S" class="form-label">Реорганизованная энтропия (ΔS)</label>
+                                <input type="number" step="0.1" class="form-control" id="delta_S" name="delta_S" value="0.4" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cost" class="form-label">Стоимость сложности (cost)</label>
+                                <input type="number" step="0.1" class="form-control" id="cost" name="cost" value="1.2" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg" id="execute-pfr-btn">
+                            <i class="fas fa-play"></i> Выполнить фрактальную пересборку
+                        </button>
+                    </div>
+                </form>
+
+                <div id="pfr-console-output" class="card mt-4" style="display: none;">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="fas fa-terminal"></i> Вывод консоли PFR</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre id="pfr-output-content" class="text-white bg-black p-3 rounded" style="max-height: 300px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> Формулы PFR</h5>
+            </div>
+            <div class="card-body">
+                <div class="formula-box">
+                    <strong>Эффективность пересборки:</strong>
+                    <p class="formula">η_R = (ΔV / ΔS_reorganized) × (G_S / Cost_complexity)</p>
+                </div>
+                <div class="formula-box mt-3">
+                    <strong>Прикладная ценность:</strong>
+                    <p class="formula">V = 1 - (C_val ⊗ Φ_Domain) / (G_S × D_f × R_T)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const pfrForm = document.querySelector('form[action="{{ url_for('pfr') }}"]');
+        const pfrConsoleOutput = document.getElementById('pfr-console-output');
+        const pfrOutputContent = document.getElementById('pfr-output-content');
+        const executePfrBtn = document.getElementById('execute-pfr-btn');
+
+        if (pfrForm) {
+            pfrForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                pfrConsoleOutput.style.display = 'block';
+                pfrOutputContent.textContent = 'Выполнение фрактальной пересборки...';
+                executePfrBtn.disabled = true;
+
+                const formData = new FormData(pfrForm);
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+
+                fetch('{{ url_for('api_pfr') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    executePfrBtn.disabled = false;
+                    if (data.error) {
+                        pfrOutputContent.textContent = 'Ошибка: ' + data.error;
+                        pfrConsoleOutput.classList.remove('bg-dark');
+                        pfrConsoleOutput.classList.add('bg-danger');
+                    } else {
+                        pfrOutputContent.textContent = JSON.stringify(data, null, 2);
+                        pfrConsoleOutput.classList.remove('bg-danger');
+                        pfrConsoleOutput.classList.add('bg-dark');
+                    }
+                })
+                .catch(error => {
+                    executePfrBtn.disabled = false;
+                    pfrOutputContent.textContent = 'Произошла ошибка сети или сервера: ' + error;
+                    pfrConsoleOutput.classList.remove('bg-dark');
+                    pfrConsoleOutput.classList.add('bg-danger');
+                    console.error('Error:', error);
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}

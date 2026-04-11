@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}PFR Результаты{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-check-circle"></i> Результаты фрактальной пересборки
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success">
+                    <h5><i class="fas fa-check"></i> Статус: {{ result.status }}</h5>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="metric-card bg-primary text-white p-3 rounded mb-3">
+                            <h3>{{ "%.4f"|format(result.metrics.eta_R) }}</h3>
+                            <p class="mb-0">Эффективность пересборки (η_R)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="metric-card bg-success text-white p-3 rounded mb-3">
+                            <h3>{{ "%.4f"|format(result.metrics.V) }}</h3>
+                            <p class="mb-0">Прикладная ценность (V)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="mb-3">Детальные результаты:</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Фрактальная дезинтеграция (D_frac)</td>
+                                <td>{{ "%.4f"|format(result.D_frac) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Поле применения (Φ_Domain)</td>
+                                <td>{{ "%.4f"|format(result.Phi_Domain) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Оптимальная фрактальная размерность (D_f)</td>
+                                <td>{{ "%.2f"|format(result.D_f_optimal) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Когерентная сборка (A_coh)</td>
+                                <td>{{ "%.4f"|format(result.A_coh) if result.A_coh != float('inf') else '∞' }}</td>
+                            </tr>
+                            <tr>
+                                <td>Реорганизованная энтропия (ΔS)</td>
+                                <td>{{ "%.4f"|format(result.metrics.delta_S) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Стоимость сложности</td>
+                                <td>{{ "%.4f"|format(result.metrics.cost_complexity) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4">
+                    <a href="{{ url_for('pfr') }}" class="btn btn-primary">
+                        <i class="fas fa-redo"></i> Новый расчет
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> Дашборд
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

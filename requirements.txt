@@ -1,0 +1,18 @@
+# MMSS System Requirements
+# Многоуровневая Мета-Семантическая Система
+
+# Flask Web Framework
+Flask>=3.0.0
+Flask-WTF>=1.2.0
+WTForms>=3.1.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Mistral AI
+mistralai>=1.0.0
+
+# Для будущих расширений (опционально):
+# numpy>=1.20.0  # Для расширенных математических вычислений
+# scipy>=1.7.0   # Для оптимизации и научных расчетов
+# sympy>=1.8     # Для символьной математики и формул

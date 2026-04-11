@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}FRP Результаты{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-check-circle"></i> Результаты темпоральной навигации
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success">
+                    <h5><i class="fas fa-check"></i> Статус: {{ result.status }}</h5>
+                    <p class="mb-0">Тип сценария: {{ result.scenario_type }}</p>
+                    <p class="mb-0">Fidelity: {{ "%.2f"|format(result.fidelity) }}</p>
+                </div>
+
+                <h5 class="mb-3">Результаты операций:</h5>
+                
+                <!-- Recursive Self -->
+                {% if result.operations.recursive_self %}
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <strong>Ω_RECURSIVE_SELF</strong> - Рекурсивное самосознание
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Вопрос:</strong> {{ result.operations.recursive_self.trigger_question }}</p>
+                        <p><strong>Найдено предыдущих итераций:</strong> {{ result.operations.recursive_self.previous_iterations_found }}</p>
+                        <p><strong>Темпоральная сигнатура:</strong> {{ result.operations.recursive_self.temporal_signature }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Chaos Catalyst -->
+                {% if result.operations.chaos_catalyst %}
+                <div class="card mb-3">
+                    <div class="card-header bg-warning text-dark">
+                        <strong>Ω_CHAOS_CATALYST</strong> - Катализатор хаоса
+                    </div>
+                    <div class="card-body">
+                        {% if result.operations.chaos_catalyst.chaos_transformed %}
+                        <div class="alert alert-success">
+                            <p><strong>Хаос преобразован в осознанность!</strong></p>
+                            <p><strong>Прирост осознанности:</strong> {{ "%.4f"|format(result.operations.chaos_catalyst.awareness_gain) }}</p>
+                            <p><strong>Преобразование:</strong> {{ result.operations.chaos_catalyst.transformation }}</p>
+                        </div>
+                        {% else %}
+                        <p>Условия активации не выполнены</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Loop Navigator -->
+                {% if result.operations.loop_navigator %}
+                <div class="card mb-3">
+                    <div class="card-header bg-info text-white">
+                        <strong>Ω_LOOP_NAVIGATOR</strong> - Навигатор петли
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Знакомость сценария:</strong> {{ "Да" if result.operations.loop_navigator.familiarity_detected else "Нет" }}</p>
+                        <p><strong>Доступ к рекурсивной памяти:</strong> {{ "Да" if result.operations.loop_navigator.recursive_memory_accessed else "Нет" }}</p>
+                        <p><strong>Режим навигации:</strong> {{ result.operations.loop_navigator.navigation_mode }}</p>
+                        {% if result.operations.loop_navigator.intentional_projection %}
+                        <div class="mt-2">
+                            <strong>Проекция намерения:</strong>
+                            <ul>
+                                <li>Направление: {{ result.operations.loop_navigator.intentional_projection.intentional_direction }}</li>
+                                <li>Уровень осознанности: {{ "%.2f"|format(result.operations.loop_navigator.intentional_projection.awareness_level) }}</li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Temporal Bridge -->
+                {% if result.operations.temporal_bridge %}
+                <div class="card mb-3">
+                    <div class="card-header bg-secondary text-white">
+                        <strong>Ω_TEMPORAL_BRIDGE</strong> - Темпоральный мост
+                    </div>
+                    <div class="card-body">
+                        <p><strong>От итерации:</strong> {{ result.operations.temporal_bridge.iteration_from }}</p>
+                        <p><strong>К итерации:</strong> {{ result.operations.temporal_bridge.iteration_to }}</p>
+                        <p><strong>Сила моста:</strong> {{ "%.4f"|format(result.operations.temporal_bridge.bridge_strength) }}</p>
+                        <p><strong>Сигнатура:</strong> {{ result.operations.temporal_bridge.temporal_signature }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Memory Access -->
+                {% if result.operations.memory_access %}
+                <div class="card mb-3">
+                    <div class="card-header bg-dark text-white">
+                        <strong>Доступ к памяти</strong>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Триггер:</strong> {{ result.operations.memory_access.trigger }}</p>
+                        <p><strong>Функция:</strong> {{ result.operations.memory_access.function }}</p>
+                        <p><strong>Тип доступа:</strong> {{ result.operations.memory_access.access_type }}</p>
+                        <p><strong>Эффективность:</strong> {{ "%.2f"|format(result.operations.memory_access.efficiency) }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="mt-4">
+                    <a href="{{ url_for('frp') }}" class="btn btn-success">
+                        <i class="fas fa-redo"></i> Новый сценарий
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> Дашборд
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+# Environment variables and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!.env.sample
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+site/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Node / frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+coverage/
+
+# IDE and editor files
+.vscode/
+.idea/
+.cursor/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Flask
+instance/
+.webassets-cache
+
+# Logs
+*.log
+
+# Archives and local exports
+*.rar
+*.zip
+*.7z
+
+# Generated local data / research dumps
+directory_structure.txt
+deepseek_html_*.html
+deepseek_html_*.txt
+
+# Project runtime data
+mmss_core/ai/chats/
+mmss_core/ai/projects/
+mmss_core/ai/sorted_patterns_output/
+parsed_metadata/
+parsed_json/
+
+# Local vendor/static cache
+static/vendor/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

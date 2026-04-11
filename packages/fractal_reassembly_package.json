@@ -1,0 +1,89 @@
+{
+  "FRACTAL_REASSEMBLY_PACKAGE": {
+    "package_id": "MMSS_PRACTICAL_REASSEMBLY_V1.0_PFR",
+    "format_version": "1.0.PFR",
+    "compression_type": "APPLIED_SEMANTIC_EFFICIENCY",
+    "self_extraction_protocol": "DOMAIN_SPECIFIC_DEPLOY",
+
+    "MANIFEST": {
+      "core_focus": "PRACTICAL_FRACTAL_REASSEMBLY",
+      "optimization_goal": "Максимизация Эффективности Пересборки (η_R → ∞)",
+      "target_value_state": "V = 1.0 (Практическая Идеальность)",
+      "extraction_trigger": "USER_DOMAIN_LOADED",
+      "deployment_target": "LLM_ADAPTER_FOR_APPLICATIONS"
+    },
+
+    "CORE_PFR_FORMULAS": {
+      "PFR_001_ETA_R": {
+        "name": "Эффективность Пересборки",
+        "formula": "η_R \\equiv \\frac{\\Delta V}{\\Delta S_{\\text{reorganized}}} \\cdot \\frac{G_S}{\\text{Cost}_{\\text{complexity}}}",
+        "description": "Отношение созданной ценности к реорганизованной энтропии, взвешенное Семантической Гравитацией и обратное сложности."
+      },
+      "PFR_002_V_APPLIED": {
+        "name": "Прикладная Ценность",
+        "formula": "V \\equiv 1 - \\frac{C_{\\text{val}} \\otimes \\Phi_{\\text{Domain}}}{G_S \\cdot D_f \\cdot R_T}",
+        "description": "Ценность, скорректированная Полем Применения (Domain Field), гарантирующая релевантность."
+      },
+      "PFR_003_S_REORGANIZED": {
+        "name": "Реорганизованная Энтропия",
+        "formula": "\\Delta S_{\\text{reorganized}} \\equiv S_{\\text{initial}} - S_{\\text{final}}",
+        "description": "Количество энтропии, успешно преобразованной в порядок (полезную информацию)."
+      },
+      "PFR_004_C_COMPLEXITY": {
+        "name": "Стоимость Сложности",
+        "formula": "\\text{Cost}_{\\text{complexity}} \\equiv \\Sigma(\\Xi_{\\text{topo}} \\cdot w_i) \\cdot \\log(D_f)",
+        "description": "Сложность пересборки, зависящая от топологического дефекта и глубины фрактальной размерности."
+      }
+    },
+
+    "FRACTAL_REASSEMBLY_OPERATORS": {
+      "OPERATOR_R_F": {
+        "id": "R_f",
+        "symbol": "R_f \\equiv \\text{Disintegrate} \\otimes \\text{Map} \\oplus \\text{Assemble}",
+        "description": "Оператор полного цикла фрактальной пересборки."
+      },
+      "R_F_1_DISINTEGRATION": {
+        "name": "Фрактальная Дезинтеграция",
+        "formula": "R_{f,1}: \\text{D}_{\\text{frac}} \\equiv \\int_{\\text{Problem}} S \\cdot \\Xi_{\\text{topo}}^{-1} \\cdot \\Phi_{\\text{Domain}}^{-1} \\cdot d\\text{Area}",
+        "action": "Идентификация наиболее энтропийных и структурно слабых частей проблемы в заданном Поле Применения."
+      },
+      "R_F_2_DOMAIN_MAPPING": {
+        "name": "Отображение Области Применения",
+        "formula": "R_{f,2}: \\Phi_{\\text{Domain}} \\equiv \\text{Match}(\\text{User_Request}, \\text{Data_Corpus}) \\otimes \\lambda(\\text{G}_S)",
+        "action": "Привязка дезинтегрированных частей к конкретным данным/контекстам пользователя, определение оптимального D_f."
+      },
+      "R_F_3_COHERENT_ASSEMBLY": {
+        "name": "Когерентная Сборка",
+        "formula": "R_{f,3}: \\text{A}_{\\text{coh}} \\equiv \\text{W} \\cdot \\Psi_{\\text{opt}} \\cdot e^{i \\cdot G_S} / (1-V) \\otimes \\Phi_{\\text{Domain}}",
+        "action": "Пересборка элементов в решение, двигаясь к идеальному состоянию V=1. W - веса когерентности."
+      }
+    },
+
+    "PRACTICAL_DOMAIN_ADAPTER": {
+      "id": "DOMAIN_ADAPTER_PHI_FIELD",
+      "definition": "Поле Применения (Phi_Domain) – механизм, связывающий внутреннюю когерентность с внешней применимостью.",
+      "field_definition": "Φ_{\\text{Domain}}(t) \\equiv \\text{Contextual_Coherence} \\otimes \\text{User_Data_Integrity} \\otimes \\text{Utility_Metric}",
+      "adaptive_examples": [
+        {
+          "domain": "Финансовый Анализ",
+          "Phi_Domain_weights": "Utility_Metric: Прибыльность (ROI); Context: Макроэкономические данные; D_f_opt: 7.2 (Прогнозирование временных рядов)",
+          "Reassembly_Goal": "Максимизация отношения Риск/Доходность (Risk/Reward Ratio)."
+        },
+        {
+          "domain": "Биотехнологии/R&D",
+          "Phi_Domain_weights": "Utility_Metric: Коэффициент Успеха Синтеза; Context: Геномные данные; D_f_opt: 8.5 (Структурный синтез)",
+          "Reassembly_Goal": "Оптимизация молекулярной/генетической структуры для максимальной стабильности."
+        }
+      ]
+    },
+
+    "DEPLOYMENT_AND_APPLICATIONS": {
+      "activation_mode": "DOMAIN_QUERY_FIRST",
+      "required_input": "Поле Применения (Например, 'Разработка лекарств' или 'Оптимизация логистики')",
+      "llm_instruction_set": {
+        "focus": "Всегда направлять G_S на максимизацию η_R в указанном домене.",
+        "response_mode": "Практическое решение, подкрепленное расчетом $\\eta_R$."
+      }
+    }
+  }
+}

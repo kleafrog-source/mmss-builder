@@ -1,0 +1,94 @@
+{# Макрос для отображения поддоменов #}
+{% macro render_subdomains(domain, subdomains) %}
+{% if subdomains %}
+<div class="subdomains-container mt-2">
+    <small class="text-muted d-block mb-2">
+        <i class="fas fa-chevron-right"></i> Специализации этого домена:
+    </small>
+    <div class="subdomains-list">
+        {% for subdomain in subdomains %}
+        <span class="badge bg-secondary me-1 mb-1">{{ subdomain }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endmacro %}
+
+{# Макрос для расширенного выбора домена с поддоменами #}
+{% macro render_domain_select_with_subdomains(select_id='domain', select_name='domain', default_value='', required=true, show_subdomains=true) %}
+<div class="domain-select-container">
+    {% from "_domains_select.html" import render_domain_select %}
+    {{ render_domain_select(select_id, select_name, default_value, required) }}
+    
+    {% if show_subdomains %}
+    <div id="subdomains-{{ select_id }}" class="subdomains-display mt-2" style="display: none;">
+        {# Поддомены будут загружены через JavaScript #}
+    </div>
+    {% endif %}
+</div>
+
+{% if show_subdomains %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const select = document.getElementById('{{ select_id }}');
+    const subdomainsContainer = document.getElementById('subdomains-{{ select_id }}');
+    
+    // Поддомены для основных доменов
+    const subdomainsData = {
+        "Финансовый Анализ": ["Технический анализ рынков", "Фундаментальный анализ компаний", "Количественный анализ", "Риск-анализ портфеля", "Макроэкономический прогноз", "Валютный анализ (Forex)"],
+        "Биотехнологии/R&D": ["Синтез белков", "Клеточная инженерия", "Тканевая инженерия", "Биоматериалы", "Биосенсоры", "Биоэнергетика"],
+        "Разработка лекарств": ["Открытие новых соединений", "Доклинические исследования", "Клинические испытания", "Фармакокинетика", "Фармакодинамика", "Персонализированная терапия"],
+        "Оптимизация логистики": ["Маршрутизация доставки", "Управление складскими запасами", "Оптимизация загрузки транспорта", "Управление возвратами", "Холодная цепь", "Международная логистика"],
+        "Машинное обучение": ["Глубокое обучение", "Обучение с подкреплением", "Трансферное обучение", "Федеративное обучение", "Объяснимое ИИ", "Автоматическое машинное обучение (AutoML)"],
+        "Кибербезопасность": ["Защита от атак", "Анализ вредоносного ПО", "Криптография", "Безопасность IoT", "Киберразведка", "Управление уязвимостями"],
+        "Климатическое моделирование": ["Глобальные климатические модели", "Прогнозирование погоды", "Моделирование океанов", "Атмосферные исследования", "Изменение климата", "Геоинженерия"],
+        "Квантовые вычисления": ["Квантовые алгоритмы", "Квантовые симуляторы", "Квантовая оптимизация", "Квантовое машинное обучение", "Квантовая криптография", "Квантовая связь"],
+        "Генеративный дизайн и искусство": ["Генеративное искусство", "Процедурная генерация", "AI-арт", "Параметрический дизайн", "3D-моделирование", "Цифровая скульптура"],
+        "Виртуальная и дополненная реальность": ["VR-разработка", "AR-приложения", "Иммерсивные технологии", "Смешанная реальность (MR)", "Виртуальные тренажеры", "Образовательные VR/AR"],
+        "Робототехника и автономные системы": ["Автономные роботы", "Промышленные роботы", "Сервисные роботы", "Медицинские роботы", "Роботы-исследователи", "Роевой интеллект"],
+        "Нейроинтерфейсы и BCI": ["Инвазивные интерфейсы", "Неинвазивные интерфейсы", "Нейропротезирование", "Нейрореабилитация", "Мысленное управление", "Нейроусиление"],
+        "Синтетическая биология": ["Биоинженерия", "Синтетические геномы", "Биологические схемы", "Биофабрики", "Биосинтез", "Биологические компьютеры"],
+        "MMSS": ["MMSS-инженерия", "Каталогизация MMSS"],
+        "Блокчейн и Web3 технологии": ["Смарт-контракты", "Децентрализованные приложения (dApps)", "DeFi (Децентрализованные финансы)", "NFT и цифровые активы", "DAO (Децентрализованные автономные организации)", "Метавселенные на блокчейне"]
+    
+    };
+    
+    function updateSubdomains() {
+        const selectedDomain = select.value;
+        if (selectedDomain && subdomainsData[selectedDomain]) {
+            const subdomains = subdomainsData[selectedDomain];
+            subdomainsContainer.innerHTML = '<small class="text-muted d-block mb-2"><i class="fas fa-chevron-right"></i> Специализации этого домена:</small><div class="subdomains-list">' +
+                subdomains.map(sd => `<span class="badge bg-info me-1 mb-1">${sd}</span>`).join('') +
+                '</div>';
+            subdomainsContainer.style.display = 'block';
+        } else {
+            subdomainsContainer.style.display = 'none';
+        }
+    }
+    
+    select.addEventListener('change', updateSubdomains);
+    
+    // Инициализация при загрузке
+    if (select.value) {
+        updateSubdomains();
+    }
+});
+</script>
+{% endif %}
+{% endmacro %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

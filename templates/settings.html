@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}Настройки{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Настройки Приложения</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Основные Настройки</h5>
+        </div>
+        <div class="card-body">
+            <form id="settings-form" method="POST" action="{{ url_for('settings_page') }}">
+                
+                <!-- Theme Selection -->
+                <div class="mb-3">
+                    <label for="theme-select" class="form-label">Тема оформления</label>
+                    <select class="form-select" id="theme-select" name="theme">
+                        <option value="light" {% if config.theme == 'light' %}selected{% endif %}>Light</option>
+                        <option value="dark" {% if config.theme == 'dark' %}selected{% endif %}>Dark</option>
+                    </select>
+                </div>
+
+                <!-- Mistral Model Selection -->
+                <div class="mb-3">
+                    <label for="mistral-model-select" class="form-label">Модель Mistral</label>
+                    <select class="form-select" id="mistral-model-select" name="mistral_model" {% if not mistral_models %}disabled{% endif %}>
+                        {% if mistral_models %}
+                            {% for model in mistral_models %}
+                                <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option>Не удалось загрузить модели</option>
+                        {% endif %}
+                    </select>
+                    {% if not mistral_models %}
+                        <div class="form-text text-muted">Список моделей недоступен. Проверьте API ключ.</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Сохранить Настройки</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Кастомная CSS Тема</h5>
+        </div>
+        <div class="card-body">
+            <form id="custom-theme-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="custom-css-file" class="form-label">Загрузить свой CSS файл темы (.css)</label>
+                    <input class="form-control" type="file" id="custom-css-file" name="custom_css_file" accept=".css">
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Загрузить и Применить</button>
+                <button type="button" class="btn btn-danger" id="clear-custom-theme-btn"><i class="fas fa-times"></i> Очистить Кастомную Тему</button>
+            </form>
+            <div id="custom-theme-status" class="mt-3"></div>
+            <div class="mt-3">
+                <p>Текущая кастомная тема: <span id="current-custom-theme-path">{% if custom_theme_css %}{{ custom_theme_css }}{% else %}Нет{% endif %}</span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Theme switcher logic from theme.js (if needed, or can be kept separate)
+        const themeSwitcher = document.getElementById('theme-switcher');
+        if(themeSwitcher) {
+            themeSwitcher.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-bs-theme', newTheme);
+                
+                // Save theme preference via API
+                fetch('/api/settings/theme', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ theme: newTheme }),
+                });
+            });
+        }
+
+        // Custom Theme Upload/Clear Logic
+        const customThemeForm = document.getElementById('custom-theme-form');
+        const customCssFileInput = document.getElementById('custom-css-file');
+        const clearCustomThemeBtn = document.getElementById('clear-custom-theme-btn');
+        const customThemeStatus = document.getElementById('custom-theme-status');
+        const currentCustomThemePathSpan = document.getElementById('current-custom-theme-path');
+
+        customThemeForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            customThemeStatus.innerHTML = '<div class="alert alert-info">Загрузка...</div>';
+
+            const formData = new FormData();
+            if (customCssFileInput.files.length > 0) {
+                formData.append('custom_css_file', customCssFileInput.files[0]);
+            } else {
+                customThemeStatus.innerHTML = '<div class="alert alert-warning">Пожалуйста, выберите CSS файл для загрузки.</div>';
+                return;
+            }
+
+            fetch('{{ url_for('upload_custom_theme') }}', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    customThemeStatus.innerHTML = '<div class="alert alert-success">Кастомная тема успешно загружена и применена!</div>';
+                    currentCustomThemePathSpan.textContent = data.custom_theme_css_path || 'Нет';
+                    location.reload(); // Reload to apply new custom theme
+                } else {
+                    customThemeStatus.innerHTML = `<div class="alert alert-danger">Ошибка загрузки: ${data.message}</div>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                customThemeStatus.innerHTML = '<div class="alert alert-danger">Произошла ошибка при загрузке кастомной темы.</div>';
+            });
+        });
+
+        clearCustomThemeBtn.addEventListener('click', function() {
+            customThemeStatus.innerHTML = '<div class="alert alert-info">Очистка...</div>';
+
+            fetch('{{ url_for('clear_custom_theme') }}', {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    customThemeStatus.innerHTML = '<div class="alert alert-success">Кастомная тема очищена!</div>';
+                    currentCustomThemePathSpan.textContent = 'Нет';
+                    location.reload(); // Reload to remove custom theme
+                } else {
+                    customThemeStatus.innerHTML = `<div class="alert alert-danger">Ошибка очистки: ${data.message}</div>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                customThemeStatus.innerHTML = '<div class="alert alert-danger">Произошла ошибка при очистке кастомной темы.</div>';
+            });
+        });
+    });
+</script>
+{% endblock %}
