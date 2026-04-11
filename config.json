@@ -1,5 +1,5 @@
 {
-    "theme": "dark",
+    "theme": "light",
     "custom_theme_css": null,
-    "mistral_model": "ministral-8b-2410"
+    "mistral_model": "open-mistral-nemo"
 }

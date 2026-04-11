@@ -22,24 +22,62 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(createToolBtn);
 
     // --- Step 3: Text Selection Handling ---
-    gridPanel.addEventListener('mouseup', (event) => {
+    const updateSelectionContext = () => {
         const selection = window.getSelection();
-        const currentSelectedText = selection.toString().trim();
+        if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
+            return false;
+        }
 
-        if (currentSelectedText) {
-            let parent = selection.getRangeAt(0).commonAncestorContainer;
-            parent = parent.nodeType === Node.ELEMENT_NODE ? parent : parent.parentNode;
-            const closestAnswerPanel = parent.closest('.answer-panel');
+        const range = selection.getRangeAt(0);
+        let parent = range.commonAncestorContainer;
+        parent = parent && parent.nodeType === Node.ELEMENT_NODE ? parent : parent?.parentNode;
 
-            if (closestAnswerPanel) {
-                selectedText = currentSelectedText;
-                selectedNode = closestAnswerPanel.closest('.semantic-node'); // Store the context node
-                const rect = selection.getRangeAt(0).getBoundingClientRect();
-                createToolBtn.style.left = `${rect.left + window.scrollX}px`;
-                createToolBtn.style.top = `${rect.bottom + window.scrollY + 5}px`;
-                createToolBtn.style.display = 'block';
-            }
-        } else {
+        if (!parent || !gridPanel.contains(parent)) {
+            return false;
+        }
+
+        const answerPanel = parent.closest('.answer-panel');
+        if (!answerPanel) {
+            return false;
+        }
+
+        const text = selection.toString().trim();
+        if (!text) {
+            return false;
+        }
+
+        const hostingNode = answerPanel.closest('.semantic-node');
+        if (!hostingNode) {
+            return false;
+        }
+
+        selectedText = text;
+        selectedNode = hostingNode;
+
+        const rect = range.getBoundingClientRect();
+        createToolBtn.style.left = `${rect.left + window.scrollX}px`;
+        createToolBtn.style.top = `${rect.bottom + window.scrollY + 5}px`;
+        createToolBtn.style.display = 'block';
+        return true;
+    };
+
+    gridPanel.addEventListener('mouseup', () => {
+        if (!updateSelectionContext()) {
+            createToolBtn.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('selectionchange', () => {
+        const selection = window.getSelection();
+        if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
+            createToolBtn.style.display = 'none';
+            return;
+        }
+
+        let anchorNode = selection.anchorNode;
+        anchorNode = anchorNode && anchorNode.nodeType === Node.ELEMENT_NODE ? anchorNode : anchorNode?.parentNode;
+
+        if (!anchorNode || !gridPanel.contains(anchorNode)) {
             createToolBtn.style.display = 'none';
         }
     });
@@ -241,9 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!summaryNode) {
             summaryNode = document.createElement('div');
             summaryNode.id = 'summary-response-node';
-            summaryNode.className = 'semantic-node mt-6 bg-gray-800 border border-purple-500 rounded-lg p-4';
-            const container = document.querySelector('.p-4'); // Main container
-            container.appendChild(summaryNode);
+            // Changed class to match agent-card and appended to gridPanel
+            summaryNode.className = 'agent-card bg-gray-800 border border-purple-500'; 
+            const gridPanel = document.querySelector('.grid-panel');
+            gridPanel.appendChild(summaryNode);
         }
 
         summaryNode.innerHTML = `

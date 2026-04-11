@@ -16,7 +16,13 @@
         <option value="Страховое моделирование" {% if default_value == 'Страховое моделирование' %}selected{% endif %}>Страховое моделирование</option>
         <option value="Макроэкономический анализ" {% if default_value == 'Макроэкономический анализ' %}selected{% endif %}>Макроэкономический анализ</option>
     </optgroup>
-    
+
+    {# MMSS #}
+    <optgroup label="MMSS">
+        <option value="MMSS" {% if default_value == 'MMSS' %}selected{% endif %}>MMSS</option>
+        <option value="MMSS-инженерия" {% if default_value == 'MMSS-инженерия' %}selected{% endif %}>MMSS-инженерия</option>
+    </optgroup>
+
     {# Биотехнологии и медицина #}
     <optgroup label="Биотехнологии и медицина">
         <option value="Биотехнологии/R&D" {% if default_value == 'Биотехнологии/R&D' %}selected{% endif %}>Биотехнологии/R&D</option>
@@ -88,6 +94,7 @@
     
     {# Креативные и инновационные домены #}
     <optgroup label="🎨 Креативные и инновационные домены">
+        <option value="MMSS" {% if default_value == 'MMSS' %}selected{% endif %}>MMSS</option>
         <option value="Генеративный дизайн и искусство" {% if default_value == 'Генеративный дизайн и искусство' %}selected{% endif %}>Генеративный дизайн и искусство</option>
         <option value="Музыкальная композиция и аудио-синтез" {% if default_value == 'Музыкальная композиция и аудио-синтез' %}selected{% endif %}>Музыкальная композиция и аудио-синтез</option>
         <option value="Геймдизайн и интерактивные миры" {% if default_value == 'Геймдизайн и интерактивные миры' %}selected{% endif %}>Геймдизайн и интерактивные миры</option>

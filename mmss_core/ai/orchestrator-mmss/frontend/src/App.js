@@ -18,7 +18,11 @@ const AGENT_TYPES = [
   'FRACTAL_ENTAILMENT',
   'TEMPORAL_GENERATION',
   'GOLDEN_DERIVATION',
-  'CORRECTION_ENHANCED'
+  'CORRECTION_ENHANCED',
+  'MULTYFUNCTIONAL_SUMMARY_WRITER_OBSIDIAN',
+  'OBSIDIAN_NODEFLOW_EXPORTER',
+  'ULTRA_CONCISE_LINKED_SUMMARY',
+  'OMNIAGENT_UNIFIED_SYNTHESIZER'
 ];
 
 function App() {
@@ -36,7 +40,17 @@ function App() {
     return new Promise((resolve) => {
       setTimeout(() => {
         if (demoMode) {
-          const mockResponse = MOCK_AGENT_RESPONSES[agentType](questionText);
+          const mockResponse = MOCK_AGENT_RESPONSES[agentType] ? MOCK_AGENT_RESPONSES[agentType](questionText) : {
+            answer: `Агент ${agentType} не имеет mock-ответа.`,
+            metrics: {
+              V: 0.95,
+              N: 0.94,
+              S: 0.03,
+              D_f: 9.0,
+              G_S: 140,
+              R_T: 2.618
+            }
+          };
           resolve(mockResponse);
         } else {
           // TODO: Implement Mistral API call

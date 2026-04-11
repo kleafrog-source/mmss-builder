@@ -60,14 +60,15 @@ const agents = [
                 const card = document.createElement('div');
                 card.className = 'agent-card';
                 card.id = `agent-card-${agentName}`;
-                card.dataset.branchId = `branch-${agentName}`; // Add data-branch-id
-                card.dataset.branchId = `branch-${agentName}`; // Add data-branch-id
+                card.dataset.branchId = `branch-${agentName}`;
+                card.dataset.agentId = agentName;
 
                 const symbol = getOperatorSymbol(agentName);
                 const outputType = getOutputType(agentName);
+                const semanticNodeId = `semantic-node-${agentName}`;
 
                 // Инициализируем цвет как "готово"
-                card.style.borderLeft = '4px solid #64ffda'; // бирюзовый — готово
+                card.style.borderLeft = '4px solid #64ffda';
                 card.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
 
                 let answerHtml = '';
@@ -87,12 +88,18 @@ const agents = [
                         <button class="agent-btn" data-agent="${agentName}">Запустить</button>
                      </div>
                         <div class="output-type">${outputType}</div>
-                        <div class="answer-panel">
+                        <div class="agent-actions" style="display: flex; gap: 8px; margin: 0.5rem 0;">
+                            <button class="copy-btn" id="copy-btn-${agentName}" title="Скопировать ответ" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1.1em; padding: 0 4px;">📋</button>
+                            <button class="fullscreen-btn" data-agent="${agentName}" title="Развернуть во весь экран" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1.1em; padding: 0 4px;">🔎➕</button>
+                            <button class="zoom-in-btn" data-agent="${agentName}" title="Увеличить" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1.1em; padding: 0 4px; display: none;">🔎➖</button>
+                        </div>
+                        <div class="semantic-node" id="${semanticNodeId}" data-node-id="${semanticNodeId}" data-agent-id="${agentName}">
+                            <div class="answer-panel">
                                 ${answerHtml}
-                                
                             </div>
-                            <div class="agent-controls">
-                                <button class="copy-btn" title="Скопировать ответ" style="margin-top: 0.5rem; background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1.1em; padding: 0;">📋</button>
+                        </div>
+                        <div class="agent-controls">
+                               
                                 <select class="prompt-type">
                                     <option value="full">Full Prompt</option>
                                     <option value="short">Short Prompt</option>
@@ -104,7 +111,7 @@ const agents = [
                 gridPanel.appendChild(card);
 
                 const btn = card.querySelector('.agent-btn');
-                btn.addEventListener('click', () => sendAgentRequest(agentName, card));
+                btn.addEventListener('click', () => window.sendAgentRequest(agentName));
             });
         }
 // Загрузка проекта
@@ -182,12 +189,19 @@ document.getElementById('fill-all-prompts').addEventListener('click', () => {
     });
     alert('Текст вставлен во все промпты.');
 });
-        async function sendAgentRequest(agentName, card) {
+        window.sendAgentRequest = async function(agentName, overridePrompt = null, targetNodeId = null) {
+            const card = document.getElementById(`agent-card-${agentName}`);
+            if (!card) {
+                console.warn(`Card for agent ${agentName} not found`);
+                return;
+            }
             const statusEl = card.querySelector('.agent-status');
-            const answerPanel = card.querySelector('.answer-panel');
             const btn = card.querySelector('.agent-btn');
             const promptInput = card.querySelector('.prompt-input');
-            const prompt = promptInput.value.trim();
+            const promptSource = overridePrompt !== null ? overridePrompt : (promptInput ? promptInput.value : '');
+            const prompt = promptSource.trim();
+            const targetNode = targetNodeId ? document.getElementById(targetNodeId) : card.querySelector('.semantic-node');
+            const answerPanel = targetNode ? targetNode.querySelector('.answer-panel') : card.querySelector('.answer-panel');
 
             if (!prompt) {
                 alert('Пожалуйста, введите промпт.');
@@ -250,8 +264,10 @@ document.getElementById('fill-all-prompts').addEventListener('click', () => {
                 card.style.borderLeft = '4px solid #f44336'; // красный
                 card.style.backgroundColor = 'rgba(244, 67, 54, 0.05)';
             } finally {
-                btn.disabled = false;
-                btn.textContent = 'Запустить';
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'Запустить';
+                }
             }
         }
 
@@ -302,7 +318,14 @@ document.getElementById('fill-all-prompts').addEventListener('click', () => {
             })
             .catch(error => console.error('Ошибка сохранения проекта:', error));
         });
-
+        let gridMode = 3;
+        document.getElementById('grid-toggle').addEventListener('click', () => {
+            gridMode = gridMode % 4 + 1;
+            const gridPanel = document.querySelector('.grid-panel');
+            gridPanel.className = 'grid-panel';
+            gridPanel.classList.add(`grid-${gridMode}`);
+            document.getElementById('grid-toggle').textContent = `🔢 Grid: ${gridMode}`;
+        });
         downloadBtn.addEventListener('click', () => {
             console.log("Download JSON button clicked.");
             if (Object.keys(agentData).length === 0) {
@@ -361,7 +384,7 @@ function stopAutoCycle() {
     alert('Автоцикл остановлен.');
 }
 
-function cycleNextAgent() {
+async function cycleNextAgent() {
     if (!autoCycleRunning || autoCyclePaused) return;
     if (autoCycleIndex >= autoCycleAgents.length) {
         alert('Автоцикл завершён!');
@@ -371,8 +394,15 @@ function cycleNextAgent() {
 
     const agentName = autoCycleAgents[autoCycleIndex];
     const card = document.getElementById(`agent-card-${agentName}`);
+    if (!card) {
+        console.warn(`Карточка агента "${agentName}" не найдена. Пропускаем.`);
+        autoCycleIndex++;
+        setTimeout(cycleNextAgent, 0);
+        return;
+    }
+
     const promptInput = card.querySelector('.prompt-input');
-    const prompt = promptInput.value.trim();
+    const prompt = promptInput?.value?.trim() || '';
 
     if (!prompt) {
         alert(`Промпт для "${agentName}" пуст. Пропускаем.`);
@@ -390,37 +420,29 @@ function cycleNextAgent() {
     btn.disabled = true;
     btn.textContent = '...';
 
-    fetch('/orchestrate/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ agent_name: agentName, prompt: prompt })
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.error) {
-            retryCount++;
-            if (retryCount >= 4) {
-                alert(`Агент "${agentName}" ошибся 4 раза. Пропускаем.`);
-                autoCycleIndex++;
-                retryCount = 0;
-                setTimeout(cycleNextAgent, 1500);
-                return;
-            }
-            statusEl.textContent = `Ошибка (${retryCount}/4)`;
-            statusEl.style.color = '#f44336';
-            card.style.borderLeft = '4px solid #f44336';
-            setTimeout(() => {
-                btn.disabled = false;
-                btn.textContent = 'Запустить';
-                cycleNextAgent(); // повтор
-            }, 3000);
-            return;
+    try {
+        const response = await fetch('/orchestrate/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ agent_name: agentName, prompt })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
         }
 
-        // Успешно
-        const parts = result.answer.split('--- METRICS:');
-        const answer = parts[0].trim();
+        const result = await response.json();
+        if (result.error) {
+            throw new Error(result.error);
+        }
+
+        const answerRaw = typeof result.answer === 'string' ? result.answer : '';
+        const parts = answerRaw.split('--- METRICS:');
+        const answer = parts[0]?.trim() || '';
         const answerPanel = card.querySelector('.answer-panel');
+        if (!answerPanel) {
+            throw new Error('Не удалось найти панель ответа для вставки результата.');
+        }
 
         if (answer.startsWith('```nodeflow-list')) {
             answerPanel.innerHTML = `<pre class="text-xs overflow-x-auto p-3 bg-gray-950 rounded">${answer.replace(/```nodeflow-list|```/g, '')}</pre>`;
@@ -438,26 +460,29 @@ function cycleNextAgent() {
 
         autoCycleIndex++;
         retryCount = 0;
+        btn.disabled = false;
+        btn.textContent = 'Запустить';
+
         setTimeout(cycleNextAgent, 2000); // пауза 2 сек между агентами
-    })
-    .catch(error => {
+    } catch (error) {
+        console.error(`Auto Cycle error (${agentName}):`, error);
         retryCount++;
-        if (retryCount >= 4) {
-            alert(`Агент "${agentName}" ошибся 4 раза. Пропускаем.`);
-            autoCycleIndex++;
-            retryCount = 0;
-            setTimeout(cycleNextAgent, 1500);
-            return;
-        }
         statusEl.textContent = `Ошибка (${retryCount}/4)`;
         statusEl.style.color = '#f44336';
         card.style.borderLeft = '4px solid #f44336';
-        setTimeout(() => {
-            btn.disabled = false;
-            btn.textContent = 'Запустить';
-            cycleNextAgent();
-        }, 3000);
-    });
+        card.style.backgroundColor = 'rgba(244, 67, 54, 0.05)';
+        btn.disabled = false;
+        btn.textContent = 'Запустить';
+
+        if (retryCount >= 4) {
+            console.log(`Агент "${agentName}" ошибся 4 раза. Пропускаем.`);
+            autoCycleIndex++;
+            retryCount = 0;
+            setTimeout(cycleNextAgent, 1500);
+        } else {
+            setTimeout(cycleNextAgent, 3000);
+        }
+    }
 }
 
 document.getElementById('auto-cycle').addEventListener('click', () => {
@@ -479,19 +504,131 @@ document.getElementById('grid-toggle').addEventListener('click', () => {
     document.getElementById('grid-toggle').textContent = `🔢 Grid: ${gridMode}`;
 });
 // Обработчик копирования
+// Add console panel
+const consolePanel = document.createElement('div');
+consolePanel.id = 'console-panel';
+consolePanel.style.cssText = `
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: #1e1e1e;
+    color: #f0f0f0;
+    padding: 10px;
+    font-family: monospace;
+    overflow-y: auto;
+    z-index: 1000;
+    border-top: 1px solid #444;
+    display: none;
+`;
+
+const consoleHeader = document.createElement('div');
+consoleHeader.style.cssText = 'display: flex; justify-content: space-between; margin-bottom: 8px;';
+consoleHeader.innerHTML = `
+    <strong>Консоль логов</strong>
+    <button id="toggle-console" style="background: #444; color: white; border: none; padding: 2px 8px; cursor: pointer;">Свернуть</button>
+`;
+
+const consoleContent = document.createElement('div');
+consoleContent.id = 'console-content';
+consoleContent.style.cssText = 'overflow-y: auto; height: calc(100% - 30px); font-size: 12px;';
+
+consolePanel.appendChild(consoleHeader);
+consolePanel.appendChild(consoleContent);
+document.body.appendChild(consolePanel);
+
+// Custom console.log
+const originalConsoleLog = console.log;
+console.log = function() {
+    originalConsoleLog.apply(console, arguments);
+    const message = Array.from(arguments).join(' ');
+    const logEntry = document.createElement('div');
+    logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    logEntry.style.borderBottom = '1px solid #333';
+    logEntry.style.padding = '2px 0';
+    consoleContent.appendChild(logEntry);
+    consoleContent.scrollTop = consoleContent.scrollHeight;
+};
+
+// Toggle console visibility
+document.getElementById('toggle-console')?.addEventListener('click', function() {
+    if (consolePanel.style.display === 'none') {
+        consolePanel.style.display = 'block';
+        this.textContent = 'Свернуть';
+    } else {
+        consolePanel.style.display = 'none';
+        this.textContent = 'Показать логи';
+    }
+});
+
+// Event delegation for all agent card interactions
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('copy-btn')) {
-        const answerPanel = e.target.closest('.answer-panel');
-        const text = answerPanel.querySelector('pre')?.textContent || 
-                     answerPanel.querySelector('p')?.textContent || 
-                     '';
+    // Copy button
+    if (e.target.classList.contains('copy-btn') || e.target.closest('.copy-btn')) {
+        const btn = e.target.classList.contains('copy-btn') ? e.target : e.target.closest('.copy-btn');
+        const card = btn.closest('.agent-card');
+        const answerPanel = card.querySelector('.answer-panel');
+        const text = answerPanel?.querySelector('pre')?.textContent || 
+                    answerPanel?.querySelector('p')?.textContent || 
+                    '';
         if (text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Ответ скопирован в буфер обмена!');
+                console.log('Ответ скопирован в буфер обмена!');
             }).catch(err => {
-                alert('Ошибка копирования: ' + err);
+                console.log('Ошибка копирования: ' + err);
             });
         }
     }
+    
+    // Fullscreen button
+    if (e.target.classList.contains('fullscreen-btn') || e.target.closest('.fullscreen-btn')) {
+        const btn = e.target.classList.contains('fullscreen-btn') ? e.target : e.target.closest('.fullscreen-btn');
+        const card = btn.closest('.agent-card');
+        const answerPanel = card.querySelector('.answer-panel');
+        
+        // Toggle fullscreen
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            answerPanel.requestFullscreen().catch(err => {
+                console.log('Ошибка при переходе в полноэкранный режим:', err);
+            });
+        }
+        
+        // Toggle button visibility
+        btn.style.display = 'none';
+        const zoomOutBtn = card.querySelector('.zoom-in-btn');
+        zoomOutBtn.style.display = 'inline-block';
+    }
+    
+    // Zoom out button
+    if (e.target.classList.contains('zoom-in-btn') || e.target.closest('.zoom-in-btn')) {
+        const btn = e.target.classList.contains('zoom-in-btn') ? e.target : e.target.closest('.zoom-in-btn');
+        const card = btn.closest('.agent-card');
+        const fullscreenBtn = card.querySelector('.fullscreen-btn');
+        
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+        
+        // Toggle button visibility
+        btn.style.display = 'none';
+        fullscreenBtn.style.display = 'inline-block';
+    }
+});
+
+// Handle fullscreen change events
+document.addEventListener('fullscreenchange', () => {
+    const fullscreenElements = document.querySelectorAll('.agent-card');
+    fullscreenElements.forEach(card => {
+        const fullscreenBtn = card.querySelector('.fullscreen-btn');
+        const zoomOutBtn = card.querySelector('.zoom-in-btn');
+        
+        if (!document.fullscreenElement) {
+            fullscreenBtn.style.display = 'inline-block';
+            zoomOutBtn.style.display = 'none';
+        }
+    });
 });
 

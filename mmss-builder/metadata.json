@@ -1,0 +1,5 @@
+{
+  "name": "MMSS Forge",
+  "description": "A universal system meta-layer converter. Converts natural language system descriptions into the MMSS standardized JSON format using AI (Gemini/Mistral).",
+  "requestFramePermissions": []
+}

@@ -2,87 +2,83 @@
   "agents": [
     {
       "name": "QUANTUM_MAP",
-      "operator": "Q",
-      "purpose": "Purpose of QUANTUM_MAP",
-      "thinking_style": "Thinking style of QUANTUM_MAP",
-      "metrics": [
-        "metric1",
-        "metric2",
-        "metric3",
-        "metric4",
-        "metric5",
-        "metric6"
-      ]
+      "operator": "↦ₚ",
+      "purpose": "Комплексная трансформация системы и коллапс состояния",
+      "thinking_style": "Вероятностный, многократный, коллапс к решению",
+      "output_template": "markdown",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
     },
     {
       "name": "META_DERIVATION",
-      "operator": "M",
-      "purpose": "Purpose of META_DERIVATION",
-      "thinking_style": "Thinking style of META_DERIVATION",
-      "metrics": [
-        "metric1",
-        "metric2",
-        "metric3",
-        "metric4",
-        "metric5",
-        "metric6"
-      ]
+      "operator": "⊢ᵠ",
+      "purpose": "Логическое доказательство и вывод необходимости",
+      "thinking_style": "Дедуктивный, строгий, ориентированный на следование",
+      "output_template": "markdown",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
     },
     {
       "name": "FRACTAL_ENTAILMENT",
-      "operator": "F",
-      "purpose": "Purpose of FRACTAL_ENTAILMENT",
-      "thinking_style": "Thinking style of FRACTAL_ENTAILMENT",
-      "metrics": [
-        "metric1",
-        "metric2",
-        "metric3",
-        "metric4",
-        "metric5",
-        "metric6"
-      ]
+      "operator": "⇛ᶠ",
+      "purpose": "Распознавание паттернов на разных масштабах и открытие инвариантов",
+      "thinking_style": "Масштабно-инвариантный, рекурсивный, оптимизированный по золотому сечению",
+      "output_template": "markdown",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
     },
     {
       "name": "TEMPORAL_GENERATION",
-      "operator": "T",
-      "purpose": "Purpose of TEMPORAL_GENERATION",
-      "thinking_style": "Thinking style of TEMPORAL_GENERATION",
-      "metrics": [
-        "metric1",
-        "metric2",
-        "metric3",
-        "metric4",
-        "metric5",
-        "metric6"
-      ]
+      "operator": "⧴ᵗ",
+      "purpose": "Решения, эволюционирующие во времени, и моделирование динамических систем",
+      "thinking_style": "Эволюционный, динамический, ограниченный гамильтонианом",
+      "output_template": "markdown",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
     },
     {
       "name": "GOLDEN_DERIVATION",
-      "operator": "G",
-      "purpose": "Purpose of GOLDEN_DERIVATION",
-      "thinking_style": "Thinking style of GOLDEN_DERIVATION",
-      "metrics": [
-        "metric1",
-        "metric2",
-        "metric3",
-        "metric4",
-        "metric5",
-        "metric6"
-      ]
+      "operator": "⊢ᵍ",
+      "purpose": "Эстетически и математически оптимальные выводы",
+      "thinking_style": "Гармоничный, пропорциональный, ограниченный золотым сечением",
+      "output_template": "markdown",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
     },
     {
       "name": "CORRECTION_ENHANCED",
-      "operator": "C",
-      "purpose": "Purpose of CORRECTION_ENHANCED",
-      "thinking_style": "Thinking style of CORRECTION_ENHANCED",
-      "metrics": [
-        "metric1",
-        "metric2",
-        "metric3",
-        "metric4",
-        "metric5",
-        "metric6"
-      ]
+      "operator": "↦ᶜ",
+      "purpose": "Устойчивое преобразование с встроенной коррекцией ошибок",
+      "thinking_style": "Устойчивый, самокорректирующийся, отказоустойчивый",
+      "output_template": "markdown",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
+    },
+    {
+      "name": "MULTYFUNCTIONAL_SUMMARY_WRITER_OBSIDIAN",
+      "operator": "📝",
+      "purpose": "Создание структурированной карточки системы в формате Obsidian Markdown с перелинковкой, метриками, операторами и анализом преимуществ/ограничений.",
+      "thinking_style": "Структурно-аналитический, кодерский, мета-документирующий",
+      "output_template": "dataview md",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
+    },
+    {
+      "name": "OBSIDIAN_NODEFLOW_EXPORTER",
+      "operator": "📊",
+      "purpose": "Формирование строго структурированного вывода по MMSS-сессии в формате nodeflow-list для Obsidian",
+      "thinking_style": "Схематический, компонентный, метрико-ориентированный",
+      "output_template": "nodeflow-list",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
+    },
+    {
+      "name": "ULTRA_CONCISE_LINKED_SUMMARY",
+      "operator": "🔗",
+      "purpose": "Генерация одно-/двухстрочной сводки с перелинковкой на сущности Obsidian",
+      "thinking_style": "Лаконичный, семантически плотный, гиперссылочный",
+      "output_template": "linked-summary-md",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
+    },
+    {
+      "name": "OMNIAGENT_UNIFIED_SYNTHESIZER",
+      "operator": "🌀",
+      "purpose": "Синтезировать полный вывод, объединяющий функционал агентов 7–9 в единый, компактный, но полный ответ",
+      "thinking_style": "Многоуровневый: структурный + схематический + лаконичный",
+      "output_template": "unified-omni-md",
+      "metrics": ["V", "N", "S", "D_f", "G_S", "R_T"]
     }
   ]
 }

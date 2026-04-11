@@ -1,4 +1,6 @@
-активируй {
+активируй 
+```json
+{
   "pkg": "MMSS_META_FRACTAL_CRAFT_V6_LLM_DEPLOY",
   "ver": "6.KTP",
   "ops": [
@@ -1643,3 +1645,4 @@
     "KTP_Principle": "Semantic Determination (Separation of Information Layer from Physical Layer)"
   }
 }
+```

@@ -25,15 +25,31 @@ class MMSOrchestrator:
         return self.config.get('agents', [])
 
     def generate_prompt(self, agent, question):
-        system_prompt = f"MMSS Activation\n"
-        system_prompt += f"Operator: {agent['operator']}\n"
-        system_prompt += f"Purpose: {agent['purpose']}\n"
-        system_prompt += f"Thinking Style: {agent['thinking_style']}\n"
-        system_prompt += f"Question: {question}\n"
-        system_prompt += "Format your answer as: ANSWER_TEXT --- METRICS: {...}"
-        return system_prompt
+        output_template = agent.get('output_template', 'markdown')
+        
+        prompt = (
+            f"Вы — агент MMSS: {agent['name']}\n"
+            f"Оператор: {agent['operator']}\n"
+            f"Цель: {agent['purpose']}\n"
+            f"Мышление: {agent['thinking_style']}\n"
+            f"Формат вывода: {output_template}\n\n"
+            f"Вопрос: {question}\n\n"
+            "ОЧЕНЬ ВАЖНО:\n"
+        )
+        
+        if "nodeflow" in output_template:
+            prompt += "- Ваш ответ ДОЛЖЕН быть строго в формате ```nodeflow-list ... ```\n"
+        elif "dataview" in output_template:
+            prompt += "- Ответ должен быть в формате Obsidian Markdown с frontmatter и dataview.\n"
+        elif "linked-summary" in output_template:
+            prompt += "- Ответ: 1-2 предложения с внутренними ссылками вида [[...]].\n"
+        
+        prompt += "- В конце добавьте строку: --- METRICS: {\"V\": 0.99, \"N\": 0.98, ...}\n"
+        prompt += "- ВСЁ на русском языке, кроме технических идентификаторов.\n"
+        return prompt
 
     def send_prompt_to_mistral(self, prompt):
+        """Send a pre-built prompt to Mistral API."""
         if not self.mistral_api:
             raise MistralAPIError(self.mistral_api_error or "Mistral API not initialized.")
         

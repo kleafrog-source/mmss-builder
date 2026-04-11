@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}MMSS Semantic Orchestrator v2.0{% endblock %}
+
+{% block head %}
+{{ super() }}
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>
+    /* @import "tailwindcss"; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&family=DM+Mono:wght@400&display=swap');
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="header">
+    <div class="header-controls">
+        <button id="save-project" class="header-btn">💾 Сохранить проект</button>
+        <button id="download-results" class="header-btn">📥 Скачать JSON</button>
+        <button id="load-project" class="header-btn">📂 Загрузить проект</button>
+        <button id="fill-all-prompts" class="header-btn">✍️ Заполнить все промпты</button>
+        <button id="auto-cycle" class="header-btn">🔄 Auto Cycle</button>
+        <button id="grid-toggle" class="header-btn">🔢 Grid: 3</button>
+        <button id="restore-memory-tools" class="header-btn">🧠 Restore MemoryTools</button>
+        <button id="create-summary-response" class="header-btn">📝 Создать сводный ответ</button>
+    </div>
+    <h1 class="header-title">MMSS Orchestrator</h1>
+    <div class="system-info">
+        
+    </div>
+    <!-- Panel for MemoryTools (presets) -->
+    <div id="memory-tools-panel">
+        <h3>Сохраненные инструменты (MemoryTools)</h3>
+        <div class="memory-tool-buttons">
+            <!-- Presets will be loaded here by JavaScript -->
+        </div>
+    </div>
+</header>
+<div class="min-h-screen bg-gray-900 text-gray-200 font-sans">
+    <div class="p-4">
+        <!-- Top Panel -->
+        <div class="top-panel bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col">
+            <h1 class="text-2xl font-bold mb-4">MMSS Orchestrator</h1>
+            <textarea id="question" class="w-full bg-gray-700 border-2 border-gray-600 rounded-lg p-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow resize-none" placeholder="Введите ваш вопрос..."></textarea>
+        </div>
+
+        <!-- Grid Panel -->
+        <div class="grid-panel mt-4">
+            <!-- Agent cards will be inserted here by JavaScript -->
+        </div>
+   
+    </div>
+</div>
+
+<!-- Modal for loading projects -->
+<div id="load-project-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal" id="close-project-modal">&times;</span>
+        <h2>Выберите проект для загрузки</h2>
+        <ul id="project-list">
+            <!-- Project list will be populated by JavaScript -->
+        </ul>
+    </div>
+</div>
+
+<!-- Modal for creating new tools -->
+<div id="create-tool-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal" id="close-create-tool-modal">&times;</span>
+        <h2>Создать новый инструмент</h2>
+        <input type="text" id="tool-name-input" placeholder="Название действия (например, 'Максимально детализировать')">
+        <textarea id="tool-prompt-input" rows="5" placeholder="Текст промпта (используйте {{selected_text}} для выделенного текста)"></textarea>
+        <div class="checkbox-container">
+            <input type="checkbox" id="save-as-preset-checkbox">
+            <label for="save-as-preset-checkbox">Сохранить как пресет</label>
+        </div>
+        <button id="save-tool-button">Сохранить инструмент</button>
+        <button id="cancel-tool-button">Отмена</button>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/orchestrator_main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/orchestrator_v2.js') }}"></script>
+{% endblock %}

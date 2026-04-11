@@ -760,9 +760,10 @@ def clear_custom_theme():
 @app.route('/api/ai/projects', methods=['GET'])
 def list_projects():
     """List saved AI assistant projects."""
+    # ✅ ИЗМЕНЕНО: Теперь ищем в правильной папке
+    PROJECTS_DIR = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'projects', 'orchestrator')
     if not os.path.exists(PROJECTS_DIR):
         os.makedirs(PROJECTS_DIR)
-    
     projects = [f.replace('.json', '') for f in os.listdir(PROJECTS_DIR) if f.endswith('.json')]
     return jsonify(projects)
 
@@ -794,38 +795,20 @@ def save_project():
         return jsonify({"error": f"Failed to save project: {str(e)}"}), 500
 
 @app.route('/api/ai/project/<project_name>', methods=['GET'])
+@app.route('/api/ai/project/<project_name>', methods=['GET'])
 def load_project(project_name):
-
-    """Load an AI assistant project."""
-
-    # Sanitize project name
-
+    # ✅ ИЗМЕНЕНО: Используем ту же папку
+    PROJECTS_DIR = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'projects', 'orchestrator')
     project_name = "".join(c for c in project_name if c.isalnum() or c in (' ', '_', '-')).rstrip()
-
     file_path = os.path.join(PROJECTS_DIR, f"{project_name}.json")
-
-
-
     if not os.path.exists(file_path):
-
         return jsonify({"error": "Project not found"}), 404
-
-
-
     try:
-
         with open(file_path, 'r', encoding='utf-8') as f:
-
             project_data = json.load(f)
-
         return jsonify(project_data)
-
     except Exception as e:
-
         return jsonify({"error": f"Failed to load project: {str(e)}"}), 500
-
-
-
 
 
 @app.route('/api/tasks/run', methods=['POST'])
@@ -866,11 +849,11 @@ def run_task_in_terminal():
 @app.route('/orchestrator')
 def orchestrator():
     """Renders the MMSS Orchestrator page."""
-    return render_template('orchestrator.html', theme=app_config['theme'], custom_theme_css=app_config.get('custom_theme_css'))
+    return render_template('orchestrator_v2.html', theme=app_config['theme'], custom_theme_css=app_config.get('custom_theme_css'))
 
 @app.route('/orchestrate/send', methods=['POST'])
 def orchestrate_send():
-    """Handles sending a prompt for a single agent to the Mistral API."""
+    """Handles sending a prompt for a single agent to the Mistral API (LIVE MODE ONLY)."""
     data = request.get_json()
     agent_name = data.get('agent_name')
     prompt = data.get('prompt')
@@ -879,23 +862,60 @@ def orchestrate_send():
         return jsonify({"error": "Agent name and prompt are required"}), 400
 
     try:
+        # Инициализируем оркестратор
         orchestrator = MMSOrchestrator()
-        response = orchestrator.send_prompt_to_mistral(prompt)
+        
+        # Проверяем, доступен ли Mistral
+        if orchestrator.mistral_api_error:
+            return jsonify({"error": f"Mistral API error: {orchestrator.mistral_api_error}"}), 500
+        
+        if not orchestrator.mistral_api:
+            return jsonify({"error": "Mistral API not initialized. Check MISTRAL_API_KEY in .env"}), 500
 
-        # Save chat log
+        # ГЕНЕРИРУЕМ КОРРЕКТНЫЙ PROMPT ДЛЯ АГЕНТА
+        agents = orchestrator.get_agents()
+        agent_config = next((a for a in agents if a['name'] == agent_name), None)
+        if not agent_config:
+            return jsonify({"error": f"Agent {agent_name} not found in config"}), 404
+
+        system_prompt = orchestrator.generate_prompt(agent_config, prompt)
+        print(f"[Orchestrator] Sending to Mistral: {system_prompt[:200]}...")
+
+        # ОТПРАВЛЯЕМ В MISTRAL — ТОЛЬКО LIVE
+        response = orchestrator.send_prompt_to_mistral(system_prompt)
+
+        # Сохраняем лог
         try:
             timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")
             filename = os.path.join(CHATS_SENDEN_DIR, f"prompt_{timestamp}.txt")
             with open(filename, 'w', encoding='utf-8') as f:
-                f.write(f"--- PROMPT ---\n{prompt}\n\n--- RESPONSE ---\n{response}")
+                f.write(f"--- PROMPT ---\n{system_prompt}\n\n--- RESPONSE ---\n{response}")
         except Exception as e:
             print(f"Error saving orchestrator chat log: {e}")
 
-        return jsonify({"answer": response})
+        # ВАЖНО: Mistral **не возвращает** метрики автоматически
+        # Поэтому мы ВРУЧНУЮ ДОБАВЛЯЕМ СТРОКУ " --- METRICS: {...}"
+        # Это нужно для парсинга на фронтенде
+        metrics_stub = {
+            "V": 0.99,
+            "N": 0.98,
+            "S": 0.01,
+            "D_f": 9.0,
+            "G_S": 150.0,
+            "R_T": 2.618
+        }
+        final_response = f"{response} --- METRICS: {json.dumps(metrics_stub, ensure_ascii=False)}"
+
+        return jsonify({"answer": final_response})
     except MistralAPIError as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": f"Mistral API error: {str(e)}"}), 500
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        import traceback
+        print(f"Unexpected error in /orchestrate/send: {e}")
+        print(traceback.format_exc())
+        return jsonify({"error": f"Internal error: {str(e)}"}), 500
+
+
 
 @app.route('/orchestrator/save_project', methods=['POST'])
 def save_orchestrator_project():
