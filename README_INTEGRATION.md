@@ -60,6 +60,101 @@ pip install -r requirements.txt
 python -m uvicorn src.api:app --reload --port 8001
 ```
 
+## Запуск MVP (Minimum Viable Product)
+
+MVP демонстрирует end-to-end сценарий: **MMSS → Pezzo → GEPA → Pezzo**
+
+### Требования
+
+- Docker и Docker Compose
+- Python 3.11+
+- httpx: `pip install httpx`
+
+### Быстрый запуск MVP
+
+```bash
+# 1. Запустить Pezzo (PostgreSQL + Pezzo Server + Console)
+docker-compose up -d postgres pezzo-server pezzo-console
+
+# 2. Подождать 30 секунд для инициализации БД
+sleep 30
+
+# 3. Установить зависимости сервисов
+pip install -r services/optimizer/requirements.txt
+pip install -r services/mmss/requirements.txt
+
+# 4. Запустить Optimizer Service (в отдельном терминале)
+cd services/optimizer
+python -m uvicorn src.api:app --host 0.0.0.0 --port 8000
+
+# 5. Запустить MMSS Service (в отдельном терминале)
+cd services/mmss
+python -m uvicorn src.api:app --host 0.0.0.0 --port 8001
+
+# 6. Запустить MVP пайплайн (в третьем терминале)
+cd examples/pipelines
+python mvp_mmss_to_pezzo.py
+```
+
+### Ожидаемый вывод
+
+```
+============================================================
+MVP: MMSS → Pezzo → GEPA → Pezzo
+============================================================
+
+=== Проверка сервисов ===
+  ✓ Pezzo API доступен
+  ✓ Optimizer Service доступен
+  ✓ MMSS Service доступен
+
+=== Шаг 1: MMSS → Pezzo ===
+Создаем промпт из пакета: MVP_CODE_REVIEW_PROMPT
+  ✓ Создан промпт в Pezzo: MVP_CODE_REVIEW_PROMPT
+  ✓ ID: <uuid>
+  ✓ Операций: 3
+
+=== Шаг 2: Оптимизация через GEPA ===
+Запускаем оптимизацию: MVP_CODE_REVIEW_PROMPT
+  ✓ Job ID: <uuid>
+  ✓ Статус: completed
+  ✓ Fitness Score: 0.85
+  ✓ Итераций: 20
+  ✓ Улучшения (3):
+      1. Added clarity markers [OPTIMIZED]
+      2. Enhanced structure with section headers
+      3. Improved formatting for readability
+
+=== Шаг 3: Проверка в Pezzo ===
+Проверяем версии промпта: MVP_CODE_REVIEW_PROMPT
+  ✓ Найден промпт: MVP_CODE_REVIEW_PROMPT
+  ✓ Версий: 2
+      1. a1b2c3d4 - Initial version
+      2. e5f6g7h8 - GEPA optimization: fitness=0.850
+
+============================================================
+✅ MVP УСПЕШНО ЗАВЕРШЕН
+============================================================
+
+📊 Результаты:
+   • Промпт в Pezzo: MVP_CODE_REVIEW_PROMPT
+   • ID: <uuid>
+   • Job ID: <uuid>
+
+🌐 Интерфейсы:
+   • Pezzo Console: http://localhost:4200
+   • Pezzo API: http://localhost:3001
+   • Optimizer API: http://localhost:8000
+```
+
+### Важно: GEPA не требуется для MVP!
+
+Optimizer Service имеет **mock-режим** — если GEPA-MCP сервер недоступен, он автоматически использует упрощенную оптимизацию для демонстрации workflow.
+
+Для использования реального GEPA:
+1. Установите и запустите `gepa-mcp` сервер на порту 3003
+2. Или укажите `GEPA_MCP_SERVER_URL` в `.env`
+
 ## API Endpoints
 
 ### Optimizer Service (`http://localhost:8000`)
