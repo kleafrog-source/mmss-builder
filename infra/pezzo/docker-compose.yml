@@ -1,0 +1,162 @@
+# Docker Compose для Pezzo (self-hosted)
+# Базируется на официальной документации: https://docs.pezzo.ai/deployment/docker-compose
+
+version: "3.8"
+
+services:
+  # PostgreSQL - основная БД Pezzo
+  postgres:
+    image: postgres:15-alpine
+    container_name: pezzo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pezzo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-<CHANGE_ME>}
+      POSTGRES_DB: ${POSTGRES_DB:-pezzo}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pezzo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pezzo-network
+
+  # ClickHouse - аналитика и метрики
+  clickhouse:
+    image: clickhouse/clickhouse-server:24-alpine
+    container_name: pezzo-clickhouse
+    restart: unless-stopped
+    environment:
+      CLICKHOUSE_DB: ${CLICKHOUSE_DB:-default}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:-pezzo}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-<CHANGE_ME>}
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/custom.xml:ro
+    ports:
+      - "8123:8123"  # HTTP
+      - "9000:9000"  # Native
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--query", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pezzo-network
+
+  # Redis - кэш и очереди
+  redis:
+    image: redis:7-alpine
+    container_name: pezzo-redis
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD:-<CHANGE_ME>}
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - pezzo-network
+
+  # Pezzo Server - основной API
+  pezzo-server:
+    image: ghcr.io/pezzolabs/pezzo/server:latest
+    container_name: pezzo-server
+    restart: unless-stopped
+    environment:
+      # Database
+      DATABASE_URL: postgresql://${POSTGRES_USER:-pezzo}:${POSTGRES_PASSWORD:-<CHANGE_ME>}@postgres:5432/${POSTGRES_DB:-pezzo}
+      
+      # ClickHouse
+      CLICKHOUSE_URL: http://${CLICKHOUSE_USER:-pezzo}:${CLICKHOUSE_PASSWORD:-<CHANGE_ME>}@clickhouse:8123/${CLICKHOUSE_DB:-default}
+      
+      # Redis
+      REDIS_URL: redis://default:${REDIS_PASSWORD:-<CHANGE_ME>}@redis:6379
+      
+      # Security
+      SUPERTOKENS_CONNECTION_URI: http://supertokens:3567
+      
+      # Other
+      PORT: 3000
+      NODE_ENV: production
+    ports:
+      - "3001:3000"  # API на порту 3001
+    depends_on:
+      postgres:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      supertokens:
+        condition: service_healthy
+    networks:
+      - pezzo-network
+
+  # Pezzo Console - веб-интерфейс
+  pezzo-console:
+    image: ghcr.io/pezzolabs/pezzo/console:latest
+    container_name: pezzo-console
+    restart: unless-stopped
+    environment:
+      PEZZO_API_URL: http://pezzo-server:3000
+      PORT: 4200
+    ports:
+      - "4200:4200"
+    depends_on:
+      pezzo-server:
+        condition: service_started
+    networks:
+      - pezzo-network
+
+  # Supertokens - аутентификация
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.0
+    container_name: pezzo-supertokens
+    restart: unless-stopped
+    environment:
+      POSTGRESQL_CONNECTION_URI: postgresql://${POSTGRES_USER:-pezzo}:${POSTGRES_PASSWORD:-<CHANGE_ME>}@postgres:5432/${POSTGRES_DB:-pezzo}
+    ports:
+      - "3567:3567"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3567/hello"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pezzo-network
+
+  # Proxy - проксирование LLM запросов (опционально)
+  pezzo-proxy:
+    image: ghcr.io/pezzolabs/pezzo/proxy:latest
+    container_name: pezzo-proxy
+    restart: unless-stopped
+    environment:
+      PEZZO_API_URL: http://pezzo-server:3000
+      PEZZO_API_KEY: ${PEZZO_API_KEY:-}
+      PORT: 3000
+    ports:
+      - "3002:3000"  # Proxy на порту 3002
+    depends_on:
+      pezzo-server:
+        condition: service_started
+    networks:
+      - pezzo-network
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  redis_data:
+
+networks:
+  pezzo-network:
+    driver: bridge

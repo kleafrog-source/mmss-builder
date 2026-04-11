@@ -1,0 +1,133 @@
+# Main Docker Compose for GEPA-Pezzo-MMSS Integration
+# Includes: Pezzo stack + Optimizer Service + MMSS Service
+
+version: "3.8"
+
+services:
+  # =====================================
+  # Pezzo Stack (Infrastructure)
+  # =====================================
+  
+  postgres:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: postgres
+
+  clickhouse:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: clickhouse
+
+  redis:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: redis
+
+  pezzo-server:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: pezzo-server
+
+  pezzo-console:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: pezzo-console
+
+  pezzo-proxy:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: pezzo-proxy
+
+  supertokens:
+    extends:
+      file: infra/pezzo/docker-compose.yml
+      service: supertokens
+
+  # =====================================
+  # Integration Services
+  # =====================================
+
+  # GEPA Optimizer Service
+  optimizer:
+    build:
+      context: ./services/optimizer
+      dockerfile: Dockerfile
+    container_name: gepa-optimizer
+    restart: unless-stopped
+    environment:
+      OPTIMIZER_HOST: 0.0.0.0
+      OPTIMIZER_PORT: 8000
+      OPTIMIZER_LOG_LEVEL: INFO
+      GEPA_MCP_SERVER_URL: ${GEPA_MCP_SERVER_URL:-http://gepa-mcp:3003}
+      GEPA_API_KEY: ${GEPA_API_KEY:-}
+      GEPA_OPTIMIZATION_ITERATIONS: ${GEPA_OPTIMIZATION_ITERATIONS:-50}
+      GEPA_POPULATION_SIZE: ${GEPA_POPULATION_SIZE:-20}
+      PEZZO_API_URL: http://pezzo-server:3000
+      PEZZO_API_KEY: ${PEZZO_API_KEY:-}
+      REDIS_URL: redis://default:${REDIS_PASSWORD:-<CHANGE_ME>}@redis:6379
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/optimizer/src:/app/src:ro
+    depends_on:
+      pezzo-server:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    networks:
+      - pezzo-network
+      - integration-network
+
+  # MMSS Integration Service
+  mmss:
+    build:
+      context: ./services/mmss
+      dockerfile: Dockerfile
+    container_name: mmss-service
+    restart: unless-stopped
+    environment:
+      MMSS_HOST: 0.0.0.0
+      MMSS_PORT: 8001
+      MMSS_LOG_LEVEL: INFO
+      MMSS_BUILDER_PATH: /app/mmss-builder
+      MMSS_AUTO_SYNC: "true"
+      PEZZO_API_URL: http://pezzo-server:3000
+      PEZZO_API_KEY: ${PEZZO_API_KEY:-}
+      OPTIMIZER_URL: http://optimizer:8000
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./services/mmss/src:/app/src:ro
+      - ./mmss-builder:/app/mmss-builder:ro
+    depends_on:
+      optimizer:
+        condition: service_started
+      pezzo-server:
+        condition: service_started
+    networks:
+      - pezzo-network
+      - integration-network
+
+  # (Optional) GEPA-MCP Server - if running locally
+  # Uncomment if you have gepa-mcp built locally
+  # gepa-mcp:
+  #   build:
+  #     context: ./vendor/gepa-mcp
+  #     dockerfile: Dockerfile
+  #   container_name: gepa-mcp
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3003:3003"
+  #   networks:
+  #     - integration-network
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  redis_data:
+
+networks:
+  pezzo-network:
+    driver: bridge
+  integration-network:
+    driver: bridge
