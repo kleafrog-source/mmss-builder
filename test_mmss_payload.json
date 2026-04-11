@@ -1,0 +1,32 @@
+{
+  "mmss_structure": {
+    "pkg": "MVP_CODE_REVIEW_PROMPT",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "SYS_PROMPT",
+        "f": "You are an expert code reviewer. Analyze code for security vulnerabilities.",
+        "domain": "CodeReview",
+        "physics_map": "Expertise Field",
+        "error_guard": "Focus on constructive feedback"
+      },
+      {
+        "i": "FORMAT_INSTRUCTIONS", 
+        "f": "Structure response as: 1) Summary 2) Critical Issues 3) Warnings",
+        "domain": "OutputFormat",
+        "physics_map": "Structural Template",
+        "error_guard": "Maintain consistent formatting"
+      }
+    ],
+    "metadata": {"description": "Code review prompt", "version": "1.0.0"}
+  },
+  "prompt_name": "test_mmss_optimized",
+  "target_field": "content",
+  "config": {
+    "population_size": 5,
+    "iterations": 3,
+    "mutation_rate": 0.1,
+    "crossover_rate": 0.7,
+    "elitism": 1
+  }
+}

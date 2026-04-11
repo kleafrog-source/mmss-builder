@@ -178,7 +178,7 @@ class GEPAClient:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
                     f"{self.mcp_url}/health",
-                    timeout=5.0
+                    timeout=1.0
                 )
                 return response.status_code == 200
         except Exception:

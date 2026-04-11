@@ -95,6 +95,7 @@ async def optimize_prompt(
     job = await optimizer_service.create_job(
         prompt_id=request.prompt_id,
         prompt_name=request.prompt_name,
+        prompt_content=request.prompt_content,
         config=request.config
     )
     

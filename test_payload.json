@@ -1,0 +1,12 @@
+{
+  "prompt_content": "Write a function to calculate fibonacci numbers.",
+  "objective": "quality",
+  "config": {
+    "population_size": 5,
+    "iterations": 3,
+    "mutation_rate": 0.1,
+    "crossover_rate": 0.7,
+    "elitism": 1
+  },
+  "async_mode": false
+}

@@ -24,6 +24,7 @@ class OptimizationJob(BaseModel):
     id: str
     prompt_id: Optional[str] = None
     prompt_name: Optional[str] = None
+    prompt_content: Optional[str] = None  # Direct content for standalone mode
     status: JobStatus
     config: GEPAConfig
     result: Optional[OptimizationResult] = None
@@ -50,6 +51,7 @@ class OptimizerService:
         self,
         prompt_id: Optional[str] = None,
         prompt_name: Optional[str] = None,
+        prompt_content: Optional[str] = None,
         config: Optional[GEPAConfig] = None
     ) -> OptimizationJob:
         """Create new optimization job."""
@@ -57,6 +59,7 @@ class OptimizerService:
             id=str(uuid.uuid4()),
             prompt_id=prompt_id,
             prompt_name=prompt_name,
+            prompt_content=prompt_content,
             status=JobStatus.PENDING,
             config=config or GEPAConfig(),
             created_at=datetime.utcnow()
@@ -78,19 +81,24 @@ class OptimizerService:
             job.started_at = datetime.utcnow()
         
         try:
-            # Get prompt from Pezzo
-            if job.prompt_id:
+            # Get prompt content
+            content = None
+            prompt = None
+            
+            if job.prompt_content:
+                # Direct content mode (standalone, no Pezzo required)
+                content = job.prompt_content
+            elif job.prompt_id:
                 prompt = await self.pezzo.get_prompt(job.prompt_id)
+                if prompt:
+                    content = prompt.latest_version.content if prompt.latest_version else ""
             elif job.prompt_name:
                 prompt = await self.pezzo.get_prompt_by_name(job.prompt_name)
-            else:
-                raise ValueError("Either prompt_id or prompt_name required")
+                if prompt:
+                    content = prompt.latest_version.content if prompt.latest_version else ""
             
-            if not prompt:
-                raise ValueError("Prompt not found in Pezzo")
-            
-            # Get latest version content
-            content = prompt.latest_version.content if prompt.latest_version else ""
+            if not content:
+                raise ValueError("No prompt content available. Provide prompt_content, prompt_id, or prompt_name")
             
             # Run optimization
             result = await self.gepa.optimize_prompt(
@@ -104,19 +112,24 @@ class OptimizerService:
                 job.status = JobStatus.COMPLETED
                 job.completed_at = datetime.utcnow()
             
-            # Create new version in Pezzo
-            await self.pezzo.create_version(
-                prompt_id=prompt.id,
-                content=result.optimized_prompt,
-                message=f"GEPA optimization: fitness={result.fitness_score:.3f}",
-                metadata={
-                    "optimization": {
-                        "iterations": result.iterations,
-                        "fitness_score": result.fitness_score,
-                        "improvements": result.improvements
-                    }
-                }
-            )
+            # Create new version in Pezzo (only if Pezzo is connected)
+            if prompt and prompt.id:
+                try:
+                    await self.pezzo.create_version(
+                        prompt_id=prompt.id,
+                        content=result.optimized_prompt,
+                        message=f"GEPA optimization: fitness={result.fitness_score:.3f}",
+                        metadata={
+                            "optimization": {
+                                "iterations": result.iterations,
+                                "fitness_score": result.fitness_score,
+                                "improvements": result.improvements
+                            }
+                        }
+                    )
+                except Exception as e:
+                    # Pezzo not available, skip version creation
+                    pass
             
         except Exception as e:
             async with self._lock:
@@ -168,24 +181,30 @@ class OptimizerService:
                 config=job.config
             )
             
-            # Save to Pezzo
-            prompt = await self.pezzo.create_prompt(
-                name=prompt_name,
-                content=result.optimized_prompt,
-                description=f"Optimized MMSS structure from {prompt_name}",
-                metadata={
-                    "source": "mmss-builder",
-                    "mmss_structure": True,
-                    "optimization": {
-                        "iterations": result.iterations,
-                        "fitness_score": result.fitness_score
+            # Try to save to Pezzo (optional for standalone mode)
+            prompt_id = None
+            try:
+                prompt = await self.pezzo.create_prompt(
+                    name=prompt_name,
+                    content=result.optimized_prompt,
+                    description=f"Optimized MMSS structure from {prompt_name}",
+                    metadata={
+                        "source": "mmss-builder",
+                        "mmss_structure": True,
+                        "optimization": {
+                            "iterations": result.iterations,
+                            "fitness_score": result.fitness_score
+                        }
                     }
-                }
-            )
+                )
+                prompt_id = prompt.id
+            except Exception:
+                # Pezzo not available, continue without saving
+                pass
             
             # Update job
             async with self._lock:
-                job.prompt_id = prompt.id
+                job.prompt_id = prompt_id
                 job.result = result
                 job.status = JobStatus.COMPLETED
                 job.completed_at = datetime.utcnow()
