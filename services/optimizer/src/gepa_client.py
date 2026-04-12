@@ -47,6 +47,9 @@ class GEPAClient:
     ) -> OptimizationResult:
         """Optimize a prompt using GEPA.
         
+        Uses real GEPA with Mistral API if key available,
+        otherwise falls back to GEPA-MCP server or mock.
+        
         Args:
             prompt: Original prompt to optimize
             config: GEPA configuration
@@ -60,74 +63,89 @@ class GEPAClient:
             iterations=settings.gepa_iterations
         )
         
-        # Check if GEPA server is available
-        if not await self.health_check():
-            # Fallback: Mock optimization for MVP/demo
-            return await self._mock_optimize(prompt, config)
+        # Try real GEPA with Mistral API first
+        if settings.mistral_api_key:
+            print(f"🧠 Using REAL GEPA with Mistral API (pop={config.population_size}, iter={config.iterations})")
+            try:
+                from .gepa_real import optimize_with_gepa
+                result = await optimize_with_gepa(
+                    prompt=prompt,
+                    population_size=config.population_size,
+                    iterations=config.iterations,
+                    objective=objective
+                )
+                return OptimizationResult(
+                    optimized_prompt=result["optimized_prompt"],
+                    iterations=result["iterations"],
+                    fitness_score=result["fitness_score"],
+                    improvements=result["improvements"],
+                    metadata={**result["metadata"], "source": "gepa_real_mistral"}
+                )
+            except Exception as e:
+                print(f"⚠️ Real GEPA failed ({e}), falling back to mock")
+                return await self._mock_optimize(prompt, config)
         
-        payload = {
-            "method": "optimize_prompt",
-            "params": {
-                "prompt": prompt,
-                "population_size": config.population_size,
-                "iterations": config.iterations,
-                "mutation_rate": config.mutation_rate,
-                "crossover_rate": config.crossover_rate,
-                "elitism": config.elitism,
-                "objective": objective
+        # Check if GEPA-MCP server is available
+        if await self.health_check():
+            payload = {
+                "method": "optimize_prompt",
+                "params": {
+                    "prompt": prompt,
+                    "population_size": config.population_size,
+                    "iterations": config.iterations,
+                    "mutation_rate": config.mutation_rate,
+                    "crossover_rate": config.crossover_rate,
+                    "elitism": config.elitism,
+                    "objective": objective
+                }
             }
-        }
-        
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                f"{self.mcp_url}/mcp",
-                json=payload,
-                headers=self.headers,
-                timeout=300.0  # 5 минут на оптимизацию
+            
+            async with httpx.AsyncClient() as client:
+                response = await client.post(
+                    f"{self.mcp_url}/mcp",
+                    json=payload,
+                    headers=self.headers,
+                    timeout=300.0
+                )
+                response.raise_for_status()
+                result = response.json()
+            
+            return OptimizationResult(
+                optimized_prompt=result.get("optimized_prompt", prompt),
+                iterations=result.get("iterations", config.iterations),
+                fitness_score=result.get("fitness_score", 0.0),
+                improvements=result.get("improvements", []),
+                metadata={**result.get("metadata", {}), "source": "gepa_mcp"}
             )
-            response.raise_for_status()
-            result = response.json()
         
-        return OptimizationResult(
-            optimized_prompt=result.get("optimized_prompt", prompt),
-            iterations=result.get("iterations", config.iterations),
-            fitness_score=result.get("fitness_score", 0.0),
-            improvements=result.get("improvements", []),
-            metadata=result.get("metadata", {})
-        )
+        # Fallback: Mock optimization
+        return await self._mock_optimize(prompt, config)
     
     async def _mock_optimize(self, prompt: str, config: GEPAConfig) -> OptimizationResult:
-        """Mock optimization for MVP when GEPA is unavailable.
+        """Mock optimization fallback.
         
-        Simulates optimization by making minor improvements to the prompt.
+        Used when no Mistral API key and no GEPA-MCP server available.
         """
-        # Simulate some processing time
-        await asyncio.sleep(1.0)
-        
-        # Simple heuristic: Add optimization markers and restructure
-        lines = prompt.split("\n")
-        optimized_lines = []
+        await asyncio.sleep(0.5)
         
         improvements = [
-            "Added clarity markers [OPTIMIZED]",
-            "Enhanced structure with section headers",
-            "Improved formatting for readability"
+            "[MOCK] Added placeholder markers",
+            "[MOCK] Simulated structure enhancement",
+            "[MOCK] No real optimization performed"
         ]
         
-        for line in lines:
-            if line.strip() and not line.startswith("#"):
-                optimized_lines.append(line)
-        
-        optimized_prompt = prompt + "\n\n# [OPTIMIZED by GEPA]\n# Fitness: 0.85\n# This prompt was optimized for clarity and effectiveness."
+        optimized_prompt = prompt + "\n\n# [MOCK OPTIMIZATION - NO AI USED]\n# To use real GEPA: Set MISTRAL_API_KEY in .env"
         
         return OptimizationResult(
             optimized_prompt=optimized_prompt,
-            iterations=config.iterations,
-            fitness_score=0.85,
+            iterations=0,
+            fitness_score=0.0,
             improvements=improvements,
             metadata={
-                "mode": "mock",
-                "note": "GEPA server unavailable, using mock optimization for MVP"
+                "mode": "mock_fallback",
+                "note": "Set MISTRAL_API_KEY for real AI-powered optimization",
+                "has_mistral_key": bool(settings.mistral_api_key),
+                "has_gepa_server": await self.health_check()
             }
         )
     

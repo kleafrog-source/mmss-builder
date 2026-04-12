@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     gepa_iterations: int = Field(default=50, alias="GEPA_OPTIMIZATION_ITERATIONS")
     gepa_population: int = Field(default=20, alias="GEPA_POPULATION_SIZE")
     
+    # Mistral API (for real GEPA)
+    mistral_api_key: str = Field(default="", alias="MISTRAL_API_KEY")
+    mistral_model: str = Field(default="mistral-large-latest", alias="MISTRAL_MODEL")
+    
     # Pezzo
     pezzo_url: str = Field(default="http://localhost:3001", alias="PEZZO_API_URL")
     pezzo_api_key: str = Field(default="", alias="PEZZO_API_KEY")

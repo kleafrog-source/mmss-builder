@@ -67,6 +67,7 @@ async def health_check():
     """Check service health."""
     from .gepa_client import gepa_client
     from .pezzo_client import pezzo_client
+    from .config import settings
     
     gepa_ok = await gepa_client.health_check()
     
@@ -78,9 +79,12 @@ async def health_check():
     except Exception:
         pass
     
+    # Check Mistral API
+    has_mistral = bool(settings.mistral_api_key)
+    
     return HealthResponse(
-        status="healthy" if gepa_ok and pezzo_ok else "degraded",
-        gepa_available=gepa_ok,
+        status="healthy" if (gepa_ok or has_mistral) and pezzo_ok else "degraded",
+        gepa_available=gepa_ok or has_mistral,
         pezzo_available=pezzo_ok
     )
 
