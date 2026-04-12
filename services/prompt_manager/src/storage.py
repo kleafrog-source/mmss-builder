@@ -33,7 +33,11 @@ class PromptStorage:
     """File-based storage for prompts."""
     
     def __init__(self, data_dir: Optional[Path] = None):
-        self.data_dir = data_dir or settings.data_dir
+        raw_path = data_dir or settings.data_dir
+        # Convert to Path and resolve, handling string paths with spaces
+        if isinstance(raw_path, str):
+            raw_path = raw_path.strip()
+        self.data_dir = Path(raw_path).resolve()
         self.data_dir.mkdir(parents=True, exist_ok=True)
         
         # Use data_dir directly for prompts (not data_dir/prompts to avoid duplication)
