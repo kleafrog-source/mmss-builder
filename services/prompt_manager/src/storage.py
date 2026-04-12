@@ -36,10 +36,9 @@ class PromptStorage:
         self.data_dir = data_dir or settings.data_dir
         self.data_dir.mkdir(parents=True, exist_ok=True)
         
-        # Subdirectories
-        self.prompts_dir = self.data_dir / "prompts"
+        # Use data_dir directly for prompts (not data_dir/prompts to avoid duplication)
+        self.prompts_dir = self.data_dir
         self.backups_dir = self.data_dir / "backups"
-        self.prompts_dir.mkdir(exist_ok=True)
         self.backups_dir.mkdir(exist_ok=True)
     
     def _get_path(self, prompt_id: str) -> Path:

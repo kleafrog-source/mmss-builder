@@ -118,17 +118,16 @@ services:
     environment:
       PROMPT_MANAGER_PORT: 8002
       PROMPT_DATA_DIR: /app/data
-      OPTIMIZER_URL: http://optimizer:8000
+      OPTIMIZER_URL: http://host.docker.internal:8000
     ports:
       - "8002:8002"
     volumes:
       - ./data/prompts:/app/data/prompts
       - ./services/prompt_manager/src:/app/src:ro
-    depends_on:
-      optimizer:
-        condition: service_started
-    networks:
-      - integration-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    network_mode: host
+    # Fallback: use host network to access local optimizer
 
   # (Optional) GEPA-MCP Server - if running locally
   # Uncomment if you have gepa-mcp built locally
