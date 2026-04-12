@@ -786,32 +786,42 @@ async def optimize_prompt(prompt_id: str, request: OptimizeRequest):
             response.raise_for_status()
             result = response.json()
         
-        # Save optimization result
-        if result.get("result"):
-            opt_result = result["result"]
+        # Get job details to retrieve result
+        job_id = result.get("job_id")
+        if job_id:
+            # Wait a bit for job to complete and get details
+            import asyncio
+            await asyncio.sleep(1.5)
             
-            # Update MMSS structure with optimized version
-            if "optimized_mmss" in opt_result:
-                prompt.mmss_structure = opt_result["optimized_mmss"]
-            elif "optimized_prompt" in opt_result:
-                # Try to parse optimized prompt as MMSS
-                try:
-                    import json
-                    parsed = json.loads(opt_result["optimized_prompt"])
-                    if isinstance(parsed, dict) and "pkg" in parsed:
-                        prompt.mmss_structure = parsed
-                except:
-                    pass
+            async with httpx.AsyncClient() as job_client:
+                job_response = await job_client.get(f"{settings.optimizer_url}/jobs/{job_id}")
+                job_response.raise_for_status()
+                job_data = job_response.json()
             
-            # Save updated prompt
-            await storage.save_prompt(prompt)
-            
-            # Add to history
-            await storage.add_optimization_result(prompt_id, opt_result)
-            
-            # Return updated prompt
-            return await storage.get_prompt(prompt_id)
+            # Job data is nested in 'job' field
+            job = job_data.get("job", {})
+            opt_result = job.get("result")
+            if opt_result:
+                # Update MMSS structure with optimized version
+                if "optimized_mmss" in opt_result:
+                    prompt.mmss_structure = opt_result["optimized_mmss"]
+                elif "optimized_prompt" in opt_result:
+                    # Try to parse optimized prompt as MMSS
+                    try:
+                        import json
+                        parsed = json.loads(opt_result["optimized_prompt"])
+                        if isinstance(parsed, dict) and "pkg" in parsed:
+                            prompt.mmss_structure = parsed
+                    except:
+                        pass
+                
+                # Save updated prompt
+                await storage.save_prompt(prompt)
+                
+                # Add to history
+                await storage.add_optimization_result(prompt_id, opt_result)
         
+        # Return updated prompt
         return await storage.get_prompt(prompt_id)
         
     except Exception as e:

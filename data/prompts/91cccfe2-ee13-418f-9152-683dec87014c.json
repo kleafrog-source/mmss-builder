@@ -1,0 +1,240 @@
+{
+  "metadata": {
+    "id": "91cccfe2-ee13-418f-9152-683dec87014c",
+    "name": "unnamed",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T00:30:48.131954",
+    "updated_at": "2026-04-12T00:30:48.132035",
+    "tags": [],
+    "category": "general"
+  },
+  "mmss_structure": {
+    "SYNTHESIZED_MMSS_SYSTEM": {
+      "system_id": "MMSS_RTFM_REALTIME_FRAME_WORLD_v1.0",
+      "parent_mmss": "MMSS_META_SYNTHESIS_ULTIMATE_v1.0",
+      "domain": "RealTime_World_Models_and_Renderers",
+      "origin": {
+        "source_description": "RTFM (Real-Time Frame Model) от World Labs: нейросетевая модель, генерирующая видео/кадры 3D-мира в реальном времени из 2D-изображений и видеопотоков, с пространственной памятью и context juggling.",
+        "abstraction_note": "Интерпретация RTFM как world model-рендера: KV-активации и позированные кадры — это латентная карта мира; autoregressive diffusion Transformer по последовательности кадров реализует 'учащийся рендерер'. [web:143][web:153][web:173][web:174]"
+      },
+      "META_ARCHITECTURE": {
+        "SYS4_SCENE_ENCODER_GENESIS": {
+          "function": "Преобразование входных кадров/изображений в латентное представление мира",
+          "formula": "Ψ_scene = Enc(o_{0:k}, poses_{0:k}) → KV_world",
+          "input": "один или несколько кадров сцены с позами камеры",
+          "output": "KV-активации и набор posed-frames как латентная память мира. [web:143][web:153]"
+        },
+        "SYS3_FRAME_SEQUENCE_MODEL": {
+          "function": "Авторегрессионное диффузионное моделирование последовательности кадров",
+          "formula": "SYS3_frame = AR_Diffusion_Transformer(KV_world, pose_t, noise) → frame_t",
+          "input": "пространственная память мира (KV_world, posed frames), целевая поза/время кадра",
+          "output": "следующий кадр/фрейм сцены в консистентном 3D мире. [web:143][web:173]"
+        },
+        "SYS2_SPATIAL_MEMORY_AND_CONTEXT_JUGGLING": {
+          "function": "Управление пространственной памятью и выбор релевантного контекста",
+          "formula": "SYS2_mem = ContextJuggling(Frames_with_poses, query_pose) → ContextSet_t",
+          "input": "база posed-frames, целевая поза/регион пространства",
+          "output": "подмножество контекстных кадров для генерации frame_t (локальный контекст). [web:143][web:173][web:174]"
+        },
+        "SYS1_REALTIME_RENDER_LOOP": {
+          "function": "Реал-тайм рендеринг и интерактивное исследование мира",
+          "formula": "SYS1_render = Loop(user_input, pose_stream) ⧴ᵗ rendered_video",
+          "input": "поток поз/управляющих команд пользователя, доступный compute бюджет (например, один H100)",
+          "output": "непрерывное видео/мир с постоянной памятью и интерактивной скоростью. [web:143][web:153][web:171][web:174]"
+        }
+      },
+      "UNIFIED_METRICS_FRAMEWORK": {
+        "V": {
+          "name": "Visual-World Fidelity Value",
+          "formula": "V = 1 - C_val / (G_S * R_T)",
+          "interpretation": "Качество и консистентность рендеринга мира: геометрия, отражения, тени, непротиворечивость при смене ракурсов и движении. [web:143][web:153][web:173]",
+          "target": "высокий V даже при real-time ограничениях и sparse входах."
+        },
+        "S": {
+          "name": "World Model Uncertainty",
+          "formula": "S = -∑(p_i * log(p_i))",
+          "interpretation": "Неопределённость в сгенерированных кадрах и структуре мира, особенно при сильной экстраполяции от исходных точек зрения. [web:143][web:172][web:173]",
+          "target": "низкий S в области, покрытой наблюдениями, и контролируемое повышение S на дальних/новых участках мира."
+        },
+        "D_f": {
+          "name": "World Spatial-Scenario Fractal Dimension",
+          "formula": "D_f = lim(ε→0) log(N_regions(ε)) / log(1/ε)",
+          "interpretation": "Сложность и разнообразие пространственных регионов и сценариев, которые модель может устойчиво хранить и рендерить (размер и вариативность 'вечного' мира). [web:143][web:153][web:174]",
+          "target": "рост D_f при сохранении реального времени и устойчивости памяти."
+        }
+      },
+      "PHYSICAL_SEMANTIC_CORE": {
+        "core_id": "RTFM_REALTIME_FRAME_WORLD_CORE",
+        "principles": [
+          "1) Модель — это обученный рендерер мира: она не строит явную 3D-сцену, а хранит мир в активациях (KV cache, posed-frames) и рендерит новые виды через внимание и диффузию. [web:143][web:153][web:173]",
+          "2) Пространственная память и позированные кадры задают слабый 3D-евклидов приор: каждый кадр имеет позу, а память организована как карта по пространству. [web:143][web:173][web:174]",
+          "3) Context juggling обеспечивает масштабируемую персистентность: для разных регионов используются разные локальные контексты, что позволяет моделировать большие миры без неограниченного роста контекста. [web:143][web:173]"
+        ],
+        "equations": {
+          "pose_conditioned_generation": "frame_t = F(KV_world, pose_t, noise)",
+          "spatial_memory_index": "MemoryIndex = { (pose_i, frame_i) }",
+          "context_juggling": "ContextSet_t = {frame_i | dist(pose_i, pose_t) < r_context}",
+          "autoregressive_diffusion": "x_{t}^{(k+1)} = D_θ(x_{t}^{(k)}, ContextSet_t)  (итерации диффузии для кадра t)"
+        }
+      },
+      "AGGREGATES": {
+        "AGG_SCENE_ENCODER_v1": {
+          "id": "AGG_SCENE_ENCODER_RTFM_v1",
+          "role": "Энкодер входных кадров и поз в KV-память мира",
+          "state_representation": {
+            "input_frames": "один или несколько 2D кадров сцены",
+            "poses": "позиции и ориентации камеры для каждого кадра",
+            "KV_world": "высокоуровневые активации/ключи-значения для трансформера"
+          },
+          "operations": [
+            "ENCODE_FRAME_WITH_POSE(o_i, pose_i) -> token_sequence_i",
+            "BUILD_KV_WORLD({token_sequence_i}) -> KV_world"
+          ]
+        },
+        "AGG_FRAME_TRANSFORMER_v1": {
+          "id": "AGG_FRAME_AR_DIFFUSION_TRANSFORMER_v1",
+          "role": "Авторегрессионный диффузионный Transformer по последовательности кадров",
+          "state_representation": {
+            "frame_tokens": "токены текущего/следующего кадра",
+            "KV_world": "контекст мира",
+            "noise_schedule": "параметры диффузии"
+          },
+          "operations": [
+            "PREDICT_NEXT_FRAME(frame_{t-1}, KV_world, pose_t) -> frame_t",
+            "DIFFUSION_STEPS(noisy_frame_t) -> denoised_frame_t"
+          ]
+        },
+        "AGG_SPATIAL_MEMORY_v1": {
+          "id": "AGG_SPATIAL_MEMORY_POSED_FRAMES_v1",
+          "role": "Пространственная память мира на основе позированных кадров",
+          "state_representation": {
+            "posed_frames": "{(pose_i, frame_i)}",
+            "index": "пространственный индекс (например, kNN по позам)"
+          },
+          "operations": [
+            "STORE_FRAME(pose_t, frame_t)",
+            "RETRIEVE_NEARBY_FRAMES(pose_query, r_context) -> ContextSet_t"
+          ]
+        },
+        "AGG_CONTEXT_JUGGLER_v1": {
+          "id": "AGG_CONTEXT_JUGGLER_v1",
+          "role": "Выбор локального контекста для разных регионов мира",
+          "state_representation": {
+            "query_pose": "поза кадра, который нужно сгенерировать",
+            "context_set": "подмножество posed_frames для данного региона"
+          },
+          "operations": [
+            "SELECT_CONTEXT(query_pose, SpatialMemory) -> ContextSet_t",
+            "UPDATE_CONTEXT_ON_MOVE(new_pose, SpatialMemory)"
+          ]
+        },
+        "AGG_REALTIME_RENDER_LOOP_v1": {
+          "id": "AGG_REALTIME_RENDER_LOOP_v1",
+          "role": "Цикл интерактивного рендеринга мира",
+          "state_representation": {
+            "user_input": "движение камеры, управление, взаимодействия",
+            "pose_stream": "последовательность целевых поз",
+            "render_budget": "ограничения по FPS/latency и GPU"
+          },
+          "operations": [
+            "FOR each pose_t: ContextSet_t = SELECT_CONTEXT(pose_t)",
+            "GENERATE_FRAME(pose_t, ContextSet_t, KV_world) -> frame_t",
+            "DISPLAY_FRAME(frame_t)"
+          ]
+        }
+      },
+      "NUMERIC_MODULE": {
+        "module_id": "RTFM_TRAINING_AND_RUNTIME_v1",
+        "training_or_update_loops": {
+          "LOOP_1_SCENE_AND_VIDEO_TRAINING": [
+            "1. Сэмплировать клипы из больших видео/сцен с известными или оценёнными позами. [web:143][web:153][web:173]",
+            "2. Кодировать клипы и позы энкодером в токены и KV_world.",
+            "3. Обучать autoregressive diffusion Transformer предсказывать следующий кадр по предыдущим и позе, минимизируя лосс реконструкции/перцептивный лосс.",
+            "4. Отслеживать V (фотометрическая/перцептивная консистентность) и S (неопределённость) на валидационных маршрутах камеры."
+          ],
+          "LOOP_2_SPATIAL_MEMORY_AND_CONTEXT_JUGGLING_TUNING": [
+            "1. Строить spatial memory из posed_frames для длинных траекторий взаимодействия. [web:143][web:173][web:174]",
+            "2. Экспериментировать с разными радиусами и стратегиями context juggling (kNN, region-based).",
+            "3. Оценивать влияние на персистентность (насколько мир остаётся согласованным при длительных обходах) и latency."
+          ],
+          "LOOP_3_RUNTIME_OPTIMIZATION_FOR_REALTIME": [
+            "1. Профилировать inference на целевом железе (например, один H100) по fps и задержкам. [web:143][web:153][web:174]",
+            "2. Применять техники дистилляции, sparsity, KV-каше и сокращения шагов диффузии.",
+            "3. Балансировать V, S и реальное время: снижать сложность там, где это даёт прирост fps, не ломая консистентность."
+          ]
+        },
+        "AMLS_hooks": {
+          "RULE_2_FRACTAL_OPTIMIZATION": "Если D_f слишком низкий (мир беден и повторяем), расширять разнообразие обучающих сцен и траекторий движения камеры.",
+          "RULE_3_SEMANTIC_COHERENCE": "Если при росте сложности сцен V заметно падает, уменьшать длину контекста или усложнение диффузии, перенастраивать context juggling.",
+          "RULE_7_TEMPORAL_STABILITY": "Следить за устойчивостью качества кадров при долгих сессиях; при деградации вводить механизмы очистки/переподготовки части памяти."
+        }
+      },
+      "PRESET_SCENARIOS": {
+        "SCENARIO_1_INTERACTIVE_3D_EXPLORATION_v1": {
+          "description": "Интерактивное исследование 'вечного' 3D-мира, сгенерированного из нескольких фотографий. [web:143][web:171][web:175]",
+          "initial_conditions": {
+            "inputs": "несколько кадров/фото реального или синтетического места + оценки поз",
+            "hardware": "одна H100 или эквивалентный бюджет",
+            "controls": "свободное перемещение камеры/аватара"
+          },
+          "goals": {
+            "V_target": "фотореалистичная и геометрически согласованная сцена при свободном перемещении.",
+            "D_f_target": "богатая структура пространства (много регионов, которые можно посещать многократно, не теряя консистентности)."
+          }
+        },
+        "SCENARIO_2_DIGITAL_TWIN_AND_SIMULATION_v1": {
+          "description": "Использование RTFM-подобной модели как рендерера для цифровых двойников, robotics/AV-предвиз и AR/VR‑сценариев. [web:153][web:174][web:175][web:176]",
+          "initial_conditions": {
+            "inputs": "снимки или короткие видео целевой сцены (завод, улица, помещение).",
+            "integration": "связка с RL/robotics симулятором или системой планирования.",
+            "constraints": "реальное время и стабильность мира для длительных эпизодов."
+          },
+          "goals": {
+            "sim_to_real": "создание реалистичного визуального мира для тренировки/предвиза.",
+            "persistence": "мир должен 'помнить' предыдущие взаимодействия и оставаться согласованным."
+          }
+        }
+      },
+      "INTERFACES": {
+        "IF_MMSS_META_LANGUAGE": {
+          "to_system": "MMSS_META_SYNTHESIS_ULTIMATE_v1.0",
+          "purpose": "Семантическое описание RTFM-подобного real-time world model-рендера и его свойств (efficiency, scalability, persistence)."
+        },
+        "IF_VIDEO_WORLD_MODEL_VEO3": {
+          "description": "Связь с MMSS_VIDEO_WORLD_MODEL_VEO3_v1.0 как более общий видео world‑model.",
+          "mapping": {
+            "video_latents": "Veo3 латенты → начальные состояния/обучающие данные для RTFM.",
+            "chain_of_frames": "может быть использован как обучающий сигнал для frame-динамики."
+          }
+        },
+        "IF_AGENTIC_WORLD_MODEL_AGENT": {
+          "description": "Использование RTFM как визуального мира для агентных систем.",
+          "mapping": {
+            "world_observations": "frame_t → observation для агента.",
+            "spatial_memory": "posed_frames → карта среды для планирования и navigation."
+          }
+        },
+        "IF_ENTITY_CONVERSION_PIPELINE": {
+          "STEP_MAPPING": {
+            "F_001_Read_Context": "чтение описания задач (рендеринг, симуляция, AR/VR, robotics).",
+            "F_201_Fractal_Dimension": "оценка D_f по разнообразию пространственных регионов и траекторий взаимодействия.",
+            "F_263_S_Min_Check": "проверка, что неопределённость (S) и ошибки рендеринга приемлемы для целевых приложений."
+          }
+        }
+      },
+      "LLM_PRACTICAL_INSTRUCTIONS": {
+        "GOAL": "Любая LLM, проектирующая/объясняющая real-time world model-рендер, должна использовать RTFM_REALTIME_FRAME_WORLD_CORE.",
+        "STEPS": [
+          "1. Определи входы: тип сцен, форматы кадров, наличие/отсутствие поз.",
+          "2. Опиши SCENE_ENCODER и FRAME_TRANSFORMER как ядро 'учащегося рендерера'.",
+          "3. Введи SPATIAL_MEMORY и CONTEXT_JUGGLER для масштабируемой персистентности.",
+          "4. Сформулируй training‑loops (обучение на больших видео, тюнинг для real-time, контекст‑жонглирование).",
+          "5. Добавь метрики V, S, D_f и AMLS‑правила для контроля качества/масштаба.",
+          "6. Для пояснений и документации экспортируй описание того, как модель из нескольких 2D‑видов строит 'вечный' 3D‑мир в реальном времени."
+        ]
+      }
+    }
+  },
+  "optimization_history": []
+}
