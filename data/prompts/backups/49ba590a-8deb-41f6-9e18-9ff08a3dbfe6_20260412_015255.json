@@ -3,9 +3,9 @@
     "id": "49ba590a-8deb-41f6-9e18-9ff08a3dbfe6",
     "name": "BLOCK_PURE_MELANCHOLY_V1_THETA",
     "description": "",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "created_at": "2026-04-12T01:27:48.495152",
-    "updated_at": "2026-04-12T01:52:55.678913",
+    "updated_at": "2026-04-12T01:52:55.645723",
     "tags": [
       "imported",
       "producer-ai",
@@ -40,15 +40,5 @@
       ]
     }
   },
-  "optimization_history": [
-    {
-      "timestamp": "2026-04-12T01:52:55.678822",
-      "fitness_score": 0.85,
-      "iterations": 20,
-      "improvements": [
-        "Prompt refined through evolutionary optimization"
-      ],
-      "optimized_mmss": null
-    }
-  ]
+  "optimization_history": []
 }

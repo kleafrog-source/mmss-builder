@@ -15,8 +15,8 @@ class Settings(BaseSettings):
     # GEPA
     gepa_mcp_url: str = Field(default="http://localhost:3003", alias="GEPA_MCP_SERVER_URL")
     gepa_api_key: str = Field(default="", alias="GEPA_API_KEY")
-    gepa_iterations: int = Field(default=10, alias="GEPA_OPTIMIZATION_ITERATIONS")
-    gepa_population: int = Field(default=5, alias="GEPA_POPULATION_SIZE")
+    gepa_iterations: int = Field(default=5, alias="GEPA_OPTIMIZATION_ITERATIONS")
+    gepa_population: int = Field(default=3, alias="GEPA_POPULATION_SIZE")
     
     # Mistral API (for real GEPA)
     mistral_api_key: str = Field(default="", alias="MISTRAL_API_KEY")

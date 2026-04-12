@@ -20,8 +20,8 @@ class OptimizationResult(BaseModel):
 
 class GEPAConfig(BaseModel):
     """GEPA optimization configuration."""
-    population_size: int = 5
-    iterations: int = 10
+    population_size: int = 3  # Reduced to avoid Mistral API rate limiting
+    iterations: int = 5       # Reduced generations
     mutation_rate: float = 0.1
     crossover_rate: float = 0.8
     elitism: int = 1

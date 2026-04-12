@@ -25,15 +25,45 @@ class PromptIndividual:
 
 
 class MistralEvaluator:
-    """Evaluate prompt quality using Mistral API."""
+    """Evaluate prompt quality using Mistral API with rate limiting."""
     
-    def __init__(self, api_key: str = None):
+    def __init__(self, api_key: str = None, max_concurrent: int = 2, delay_seconds: float = 0.5):
         self.api_key = api_key or settings.mistral_api_key
         self.model = settings.mistral_model
         self.url = "https://api.mistral.ai/v1/chat/completions"
+        self.semaphore = asyncio.Semaphore(max_concurrent)
+        self.delay = delay_seconds
+        self.last_request_time = 0
     
-    async def evaluate_prompt(self, prompt: str, objective: str = "quality") -> float:
-        """Evaluate prompt fitness score (0-1)."""
+    async def evaluate_prompt(self, prompt: str, objective: str = "quality", retries: int = 3) -> float:
+        """Evaluate prompt fitness score (0-1) with rate limiting and retry."""
+        
+        async with self.semaphore:
+            # Rate limiting delay
+            now = asyncio.get_event_loop().time()
+            time_since_last = now - self.last_request_time
+            if time_since_last < self.delay:
+                await asyncio.sleep(self.delay - time_since_last)
+            
+            for attempt in range(retries):
+                try:
+                    result = await self._evaluate(prompt, objective)
+                    self.last_request_time = asyncio.get_event_loop().time()
+                    return result
+                except Exception as e:
+                    if "429" in str(e):
+                        wait = (2 ** attempt) + random.random()  # Exponential backoff
+                        print(f"  ⚠️ Rate limited, waiting {wait:.1f}s...")
+                        await asyncio.sleep(wait)
+                    elif attempt < retries - 1:
+                        await asyncio.sleep(1)
+                    else:
+                        print(f"  ❌ Evaluation failed after {retries} attempts: {e}")
+                        return 0.5
+            return 0.5
+    
+    async def _evaluate(self, prompt: str, objective: str) -> float:
+        """Internal evaluation call."""
         
         eval_prompts = {
             "quality": """Rate this prompt for clarity, effectiveness, and completeness on a scale of 0-100.
@@ -107,8 +137,7 @@ Respond with ONLY a number 0-100."""
                     return min(100, max(0, score)) / 100.0
                 return 0.5
         except Exception as e:
-            print(f"Evaluation error: {e}")
-            return 0.5  # Default on error
+            raise e  # Let caller handle retry
 
 
 class GEPAEvolution:
@@ -116,18 +145,20 @@ class GEPAEvolution:
     
     def __init__(
         self,
-        population_size: int = 5,
-        iterations: int = 10,
+        population_size: int = 3,  # Reduced to avoid rate limiting
+        iterations: int = 5,        # Reduced generations
         mutation_rate: float = 0.15,
         crossover_rate: float = 0.7,
-        elitism: int = 1
+        elitism: int = 1,
+        generation_delay: float = 2.0  # Delay between generations
     ):
         self.population_size = population_size
         self.iterations = iterations
         self.mutation_rate = mutation_rate
         self.crossover_rate = crossover_rate
         self.elitism = elitism
-        self.evaluator = MistralEvaluator()
+        self.generation_delay = generation_delay
+        self.evaluator = MistralEvaluator(max_concurrent=1, delay_seconds=1.0)  # Slower, safer
         self.improvements_log: List[str] = []
     
     def _create_population(self, seed_prompt: str) -> List[PromptIndividual]:
@@ -258,9 +289,13 @@ class GEPAEvolution:
             print(f"  Gen {generation + 1}/{self.iterations}: best fitness = {population[0].fitness:.3f}")
             
             # Check convergence
-            if generation > 5 and len(set(best_fitness_history[-5:])) == 1:
+            if generation > 3 and len(set(best_fitness_history[-3:])) == 1:
                 print("  Converged!")
                 break
+            
+            # Delay between generations to avoid rate limiting
+            if generation < self.iterations - 1:
+                await asyncio.sleep(self.generation_delay)
             
             # Create next generation
             new_population = []
