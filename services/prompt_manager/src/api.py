@@ -58,6 +58,23 @@ class ImportMMSSRequest(BaseModel):
     tags: List[str] = []
 
 
+class BatchOptimizeRequest(BaseModel):
+    """Request to optimize multiple prompts."""
+    prompt_ids: List[str]
+    population_size: int = 10
+    iterations: int = 20
+    skip_already_optimized: bool = True
+
+
+class BatchOptimizeResponse(BaseModel):
+    """Response for batch optimization."""
+    total: int
+    optimized: int
+    skipped: int
+    failed: int
+    results: List[Dict[str, Any]]
+
+
 # ======== HTML UI ========
 
 HTML_UI = """
@@ -826,6 +843,118 @@ async def optimize_prompt(prompt_id: str, request: OptimizeRequest):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Optimization failed: {str(e)}")
+
+
+@app.post("/api/prompts/batch-optimize", response_model=BatchOptimizeResponse)
+async def batch_optimize(request: BatchOptimizeRequest):
+    """Optimize multiple prompts in batch."""
+    import asyncio
+    
+    results = []
+    optimized = 0
+    skipped = 0
+    failed = 0
+    
+    async with httpx.AsyncClient() as client:
+        for prompt_id in request.prompt_ids:
+            result = {
+                "prompt_id": prompt_id,
+                "status": "pending",
+                "old_version": None,
+                "new_version": None,
+                "fitness_score": None,
+                "error": None
+            }
+            
+            try:
+                # Get prompt
+                prompt = await storage.get_prompt(prompt_id)
+                if not prompt:
+                    result["status"] = "not_found"
+                    result["error"] = "Prompt not found"
+                    failed += 1
+                    results.append(result)
+                    continue
+                
+                result["old_version"] = prompt.metadata.version
+                
+                # Skip if already optimized
+                if request.skip_already_optimized and len(prompt.optimization_history) > 0:
+                    result["status"] = "skipped"
+                    result["new_version"] = prompt.metadata.version
+                    skipped += 1
+                    results.append(result)
+                    continue
+                
+                # Call optimizer
+                response = await client.post(
+                    f"{settings.optimizer_url}/optimize-mmss",
+                    json={
+                        "mmss_structure": prompt.mmss_structure,
+                        "prompt_name": prompt.metadata.name,
+                        "target_field": "content",
+                        "config": {
+                            "population_size": request.population_size,
+                            "iterations": request.iterations,
+                            "mutation_rate": 0.1,
+                            "crossover_rate": 0.7,
+                            "elitism": 1
+                        },
+                        "wait_for_result": True
+                    },
+                    timeout=120.0
+                )
+                response.raise_for_status()
+                opt_response = response.json()
+                
+                # Get job details
+                job_id = opt_response.get("job_id")
+                if job_id:
+                    await asyncio.sleep(1.5)
+                    
+                    job_resp = await client.get(f"{settings.optimizer_url}/jobs/{job_id}")
+                    job_resp.raise_for_status()
+                    job_data = job_resp.json()
+                    job = job_data.get("job", {})
+                    opt_result = job.get("result")
+                    
+                    if opt_result:
+                        # Update prompt
+                        if "optimized_mmss" in opt_result:
+                            prompt.mmss_structure = opt_result["optimized_mmss"]
+                        
+                        await storage.save_prompt(prompt)
+                        await storage.add_optimization_result(prompt_id, opt_result)
+                        
+                        # Get updated prompt
+                        updated = await storage.get_prompt(prompt_id)
+                        result["new_version"] = updated.metadata.version
+                        result["fitness_score"] = opt_result.get("fitness_score")
+                        result["status"] = "optimized"
+                        optimized += 1
+                    else:
+                        result["status"] = "no_result"
+                        result["error"] = "No optimization result"
+                        failed += 1
+                else:
+                    result["status"] = "no_job"
+                    result["error"] = "No job ID returned"
+                    failed += 1
+                    
+            except Exception as e:
+                result["status"] = "error"
+                result["error"] = str(e)
+                failed += 1
+            
+            results.append(result)
+    
+    return BatchOptimizeResponse(
+        total=len(request.prompt_ids),
+        optimized=optimized,
+        skipped=skipped,
+        failed=failed,
+        results=results
+    )
 
 
 @app.get("/health")
