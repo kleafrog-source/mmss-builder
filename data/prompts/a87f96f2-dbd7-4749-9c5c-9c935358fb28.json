@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a87f96f2-dbd7-4749-9c5c-9c935358fb28",
+    "name": "BLOCK_BLOCK_BLOCK_164",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:54.953394",
+    "updated_at": "2026-04-12T01:27:54.953467",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_164"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_164",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"non_euclidean_spaces\": {\n    \"paradox_1_infinite_closet\": \"Short decay (0.5s) + Infinite feedback (99%) + Low-pass (500Hz)\",\n    \"paradox_2_liquid_cathedral\": \"Long decay (8s) + High diffusion + Fractal modulation (Block 18)\",\n    \"paradox_3_metallic_void\": \"Zero diffusion + High resonance + Bitcrush-return (6-bit)\",\n    \"algorithm\": \"Mixing 3 different reverb-sizes in parallel using MLGS_QUATERNION coefficients\",\n    \"goal\": \"Acoustic disorientation (The 'Where am I?' effect).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_164",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_164",
+      "block_name": "Block_block_164",
+      "source": "producer-ai-base",
+      "original_index": 164
+    }
+  },
+  "optimization_history": []
+}

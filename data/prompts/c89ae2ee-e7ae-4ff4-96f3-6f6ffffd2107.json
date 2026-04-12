@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c89ae2ee-e7ae-4ff4-96f3-6f6ffffd2107",
+    "name": "BLOCK_BLOCK_BLOCK_233",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.013758",
+    "updated_at": "2026-04-12T01:28:00.013819",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_233"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_233",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"jitter_amount\": \"0.15% (Sample-clock instability)\",\n  \"logic\": \"Randomized micro-pitch-shifting of the bit-clock\",\n  \"result\": \"Analog-like 'hiss' but with a digital, clinical character\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_233",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_233",
+      "block_name": "Block_block_233",
+      "source": "producer-ai-base",
+      "original_index": 233
+    }
+  },
+  "optimization_history": []
+}

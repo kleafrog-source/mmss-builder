@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "16a737c6-71a3-49a1-8945-f115ebd7d13f",
+    "name": "BLOCK_BLOCK_BLOCK_231",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:59.482999",
+    "updated_at": "2026-04-12T01:27:59.483083",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_231"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_231",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_multiband_gate_v4\": {\n    \"vacuum_logic_omega\": {\n      \"band_1_low_end_cleaning\": {\n        \"threshold\": \"-45dB\",\n        \"release\": \"35ms (Fast-kill)\",\n        \"logic\": \"Zero-sub-rumble between kick-hits\",\n        \"result\": \"Maximum low-end 'punch-to-silence' ratio\"\n      },\n      \"band_2_mid_range_focus\": {\n        \"threshold\": \"-32dB\",\n        \"hysteresis\": \"6dB (Organic transition)\",\n        \"look_ahead\": \"1.5ms (Preserving the initial transient)\",\n        \"result\": \"Laser-cut Reese-stabs with no bleeding tails\"\n      },\n      \"band_3_high_shelf_noise_floor\": {\n        \"threshold\": \"-55dB\",\n        \"reduction\": \"-inf dB\",\n        \"result\": \"Absolute blackness in the fractal-dust layer during pauses\"\n      }\n    },\n    \"dynamic_tension_modulation\": \"Tighten gate-thresholds during 'Pre-Drop' build-up (Pressure-cooker effect), relax during 'Main-Drop' (Atmospheric immersion).\"\n  },\n  \"silence_metrics_v4\": {\n    \"noise_floor_cleanup\": \"-96dB (Digital zero parity)\",\n    \"transient_recovery_speed\": \"η = 0.998\",\n    \"spectral_gap_index\": \"1.25 (Increased perceived dynamic range)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_231",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_231",
+      "block_name": "Block_block_231",
+      "source": "producer-ai-base",
+      "original_index": 231
+    }
+  },
+  "optimization_history": []
+}

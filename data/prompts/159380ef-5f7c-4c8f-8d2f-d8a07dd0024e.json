@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "159380ef-5f7c-4c8f-8d2f-d8a07dd0024e",
+    "name": "BLOCK_BLOCK_BLOCK_334",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:07.572882",
+    "updated_at": "2026-04-12T01:28:07.572949",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_334"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_334",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"emotional_clusters\": {\n    \"cluster_alpha_industrial\": {\n      \"keywords\": [\n        \"Cold\",\n        \"Mechanical\",\n        \"Dystopian\",\n        \"Precision\"\n      ],\n      \"spectral_shaping\": \"High-shelf boost @ 8kHz, Low-mid scoop @ 400Hz\",\n      \"reverb_profile\": \"Small metallic room, high damping (0.8)\"\n    },\n    \"cluster_beta_shamanic\": {\n      \"keywords\": [\n        \"Organic\",\n        \"Recursive\",\n        \"Tribal\",\n        \"Transcendental\"\n      ],\n      \"spectral_shaping\": \"Warm saturation, emphasis on 200Hz (Woody resonance)\",\n      \"reverb_profile\": \"Cathedral, long decay (4.5s), low-pass filtered tail\"\n    },\n    \"cluster_gamma_aggression\": {\n      \"keywords\": [\n        \"Distorted\",\n        \"Overwhelming\",\n        \"High-entropy\",\n        \"Kinetic\"\n      ],\n      \"processing\": \"Bitcrushing (8-bit), Distortion drive (25dB), Hard limiting (-0.1dB)\"\n    }\n  },\n  \"prompt_injection_templates\": {\n    \"fractal_expansion\": \"[AESTHETIC_HYPERLOOP]: {base_prompt} ⊗ recursion(level=3) // apply G-operator\",\n    \"neuro_growl_logic\": \"LFO-modulated wavetable: sawtooth-to-square, rate: 1/8 sync, fm-synthesis layer\",\n    \"psy_arpeggio_logic\": \"Recursive 1/16 notes, 4-octave range, random velocity (±15%), 30% swing\"\n  },\n  \"memory_metadata\": {\n    \"user_feedback_loops\": \"Positive reinforcement on: 'Complex psychedelic arpeggiators', 'Phrygian mode', 'Rhythmic entropy'\",\n    \"preferred_languages\": [\n      \"Russian (Interface/Feedback)\",\n      \"Technical English (Logic/Prompting)\"\n    ],\n    \"workflow_pattern\": \"Iterative (v1 -> v2 -> v3 -> v4.Omega)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_334",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_334",
+      "block_name": "Block_block_334",
+      "source": "producer-ai-base",
+      "original_index": 334
+    }
+  },
+  "optimization_history": []
+}

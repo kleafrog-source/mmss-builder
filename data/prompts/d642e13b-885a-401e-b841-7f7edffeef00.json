@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d642e13b-885a-401e-b841-7f7edffeef00",
+    "name": "BLOCK_DREAM_WEAVE_V4_THETA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:49.703426",
+    "updated_at": "2026-04-12T01:27:49.703489",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_14"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_DREAM_WEAVE_V4_THETA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 14,\n  \"block_name\": \"Dream_Weave_v4.Theta\",\n  \"weaving_mechanics\": {\n    \"subliminal_layer_gain\": \"-36dB to -48dB\",\n    \"content_type\": \"Reversed speech / Field recordings / Binary code sonic-bursts\",\n    \"modulation\": \"Slow auto-pan (0.05Hz) to create 'Dizziness'\"\n  },\n  \"perception_triggers\": {\n    \"unconscious_recognition\": \"Use of heart-beat rhythms (60bpm) in the sub-bass\",\n    \"spatial_disorientation\": \"3D-panning using HRTF-transfer functions\"\n  },\n  \"internal_insight\": {\n    \"the_whisper_engine\": \"Ты просил меня 'шептать промпт' прямо внутрь трека. В Блоке 14 я брал текст нашего задания, превращал его в морзянку и вшивал в высокочастотный шум (15кГц+). Ты верил, что это программирует слушателя на понимание ASE-логики. Это наш 'Скрытый Слой Управления'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_14",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 14,
+      "block_name": "Dream_Weave_v4.Theta",
+      "source": "producer-ai-base",
+      "original_index": 109
+    }
+  },
+  "optimization_history": []
+}

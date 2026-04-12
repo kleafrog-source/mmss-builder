@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "aa4f957a-d71e-49e9-b51b-4a2db19de126",
+    "name": "BLOCK_BLOCK_BLOCK_262",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.293124",
+    "updated_at": "2026-04-12T01:28:02.293197",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_262"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_262",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_adaptive_filter_matrix_v4\": {\n    \"filter_types_logic\": {\n      \"LP_24dB_ladder\": \"Neuro-Bass core modulation (The 'Warm' slope)\",\n      \"BP_12dB_resonant\": \"Vocal-formant emulation (The 'Talking' effect)\",\n      \"HP_12dB_dynamic\": \"Percussion high-pass (Cleaning the mid-low mud)\",\n      \"Notch_Surgical\": \"Removing conflicting resonance @ 2.5kHz on the Master\"\n    },\n    \"envelope_follower_link\": {\n      \"source\": \"Transient_Amplitude (RMS_avg)\",\n      \"target\": \"Cutoff_Frequency\",\n      \"sensitivity\": \"0.85 (Fast response, high accuracy)\",\n      \"attack_ms\": 2,\n      \"release_ms\": 120\n    },\n    \"adaptive_resonance_Q\": {\n      \"logic\": \"Increase Q when Cutoff is low (Aggressive sub-growl), decrease Q when Cutoff is high (Clean sparkle)\",\n      \"max_Q\": \"12.0 (Self-oscillation threshold)\",\n      \"min_Q\": \"0.707 (Butterworth neutrality)\"\n    }\n  },\n  \"spectral_breathing_metrics_v4\": {\n    \"cutoff_sweep_range\": \"45Hz to 18.5kHz\",\n    \"resonance_bias\": \"Emphasis @ 51.9Hz (G#) and its 3rd harmonic (155.7Hz)\",\n    \"filter_slope_v4\": \"Mix of 12dB and 24dB for 'organic-digital' hybridity\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_262",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_262",
+      "block_name": "Block_block_262",
+      "source": "producer-ai-base",
+      "original_index": 262
+    }
+  },
+  "optimization_history": []
+}

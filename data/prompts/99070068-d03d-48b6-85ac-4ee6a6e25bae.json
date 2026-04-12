@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "99070068-d03d-48b6-85ac-4ee6a6e25bae",
+    "name": "BLOCK_BLOCK_BLOCK_195",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.092985",
+    "updated_at": "2026-04-12T01:27:57.093050",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_195"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_195",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"collaboration_protocol\": {\n    \"step_1_concept_dump\": \"User provides raw ideas/slang/feelings\",\n    \"step_2_ase_refining\": \"I translate to MMSS-specifications\",\n    \"step_3_confirmation_summary\": \"I present the 'Plan of Singularity'\",\n    \"step_4_execution\": \"Creation of the first iteration G(s_0)\",\n    \"step_5_eval_loop\": \"User says 'not quite' or 'fire', triggering G-Inversion\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_195",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_195",
+      "block_name": "Block_block_195",
+      "source": "producer-ai-base",
+      "original_index": 195
+    }
+  },
+  "optimization_history": []
+}

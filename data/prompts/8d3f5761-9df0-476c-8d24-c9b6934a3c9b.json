@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8d3f5761-9df0-476c-8d24-c9b6934a3c9b",
+    "name": "BLOCK_BLOCK_BLOCK_290",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.475457",
+    "updated_at": "2026-04-12T01:28:04.475520",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_290"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_290",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"freq\": 20,\n  \"gain\": -24,\n  \"type\": \"HighPass_48dB/oct\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_290",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_290",
+      "block_name": "Block_block_290",
+      "source": "producer-ai-base",
+      "original_index": 290
+    }
+  },
+  "optimization_history": []
+}

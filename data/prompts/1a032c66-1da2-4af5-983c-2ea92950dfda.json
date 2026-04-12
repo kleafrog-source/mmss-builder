@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "1a032c66-1da2-4af5-983c-2ea92950dfda",
+    "name": "BLOCK_BLOCK_BLOCK_267",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.653237",
+    "updated_at": "2026-04-12T01:28:02.653313",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_267"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_267",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_multiband_distortion_v4\": {\n    \"spectral_degradation_logic\": {\n      \"band_1_sub_20_100Hz\": \"Zero Distortion (Absolute Sine Purity)\",\n      \"band_2_low_mid_100_400Hz\": \"Transformer Saturation (Odd Harmonics), Drive: 15%, Warmth: +3dB\",\n      \"band_3_mid_400_3kHz\": \"Tube Overdrive (Asymmetric Clipping), Drive: 22%, Mix: 45% (Parallel)\",\n      \"band_4_high_3kHz_plus\": \"Bitcrusher (12-bit / 8-bit dynamic), Sample-Rate Reduction: 0.15x\"\n    },\n    \"dynamic_texture_morphing\": {\n      \"trigger\": \"LFO_1_Random_Sample_and_Hold (Rate: 1/16t)\",\n      \"action\": \"Jittering Bit-depth from 16 to 8 bits only on the high-shelf\",\n      \"result\": \"Digital 'static' dust that pulses with the neuro-rhythm\"\n    },\n    \"harmonic_exciter_v4\": \"Parallel exciter @ 5kHz+ for 'shimmering' industrial air\"\n  },\n  \"texture_metrics_v4\": {\n    \"noise_to_signal_ratio\": \"Target 0.08 in the high-frequency band\",\n    \"aliasing_v4\": \"Controlled aliasing used as a percussive texture (Anti-aliasing disabled on Band 4)\",\n    \"spectral_grit_index\": \"η = 0.65 (High-texture density)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_267",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_267",
+      "block_name": "Block_block_267",
+      "source": "producer-ai-base",
+      "original_index": 267
+    }
+  },
+  "optimization_history": []
+}

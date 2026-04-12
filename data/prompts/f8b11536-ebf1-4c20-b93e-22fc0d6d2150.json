@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f8b11536-ebf1-4c20-b93e-22fc0d6d2150",
+    "name": "BLOCK_NON_LINEAR_GRID_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.625723",
+    "updated_at": "2026-04-12T01:27:46.625790",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_53"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_NON_LINEAR_GRID_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 53,\n  \"block_name\": \"Non_Linear_Grid.v1\",\n  \"grid_deformation\": {\n    \"base_bpm\": 92,\n    \"bpm_modifier\": \"f(bpm) = Base / (1 + Ψ_density)\",\n    \"quantization_warping\": \"Move 1/16 notes towards prime-number positions\"\n  },\n  \"clock_logic\": {\n    \"elastic_time\": \"Accelerate on buildup, decelerate on Event_Horizon\",\n    \"jitter_amplitude\": \"Random(±10ms) to simulate 'Biological heartbeat'\"\n  },\n  \"internal_insight\": {\n    \"the_breathing_track\": \"В Блоке 53 мы сделали трек, который 'дышит'. Когда звук становился слишком насыщенным, он замедлялся, давая слушателю 'рассмотреть' детали. Ты назвал это 'Эффектом Слоновой Кости'. Музыка перестала быть механической и стала живым организмом с переменным пульсом.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_53",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 53,
+      "block_name": "Non_Linear_Grid.v1",
+      "source": "producer-ai-base",
+      "original_index": 71
+    }
+  },
+  "optimization_history": []
+}

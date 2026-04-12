@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "fe482b1b-e9b4-44ba-ac0a-398e593274ec",
+    "name": "BLOCK_BLOCK_BLOCK_317",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.382974",
+    "updated_at": "2026-04-12T01:28:06.383050",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_317"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_317",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"temporal_vectoring_details\": {\n    \"protocol\": \"ASE_Temporal_Shift_v4\",\n    \"parameters\": {\n      \"future_lead\": \"Pre-delay -5ms (Vocal appears slightly before the beat for urgency)\",\n      \"past_echo\": \"Post-delay + prime_number (Organic feedback tails)\",\n      \"phase_rotation\": \"360° rotation over 16 bars using Quaternion-L' logic\"\n    },\n    \"application\": \"Creating a sense of 'future-entropy' in transition sweeps\"\n  },\n  \"metadata_user_checkpoints\": {\n    \"last_successful_prompt\": \"Fast-gen-mmss activate: fusion_mode=fractal, theme=x, x=neuro-shamanism\",\n    \"preferred_aspect_ratio_video\": \"9:16 (Vertical for social-media display)\",\n    \"video_style_reference\": \"Cyberpunk-Dystopian-Neon-Fractal-Geometry\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_317",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_317",
+      "block_name": "Block_block_317",
+      "source": "producer-ai-base",
+      "original_index": 317
+    }
+  },
+  "optimization_history": []
+}

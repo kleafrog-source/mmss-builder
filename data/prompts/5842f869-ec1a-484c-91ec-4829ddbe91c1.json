@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5842f869-ec1a-484c-91ec-4829ddbe91c1",
+    "name": "BLOCK_BLOCK_BLOCK_150",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.523232",
+    "updated_at": "2026-04-12T01:27:53.523303",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_150"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_150",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"neuro_lead_spec\": {\n    \"timbre\": \"Complex Wavetable (Spectral-Morphing) + Sub-harmonic FM\",\n    \"articulation\": {\n      \"glide_time\": \"Non-linear (50ms to 250ms) based on velocity\",\n      \"vibrato\": \"Random-LFO (2Hz-8Hz) on fine-tuning (±10 cents)\",\n      \"legato_retrigger\": \"Only on 1st note of the phrase (The 'Attack-Focus')\"\n    },\n    \"processing\": {\n      \"multiband_dist\": \"Saturation at 400Hz, Hard-clip at 3kHz\",\n      \"spectral_shaper\": \"Dynamic EQ suppressing 2kHz 'harshness'\",\n      \"spatial\": \"4D-Vectoring rotation (Block 17) every 4 bars\"\n    },\n    \"rule\": \"Leads must 'grow' out of the Ambient-Shield (Block 42) and return to it.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_150",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_150",
+      "block_name": "Block_block_150",
+      "source": "producer-ai-base",
+      "original_index": 150
+    }
+  },
+  "optimization_history": []
+}

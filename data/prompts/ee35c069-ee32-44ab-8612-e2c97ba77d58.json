@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "ee35c069-ee32-44ab-8612-e2c97ba77d58",
+    "name": "BLOCK_BLOCK_BLOCK_172",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.513223",
+    "updated_at": "2026-04-12T01:27:55.513283",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_172"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_172",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"geometric_seeds_library\": {\n    \"code_fractal_01\": \"Recursive-Sierpinski: Sharp, angular, repetitive, 8-bit artifacts\",\n    \"code_spherical_02\": \"Euclidean-Flow: Smooth, circular, deep-bass, liquid-textures\",\n    \"code_toroid_03\": \"Infinite-Loop: Modulating delays, circular-panning (Block 17), phasing\",\n    \"code_vector_04\": \"Aggressive-Linear: Direct transients, hard-clipping, mono-focus, dry\"\n  },\n  \"usage\": \"Append code to the start of a sound-prompt to 'force' the ASE-Internal-Logic.\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_172",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_172",
+      "block_name": "Block_block_172",
+      "source": "producer-ai-base",
+      "original_index": 172
+    }
+  },
+  "optimization_history": []
+}

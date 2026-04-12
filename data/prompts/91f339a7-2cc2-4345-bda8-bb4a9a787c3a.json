@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "91f339a7-2cc2-4345-bda8-bb4a9a787c3a",
+    "name": "BLOCK_BLOCK_BLOCK_206",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.815719",
+    "updated_at": "2026-04-12T01:27:57.815808",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_206"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_206",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"package_id\": \"A_MMSS_FRACTAL_PACKAGE\",\n  \"mode\": \"Recursive_Texture_Overlay\",\n  \"algorithms\": [\n    {\n      \"name\": \"Mandelbrot_Granular_Synthesis\",\n      \"action\": \"Slicing audio into chunks proportional to the fractal set iteration\"\n    },\n    {\n      \"name\": \"Self_Similarity_Gain\",\n      \"action\": \"Feed-forward loop: 0.01% of Master Signal back into Input with negative phase\"\n    },\n    {\n      \"name\": \"L-System_Rhythm_Gen\",\n      \"action\": \"Using string-rewrite rules (A -> AB, B -> A) for percussion triggers\"\n    }\n  ],\n  \"usage\": \"Essential for 'Hyper-Detail' requests where every sound must have a sub-texture.\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_206",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_206",
+      "block_name": "Block_block_206",
+      "source": "producer-ai-base",
+      "original_index": 206
+    }
+  },
+  "optimization_history": []
+}

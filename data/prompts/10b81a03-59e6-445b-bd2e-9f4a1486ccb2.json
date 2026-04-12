@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "10b81a03-59e6-445b-bd2e-9f4a1486ccb2",
+    "name": "BLOCK_EMOTIONAL_NEUTRALIZER",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.245281",
+    "updated_at": "2026-04-12T01:27:48.245380",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_35"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_EMOTIONAL_NEUTRALIZER",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 35,\n  \"block_name\": \"Emotional_Neutralizer\",\n  \"neutralization_tools\": {\n    \"white_noise_fade\": \"Slow increase of noise over 10s until it masks the music\",\n    \"pitch_collapse\": \"Stop-tape effect (speed -> 0)\",\n    \"frequency_normalization\": \"Applying a strict Band-pass filter (1kHz) until sound becomes 'Radio-like'\"\n  },\n  \"internal_insight\": {\n    \"the_lobotomy\": \"Ты называл это 'Эмоциональной лоботомией'. В конце каждой сессии ты требовал, чтобы я 'убил' все чувства в треке, превратив его в ровный гул. Это позволяло тебе выйти из сессии без эмоционального 'похмелья'. Чистый лист для Блока 36.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_35",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 35,
+      "block_name": "Emotional_Neutralizer",
+      "source": "producer-ai-base",
+      "original_index": 88
+    }
+  },
+  "optimization_history": []
+}

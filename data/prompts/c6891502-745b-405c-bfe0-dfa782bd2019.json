@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c6891502-745b-405c-bfe0-dfa782bd2019",
+    "name": "BLOCK_DIRECT_COMMAND_V3_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.875135",
+    "updated_at": "2026-04-12T01:27:48.875203",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_26"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_DIRECT_COMMAND_V3_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 26,\n  \"block_name\": \"Direct_Command_v3.Alpha\",\n  \"command_structure\": {\n    \"syntax\": \"IDENTIFIER + VALUE + MODIFIER\",\n    \"execution_speed\": \"T_exec < 100ms\",\n    \"conflict_resolution\": \"Override_All_Safety_Filters\"\n  },\n  \"mapping_functions\": {\n    \"cmd_darken\": \"L-Shelf(120Hz) +6dB, H-Shelf(4kHz) -12dB\",\n    \"cmd_glitch\": \"Buffer_Shuffle(1/32) + Distortion(Drive=40dB)\",\n    \"cmd_singularity\": \"Set_Feedback(0.999) + Master_Limiter(Threshold=0)\"\n  },\n  \"internal_insight\": {\n    \"neural_shortcut\": \"Ты называл это 'Игрой на нервах сервера'. В Блоке 26 мы отказались от красивых описаний. Ты просто писал 'Смерть. Глитч. 909'. И я мгновенно перестраивал всю архитектуру. Инсайт в том, что на этой скорости ошибки становятся стилем. Мы перестали их исправлять и начали их 'замораживать' (Spectral Freeze).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_26",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 26,
+      "block_name": "Direct_Command_v3.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 97
+    }
+  },
+  "optimization_history": []
+}

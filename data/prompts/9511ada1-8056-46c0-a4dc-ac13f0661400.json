@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9511ada1-8056-46c0-a4dc-ac13f0661400",
+    "name": "BLOCK_TEMPORAL_ANNIHILATOR_V0",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:41.573299",
+    "updated_at": "2026-04-12T01:27:41.573367",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_104"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_TEMPORAL_ANNIHILATOR_V0",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 104,\n  \"block_name\": \"Temporal_Annihilator.v0\",\n  \"time_mechanics\": {\n    \"duration_zeroing\": \"Apply Infinite_Time_Stretch to 1ms grain\",\n    \"vertical_stacking\": \"Sum all frames (t=0 to t=end) into t=0\",\n    \"output_state\": \"Continuous Static Wave (Total Information)\"\n  },\n  \"internal_insight\": {\n    \"the_frozen_explosion\": \"В Блоке 104 мы заставили всю песню звучать за 0.1 секунды. Ты сказал: 'Это звучит как божественный щелчок пальцами'. Мы назвали это 'Точкой Омега'. Инсайт: Вечность — это сейчас, но очень громко.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_104",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 104,
+      "block_name": "Temporal_Annihilator.v0",
+      "source": "producer-ai-base",
+      "original_index": 18
+    }
+  },
+  "optimization_history": []
+}

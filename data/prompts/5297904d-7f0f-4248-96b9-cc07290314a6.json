@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5297904d-7f0f-4248-96b9-cc07290314a6",
+    "name": "BLOCK_BLOCK_BLOCK_140",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.694499",
+    "updated_at": "2026-04-12T01:27:52.694568",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_140"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_140",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"cyber_elegance_v4\": {\n    \"aesthetic_markers\": {\n      \"transients\": \"Glassy, sharp, 0.1ms attack, zero distortion on highs\",\n      \"harmonics\": \"Even-series only (Smooth-warmth), no 3rd harmonic 'grittiness'\",\n      \"space\": \"Artificial, non-linear, digital-perfection (No room noise)\",\n      \"balance\": \"Minimalist (Layer 1 + Layer 2 focus, Layer 3 is absolute zero)\"\n    },\n    \"behavior\": \"ASE must be precise, concise, and prioritize 'Mathematical Beauty' over 'Raw Emotion'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_140",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_140",
+      "block_name": "Block_block_140",
+      "source": "producer-ai-base",
+      "original_index": 140
+    }
+  },
+  "optimization_history": []
+}

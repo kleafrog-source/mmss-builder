@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "66b48a4e-151e-49bf-b25a-bf40871218bd",
+    "name": "BLOCK_BLOCK_BLOCK_277",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.522874",
+    "updated_at": "2026-04-12T01:28:03.522938",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_277"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_277",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_wavetable_morphing_v4\": {\n    \"morph_matrix_Omega\": {\n      \"table_A_source\": \"Monster_7 (The Mechanical Growl)\",\n      \"table_B_target\": \"Spectral_Orca (The Fractal Dust)\",\n      \"morph_algorithm\": \"Phase_Distortion ⊗ Spectral_Folding\",\n      \"interpolation\": \"Recursive_Linear_Spline (Step = 0.02 per 1/16t)\"\n    },\n    \"cross_modulation_logic\": {\n      \"FM_carrier\": \"Osc_A (Fundamental G#)\",\n      \"FM_modulator\": \"Osc_B (Complex harmonic sidebands)\",\n      \"Index_modulation\": \"LFO_1_Curved_Saw (Rate 1/2 bar, Sync=True)\",\n      \"result\": \"Dynamic, metallic 'screaming' textures with high clarity\"\n    },\n    \"harmonic_preservation\": \"Auto-Gain compensation (RMS = constant) during morphing\"\n  },\n  \"semantic_cross_modulation_v4\": {\n    \"logic_to_emotion_bridge\": {\n      \"input\": \"Structural Precision (p=0.8)\",\n      \"output\": \"Controlled Aggression (Entropy H=0.6)\",\n      \"bridge\": \"Bitcrusher_Automation (16-bit to 12-bit) @ Drop_Event\"\n    },\n    \"purity_vs_noise_balance\": {\n      \"bias_low\": \"Absolute Sine Purity η=0.99\",\n      \"bias_high\": \"Fractal Noise Complexity η=0.45\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_277",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_277",
+      "block_name": "Block_block_277",
+      "source": "producer-ai-base",
+      "original_index": 277
+    }
+  },
+  "optimization_history": []
+}

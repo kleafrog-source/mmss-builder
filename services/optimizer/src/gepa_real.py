@@ -116,11 +116,11 @@ class GEPAEvolution:
     
     def __init__(
         self,
-        population_size: int = 10,
-        iterations: int = 20,
-        mutation_rate: float = 0.1,
+        population_size: int = 5,
+        iterations: int = 10,
+        mutation_rate: float = 0.15,
         crossover_rate: float = 0.7,
-        elitism: int = 2
+        elitism: int = 1
     ):
         self.population_size = population_size
         self.iterations = iterations

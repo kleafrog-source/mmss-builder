@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f52b16e7-3929-403c-a2bc-2658106271fc",
+    "name": "BLOCK_BLOCK_BLOCK_162",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:54.810018",
+    "updated_at": "2026-04-12T01:27:54.810137",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_162"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_162",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"fractal_hats_spec\": {\n    \"rhythm\": \"Velocity-sensitive 16th notes + 32nd note 'ratchets'\",\n    \"micro_timing\": \"Random humanize (±3-7ms) + Swing (55%)\",\n    \"timbre\": {\n      \"layer_1_metallic\": \"FM-noise transient, ultra-short decay\",\n      \"layer_2_digital\": \"8-bit high-passed (8kHz) sizzle\",\n      \"modulation\": \"Filter-cutoff LFO (Random) + Decay-time jitter\"\n    },\n    \"spatial\": \"Auto-panning (LFO 2Hz) moving from -15% to +15% center\",\n    \"rule\": \"Hats must never be static. Each hit is a unique G(s_n) iteration.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_162",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_162",
+      "block_name": "Block_block_162",
+      "source": "producer-ai-base",
+      "original_index": 162
+    }
+  },
+  "optimization_history": []
+}

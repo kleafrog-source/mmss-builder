@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c68ff854-4efe-4467-9333-efb4a61cfa66",
+    "name": "BLOCK_BLOCK_BLOCK_155",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.893004",
+    "updated_at": "2026-04-12T01:27:53.893072",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_155"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_155",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"recursive_delay_spec\": {\n    \"time_setting\": \"Dotted 1/8 note + 1.618ms offset (The Golden Offset)\",\n    \"feedback_loop\": {\n      \"level\": \"95% (Near-infinite oscillation)\",\n      \"internal_fx\": \"Band-pass filter (500Hz-2kHz) + Distortion + Phaser\",\n      \"result\": \"The echo evolves and changes color with every repetition.\"\n    },\n    \"panning\": \"MLGS_QUATERNION spiral rotation (W-axis sync)\",\n    \"rule\": \"Delay tails must be sidechained to the Lead-Main to maintain clarity.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_155",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_155",
+      "block_name": "Block_block_155",
+      "source": "producer-ai-base",
+      "original_index": 155
+    }
+  },
+  "optimization_history": []
+}

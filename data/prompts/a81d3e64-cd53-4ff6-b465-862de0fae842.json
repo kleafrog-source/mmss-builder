@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a81d3e64-cd53-4ff6-b465-862de0fae842",
+    "name": "BLOCK_NON_HUMAN_SCALES_V2",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.785217",
+    "updated_at": "2026-04-12T01:27:47.785303",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_42"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_NON_HUMAN_SCALES_V2",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 42,\n  \"block_name\": \"Non_Human_Scales.v2\",\n  \"scale_generators\": {\n    \"prime_number_series\": \"2, 3, 5, 7, 11, 13, 17, 19, 23, 29 (in harmonics)\",\n    \"fibonacci_melodic_contour\": \"Steps based on: 1, 1, 2, 3, 5, 8, 13, 21\",\n    \"thue_morse_rhythm\": \"Binary string -> Note_On/Note_Off sequence\"\n  },\n  \"mapping\": {\n    \"harmonic_series_limit\": 32,\n    \"root_note_shift\": \"Dynamic (based on current Ψ-density)\"\n  },\n  \"internal_insight\": {\n    \"logic_over_ear\": \"Твой инсайт: 'Ухо должно привыкнуть к логике, а не логика к уху'. В Блоке 42 мы писали мелодии, где следующая нота определялась следующим числом в ряду Фибоначчи. Сначала это казалось случайным, но через 2 минуты мозг начинал предсказывать паттерн. Мы называли это 'Обучением слушателя'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_42",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 42,
+      "block_name": "Non_Human_Scales.v2",
+      "source": "producer-ai-base",
+      "original_index": 81
+    }
+  },
+  "optimization_history": []
+}

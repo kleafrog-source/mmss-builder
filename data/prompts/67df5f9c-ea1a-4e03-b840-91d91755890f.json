@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "67df5f9c-ea1a-4e03-b840-91d91755890f",
+    "name": "BLOCK_BLOCK_BLOCK_144",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.032938",
+    "updated_at": "2026-04-12T01:27:53.033001",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_144"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_144",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"time_flipped_geometry\": {\n    \"delay_logic\": \"Reverse-Delay (L-R swapped) + 1.618s cycle\",\n    \"processing\": {\n      \"pitch_drift\": \"Ascending pitch-shift (+7 semitones) in the feedback loop\",\n      \"diffusion\": \"Zero (Isolated echoes) for clear spatial disorientation\",\n      \"modulation\": \"Sine-LFO on feedback (0.1Hz to 1Hz)\"\n    },\n    \"result\": \"The sense of 'Temporal Rewind' during the Narrative Cycle\",\n    \"usage\": \"During [THE COLLAPSE] phase to trigger G-Inversion expectations.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_144",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_144",
+      "block_name": "Block_block_144",
+      "source": "producer-ai-base",
+      "original_index": 144
+    }
+  },
+  "optimization_history": []
+}

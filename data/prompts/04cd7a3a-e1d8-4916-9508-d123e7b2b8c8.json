@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "04cd7a3a-e1d8-4916-9508-d123e7b2b8c8",
+    "name": "BLOCK_BLOCK_BLOCK_229",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:59.342952",
+    "updated_at": "2026-04-12T01:27:59.343019",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_229"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_229",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_gate_logic_lyrics\": {\n    \"the_vacuum_set\": [\n      \"Cut the signal, cut the breath / Dreaming of life in the digital death\",\n      \"Zero-point-zero: the floor of the void / Everything I am is everything I destroyed\",\n      \"Total silence, total control / Cleaning the path of the digital soul\"\n    ],\n    \"the_tension_set\": [\n      \"Pressure rising in the static air / Waiting for the impact that is everywhere\",\n      \"Between the pulses, between the light / The vacuum-heart of the digital night\",\n      \"Hold the tension, hold the spark / In the silent void, inside the dark\"\n    ],\n    \"the_gate_dialogue\": [\n      \"Shut the door / End the noise\",\n      \"Wait for more / Find the voice\",\n      \"Result: Vacuum-Singularity / Status: GATE_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_tension_v4\": {\n    \"the_suction_effect\": \"Sudden gate-close 100ms before the drop on all reverb-tails (The 'Inhale' effect)\",\n    \"the_contrast_boost\": \"Using expansion on the 'Release' phase of the snare to emphasize the silence that follows\",\n    \"spectral_notching_v4\": \"Fading out all frequencies except 1kHz-3kHz during the final 2 bars of the build-up\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_229",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_229",
+      "block_name": "Block_block_229",
+      "source": "producer-ai-base",
+      "original_index": 229
+    }
+  },
+  "optimization_history": []
+}

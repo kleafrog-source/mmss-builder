@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "fdead9e8-0ab4-49d8-b5d0-0c9679074410",
+    "name": "BLOCK_EVENT_HORIZON_MATRIX_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:49.762835",
+    "updated_at": "2026-04-12T01:27:49.762895",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_13"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_EVENT_HORIZON_MATRIX_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 13,\n  \"block_name\": \"Event_Horizon_Matrix.Alpha\",\n  \"horizon_parameters\": {\n    \"t_critical\": \"Point of no return in track timeline\",\n    \"buildup_slope\": \"Logarithmic (acceleration towards t_critical)\",\n    \"release_type\": \"Instant_Collapse OR Infinite_Expansion\"\n  },\n  \"feedback_loops\": {\n    \"positive_feedback\": \"Self-oscillating delay at 99.9% feedback\",\n    \"semantic_saturation\": \"LFE-layer repeating the final word until it loses meaning\"\n  },\n  \"internal_insight\": {\n    \"no_return_insight\": \"В Блоке 13 мы внедрили 'Черную Дыру'. На 3:42 трека все фильтры закрываются до 20Гц, а Reverb-Wet уходит в 100%. Ты говорил, что слушатель должен почувствовать 'смерть звука', прежде чем мы дадим финальный аккорд. Это 'Ложная Концовка' для перезагрузки Ψ-Конденсации.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_13",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 13,
+      "block_name": "Event_Horizon_Matrix.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 110
+    }
+  },
+  "optimization_history": []
+}

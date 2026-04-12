@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4f855a08-f1c7-4e58-9411-caabac54739f",
+    "name": "BLOCK_BLOCK_BLOCK_141",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.762863",
+    "updated_at": "2026-04-12T01:27:52.762934",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_141"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_141",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"phase_jitter_logic\": {\n    \"action\": \"Randomly shifting Phase Offset (±5-15 deg) every 1/16 note\",\n    \"targets\": [\n      \"Hi-hats (Block 62)\",\n      \"Percussion-Fills (Block 70)\",\n      \"Arpeggiator-Tails (Block 72)\"\n    ],\n    \"mod_source\": \"Fractal-Noise (Brownian-Motion)\",\n    \"result\": \"The sense of 'Liquid-Positioning' where sound is never static\",\n    \"safety_rule\": \"Sum to mono check: Phase cancellation must not exceed -3dB.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_141",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_141",
+      "block_name": "Block_block_141",
+      "source": "producer-ai-base",
+      "original_index": 141
+    }
+  },
+  "optimization_history": []
+}

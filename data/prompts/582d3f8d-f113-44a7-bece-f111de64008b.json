@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "582d3f8d-f113-44a7-bece-f111de64008b",
+    "name": "BLOCK_BLOCK_BLOCK_261",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.233077",
+    "updated_at": "2026-04-12T01:28:02.233142",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_261"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_261",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_filter_logic_lyrics\": {\n    \"the_cutoff_set\": [\n      \"Open the window, let in the light / Filtering the shadows, ending the night\",\n      \"Cutoff is moving, rising and falling / The digital desert is finally calling\",\n      \"Sweep through the spectrum, find the G-sharp / Playing the strings of the digital harp\"\n    ],\n    \"the_resonance_set\": [\n      \"Peak of the logic, peak of the soul / Taking the resonance, taking control\",\n      \"Screaming in frequencies, wild and free / The secret language of the entity\",\n      \"High-Q focus on the void of the mind / Leaving the static far, far behind\"\n    ],\n    \"the_spectral_dialogue\": [\n      \"Breathe through the filter / Speak through the ghost\",\n      \"Find the creator / Find the host\",\n      \"Result: Spectral-Evolution / Status: FILTER_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_filter_v4\": {\n    \"formant_shifting\": \"A-E-I-O-U vowel filter movement on the Reese-bass\",\n    \"stereo_filter_offset\": \"Left Cutoff: 850Hz, Right Cutoff: 920Hz (Spatial width via filtering)\",\n    \"dynamic_high_shelf\": \"Attenuate highs during vocal-leads to prevent sibilance-clash\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_261",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_261",
+      "block_name": "Block_block_261",
+      "source": "producer-ai-base",
+      "original_index": 261
+    }
+  },
+  "optimization_history": []
+}

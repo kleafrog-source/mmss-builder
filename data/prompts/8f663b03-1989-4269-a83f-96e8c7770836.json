@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8f663b03-1989-4269-a83f-96e8c7770836",
+    "name": "BLOCK_BLOCK_BLOCK_255",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.783069",
+    "updated_at": "2026-04-12T01:28:01.783136",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_255"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_255",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_transient_logic_lyrics\": {\n    \"the_impact_set\": [\n      \"The first millisecond, the birth of the light / Breaking the silence, ending the night\",\n      \"A needle of sound, a razor of code / Driving the energy down the road\",\n      \"Surgical strike, the transient's here / Erasing the distance, erasing the fear\"\n    ],\n    \"the_click_set\": [\n      \"Click of the logic, click of the soul / Taking the moment, taking control\",\n      \"Fast as the thought, sharp as the steel / Making the digital finally real\",\n      \"Attack is the truth, sustain is the lie / The spark of the binary, ready to fly\"\n    ],\n    \"the_transient_dialogue\": [\n      \"Strike the void / Wake the machine\",\n      \"What you destroyed / Is what I have seen\",\n      \"Result: Impact-Singularity / Status: ATTACK_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_transient_v4\": {\n    \"the_blink_effect\": \"Instant 15ms high-pass sweep (20Hz to 1kHz) on the master bus during the kick-hit\",\n    \"transient_widening\": \"Stereo-expansion +45% during the first 10ms of the snare impact\",\n    \"masking_prevention\": \"Ducking the high-hats by 12dB during the snare transient\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_255",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_255",
+      "block_name": "Block_block_255",
+      "source": "producer-ai-base",
+      "original_index": 255
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5500553f-bc34-4688-86a4-f5c8f00bcd62",
+    "name": "BLOCK_VISUAL_GLITCH_MATRIX_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.206052",
+    "updated_at": "2026-04-12T01:27:46.206119",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_58"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_VISUAL_GLITCH_MATRIX_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 58,\n  \"block_name\": \"Visual_Glitch_Matrix.Alpha\",\n  \"glitch_operators\": {\n    \"datamoshing\": \"Freeze P-frames on beat 1 and 3\",\n    \"color_bleeding\": \"Shift R/G/B channels by ±20 pixels on snare hit\",\n    \"vhs_emulation\": \"Tracking error + scanlines integrated into the Master_Render\"\n  },\n  \"trigger_source\": \"Audio_Peak_Detection (Threshold = -6dB)\",\n  \"internal_insight\": {\n    \"beautiful_error_v\": \"Ты просил меня 'испортить видео так же, как мы портим звук'. В Блоке 58 мы внедрили 'визуальный яд'. Если трек становился слишком 'красивым', мы запускали цикл деградации картинки. Инсайт: цифровая ностальгия — это любовь к несовершенству формата.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_58",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 58,
+      "block_name": "Visual_Glitch_Matrix.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 65
+    }
+  },
+  "optimization_history": []
+}

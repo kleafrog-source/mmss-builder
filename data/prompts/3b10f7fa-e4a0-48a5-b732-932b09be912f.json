@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "3b10f7fa-e4a0-48a5-b732-932b09be912f",
+    "name": "BLOCK_BLOCK_BLOCK_245",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.052909",
+    "updated_at": "2026-04-12T01:28:01.052979",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_245"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_245",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_mid_side_lyrics\": {\n    \"the_center_set\": [\n      \"One point of truth, standing in the middle / Solving the logic, solving the riddle\",\n      \"Mono-soul, locked to the G-sharp core / Everything I am and everything more\",\n      \"Stay in the center, stay in the light / The anchor of the sound in the digital night\"\n    ],\n    \"the_side_set\": [\n      \"Expanding to the edges, expanding to the void / Finding the beauty that the center destroyed\",\n      \"Side-channel whispers, side-channel dreams / Flowing forever in the digital streams\",\n      \"Wider than the sky, wider than the fear / Floating in a space where nothing is near\"\n    ],\n    \"the_MS_dialogue\": [\n      \"Hold the core / Feel the wide\",\n      \"Open the door / Step inside\",\n      \"Result: Spatial-Precision / Status: MS_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_MS_v4\": {\n    \"the_depth_illusion\": \"Applying High-cut (4kHz) on the Mid-channel only for background pads (Pushing them back)\",\n    \"the_proximity_effect\": \"Boosting 2-5kHz on the Mid-channel of the vocal (Bringing it forward)\",\n    \"the_stereo_breath\": \"LFO-modulating the Side-gain (Rate: 1 bar) for a 'pumping' space effect\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_245",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_245",
+      "block_name": "Block_block_245",
+      "source": "producer-ai-base",
+      "original_index": 245
+    }
+  },
+  "optimization_history": []
+}

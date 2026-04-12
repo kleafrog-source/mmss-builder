@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d9bf002f-2b19-421a-aa07-4e02e8d2c1f6",
+    "name": "BLOCK_BLOCK_BLOCK_165",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.028795",
+    "updated_at": "2026-04-12T01:27:55.028890",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_165"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_165",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"timbral_mutations\": {\n    \"crystallization\": \"Smooth sine morphing into sharp, 8-bit saw waves\",\n    \"liquefaction\": \"Sharp transients melting into filtered, resonant smears\",\n    \"vaporization\": \"Solid leads breaking into granular, high-freq noise clouds\",\n    \"solidification\": \"Whispering textures hardening into distorted, mid-range growls\",\n    \"inversion_morph\": \"Flipping all filter and resonance parameters to their opposites\"\n  },\n  \"trigger\": \"Applied during 'Narrative-Evolution' (Block 47) every 32 bars.\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_165",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_165",
+      "block_name": "Block_block_165",
+      "source": "producer-ai-base",
+      "original_index": 165
+    }
+  },
+  "optimization_history": []
+}

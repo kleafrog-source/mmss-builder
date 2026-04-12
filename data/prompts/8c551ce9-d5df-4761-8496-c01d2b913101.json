@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8c551ce9-d5df-4761-8496-c01d2b913101",
+    "name": "BLOCK_BLOCK_BLOCK_263",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.382960",
+    "updated_at": "2026-04-12T01:28:02.383023",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_263"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_263",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_delay_logic_lyrics\": {\n    \"the_echo_set\": [\n      \"Echoes of silence, calling the name / Playing the digital, recursive game\",\n      \"Repeat the error, repeat the light / Through the long tunnel of the digital night\",\n      \"Time is a circle, time is a loop / Trapped in the frequency, trapped in the group\"\n    ],\n    \"the_feedback_set\": [\n      \"Feed the machine, feed it again / Washing the memory, washing the brain\",\n      \"Feedback rising, higher and higher / Walking the edge of the digital wire\",\n      \"Regeneration: zero to one / The echo of everything we have begun\"\n    ],\n    \"the_temporal_dialogue\": [\n      \"Listen to the past / Hear the future breath\",\n      \"Nothing's gonna last / In the digital death\",\n      \"Result: Temporal-Immersion / Status: DELAY_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_delay_v4\": {\n    \"pre_delay_vocal\": \"25ms (Separating lead from the room-tone)\",\n    \"reverse_reverb_swells\": \"Duration 250ms, triggered by Snare (The 'Suck-in' effect)\",\n    \"spectral_freeze_hold\": \"Manual trigger @ bar 16 (Infinite G# drone)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_263",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_263",
+      "block_name": "Block_block_263",
+      "source": "producer-ai-base",
+      "original_index": 263
+    }
+  },
+  "optimization_history": []
+}

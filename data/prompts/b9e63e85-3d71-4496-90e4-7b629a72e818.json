@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "b9e63e85-3d71-4496-90e4-7b629a72e818",
+    "name": "BLOCK_BLOCK_BLOCK_177",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.865812",
+    "updated_at": "2026-04-12T01:27:55.865878",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_177"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_177",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"harmonic_excitation_spec\": {\n    \"target_freqs\": [\n      \"3kHz (The Presence)\",\n      \"12kHz (The Fractal-Air)\",\n      \"400Hz (The Warmth)\"\n    ],\n    \"methods\": {\n      \"excitation\": \"Parallel saturation (Tube-style) at high-frequencies\",\n      \"spectral_shaper\": \"Dynamic EQ boosting only transient peaks\",\n      \"rule\": \"Avoid 2kHz boost (to prevent 'ear-fatigue').\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_177",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_177",
+      "block_name": "Block_block_177",
+      "source": "producer-ai-base",
+      "original_index": 177
+    }
+  },
+  "optimization_history": []
+}

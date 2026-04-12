@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "bb39efd9-e380-4a64-8a68-93ec67a53623",
+    "name": "BLOCK_LFE_CORE_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:50.183087",
+    "updated_at": "2026-04-12T01:27:50.183141",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_7"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_LFE_CORE_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 7,\n  \"block_name\": \"LFE_Core_v1\",\n  \"core_principle\": \"P_survive = (Novelty × 0.4 + Coherence × 0.3 + Emotional_Impact × 0.3) × Mode_Fusion\",\n  \"activation_sequence\": [\n    \"ANALYZE: lyrics_strength > 0.7\",\n    \"SELECT: placement_modes from fractal_library\",\n    \"APPLY: temporal_shift δt\"\n  ],\n  \"lyric_to_sound_mapping\": {\n    \"phoneme_vowel_A\": \"Low-Pass Filter Cutoff (100Hz -> 5kHz)\",\n    \"phoneme_consonant_T\": \"Trigger: Granular Glitch Burst\",\n    \"semantic_weight_dark\": \"Sub-harmonic saturation +3dB\"\n  },\n  \"internal_insight\": {\n    \"word_as_trigger\": \"Твой инсайт: слова не должны 'петься', они должны 'случаться'. В Блоке 7 мы настроили систему так, чтобы каждое слово 'Смерть' в лирике вызывало моментальное падение Gain на -60дБ на 0.1 сек (черная дыра в звуке). Это создавало физическое ощущение веса слов.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_7",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 7,
+      "block_name": "LFE_Core_v1",
+      "source": "producer-ai-base",
+      "original_index": 116
+    }
+  },
+  "optimization_history": []
+}

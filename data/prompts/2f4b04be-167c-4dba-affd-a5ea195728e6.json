@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2f4b04be-167c-4dba-affd-a5ea195728e6",
+    "name": "BLOCK_BLOCK_BLOCK_283",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.953176",
+    "updated_at": "2026-04-12T01:28:03.953260",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_283"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_283",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"harmonic_bias\": \"Locrian Mode (♭2, ♭5)\",\n  \"dissonance_ratio\": 0.35,\n  \"panning\": \"Asymmetric, randomized jitter\",\n  \"reverb\": \"Large, cold, 80% damping\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_283",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_283",
+      "block_name": "Block_block_283",
+      "source": "producer-ai-base",
+      "original_index": 283
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "296d076f-1c01-4668-bcf4-0412e360f05b",
+    "name": "BLOCK_BLOCK_BLOCK_125",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:50.878730",
+    "updated_at": "2026-04-12T01:27:50.878788",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_125"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_125",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"latent_keys_v5\": {\n    \"key_01_abs_zero\": \"Force zero reverb tail, maximum transient snap, 195 BPM (The 'Vacuum' feel)\",\n    \"key_02_phi_spiral\": \"Force Fibonacci rhythm layering (1,2,3,5,8), 172.5 BPM (The 'Natural' chaos)\",\n    \"key_03_neuro_gothic\": \"Force Phrygian-Dominant, 12-bit crush, cathedral space (The 'Mathematical' dread)\",\n    \"key_04_liquid_data\": \"Force Spectral-morphing, 4D-vectoring (Block 17), smooth transients (The 'Flow' state)\",\n    \"usage\": \"Injected into [SOUND_PROMPT] to bypass standard aesthetic filters.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_125",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_125",
+      "block_name": "Block_block_125",
+      "source": "producer-ai-base",
+      "original_index": 125
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4843dd0d-8248-4b5e-ad49-9106e1c26fba",
+    "name": "BLOCK_BLOCK_BLOCK_221",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.833414",
+    "updated_at": "2026-04-12T01:27:58.833526",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_221"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_221",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"arpeggiator_spec\": {\n    \"mode\": \"Phrygian_Dominant\",\n    \"scale_degrees\": [\n      1,\n      \"b2\",\n      3,\n      4,\n      5,\n      \"b6\",\n      \"b7\"\n    ],\n    \"rhythm_grid\": \"Polyrhythmic (5/8 over 4/4)\",\n    \"timbre_profile\": {\n      \"oscillator\": \"Wavetable (Serum-style: 'Acid-Squeltch')\",\n      \"filter_cutoff\": \"Envelope-following with high Resonance (Q > 0.8)\",\n      \"fx_chain\": [\n        \"Bitcrusher(4-bit)\",\n        \"Chorus(wide)\",\n        \"Delay(dotted-eighth)\"\n      ]\n    },\n    \"bpm_range\": \"170-195 BPM (High-Velocity Flow)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_221",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_221",
+      "block_name": "Block_block_221",
+      "source": "producer-ai-base",
+      "original_index": 221
+    }
+  },
+  "optimization_history": []
+}

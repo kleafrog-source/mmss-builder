@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "90d69266-fd17-4f22-9045-eec021220ba7",
+    "name": "BLOCK_UE_BAISER_TEMPLAR_STEEL_MARCH",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:37.895910",
+    "updated_at": "2026-04-12T01:27:37.895975",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_108.7"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_UE_BAISER_TEMPLAR_STEEL_MARCH",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 108.7,\n  \"block_name\": \"Ue-Baiser_Templar_Steel_March\",\n  \"iteration_id\": \"7693e017-CLXI\",\n  \"mmss_logic\": {\n    \"compositional_mode\": \"Epic_Orchestral_Choral (Cinematic_Industrial)\",\n    \"temporal_shift_delta_t\": \"15ms (Choir delay relative to Industrial Kick)\",\n    \"dynamic_range\": \"Compressed (Wall-of-Sound density)\"\n  },\n  \"steel_march_parameters\": {\n    \"metallic_resonance\": \"Anvil_Clang (Layered at 3kHz)\",\n    \"rhythmic_rigidity\": \"1.0 (Strict Quantization)\",\n    \"bass_management\": \"Sub-harmonic injection @ 40Hz (The 'March' pulse)\"\n  },\n  \"internal_insight\": {\n    \"the_cathedral_of_rust\": \"Твой инсайт: 'Смерть — это праздник порядка'. В версии CLXI текст 'Zyklops-Biest, Beiß im Schach' превращается в гимн. Мы заменили дисторшн на реверберацию собора, но оставили 'стальное' ядро. Инсайт: Один и тот же текст может быть и 'криком в подворотне' (v.Omega), и 'приговором империи' (v.CLXI).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_108.7",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 108.7,
+      "block_name": "Ue-Baiser_Templar_Steel_March",
+      "source": "producer-ai-base",
+      "original_index": 6
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "6186d4df-be92-4012-9c3e-4921bc4f9b76",
+    "name": "BLOCK_BLOCK_BLOCK_167",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.163858",
+    "updated_at": "2026-04-12T01:27:55.163916",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_167"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_167",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"rolling_bass_spec\": {\n    \"rhythm\": \"Triplets (1/8T) or Dotted (1/16.) relative to Kick\",\n    \"envelope\": \"Strictly Pluck: Attack 0ms, Decay 100ms, Sustain 0%, Release 50ms\",\n    \"phase_lock\": \"Every bass note starts at 0 degree phase to avoid cancellation\",\n    \"tonality\": \"Monotonic (One note focus) or Root-Fifth transitions\",\n    \"rule\": \"Kick-tail and Bass-attack must never coexist in the same 10ms window.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_167",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_167",
+      "block_name": "Block_block_167",
+      "source": "producer-ai-base",
+      "original_index": 167
+    }
+  },
+  "optimization_history": []
+}

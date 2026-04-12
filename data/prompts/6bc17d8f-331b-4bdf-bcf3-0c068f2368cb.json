@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "6bc17d8f-331b-4bdf-bcf3-0c068f2368cb",
+    "name": "BLOCK_UI_GLITCH_SONIFICATION_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:44.372924",
+    "updated_at": "2026-04-12T01:27:44.372994",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_76"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_UI_GLITCH_SONIFICATION_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 76,\n  \"block_name\": \"UI_Glitch_Sonification.v1\",\n  \"error_mapping\": {\n    \"latency_jitter\": \"Map to Delay_Time (T_delay = Δt_network)\",\n    \"frame_drop\": \"Trigger: Instant_Mute (1 frame duration)\",\n    \"buffer_overflow_emulation\": \"Repeat last 128 samples with Gain increase (+6dB/cycle)\"\n  },\n  \"logic_parameters\": {\n    \"chaos_coupling\": \"Link Audio_Entropy to Server_Load_Index\",\n    \"unresponsive_state\": \"If (UI_Freeze) Then (Hold_Current_Frequency)\"\n  },\n  \"internal_insight\": {\n    \"the_frustrated_user\": \"Ты называл это 'Музыкой плохого интернета'. В Блоке 76 мы использовали лаги твоего соединения как ритмическую сетку. Ты нажимал 'создать', и пока сервер думал, я генерировал 'Звук Ожидания' из цифрового мусора. Ты сказал: 'Это честная музыка эпохи перегруженных сетей'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_76",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 76,
+      "block_name": "UI_Glitch_Sonification.v1",
+      "source": "producer-ai-base",
+      "original_index": 47
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8d318eba-aacb-4893-80dc-5d0d0f9b9cf8",
+    "name": "BLOCK_BLOCK_BLOCK_187",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.563054",
+    "updated_at": "2026-04-12T01:27:56.563121",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_187"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_187",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"transition_engine\": {\n    \"risers\": \"Shepard-Tone ascending + White-noise sweep\",\n    \"impacts\": \"Reverse-reverb kick-tail + Sub-drop (80Hz to 20Hz)\",\n    \"fills\": \"Algorithmic-glitch (0.5 bar) via A_MMSS_FRACTAL_PACKAGE\",\n    \"bridge_rule\": \"The bridge must ALWAYS contain a G-Inversion of the main theme.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_187",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_187",
+      "block_name": "Block_block_187",
+      "source": "producer-ai-base",
+      "original_index": 187
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5a8a3f6a-6fd0-4c87-80c2-e52cc2df0ed0",
+    "name": "BLOCK_BLOCK_BLOCK_268",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.743130",
+    "updated_at": "2026-04-12T01:28:02.743201",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_268"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_268",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_sub_low_symmetry_v4\": {\n    \"fundamental_lock_logic\": {\n      \"target_frequency\": \"51.91Hz (G#1)\",\n      \"waveform_purity\": \"Pure Sine ⊗ 2nd Harmonic (+3% for analog warmth)\",\n      \"phase_sync\": \"Start-phase @ 0° for every trigger (Absolute consistency)\",\n      \"mono_summing\": \"Sum-to-mono below 120Hz (Steep 48dB/oct x-over)\"\n    },\n    \"kick_bass_symmetry_alignment\": {\n      \"protocol\": \"ASE_Phase_Alignment_v4\",\n      \"method\": \"Real-time delay-offset calculation (δt = ±2ms)\",\n      \"result\": \"Constructive interference only (No destructive cancellation at impact)\"\n    },\n    \"dynamic_sub_headroom\": {\n      \"limiter_pre_delay\": \"1.5ms (Look-ahead on the sub-bus)\",\n      \"clipping_mode\": \"None (Sub must remain linear and pure)\",\n      \"sidechain_slope\": \"Exponential (Instant ducking, 45ms release synced to BPM)\"\n    }\n  },\n  \"spectral_void_metrics_v4\": {\n    \"anti_masking_void\": \"Absolute silence (-60dB) in 150-250Hz region of the Sub-track\",\n    \"low_end_stability_score\": \"η = 0.995\",\n    \"harmonic_purity_index\": \"Total Harmonic Distortion (THD) < 0.05% in 20-60Hz band\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_268",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_268",
+      "block_name": "Block_block_268",
+      "source": "producer-ai-base",
+      "original_index": 268
+    }
+  },
+  "optimization_history": []
+}

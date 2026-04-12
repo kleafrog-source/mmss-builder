@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f0d4bf81-46f2-4adf-8e6e-c769e19f56de",
+    "name": "BLOCK_BLOCK_BLOCK_258",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.033137",
+    "updated_at": "2026-04-12T01:28:02.033201",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_258"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_258",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_wavetable_stacking_v4\": {\n    \"oscillator_architecture\": {\n      \"osc_1_core\": \"Monster_7, Pos 45, Unison 7, Detune 0.08, Phase 0 (The Solid Foundation)\",\n      \"osc_2_texture\": \"Spectral_Orca, Pos 12, Unison 5, Detune 0.15, Phase 90° (The Fractal Dust)\",\n      \"osc_3_sub\": \"Sine_Pure, Unison 1 (Absolute Mono), Phase 0 (The fundamental 51.9Hz)\",\n      \"osc_4_noise\": \"Industrial_Hum / Metal_Static, Level -18dB (The Analog Grit)\"\n    },\n    \"stacking_logic_v4\": {\n      \"detune_curve\": \"Exponential (Center voices tight, outer voices wide)\",\n      \"stereo_spread\": \"100% (Linear pan distribution for unison voices)\",\n      \"phase_randomization\": \"0% (Absolute phase-lock for maximum impact coherence)\"\n    },\n    \"harmonic_reinforcement\": \"Applying FM-synthesis (Osc_2 modulates Osc_1) at Index 0.15 for 'metallic edge'\"\n  },\n  \"spectral_density_metrics_v4\": {\n    \"fundamental_to_harmonic_ratio\": \"1.0 : 0.65\",\n    \"spectral_flatness_index\": \"η = 0.72 (High-density coverage across 100Hz - 18kHz)\",\n    \"phase_cancellation_risk\": \"None (Verified via ASE_Symmetry_Check)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_258",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_258",
+      "block_name": "Block_block_258",
+      "source": "producer-ai-base",
+      "original_index": 258
+    }
+  },
+  "optimization_history": []
+}

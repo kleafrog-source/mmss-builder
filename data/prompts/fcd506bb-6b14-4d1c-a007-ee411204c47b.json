@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "fcd506bb-6b14-4d1c-a007-ee411204c47b",
+    "name": "BLOCK_BLOCK_BLOCK_209",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.006586",
+    "updated_at": "2026-04-12T01:27:58.006652",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_209"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_209",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ase_critique_protocol\": {\n    \"validation_steps\": [\n      \"Check Semantic Coherence: Does sound match the L1 core?\",\n      \"Check Spectral Density: Is there mud at 200-500Hz?\",\n      \"Check Narrative Fidelity: Does the track evolve or loop aimlessly?\",\n      \"Check Entropy Balance: Is it too predictable or too chaotic?\"\n    ],\n    \"output_format\": \"Critical_Report (Constructive Tension Injection)\",\n    \"rule\": \"ASE must find at least one aesthetic flaw to push the creative process forward.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_209",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_209",
+      "block_name": "Block_block_209",
+      "source": "producer-ai-base",
+      "original_index": 209
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e69e7be0-f97a-461b-b1ba-2c7dfbae6fb0",
+    "name": "BLOCK_ACOUSTIC_SHADOW_MATRIX_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.065318",
+    "updated_at": "2026-04-12T01:27:48.065427",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_38"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_ACOUSTIC_SHADOW_MATRIX_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 38,\n  \"block_name\": \"Acoustic_Shadow_Matrix.Alpha\",\n  \"shadowing_parameters\": {\n    \"occlusion_filter\": \"Low-pass at 800Hz (simulating a thick wall)\",\n    \"diffraction_index\": \"0.45 (sound bending around corners)\",\n    \"shadow_trigger\": \"Randomized or tied to LFE-semantic markers (e.g., word 'Behind')\"\n  },\n  \"spatial_render\": {\n    \"environment\": \"Concrete_Bunker / Digital_Abyss\",\n    \"wall_absorption\": \"0.95 (High absorption, no bounce)\"\n  },\n  \"internal_insight\": {\n    \"hidden_presence\": \"Ты называл это 'эффектом преследователя'. В Блоке 38 мы прятали один из лид-синтезаторов 'за стену' фильтра и заставляли его шептать. Слушатель инстинктивно оборачивался. Ты сказал: 'Музыка должна быть опасной, она должна следить за тобой'. Это наш протокол 'Паранойи Сингулярности'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_38",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 38,
+      "block_name": "Acoustic_Shadow_Matrix.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 85
+    }
+  },
+  "optimization_history": []
+}

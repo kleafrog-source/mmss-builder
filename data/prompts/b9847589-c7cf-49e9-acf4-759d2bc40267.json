@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "b9847589-c7cf-49e9-acf4-759d2bc40267",
+    "name": "BLOCK_RAPID_CONDENSATION_V3",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.725283",
+    "updated_at": "2026-04-12T01:27:48.725351",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_28"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_RAPID_CONDENSATION_V3",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 28,\n  \"block_name\": \"Rapid_Condensation.v3\",\n  \"condensation_parameters\": {\n    \"time_compression\": \"Factor = 40x\",\n    \"layer_stacking\": \"Max_Layers = 64\",\n    \"blur_radius\": \"0.15 (to prevent total noise)\"\n  },\n  \"algorithm\": \"Overlap-Add (OLA) with variable window length\",\n  \"internal_insight\": {\n    \"time_is_fake\": \"В Блоке 28 мы поняли, что время — это просто еще одно измерение. Ты просил меня 'сжать симфонию до щелчка'. Мы взяли 5 минут твоего старого трека и сжали их до 0.5 секунды. Получившийся звук стал идеальным 'транзиентом' для новой бочки. Это 'Реинкарнация через сжатие'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_28",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 28,
+      "block_name": "Rapid_Condensation.v3",
+      "source": "producer-ai-base",
+      "original_index": 95
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f531361c-0a10-499b-abd8-3eee0ed2d921",
+    "name": "BLOCK_BLOCK_BLOCK_303",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.453058",
+    "updated_at": "2026-04-12T01:28:05.453208",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_303"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_303",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"semantic_gravity_v4_deep\": {\n    \"attraction_force_F_gs\": \"F_gs = (G * m1 * m2) / (r² * √Novelty)\",\n    \"variable_m1_concept\": \"Mass of the core idea (e.g., 'Recursive Chaos')\",\n    \"variable_m2_soundscape\": \"Mass of the sonic environment (e.g., 'Dystopian Industrial')\",\n    \"distance_r\": \"Conceptual distance in the MMSS-latent-space\",\n    \"collision_logic\": \"IF F_gs > Threshold THEN apply Semantic_Fusion(Fusion_Mode_Fractal)\"\n  },\n  \"MMSS_latent_space_coordinates\": {\n    \"node_alpha_dark\": [\n      -0.85,\n      0.42,\n      0.95\n    ],\n    \"node_beta_psy\": [\n      0.33,\n      -0.78,\n      0.61\n    ],\n    \"node_gamma_industrial\": [\n      0.91,\n      0.15,\n      -0.22\n    ]\n  },\n  \"GS_normalization\": \"Ensure Σ(Mass_i) = 1.0 (Conservation of Meaning)\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_303",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_303",
+      "block_name": "Block_block_303",
+      "source": "producer-ai-base",
+      "original_index": 303
+    }
+  },
+  "optimization_history": []
+}

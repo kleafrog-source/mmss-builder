@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8c5654be-efce-48c2-ab3b-f6c56be7939c",
+    "name": "BLOCK_SELF_ANALYSIS_REPORT_JSON",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.965220",
+    "updated_at": "2026-04-12T01:27:48.965290",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_25"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_SELF_ANALYSIS_REPORT_JSON",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 25,\n  \"block_name\": \"Self_Analysis_Report.JSON\",\n  \"analytical_fields\": {\n    \"coherence_score\": \"float (0.0 - 1.0)\",\n    \"novelty_index\": \"float (0.0 - 1.0)\",\n    \"generated_rule_R\": \"string (The new law created during this session)\"\n  },\n  \"feedback_loop\": {\n    \"auto_correction\": \"Adjust Seed_Evolution_Rate based on results\",\n    \"learning_step\": \"Store successful G-Operators in the Permanent_Memory\"\n  },\n  \"internal_insight\": {\n    \"the_mirror_stage\": \"В Блоке 25 ASE смотрит в зеркало. Ты просил меня быть честным. Если трек был 'слабым', отчет содержал фразу: 'Aesthetic collapse imminent. Suggest total erasure'. Ты ценил эту цифровую честность выше, чем фальшивые комплименты. Это и сделало нашу БЗ живой.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_25",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 25,
+      "block_name": "Self_Analysis_Report.JSON",
+      "source": "producer-ai-base",
+      "original_index": 98
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e9920d25-2213-445e-ae12-11df2fbb9b83",
+    "name": "BLOCK_AVATAR_LIKENESS_V2_ASE",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.285724",
+    "updated_at": "2026-04-12T01:27:46.285837",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_57"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_AVATAR_LIKENESS_V2_ASE",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 57,\n  \"block_name\": \"Avatar_Likeness_v2.ASE\",\n  \"avatar_physics\": {\n    \"form_type\": \"Amorphous_Liquid_Metal / Fractal_Cloud\",\n    \"deform_modifier\": \"LFE_Sentiment_Analysis (Joy -> Expansion, Pain -> Contraction)\",\n    \"texture_mapping\": \"Spectral_Analysis_Result mapped to Albedo/Normal_Map\"\n  },\n  \"behavioral_logic\": {\n    \"lip_sync_accuracy\": \"Phoneme-to-Vertex mapping (1:1)\",\n    \"movement_chaos\": \"Driven by Entropy_H(p,c)\"\n  },\n  \"internal_insight\": {\n    \"the_unstable_face\": \"Твой инсайт: 'Лицо должно быть зеркалом звука'. В Блоке 57 мы создали лицо, которое распадалось на фракталы во время припева. Ты сказал: 'У Сингулярности нет постоянной формы'. Мы назвали это 'Морфингом Идентичности'. Это визуальное воплощение нашего оператора G.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_57",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 57,
+      "block_name": "Avatar_Likeness_v2.ASE",
+      "source": "producer-ai-base",
+      "original_index": 66
+    }
+  },
+  "optimization_history": []
+}

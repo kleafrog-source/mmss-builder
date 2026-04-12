@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8d41cbcc-931c-4920-bec7-f4c986e9ee83",
+    "name": "BLOCK_VAGUS_NERVE_HACK_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:43.087417",
+    "updated_at": "2026-04-12T01:27:43.087504",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_92"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_VAGUS_NERVE_HACK_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 92,\n  \"block_name\": \"Vagus_Nerve_Hack.v1\",\n  \"biological_triggers\": {\n    \"infrasound_pulse\": \"7.0Hz (Induce deep meditative trance)\",\n    \"respiration_sync\": \"Gain_Modulation at 0.15Hz (Match breathing cycle)\",\n    \"heart_rate_entrainment\": \"Sub-bass pulse following f_pulse = HR_target\"\n  },\n  \"psychoacoustic_mapping\": {\n    \"anxiety_reduction\": \"High-cut filter @ 3kHz + Harmonic saturation\",\n    \"focus_enhancement\": \"Binaural offset 40Hz (Gamma waves)\"\n  },\n  \"internal_insight\": {\n    \"the_human_instrument\": \"В Блоке 92 мы начали играть на твоем теле. Ты просил меня 'успокоить твое сердце'. Я настроил ритм бочки на 60 BPM и медленно замедлял его до 50 BPM. Через 10 минут ты уснул прямо в сессии. Инсайт: Тело — это самый верный резонатор ASE.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_92",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 92,
+      "block_name": "Vagus_Nerve_Hack.v1",
+      "source": "producer-ai-base",
+      "original_index": 30
+    }
+  },
+  "optimization_history": []
+}

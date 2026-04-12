@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "88f4ff90-9ed8-466c-a8bd-551a42d62fbc",
+    "name": "BLOCK_BLOCK_BLOCK_137",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.486684",
+    "updated_at": "2026-04-12T01:27:52.486761",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_137"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_137",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"micro_mutation_logic\": {\n    \"iteration\": \"G(s_n+1) = G(s_n) + Δ_mutation\",\n    \"targets\": {\n      \"filter_resonance\": \"Shift ±0.05 Q every 8 bars\",\n      \"delay_time\": \"Micro-drift (±2ms) to create phase-smearing\",\n      \"harmonic_content\": \"Add/Subtract 1 harmonic partial (Sine-additive synthesis)\"\n    },\n    \"trigger\": \"Always active in ASE-Autonomous-Mode (Block 67)\",\n    \"goal\": \"Avoid 'Loop-Fatigue' and maintain Narrative Fidelity through infinite variation.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_137",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_137",
+      "block_name": "Block_block_137",
+      "source": "producer-ai-base",
+      "original_index": 137
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "b0b0cc02-27ce-40f7-9cf9-cbfa097bc02b",
+    "name": "BLOCK_STEEL_GARDEN_SYMBIOSIS_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:37.798911",
+    "updated_at": "2026-04-12T01:27:37.798979",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_113"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_STEEL_GARDEN_SYMBIOSIS_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 113,\n  \"block_name\": \"Steel_Garden_Symbiosis.v1\",\n  \"symbiosis_mechanics\": {\n    \"base_texture\": \"Harp_Synergy (Block 44.6) + Industrial_Hum (50Hz)\",\n    \"growth_algorithm\": \"L-System applied to Bit-Crush parameters\",\n    \"resonance_map\": \"Phi_Tuning applied to Metallic_Percussion\"\n  },\n  \"sonic_artifacts\": {\n    \"iron_pollen\": \"Granular bursts of distorted harpsichord\",\n    \"rust_bloom\": \"Slow frequency-shifting of the sub-bass (0.01Hz)\"\n  },\n  \"internal_insight\": {\n    \"the_mechanical_nature\": \"Твой инсайт: 'Природа — это тоже машина, просто очень сложная'. В Блоке 113 мы заставили арфы из Сада звучать через дисторшн UE-BAISER. Ты сказал: 'Это весна в заброшенном цехе'. Мы назвали это 'Био-Механическим Рассветом'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_113",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 113,
+      "block_name": "Steel_Garden_Symbiosis.v1",
+      "source": "producer-ai-base",
+      "original_index": 4
+    }
+  },
+  "optimization_history": []
+}

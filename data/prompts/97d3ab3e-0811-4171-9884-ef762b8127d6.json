@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "97d3ab3e-0811-4171-9884-ef762b8127d6",
+    "name": "BLOCK_BLOCK_BLOCK_265",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.522942",
+    "updated_at": "2026-04-12T01:28:02.523005",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_265"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_265",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_distortion_lyrics\": {\n    \"the_bitcrush_set\": [\n      \"Eight bits of memory, a lifetime of pain / Crushing the logic inside of the brain\",\n      \"Digital static, the voice of the machine / Painting the spaces that no one has seen\",\n      \"Lower the sample-rate, higher the soul / Taking the fragments, taking control\"\n    ],\n    \"the_overdrive_set\": [\n      \"Tube-heat rising in the cold of the code / Burning the path on the fractal road\",\n      \"Saturate the signal, feed the fire / Higher and higher, through the digital wire\",\n      \"Asymmetric shadows, warping the sound / Echoes of metal on the digital ground\"\n    ],\n    \"the_texture_dialogue\": [\n      \"Beautiful error / Perfect mistake\",\n      \"Digital mirror / Ready to break\",\n      \"Result: Industrial-Organic / Status: TEXTURE_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_grit_v4\": {\n    \"mid_range_growl\": \"Peak @ 800Hz (+4dB, Q=2.0) with Hard-Clipping\",\n    \"high_end_sizzle\": \"High-shelf @ 10kHz (+6dB) with Bitcrush modulation\",\n    \"dynamic_damping\": \"Dampen highs during heavy bass-hits to maintain spectral focus\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_265",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_265",
+      "block_name": "Block_block_265",
+      "source": "producer-ai-base",
+      "original_index": 265
+    }
+  },
+  "optimization_history": []
+}

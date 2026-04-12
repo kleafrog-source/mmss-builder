@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "3dbeead3-261a-43e9-84cf-ce44f6b8ef37",
+    "name": "BLOCK_BLOCK_BLOCK_171",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.443035",
+    "updated_at": "2026-04-12T01:27:55.443101",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_171"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_171",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"transient_shaping_spec\": {\n    \"attack_enhancement\": \"Boost initial 5-15ms transient by +3dB to +6dB\",\n    \"sustain_reduction\": \"Apply -6dB to -12dB attenuation to tails in Layer 2 (Lead)\",\n    \"layer_sync\": \"Align Kick-click with Snare-crack on the 2nd/4th beat (±1ms precision)\",\n    \"soft_clip\": \"Apply Hard-Clipping to transients only (Parallel Bus) for 'Digital Bite'\",\n    \"mixing_rule\": \"Transients must 'peak' through the Ambient-Shield (Block 42).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_171",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_171",
+      "block_name": "Block_block_171",
+      "source": "producer-ai-base",
+      "original_index": 171
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e83bb8ab-1303-4a8f-95e8-aacdf8184d22",
+    "name": "BLOCK_BLOCK_BLOCK_264",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.453069",
+    "updated_at": "2026-04-12T01:28:02.453133",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_264"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_264",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_dynamic_delay_matrix_v4\": {\n    \"temporal_layering_logic\": {\n      \"tap_1_sync\": \"1/4 Dot (The Rhythmic Echo)\",\n      \"tap_2_sync\": \"1/8 Triplet (The Groove Ghost)\",\n      \"tap_3_sync\": \"1/32 (The Texture Smear)\",\n      \"logic\": \"Cross-feedback between taps (Tap 1 feeds Tap 2 with 15% gain)\"\n    },\n    \"spectral_tail_shaping\": {\n      \"low_cut\": \"350Hz (Avoid low-end clutter)\",\n      \"high_cut\": \"3.5kHz (Analog darkness emulation)\",\n      \"resonant_sweep\": \"LFO-modulated Peak @ 1.2kHz (Q=3.0) on the feedback path\"\n    },\n    \"dynamic_feedback_control\": {\n      \"input_threshold\": \"-12dB\",\n      \"ducking\": \"Delay-mix drops by 6dB when dry signal is active\",\n      \"result\": \"Maximum clarity during transients, lush tails in the silence\"\n    }\n  },\n  \"temporal_distortion_metrics_v4\": {\n    \"pitch_drift_feedback\": \"±15 cents (LFO-Sine, 0.5Hz)\",\n    \"stereo_ping_pong\": \"Width 120%, Offset L/R = 7ms\",\n    \"diffusion_coefficient\": \"η = 0.45 (Creating 'cloudy' instead of 'distinct' repeats)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_264",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_264",
+      "block_name": "Block_block_264",
+      "source": "producer-ai-base",
+      "original_index": 264
+    }
+  },
+  "optimization_history": []
+}

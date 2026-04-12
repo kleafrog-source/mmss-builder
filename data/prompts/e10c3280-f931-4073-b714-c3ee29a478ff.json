@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e10c3280-f931-4073-b714-c3ee29a478ff",
+    "name": "BLOCK_BLOCK_BLOCK_154",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.792881",
+    "updated_at": "2026-04-12T01:27:53.792941",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_154"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_154",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"geometric_fills_spec\": {\n    \"logic\": \"Stochastic distribution of 1/64 and 1/32 notes\",\n    \"rhythm_shaper\": {\n      \"acceleration\": \"Gradual decrease of Δt between hits (The 'Bouncing Ball' effect)\",\n      \"deceleration\": \"Gradual increase of Δt (The 'Collapse' effect)\",\n      \"swing\": \"Non-linear swing (65% to 45% back and forth)\"\n    },\n    \"timbre\": \"Short FM-clicks + 8-bit noise + Reverse-snare-tails\",\n    \"spatial\": \"Hard-left to Hard-right ping-pong (Speed: 1/16)\",\n    \"rule\": \"Fills must be the point of maximum Entropy H(p,c).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_154",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_154",
+      "block_name": "Block_block_154",
+      "source": "producer-ai-base",
+      "original_index": 154
+    }
+  },
+  "optimization_history": []
+}

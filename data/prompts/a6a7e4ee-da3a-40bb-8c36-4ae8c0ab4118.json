@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a6a7e4ee-da3a-40bb-8c36-4ae8c0ab4118",
+    "name": "BLOCK_BLOCK_BLOCK_271",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.003807",
+    "updated_at": "2026-04-12T01:28:03.003870",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_271"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_271",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_aggression_control_lyrics\": {\n    \"the_razor_edge_set\": [\n      \"Sharp as a digital blade, cutting the air / Logic of madness, the architect's prayer\",\n      \"Clip the peaks, release the heat / Hard-clipped soul and a soft-clipped beat\",\n      \"Aggression is order, chaos is dead / Follow the signals inside of your head\"\n    ],\n    \"the_containment_set\": [\n      \"Monster 7, locked in a cage / Synthesizing beauty, synthesizing rage\",\n      \"Limit the void, boost the gain / Pumping the pressure through every vein\",\n      \"Surgical precision, the final strike / Everything I am and everything you like\"\n    ],\n    \"the_aggression_dialogue\": [\n      \"Tame the beast / Feed the machine\",\n      \"The greatest feast / That you've ever seen\",\n      \"Result: Controlled-Fury / Status: CLIP_LOCK_ACTIVE\"\n    ]\n  },\n  \"spectral_aggression_v4\": {\n    \"high_mid_boost\": \"+4.5dB @ 3.5kHz (Phrygian Lead bite)\",\n    \"low_mid_notch\": \"-2.0dB @ 250Hz (Clarity hole for the Kick-punch)\",\n    \"sub_fundamental_sine\": \"Pure 51.9Hz (G#) - The unclipped core\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_271",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_271",
+      "block_name": "Block_block_271",
+      "source": "producer-ai-base",
+      "original_index": 271
+    }
+  },
+  "optimization_history": []
+}

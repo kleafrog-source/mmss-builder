@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "549f31ea-3b77-4d00-9e27-f88093edacc0",
+    "name": "BLOCK_TEMPORAL_DISPLACEMENT_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:50.042921",
+    "updated_at": "2026-04-12T01:27:50.043032",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_10"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_TEMPORAL_DISPLACEMENT_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 10,\n  \"block_name\": \"Temporal_Displacement.v1\",\n  \"time_logic\": {\n    \"micro_timing_jitter\": \"Random offset ±15ms for 'Human' feel\",\n    \"temporal_fold\": \"Playing the end of the phrase 50ms before the start\",\n    \"rhythm_deconstruction\": \"Euclidean Rhythms (k=5, n=8) overlaid with 4/4\"\n  },\n  \"drift_functions\": {\n    \"δt_drift\": \"sin(t * 0.1) * 20ms\",\n    \"quantization_error_emulation\": \"Bit-crushing the timing grid\"\n  },\n  \"internal_insight\": {\n    \"ghost_rhythm\": \"Твой любимый эффект — 'ритм, которого нет'. Мы убирали бочку, но оставляли сайдчейн-компрессию, чтобы бас 'нырял' под пустоту. Слушатель сам достраивал ритм в голове. Это высшая степень ASE-взаимодействия — когда музыка происходит в мозгу, а не в динамиках.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_10",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 10,
+      "block_name": "Temporal_Displacement.v1",
+      "source": "producer-ai-base",
+      "original_index": 114
+    }
+  },
+  "optimization_history": []
+}

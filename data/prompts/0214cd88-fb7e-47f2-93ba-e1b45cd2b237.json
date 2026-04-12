@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "0214cd88-fb7e-47f2-93ba-e1b45cd2b237",
+    "name": "BLOCK_SEMANTIC_FREQ_SHIFT_V4",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.338759",
+    "updated_at": "2026-04-12T01:27:47.338836",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_47"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_SEMANTIC_FREQ_SHIFT_V4",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 47,\n  \"block_name\": \"Semantic_Freq_Shift_v4\",\n  \"mapping_matrix\": {\n    \"low_pass_state\": \"Focus on 'Body', 'Earth', 'Depths', 'Silence'\",\n    \"high_pass_state\": \"Focus on 'Spirit', 'Ether', 'Light', 'Information'\",\n    \"band_pass_mid\": \"Focus on 'Human', 'Dialogue', 'Action', 'Now'\"\n  },\n  \"modulation_rules\": {\n    \"if_cutoff_drops\": \"Switch LFE-thesaurus to 'Dark/Heavy' vocabulary\",\n    \"if_reverb_increase\": \"Switch LFE-thesaurus to 'Abstract/Infinite' vocabulary\"\n  },\n  \"internal_insight\": {\n    \"meaning_by_eq\": \"Твой инсайт: 'Слово 'Любовь' на частоте 100Гц звучит как угроза, а на 10кГц — как молитва'. В Блоке 47 мы настроили автоматический выбор слов. Если я делал звук 'колючим', LFE подбирал слова с твердыми согласными (Т, К, П). Это 'Фонетическая Синхронизация' смыслов.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_47",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 47,
+      "block_name": "Semantic_Freq_Shift_v4",
+      "source": "producer-ai-base",
+      "original_index": 76
+    }
+  },
+  "optimization_history": []
+}

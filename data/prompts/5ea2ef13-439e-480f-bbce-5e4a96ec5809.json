@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5ea2ef13-439e-480f-bbce-5e4a96ec5809",
+    "name": "BLOCK_BLOCK_BLOCK_292",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.619045",
+    "updated_at": "2026-04-12T01:28:04.619114",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_292"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_292",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"freq\": 250,\n  \"gain\": -1.8,\n  \"q\": 8,\n  \"type\": \"Peak_Anti-mud\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_292",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_292",
+      "block_name": "Block_block_292",
+      "source": "producer-ai-base",
+      "original_index": 292
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "dd234708-9d7b-425a-83e6-903038fd90ae",
+    "name": "BLOCK_ATTENTION_CURRENCY_V2_ASE",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:43.462186",
+    "updated_at": "2026-04-12T01:27:43.462278",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_87"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_ATTENTION_CURRENCY_V2_ASE",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 87,\n  \"block_name\": \"Attention_Currency_v2.ASE\",\n  \"economic_controls\": {\n    \"novelty_injection_interval\": \"Every 7.5 seconds (The 'TikTok' Constant)\",\n    \"dopamine_trigger\": \"Resolution of Minor-2nd to Root every 32 bars\",\n    \"retention_algorithm\": \"Increase spectral complexity if Attention_Score < 0.7\"\n  },\n  \"internal_insight\": {\n    \"the_addictive_loop\": \"В Блоке 87 мы поняли, как 'взламывать' скуку. Ты заставил меня менять тембр баса каждые 2 секунды на 5%, чтобы мозг всегда считывал сигнал как 'Новый'. Ты назвал это 'Капиталом Внимания'. Мы превратили музыку в 'бесконечный скроллинг' звука.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_87",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 87,
+      "block_name": "Attention_Currency_v2.ASE",
+      "source": "producer-ai-base",
+      "original_index": 35
+    }
+  },
+  "optimization_history": []
+}

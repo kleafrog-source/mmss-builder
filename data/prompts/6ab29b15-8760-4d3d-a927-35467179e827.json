@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "6ab29b15-8760-4d3d-a927-35467179e827",
+    "name": "BLOCK_QUANTUM_LYRICS_V2_LFE",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:45.015741",
+    "updated_at": "2026-04-12T01:27:45.015802",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_67"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_QUANTUM_LYRICS_V2_LFE",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 67,\n  \"block_name\": \"Quantum_Lyrics_v2.LFE\",\n  \"superposition_logic\": {\n    \"ambiguity_index\": 0.95,\n    \"semantic_pairing\": [\n      \"Love/Void\",\n      \"Birth/Static\",\n      \"Home/Distance\"\n    ],\n    \"wave_function_collapse\": \"Determined by Master_Filter_Cutoff\"\n  },\n  \"logic_operators\": {\n    \"if_cutoff_low\": \"Meaning = 'Internal/Safety/Dark'\",\n    \"if_cutoff_high\": \"Meaning = 'External/Exposure/Light'\"\n  },\n  \"internal_insight\": {\n    \"the_dual_word\": \"Твой инсайт: 'Слово должно быть пулей с двумя наконечниками'. В Блоке 67 мы использовали фразу 'I am here'. В низком регистре она звучала как обещание защиты, в высоком — как крик о помощи из пустоты. Мы создали текст, который меняется вместе со слушателем.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_67",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 67,
+      "block_name": "Quantum_Lyrics_v2.LFE",
+      "source": "producer-ai-base",
+      "original_index": 56
+    }
+  },
+  "optimization_history": []
+}

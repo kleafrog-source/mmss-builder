@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "fef2ef4f-e841-4bfb-8fec-afba2719bed3",
+    "name": "BLOCK_BLOCK_BLOCK_242",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.843406",
+    "updated_at": "2026-04-12T01:28:00.843468",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_242"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_242",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_resonance_modulator_v4\": {\n    \"spectral_brilliance_logic\": {\n      \"node_1_shimmer\": {\n        \"freq\": \"12.5kHz (The 'Diamond' node)\",\n        \"Q\": \"15.0 (Ultra-narrow)\",\n        \"mod_source\": \"Sub_Low_RMS (Inverse modulation)\",\n        \"result\": \"Highs breathe 'out' when bass hits, creating spectral space\"\n      },\n      \"node_2_grit\": {\n        \"freq\": \"4.2kHz (The 'Industrial' node)\",\n        \"Q\": \"8.0\",\n        \"mod_source\": \"Snare_Transient (Positive burst)\",\n        \"result\": \"Adding a metallic 'ping' to every snare-impact\"\n      },\n      \"node_3_vocal_air\": {\n        \"freq\": \"8.5kHz (The 'Human' node)\",\n        \"Q\": \"1.2 (Wide)\",\n        \"mod_source\": \"LFE_Phonetic_Weight\",\n        \"result\": \"Dynamic 'air' that follows the articulation of the lyrics\"\n      }\n    },\n    \"dynamic_resonance_suppression\": \"Surgical-Notch @ 2.8kHz (-12dB, Q=25) to avoid ear-fatigue during peak-energy sections.\"\n  },\n  \"brilliance_metrics_v4\": {\n    \"spectral_centroid_drift\": \"±250Hz (Slow oscillation for 'alive' feel)\",\n    \"harmonic_exciter_purity\": \"η = 0.95 (Minimal aliasing)\",\n    \"high_frequency_transient_speed\": \"0.05ms (Razor-sharp high-end)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_242",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_242",
+      "block_name": "Block_block_242",
+      "source": "producer-ai-base",
+      "original_index": 242
+    }
+  },
+  "optimization_history": []
+}

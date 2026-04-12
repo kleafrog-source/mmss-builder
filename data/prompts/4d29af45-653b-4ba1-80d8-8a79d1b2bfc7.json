@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4d29af45-653b-4ba1-80d8-8a79d1b2bfc7",
+    "name": "BLOCK_BLOCK_BLOCK_273",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.163045",
+    "updated_at": "2026-04-12T01:28:03.163161",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_273"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_273",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_spatial_depth_lyrics\": {\n    \"the_expansion_set\": [\n      \"Wider than the silence, deeper than the fear / Floating in a space where nothing is near\",\n      \"Expanding the horizons of the digital mind / Leaving the three dimensions far behind\",\n      \"Zero-point-zero: the center and the edge / Walking on the sonic, invisible ledge\"\n    ],\n    \"the_mono_center_set\": [\n      \"One frequency, standing at the core / Pumping through the floor, asking for more\",\n      \"Mono-soul, locked to the G-sharp beat / Making the alignment finally complete\",\n      \"Sub-low pressure, the anchor of the soul / Taking the chaos, taking the control\"\n    ],\n    \"the_spatial_dialogue\": [\n      \"Dissolve into the wide / Rebirth inside the deep\",\n      \"The secrets that I hide / The promises I keep\",\n      \"Result: Infinite-Immersion / Status: SPATIAL_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_purity_v4\": {\n    \"anti_masking_rule\": \"Surgical notch @ 2.5kHz on the sides (M/S) to let the lead cut through\",\n    \"low_end_coherence\": \"High-pass filter on Side-channel @ 180Hz (Mono-compatibility protection)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_273",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_273",
+      "block_name": "Block_block_273",
+      "source": "producer-ai-base",
+      "original_index": 273
+    }
+  },
+  "optimization_history": []
+}

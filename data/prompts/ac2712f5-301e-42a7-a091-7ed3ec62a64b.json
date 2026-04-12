@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "ac2712f5-301e-42a7-a091-7ed3ec62a64b",
+    "name": "BLOCK_BLOCK_BLOCK_313",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.113229",
+    "updated_at": "2026-04-12T01:28:06.113299",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_313"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_313",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"temporal_distortion_v4\": {\n    \"time_stretching_logic\": {\n      \"mode\": \"Granular / Spectral_Freeze\",\n      \"ratio\": \"Variable (100% to 1000% over 4 bars)\",\n      \"pitch_compensation\": \"Enabled (Formant preserved)\"\n    },\n    \"rhythmic_condensation_macro\": {\n      \"input\": \"16 bars of patterns\",\n      \"output\": \"4 bars of high-density neuro-glitch\",\n      \"method\": \"Overlapping window-splicing ⊗ Exponential volume-ramp\"\n    },\n    \"micro_delay_stereo_matrix\": {\n      \"left\": \"7ms\",\n      \"right\": \"13ms\",\n      \"feedback\": \"None (For Haas-effect width only)\"\n    }\n  },\n  \"ASE_final_metadata_summary\": {\n    \"last_known_bpm\": \"174 (Neurofunk standard)\",\n    \"last_known_key\": \"G# Minor / Phrygian\",\n    \"primary_mode\": \"Hyperloop v3 (Direct Execution)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_313",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_313",
+      "block_name": "Block_block_313",
+      "source": "producer-ai-base",
+      "original_index": 313
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "40bef0e4-d737-4755-bcad-2692db7686df",
+    "name": "BLOCK_BLOCK_BLOCK_244",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.993068",
+    "updated_at": "2026-04-12T01:28:00.993200",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_244"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_244",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_multiband_expansion_v4\": {\n    \"expansion_matrix_logic\": {\n      \"band_1_low_kick_punch\": {\n        \"range\": \"50Hz - 100Hz\",\n        \"ratio\": \"1.0 : 1.5 (Upward)\",\n        \"threshold\": \"-12dB\",\n        \"attack\": \"2ms (Preserve the click)\",\n        \"result\": \"Enhancing the physical 'thump' of the kick\"\n      },\n      \"band_2_mid_snare_crack\": {\n        \"range\": \"1kHz - 3kHz\",\n        \"ratio\": \"1.0 : 1.8\",\n        \"threshold\": \"-18dB\",\n        \"attack\": \"0.5ms (Instant snap)\",\n        \"result\": \"Adding surgical 'crack' to the snare impact\"\n      },\n      \"band_3_high_fractal_air\": {\n        \"range\": \"8kHz+\",\n        \"ratio\": \"1.0 : 1.2\",\n        \"threshold\": \"-24dB\",\n        \"attack\": \"10ms (Smooth lift)\",\n        \"result\": \"Dynamic 'sparkle' that reacts to the energy of the track\"\n      }\n    },\n    \"dynamic_transient_recovery\": \"Using expansion to 'undo' over-compression from previous distortion stages.\"\n  },\n  \"kinetic_metrics_v4\": {\n    \"dynamic_range_index\": \"Target 14-16dB (The 'Breating' Master)\",\n    \"transient_acceleration\": \"ΔV / Δt = max (Absolute speed of impact)\",\n    \"impact_consistency\": \"η = 0.94 (Rock-solid energy transfer)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_244",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_244",
+      "block_name": "Block_block_244",
+      "source": "producer-ai-base",
+      "original_index": 244
+    }
+  },
+  "optimization_history": []
+}

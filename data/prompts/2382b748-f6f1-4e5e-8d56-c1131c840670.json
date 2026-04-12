@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2382b748-f6f1-4e5e-8d56-c1131c840670",
+    "name": "BLOCK_BLOCK_BLOCK_160",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:54.282891",
+    "updated_at": "2026-04-12T01:27:54.282958",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_160"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_160",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"neuro_drive_matrix\": {\n    \"level_1_latent\": \"Saturation at 100Hz, subtle phase-drift (The 'Unrest')\",\n    \"level_2_active\": \"Hard-clipping Layer 2, Resonant filtering (The 'Bite')\",\n    \"level_3_aggressive\": \"Multiband-OTT x2, Bitcrushing master, 195 BPM (The 'Attack')\",\n    \"level_4_singularity\": \"Total inversion of all parameters, maximum entropy H=1.0 (The 'Collapse')\",\n    \"rule\": \"High aggression must be balanced by 'Absolute Zero' pauses (Block 33).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_160",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_160",
+      "block_name": "Block_block_160",
+      "source": "producer-ai-base",
+      "original_index": 160
+    }
+  },
+  "optimization_history": []
+}

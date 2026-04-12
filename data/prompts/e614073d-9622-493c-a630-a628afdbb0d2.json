@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e614073d-9622-493c-a630-a628afdbb0d2",
+    "name": "BLOCK_BLOCK_BLOCK_197",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.212832",
+    "updated_at": "2026-04-12T01:27:57.212907",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_197"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_197",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"video_generation_spec\": {\n    \"aspect_ratio\": \"9:16 (Vertical) for Socials or 16:9 for Cinema\",\n    \"aesthetic_presets\": {\n      \"gothic_fractal\": \"Black/Gold palette, recursive cathedral architecture, liquid metal\",\n      \"cyber_neuro\": \"Neon cyan/magenta, fast motion blur, glitch transitions, wireframe\",\n      \"bio_void\": \"Deep greens/blacks, organic growth patterns, macro-cinematography of cells\"\n    },\n    \"synchronization_logic\": {\n      \"kick_sync\": \"Flash/Scale-pump on every 1/4 note\",\n      \"snare_sync\": \"Glitch-shift/Inversion effect on every 2/4 and 4/4\",\n      \"theme_sync\": \"Color-morphing tied to Lead-synth cutoff\"\n    },\n    \"lyrics_rendering\": \"Minimalist, sans-serif, flickering opacity (85% visibility)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_197",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_197",
+      "block_name": "Block_block_197",
+      "source": "producer-ai-base",
+      "original_index": 197
+    }
+  },
+  "optimization_history": []
+}

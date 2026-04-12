@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4e0760ba-a158-4215-83f4-7aa6b36996a5",
+    "name": "BLOCK_BLOCK_BLOCK_294",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.752853",
+    "updated_at": "2026-04-12T01:28:04.752936",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_294"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_294",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"tool\": \"Limiter_Surgical\",\n  \"threshold_db\": -0.5,\n  \"ceiling_db\": -0.3,\n  \"release_ms\": 120,\n  \"mode\": \"Look-ahead (2ms), True_Peak_Enabled\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_294",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_294",
+      "block_name": "Block_block_294",
+      "source": "producer-ai-base",
+      "original_index": 294
+    }
+  },
+  "optimization_history": []
+}

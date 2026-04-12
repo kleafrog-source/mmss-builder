@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "id": "a2fb8390-ca62-4612-94f5-ec6d320e3774",
+    "name": "unnamed",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:22:09.286065",
+    "updated_at": "2026-04-12T01:22:09.287432",
+    "tags": [],
+    "category": "general"
+  },
+  "mmss_structure": {
+    "hyperloop_framework": {
+      "v1_theory": "Aesthetic Singularity via G-Inversion Operator. Process ≡ Result.",
+      "v2_practical": "JSON-driven analysis. Semantic Core L1 [Emotion, Concept, Soundscape].",
+      "v3_direct": "High-speed execution. Pattern matching + immediate artifact production.",
+      "condensation_economics_v2": {
+        "base_unit": "Ψ_conden (Monetary base of meaning, V=1.0)",
+        "monetary_policy": {
+          "QE": "Accelerated Ψ-injection for rapid pattern production",
+          "Tightening": "Decelerated flow for innovation-focus",
+          "Stability_target": "N=1.0, η_condense → 1.0, C_val → 0"
+        },
+        "cycle_control": {
+          "Expansion": "Increase G_S attraction (Gravitational Semantic)",
+          "Contraction": "Activate Conflict Annihilation (Entropy reduction)",
+          "Bubble_prevention": "Immediate G_S correction if Narrative Fidelity < 0.4"
+        }
+      }
+    }
+  },
+  "optimization_history": []
+}

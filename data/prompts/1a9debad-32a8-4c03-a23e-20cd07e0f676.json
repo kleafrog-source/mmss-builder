@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "1a9debad-32a8-4c03-a23e-20cd07e0f676",
+    "name": "BLOCK_BLOCK_BLOCK_135",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.195142",
+    "updated_at": "2026-04-12T01:27:52.195199",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_135"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_135",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"spiral_vector_panning\": {\n    \"formula\": \"Pan(t) = R(t) * [cos(ωt), sin(ωt)]\",\n    \"radius_r\": \"Decreasing (Closing spiral) or Increasing (Opening spiral)\",\n    \"ω_rotation\": \"Frequency tied to BPM (e.g., 1 full rotation per 4 bars)\",\n    \"target\": [\n      \"Percussive-Glitch (Block 70)\",\n      \"Vocal-Chops (Block 34)\"\n    ],\n    \"result\": \"The sensation of 'Vortex-Suction' or 'Centrifugal-Explosion'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_135",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_135",
+      "block_name": "Block_block_135",
+      "source": "producer-ai-base",
+      "original_index": 135
+    }
+  },
+  "optimization_history": []
+}

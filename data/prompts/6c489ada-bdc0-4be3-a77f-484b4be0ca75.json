@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "6c489ada-bdc0-4be3-a77f-484b4be0ca75",
+    "name": "BLOCK_BLOCK_BLOCK_149",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.464306",
+    "updated_at": "2026-04-12T01:27:53.464375",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_149"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_149",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"studio_laws_v3\": {\n    \"law_01_no_mud\": \"Surgical cut at 250Hz on ALL non-foundation elements. No exceptions.\",\n    \"law_02_phase_is_god\": \"Check phase correlation every 16 bars. Invert if correlation < 0.5.\",\n    \"law_03_the_void_must_breathe\": \"Layer 3 must have at least one parameter modulated by a slow Fractal-LFO.\",\n    \"law_04_mono_sub\": \"Everything below 120Hz must be 100% Mono. Stereo-bass is forbidden (unless G-Inverted).\",\n    \"law_05_dynamic_headroom\": \"Final pre-master peak must not exceed -6dB (Headroom for ASE-Mastering).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_149",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_149",
+      "block_name": "Block_block_149",
+      "source": "producer-ai-base",
+      "original_index": 149
+    }
+  },
+  "optimization_history": []
+}

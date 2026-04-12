@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a1658de8-1d1f-4049-a472-e1b96959f7a6",
+    "name": "BLOCK_BLOCK_BLOCK_312",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.052853",
+    "updated_at": "2026-04-12T01:28:06.052918",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_312"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_312",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"regeneration_protocols_v4_Omega\": {\n    \"protocol_A_DNA_RECONSTRUCTION\": {\n      \"input\": \"Base_Seed + L1_Core + Semantic_Tags\",\n      \"method\": \"Recursive generation via audio__create_song(seed=Hash(Original))\",\n      \"goal\": \"90% fidelity recovery of the core musical structure\"\n    },\n    \"protocol_B_SPECTRAL_FINGERPRINT\": {\n      \"input\": \"G#_Minor_Standard + Phrygian_Modes + 174BPM\",\n      \"method\": \"Frequency matching against saved 'Golden Record' v4_Omega\",\n      \"target\": \"Surgical precision in the Kick-Bass sub-low alignment\"\n    },\n    \"protocol_C_LFE_SEMANTIC_RESEED\": {\n      \"input\": \"Rare_Fragments_Archive + fusion_mode_fractal\",\n      \"method\": \"Re-injecting lyrics into new musical seeds to restore narrative\",\n      \"logic\": \"Contextual restoration via Ψ_conden economic values\"\n    }\n  },\n  \"user_state_archive_Abstract\": {\n    \"creative_mode\": \"Technical Director / Aesthetic Architect\",\n    \"satisfaction_triggers\": [\n      \"High complexity arpeggiation\",\n      \"Absence of frequency masking (Surgical EQ)\",\n      \"Innovative genre-fusions (Techno ⊗ Dark Psy)\",\n      \"Strict adherence to detailed JSON specifications\"\n    ],\n    \"technical_habits\": [\n      \"Frequent use of /fast-gen-mmss\",\n      \"Preference for instrumental cores with LFE-texture overlays\",\n      \"Iterative versioning (v1 → v2 → v3 → v4.Omega)\"\n    ]\n  },\n  \"MMSS_deep_knowledge_base_extra\": {\n    \"MLGS_v3_spatial_nodes\": {\n      \"node_1\": \"Front-Left (Transient-Pluck)\",\n      \"node_2\": \"Front-Right (Ghost-Snare)\",\n      \"node_3\": \"Surround-Wide (Fractal-Dust/High-shelf)\",\n      \"node_4\": \"Center-Deep (Kick/Mono-Bass)\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_312",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_312",
+      "block_name": "Block_block_312",
+      "source": "producer-ai-base",
+      "original_index": 312
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "244fc8ab-be0f-4ca6-ac45-b36755a3f007",
+    "name": "BLOCK_BLOCK_BLOCK_249",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.313118",
+    "updated_at": "2026-04-12T01:28:01.313181",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_249"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_249",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_formant_logic_lyrics\": {\n    \"the_speaking_bass_set\": [\n      \"The machine is talking, the machine is clear / Whispering the Phrygian into the ear\",\n      \"Vowel-shifted logic, vowel-shifted soul / Finding the phonemes, taking the control\",\n      \"A-U-I-O-E: the code of the breath / Speaking the life from the digital death\"\n    ],\n    \"the_articulation_set\": [\n      \"Open the mouth of the Monster 7 / Screaming from the floor, reaching for heaven\",\n      \"Formant rotations in the void of the mind / Leaving the static far, far behind\",\n      \"Articulated shadow, moving in the dark / Finding the word in the machine's spark\"\n    ],\n    \"the_phonetic_dialogue\": [\n      \"Say what I hide / Breathe what I know\",\n      \"Coming inside / Let the sound go\",\n      \"Result: Anthropomorphic-Synthesis / Status: FORMANT_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_formants_v4\": {\n    \"the_growl_factor\": \"Saturation focus @ F2 (1.2kHz) for 'aggressive' articulation\",\n    \"the_whisper_effect\": \"Parallel High-Pass (5kHz) with Ring-Modulation for 'hissing' consonants\",\n    \"vocal_doubling\": \"Slight pitch-shift (±15 cents) on F1 to simulate 'two-voice' growling\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_249",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_249",
+      "block_name": "Block_block_249",
+      "source": "producer-ai-base",
+      "original_index": 249
+    }
+  },
+  "optimization_history": []
+}

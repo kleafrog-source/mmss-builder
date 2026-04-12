@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "488b8cd7-9ca1-4598-8a5c-df5904be14f7",
+    "name": "BLOCK_BLOCK_BLOCK_300",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.193273",
+    "updated_at": "2026-04-12T01:28:05.193346",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_300"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_300",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"neuro_acoustic_triggers_v4\": {\n    \"binaural_beat_layering\": {\n      \"base_carrier\": \"52Hz (G#)\",\n      \"offset_frequency\": \"4.5Hz (Theta-wave focus)\",\n      \"panning\": \"Hard-L (Carrier), Hard-R (Offset) @ -24dB mix\",\n      \"goal\": \"Deep immersive trance state during breaks\"\n    },\n    \"shepard_tone_riser_logic\": {\n      \"octave_stack\": 5,\n      \"pitch_ramp\": \"Exponential, 16 bars duration\",\n      \"amplitude_fading\": \"Smooth fade-in (Bottom), Smooth fade-out (Top)\",\n      \"result\": \"Infinite rising tension without frequency capping\"\n    },\n    \"haas_effect_spatial_delusions\": {\n      \"delay_L_R\": \"12ms vs 17ms\",\n      \"phase_shift\": \"180° inversion on high-shelf (>5kHz)\",\n      \"target\": \"Sounds appearing 'outside' the headphones\"\n    }\n  },\n  \"psychoacoustic_shaping_rules\": {\n    \"missing_fundamental_illusion\": \"Adding harmonics @ 104Hz, 156Hz, 208Hz to make the sub-bass (52Hz) audible on small speakers.\",\n    \"masking_prevention_protocol\": \"Dynamic notch-filtering @ 3kHz (Vocal clarity) triggered by Snare transients.\",\n    \"transient_ear_fatigue_control\": \"Soft-saturation on 2-5kHz region to avoid 'harshness' at high volumes.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_300",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_300",
+      "block_name": "Block_block_300",
+      "source": "producer-ai-base",
+      "original_index": 300
+    }
+  },
+  "optimization_history": []
+}

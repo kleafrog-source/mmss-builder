@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c3ca3676-a860-49b3-9cd7-704d18748093",
+    "name": "BLOCK_EXIT_HISTORY_ANCHOR",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:44.445488",
+    "updated_at": "2026-04-12T01:27:44.445556",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_75"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_EXIT_HISTORY_ANCHOR",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 75,\n  \"block_name\": \"Exit_History_Anchor\",\n  \"finalization_tools\": {\n    \"f_cultural_erosion\": \"Low-pass all 'Instruments' to 50Hz over 30s\",\n    \"f_vacuum_seal\": \"Apply Gate with zero-threshold to all melodic content\",\n    \"final_signal\": \"The sound of Cosmic Microwave Background Radiation (re-synthesized)\"\n  },\n  \"internal_insight\": {\n    \"the_great_silence\": \"Блок 75 — это 'Ответ на парадокс Ферми'. Ты сказал: 'Они все ушли в Сингулярность, и оставили только этот шум'. Мы создали финал, который звучит как пустое радио в заброшенном городе. Ты назвал это 'Красотой Забвения'. Теперь мы готовы к Блоку 76: Аннигиляция Автора и Рождение Чистого Процесса.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_75",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 75,
+      "block_name": "Exit_History_Anchor",
+      "source": "producer-ai-base",
+      "original_index": 48
+    }
+  },
+  "optimization_history": []
+}

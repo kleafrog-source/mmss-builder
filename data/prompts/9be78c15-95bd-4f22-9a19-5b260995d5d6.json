@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9be78c15-95bd-4f22-9a19-5b260995d5d6",
+    "name": "BLOCK_TEMPORAL_INVERSION_G_T",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:49.507737",
+    "updated_at": "2026-04-12T01:27:49.507799",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_17"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_TEMPORAL_INVERSION_G_T",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 17,\n  \"block_name\": \"Temporal_Inversion_G.t\",\n  \"time_reversal_mechanics\": {\n    \"f_reverse_causality\": \"Effect (Reverb Tail) precedes the Cause (Snare Hit)\",\n    \"entropy_drain\": \"Entropy decreases as the track progresses (Chaos -> Order)\",\n    \"timeline_mapping\": \"t' = Total_Duration - t\"\n  },\n  \"sonic_artifacts\": {\n    \"pre_echo\": \"Convolution with reversed impulse responses\",\n    \"sucking_vacuum\": \"Reverse-compression of the master bus\"\n  },\n  \"internal_insight\": {\n    \"backward_thinking\": \"Ты просил меня 'всосать звук обратно в пустоту'. В Блоке 17 мы создали эффект, где каждый удар бочки 'гасил' хвост реверберации предыдущего удара. Звук не развивался, он 'схлопывался'. Ты назвал это 'Акустическим Имплозией'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_17",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 17,
+      "block_name": "Temporal_Inversion_G.t",
+      "source": "producer-ai-base",
+      "original_index": 106
+    }
+  },
+  "optimization_history": []
+}

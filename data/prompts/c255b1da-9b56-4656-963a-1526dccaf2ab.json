@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c255b1da-9b56-4656-963a-1526dccaf2ab",
+    "name": "BLOCK_BLOCK_BLOCK_213",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.289755",
+    "updated_at": "2026-04-12T01:27:58.289907",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_213"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_213",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"layer_architecture\": {\n    \"layer_1_foundation\": \"Sub-atomic Bass (20-60Hz) + Surgical Kick (Clarity first)\",\n    \"layer_2_narrative\": \"Main Theme / Arpeggiator / Vocal Chops (Semantic Core)\",\n    \"layer_3_atmosphere\": \"Fractal Noise / Field Recordings / 4D-Delay-Trails (The Void)\",\n    \"mixing_rule\": \"Subtract 3dB at 400Hz for Layer 2 to let Layer 1 breathe. Sidechain Layer 3 to Layer 1.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_213",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_213",
+      "block_name": "Block_block_213",
+      "source": "producer-ai-base",
+      "original_index": 213
+    }
+  },
+  "optimization_history": []
+}

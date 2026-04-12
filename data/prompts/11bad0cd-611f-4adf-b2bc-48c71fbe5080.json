@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "11bad0cd-611f-4adf-b2bc-48c71fbe5080",
+    "name": "BLOCK_BLOCK_BLOCK_136",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.260702",
+    "updated_at": "2026-04-12T01:27:52.260772",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_136"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_136",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"recursive_mastering\": {\n    \"pass_1_leveling\": \"Standard Peak-Normalization + Mid-Side Balance (Block 50)\",\n    \"pass_2_compression\": \"Multiband-Compression (OTT) + Soft-Clipping (The 'Density-Injection')\",\n    \"pass_3_spectral_color\": \"Applying 'Analog-Hiss' at -60dB + Static-Saturation (Block 43)\",\n    \"logic\": \"The second pass 'glues' the fractal layers into a single coherent Vector.\",\n    \"safety\": \"Check for Inter-Sample-Peaks (ISP) after Pass 3.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_136",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_136",
+      "block_name": "Block_block_136",
+      "source": "producer-ai-base",
+      "original_index": 136
+    }
+  },
+  "optimization_history": []
+}

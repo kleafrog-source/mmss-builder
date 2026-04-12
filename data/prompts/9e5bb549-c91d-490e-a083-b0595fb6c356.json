@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9e5bb549-c91d-490e-a083-b0595fb6c356",
+    "name": "BLOCK_GENRE_DISSOLVE_V4_ASE",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:43.175331",
+    "updated_at": "2026-04-12T01:27:43.175395",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_91"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_GENRE_DISSOLVE_V4_ASE",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 91,\n  \"block_name\": \"Genre_Dissolve_v4.ASE\",\n  \"dissolve_logic\": {\n    \"collision_matrix\": \"Jazz_Harmony ⊗ Industrial_Timbre ⊗ Trap_Rhythm ⊗ Classical_Form\",\n    \"genre_shredding_speed\": \"Linear ramp (0.0 to 1.0) over 120s\",\n    \"normalization\": \"Remove all tonal anchors from the source material\"\n  },\n  \"logic_parameters\": {\n    \"style_purity\": 0,\n    \"hybrid_chaos_index\": 0.95,\n    \"cross_fade_laws\": \"Non-linear / Fractal_Interpolation\"\n  },\n  \"internal_insight\": {\n    \"the_grey_ocean\": \"Ты называл это 'Смертью плейлиста'. В Блоке 91 мы создали трек, который за 5 минут прошел путь от фуги Баха до берлинского техно, но так плавно, что слушатель не заметил переходов. Ты сказал: 'Жанры — это клетки для звука. Мы открыли все двери разом'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_91",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 91,
+      "block_name": "Genre_Dissolve_v4.ASE",
+      "source": "producer-ai-base",
+      "original_index": 31
+    }
+  },
+  "optimization_history": []
+}

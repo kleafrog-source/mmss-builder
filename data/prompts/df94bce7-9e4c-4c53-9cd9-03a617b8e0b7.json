@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "df94bce7-9e4c-4c53-9cd9-03a617b8e0b7",
+    "name": "BLOCK_BLOCK_BLOCK_287",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.232746",
+    "updated_at": "2026-04-12T01:28:04.232824",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_287"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_287",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_dynamic_panning_matrix_v4\": {\n    \"quaternion_rotation_engine\": {\n      \"spatial_nodes\": {\n        \"node_1_sub\": \"Fixed (0,0,-1) // Absolute Mono Center-Deep\",\n        \"node_2_lead\": \"Spiral (sin(t), cos(t), z=sin(t/2)) // 4D Circular movement\",\n        \"node_3_glitch\": \"Random_Scatter (X,Y,Z) @ transient_event // Instant jumps\",\n        \"node_4_atmosphere\": \"Wide_Expansion (L:100, R:100, phase=180°) // Infinite width\"\n      },\n      \"rotation_speed_sync\": \"BPM / 240 (Slow cinematic rotations) or BPM / 15 (Aggressive neuro-swirls)\"\n    },\n    \"dynamic_haas_panning\": {\n      \"logic\": \"IF velocity > 100 THEN δt = 15ms (L->R shift) ELSE δt = 0ms\",\n      \"target\": \"Adding 'weight' to accented notes through spatial offset\"\n    },\n    \"distance_attenuation_model\": {\n      \"front_z\": \"Gain +2dB, High-shelf +1dB, Reverb-Mix 5%\",\n      \"back_z\": \"Gain -6dB, High-shelf -4dB, Reverb-Mix 45%\",\n      \"motion\": \"Linear ramp from Back to Front over 8 bars (The 'Coming-at-you' effect)\"\n    }\n  },\n  \"aesthetic_fidelity_metrics_v4\": {\n    \"AFS_calculation\": \"Score = (Purity * 0.4) + (Novelty * 0.3) + (Narrative_Fidelity * 0.3)\",\n    \"purity_check\": \"No frequencies > -18dB in the 150-300Hz range (Anti-mud-masking)\",\n    \"impact_factor\": \"Kick-to-Sub ratio = 1.25 (Kick always leads the sub-low transient)\",\n    \"transient_clarity\": \"Crest factor target: 12-14dB (Preserving peak energy before limiting)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_287",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_287",
+      "block_name": "Block_block_287",
+      "source": "producer-ai-base",
+      "original_index": 287
+    }
+  },
+  "optimization_history": []
+}

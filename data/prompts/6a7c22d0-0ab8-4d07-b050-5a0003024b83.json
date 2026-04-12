@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "6a7c22d0-0ab8-4d07-b050-5a0003024b83",
+    "name": "BLOCK_BLOCK_BLOCK_324",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.854497",
+    "updated_at": "2026-04-12T01:28:06.854571",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_324"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_324",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"FX_chain_presets_v4_Omega\": {\n    \"vocal_dimension_expander\": {\n      \"chain\": [\n        \"PitchShift(+0.1st)\",\n        \"Chorus(Rate 0.2Hz, Depth 15%)\",\n        \"Reverb(Mix 0.12, Room 0.9)\"\n      ],\n      \"logic\": \"Create psychoacoustic width without losing center-focus\"\n    },\n    \"neuro_bass_shaper_PRO\": {\n      \"chain\": [\n        \"Distortion(Drive 28dB)\",\n        \"LowPass(Cutoff 450Hz)\",\n        \"Compressor(Ratio 12:1, Attack 1ms)\",\n        \"Gain(+6dB)\"\n      ],\n      \"logic\": \"Crush high-end harmonics, then re-filter for 'clean' aggression\"\n    },\n    \"atmospheric_grain_cloud\": {\n      \"chain\": [\n        \"Delay(Mix 0.5, Feedback 0.7, Time 1/8d)\",\n        \"HighPass(Cutoff 1200Hz)\",\n        \"Bitcrusher(8-bit)\"\n      ],\n      \"logic\": \"Transform simple transients into complex digital textures\"\n    }\n  },\n  \"temporal_shift_algorithms_LFE\": {\n    \"delta_t_sync\": \"δt = (BPM / 60000) * Grid_Multiplier (e.g., 1/32, 1/64)\",\n    \"layer_staggering\": {\n      \"layer_1\": \"Center, δt = 0\",\n      \"layer_2\": \"30L, δt = +5ms (Pre-delay effect)\",\n      \"layer_3\": \"70R, δt = -3ms (Micro-lead effect)\"\n    },\n    \"spectral_overlay_rules\": {\n      \"condition\": \"IF frequency_overlap > 75% THEN apply Spectral_Inversion(G)\",\n      \"target\": \"Vocoder-like intelligibility within dense neuro-environments\"\n    }\n  },\n  \"manual_parameter_overrides\": {\n    \"swing_coefficient\": \"0.08 (8% shuffle for that 'human-neuro' feel)\",\n    \"velocity_curve\": \"Exponential (Higher velocity → sharper transients)\",\n    \"pan_modulation\": \"LFO Sine, Rate: 2 bars, Depth: 45%\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_324",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_324",
+      "block_name": "Block_block_324",
+      "source": "producer-ai-base",
+      "original_index": 324
+    }
+  },
+  "optimization_history": []
+}

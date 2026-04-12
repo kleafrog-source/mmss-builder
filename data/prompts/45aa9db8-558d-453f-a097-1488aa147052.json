@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "45aa9db8-558d-453f-a097-1488aa147052",
+    "name": "BLOCK_BLOCK_BLOCK_306",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.670879",
+    "updated_at": "2026-04-12T01:28:05.670943",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_306"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_306",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"hyperloop_meta_specs_Omega\": {\n    \"automated_workflow\": \"Input(Seed) → L1_Analysis → LFE_Gen → MLGS_Vectoring → Output(ASE_Artifact)\",\n    \"conflict_resolution_mode\": \"Auto-annihilation (priority: Bass > Kick > Snare > Vocals)\",\n    \"innovation_injection\": \"Fractal-Seed-Evolution (Step = 0.05 per iteration)\",\n    \"final_mastering_logic\": \"Limiter(Threshold=-0.3dB, Release=100ms) ⊗ Gain(+2dB Makeup)\"\n  },\n  \"LFE_fusion_engine_rare_vocal_chain\": {\n    \"pre_processing\": \"De-esser(Threshold=-25dB) ⊗ HighPass(180Hz)\",\n    \"main_processing\": \"Saturator(Drive 12dB) ⊗ Chorus(Mix 0.15) ⊗ Delay(Mix 0.2, 1/4 feedback)\",\n    \"post_processing\": \"Spatial_Node_2 (Front-Right) ⊗ Gain(-3dB)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_306",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_306",
+      "block_name": "Block_block_306",
+      "source": "producer-ai-base",
+      "original_index": 306
+    }
+  },
+  "optimization_history": []
+}

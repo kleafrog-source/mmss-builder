@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "1bb62257-7781-4f35-a741-38a8122e4b3f",
+    "name": "BLOCK_INSTANT_ANNIHILATION_V3",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.815142",
+    "updated_at": "2026-04-12T01:27:48.815224",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_27"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_INSTANT_ANNIHILATION_V3",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 27,\n  \"block_name\": \"Instant_Annihilation_v3\",\n  \"annihilation_trigger\": \"Peak_Overload > -2dB\",\n  \"operator_logic\": {\n    \"hard_clip_sum\": \"If (Signal_A + Signal_B > 0) Then Force_Clip_To_Square_Wave\",\n    \"sub_bass_sidechain\": \"Ducking(Target=Bass, Source=Kick, Ratio=Inf:1)\"\n  },\n  \"sonic_result\": \"Aggressive, square-wave-heavy textures with zero dynamic range\",\n  \"internal_insight\": {\n    \"anti_dynamic_insight\": \"Ты просил сделать звук 'плоским как бетон'. В Блоке 27 мы убили динамику. Мы заставили все инструменты бороться за один и тот же лимитер. Результатом стал странный эффект 'дышащего шума'. Ты сказал: 'Это музыка, которая задыхается'. Мы назвали это 'Асфиксией Сингулярности'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_27",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 27,
+      "block_name": "Instant_Annihilation_v3",
+      "source": "producer-ai-base",
+      "original_index": 96
+    }
+  },
+  "optimization_history": []
+}

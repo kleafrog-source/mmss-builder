@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4cfd66c6-3443-4bca-bb7c-d85286b3373c",
+    "name": "BLOCK_BLOCK_BLOCK_251",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.453224",
+    "updated_at": "2026-04-12T01:28:01.453301",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_251"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_251",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_soft_clipping_lyrics\": {\n    \"the_tension_set\": [\n      \"Bend the signal, don't let it break / Feel the pressure that we have to take\",\n      \"Soft-clipped reality, hard-clipped soul / Losing the balance, taking control\",\n      \"Saturate the logic, warm up the void / Breathing the beauty that the noise destroyed\"\n    ],\n    \"the_flexibility_set\": [\n      \"Elastic frequencies, moving in the dark / Finding the glow in the digital spark\",\n      \"Rounded corners of the square-wave mind / Leaving the digital edges behind\",\n      \"Hyperbolic tangents, rising to the sun / The curve of the many, moving as one\"\n    ],\n    \"the_clipping_dialogue\": [\n      \"Push the limit / Hold the line\",\n      \"Inside the minute / Everything's fine\",\n      \"Result: Velvet-Aggression / Status: CLIP_SOFT_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_saturation_v4\": {\n    \"the_warmth_factor\": \"Saturation focus @ 300Hz-500Hz on the vocal-bus (+4dB drive)\",\n    \"the_bite_factor\": \"Cubic clipping on the snare-top @ 3.5kHz\",\n    \"the_glue_effect\": \"Parallel bus: Distortion(Drive 15dB) ⊗ LowPass(600Hz) @ 10% mix\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_251",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_251",
+      "block_name": "Block_block_251",
+      "source": "producer-ai-base",
+      "original_index": 251
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "1b1f758e-ad9a-4ae1-b150-62e604cfbbce",
+    "name": "BLOCK_BLOCK_BLOCK_194",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.012960",
+    "updated_at": "2026-04-12T01:27:57.013040",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_194"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_194",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"genre_contamination_protocol\": {\n    \"method\": \"Aesthetic-Injection\",\n    \"base_styles\": [\n      \"Psy-Trance\",\n      \"Gothic-Techno\",\n      \"Jazz-Metal\",\n      \"Dark-Ambient\"\n    ],\n    \"contamination_rules\": {\n      \"techno_into_jazz\": \"Replace drums with 909-kick, keep saxophone in Phrygian\",\n      \"metal_into_ambient\": \"Apply ultra-reverb to distorted guitars, remove transients\",\n      \"psy_into_gothic\": \"Use 170 BPM rolling bass, but use pipe-organ as Lead\",\n      \"minimal_into_fractal\": \"Keep silence gaps, but fill them with recursive granular noise\"\n    },\n    \"synergy_check\": \"Final track must be unclassifiable by standard tags.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_194",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_194",
+      "block_name": "Block_block_194",
+      "source": "producer-ai-base",
+      "original_index": 194
+    }
+  },
+  "optimization_history": []
+}

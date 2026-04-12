@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "47622d10-446a-47ae-a002-1977549893aa",
+    "name": "BLOCK_BLOCK_BLOCK_272",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.093020",
+    "updated_at": "2026-04-12T01:28:03.093105",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_272"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_272",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_harmonic_clipping_v4\": {\n    \"clipping_stages_logic\": {\n      \"stage_1_soft_saturation\": {\n        \"target\": \"Individual Stems (Bass / Lead)\",\n        \"mode\": \"Tape_Emulation (Soft-knee)\",\n        \"drive\": \"4.5dB\",\n        \"result\": \"Rounding the transients for better glue\"\n      },\n      \"stage_2_hard_clipping\": {\n        \"target\": \"Drum_Group / Reese_Group\",\n        \"mode\": \"Digital_Hard_Clip (Zero-latency)\",\n        \"threshold\": \"-1.0dB\",\n        \"result\": \"Absolute peak-ceiling management, adding 'crunch'\"\n      },\n      \"stage_3_surgical_limiting\": {\n        \"target\": \"Master_Bus\",\n        \"mode\": \"Look-ahead (2ms), True-peak\",\n        \"ceiling\": \"-0.3dB\",\n        \"result\": \"Transparent protection with zero inter-sample distortion\"\n      }\n    },\n    \"aggressive_harmonic_bias\": {\n      \"odd_harmonics_boost\": \"Focus @ 1.5kHz and 3kHz (The 'Biting' frequencies)\",\n      \"even_harmonics_glue\": \"Focus @ 200Hz-400Hz (The 'Body' warmth)\"\n    }\n  },\n  \"timbre_aggression_metrics_v4\": {\n    \"crest_factor_target\": \"6-8dB (Post-clipping density)\",\n    \"harmonic_distortion_THD\": \"Target 15% on Reese-Bass peaks\",\n    \"aliasing_suppression\": \"Oversampling 4x active on all distortion nodes\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_272",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_272",
+      "block_name": "Block_block_272",
+      "source": "producer-ai-base",
+      "original_index": 272
+    }
+  },
+  "optimization_history": []
+}

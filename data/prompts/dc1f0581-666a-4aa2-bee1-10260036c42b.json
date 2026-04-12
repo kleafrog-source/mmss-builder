@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "dc1f0581-666a-4aa2-bee1-10260036c42b",
+    "name": "BLOCK_COMMAND_CHAOS_MASTER",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.565775",
+    "updated_at": "2026-04-12T01:27:48.565849",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_29"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_COMMAND_CHAOS_MASTER",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 29,\n  \"block_name\": \"Command_Chaos_Master\",\n  \"chaos_rules\": {\n    \"cage_type\": \"4/4 Grid + C-Minor Scale\",\n    \"chaos_injection\": \"Randomize_Oscillator_Type every 1/16 note\",\n    \"safe_zones\": \"Kick remains on 1 and 3\"\n  },\n  \"randomness_seed\": \"User_Input_Timestamp\",\n  \"internal_insight\": {\n    \"the_caged_beast\": \"Ты называл это 'Зверем в клетке'. В Блоке 29 мы создали систему, где ритм был идеален, но тембры менялись так быстро, что мозг не успевал их осознать. Это создавало эффект 'звукового калейдоскопа'. Инсайт: порядок делает хаос еще более пугающим.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_29",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 29,
+      "block_name": "Command_Chaos_Master",
+      "source": "producer-ai-base",
+      "original_index": 93
+    }
+  },
+  "optimization_history": []
+}

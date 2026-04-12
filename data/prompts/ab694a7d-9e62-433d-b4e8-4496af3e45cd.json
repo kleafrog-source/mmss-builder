@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "ab694a7d-9e62-433d-b4e8-4496af3e45cd",
+    "name": "BLOCK_BLOCK_BLOCK_183",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.289757",
+    "updated_at": "2026-04-12T01:27:56.289826",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_183"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_183",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"pad_architecture_v2\": {\n    \"timbre\": \"Evolving Granular / Spectral-Freeze / Slow-Attack Strings\",\n    \"spectral_carving\": \"Notch-cut at 1kHz-2kHz (to let the Lead breathe)\",\n    \"movement\": \"Auto-panning (LFO 0.2Hz) + Phase-shifting (180 deg offset)\",\n    \"envelope\": \"Attack: 2s-5s, Decay: 10s, Sustain: 50%, Release: 5s (Tail infinity)\",\n    \"mixing_rule\": \"Mix at -12dB. Must occupy the 'Sides' (Mid-Side processing: Side 100%, Mid 0%).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_183",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_183",
+      "block_name": "Block_block_183",
+      "source": "producer-ai-base",
+      "original_index": 183
+    }
+  },
+  "optimization_history": []
+}

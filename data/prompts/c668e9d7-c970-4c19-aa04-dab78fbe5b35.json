@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c668e9d7-c970-4c19-aa04-dab78fbe5b35",
+    "name": "BLOCK_BLOCK_BLOCK_248",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.253138",
+    "updated_at": "2026-04-12T01:28:01.253204",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_248"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_248",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_cloud_reverb_matrix_v4\": {\n    \"diffusion_engine_logic\": {\n      \"tank_size\": \"Large (1.0) for 'cosmic' scale\",\n      \"diffusion_density\": \"85% (Creating a 'smear' instead of distinct echoes)\",\n      \"mod_rate\": \"0.35Hz (Slow, subtle pitch-drift in the tail)\",\n      \"mod_depth\": \"15% (LFO-Sine)\"\n    },\n    \"spectral_tail_filtering\": {\n      \"low_shelf\": \"450Hz (-24dB, avoid low-end mud)\",\n      \"high_cut\": \"6.5kHz (Analog 'dark' atmosphere)\",\n      \"mid_peak\": \"1.2kHz (+3dB, Q=0.8, for 'vocal' air)\"\n    },\n    \"dynamic_spatial_gate\": {\n      \"trigger\": \"Kick_Snare_Sum_Bus\",\n      \"ducking_depth\": \"-12dB (Instant reverb-void during hits)\",\n      \"release_time\": \"120ms (Synced to groove)\"\n    }\n  },\n  \"atmosphere_metrics_v4\": {\n    \"reverb_to_dry_ratio\": \"15% (Subtle presence) to 85% (Ambient sections)\",\n    \"perceived_room_depth\": \"Infinity (Linear decay modeling)\",\n    \"pre_delay_v4\": \"25ms (Surgical separation for lead-presence)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_248",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_248",
+      "block_name": "Block_block_248",
+      "source": "producer-ai-base",
+      "original_index": 248
+    }
+  },
+  "optimization_history": []
+}

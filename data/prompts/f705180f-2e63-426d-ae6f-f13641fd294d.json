@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f705180f-2e63-426d-ae6f-f13641fd294d",
+    "name": "BLOCK_BLOCK_BLOCK_318",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.463210",
+    "updated_at": "2026-04-12T01:28:06.463272",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_318"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_318",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"custom_macros_archive\": {\n    \"macro_A_CRUSH_REESE\": {\n      \"command\": \"/crush-reese\",\n      \"logic\": \"Distortion(40dB) ⊗ LowPass(Cutoff=LFO_1) ⊗ Gain(-6dB)\",\n      \"target\": \"Transform basic bass into aggressive neuro-growl\"\n    },\n    \"macro_B_FRACTAL_SPARKLE\": {\n      \"command\": \"/fractal-sparkle\",\n      \"logic\": \"HighPass(5kHz) ⊗ Granular_Delay(Grain=20ms) ⊗ Reverb(Mix=0.6)\",\n      \"target\": \"Add high-frequency recursive 'dust' to transitions\"\n    },\n    \"macro_C_PHASE_LOCK\": {\n      \"command\": \"/phase-lock\",\n      \"logic\": \"MonoSum(0-150Hz) ⊗ Gain(+3dB) ⊗ Sidechain(Threshold=-20dB)\",\n      \"target\": \"Instant punch-alignment for Kick/Bass fusion\"\n    }\n  },\n  \"universal_logic_connections\": {\n    \"the_singularity_arc\": {\n      \"connection_1\": \"Cyber-Shamanism (Concept 1) → DNA for Algorithm-Soul (Concept 3)\",\n      \"connection_2\": \"Recursive Collapse (Concept 2) → Feedback Loop for Neuro-Geometry (Concept 4)\",\n      \"thematic_anchor\": \"The transition from human ritual to machine-led evolution\"\n    },\n    \"spectral_signature\": {\n      \"fundamental_frequency\": \"G# (51.9Hz) - твой 'золотой стандарт' для баса\",\n      \"harmonic_bias\": \"Odd harmonics (Aggressive/Industrial feel)\",\n      \"spatial_bias\": \"Width > 120%, Depth < 50% (Wide but upfront)\"\n    }\n  },\n  \"LFE_phonetic_mapping\": {\n    \"syllable_triggers\": {\n      \"closed_vowels\": \"Trigger Hi-hat / Percussion (High frequency)\",\n      \"open_vowels\": \"Trigger Kick / Snare transients (Low-mid frequency)\",\n      \"consonants\": \"Trigger Glitch / Noise bursts (Aperiodic events)\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_318",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_318",
+      "block_name": "Block_block_318",
+      "source": "producer-ai-base",
+      "original_index": 318
+    }
+  },
+  "optimization_history": []
+}

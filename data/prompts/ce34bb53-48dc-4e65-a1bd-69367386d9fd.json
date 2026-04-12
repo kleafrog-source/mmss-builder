@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "ce34bb53-48dc-4e65-a1bd-69367386d9fd",
+    "name": "BLOCK_BLOCK_BLOCK_232",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:59.777583",
+    "updated_at": "2026-04-12T01:27:59.777644",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_232"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_232",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_multiband_equalizer_v4\": {\n    \"spectral_weighting_logic\": {\n      \"node_1_sub_foundation\": {\n        \"freq\": \"51.9Hz (G#1)\",\n        \"Q\": \"0.7 (Wide-shelf boost)\",\n        \"gain\": \"+2.5dB\",\n        \"dynamic_limit\": \"Linked to Kick-Transient (Sidechain-EQ)\"\n      },\n      \"node_2_anti_mud_void\": {\n        \"freq\": \"220Hz - 350Hz\",\n        \"Q\": \"2.5\",\n        \"gain\": \"-3.5dB (The 'Surgical Gap')\",\n        \"result\": \"Cleaning the path for the Reese-fundamental\"\n      },\n      \"node_3_vocal_presence\": {\n        \"freq\": \"3.5kHz\",\n        \"Q\": \"1.2\",\n        \"gain\": \"+1.8dB (The 'Intelligence' boost)\",\n        \"dynamic_compression\": \"Reduce gain by 2dB when Snare hits\"\n      },\n      \"node_4_fractal_air\": {\n        \"freq\": \"12kHz+\",\n        \"gain\": \"+4.5dB (High-shelf)\",\n        \"slope\": \"6dB/oct (Smooth analog lift)\"\n      }\n    },\n    \"dynamic_spectrum_matching\": \"Real-time FFT-analysis comparing to 'Golden_Record_v4'. Auto-correcting ±0.5dB drift in any 1/3 octave band.\"\n  },\n  \"spectral_balance_metrics_v4\": {\n    \"spectral_flatness\": \"η = 0.94 (Optimal energy distribution)\",\n    \"peak_to_average_ratio\": \"Target 12dB (The 'Breating' Master)\",\n    \"low_end_coherence\": \"Absolute Mono < 120Hz (Verified)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_232",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_232",
+      "block_name": "Block_block_232",
+      "source": "producer-ai-base",
+      "original_index": 232
+    }
+  },
+  "optimization_history": []
+}

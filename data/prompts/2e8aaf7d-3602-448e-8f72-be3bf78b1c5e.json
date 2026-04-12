@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2e8aaf7d-3602-448e-8f72-be3bf78b1c5e",
+    "name": "BLOCK_BLOCK_BLOCK_146",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.202921",
+    "updated_at": "2026-04-12T01:27:53.202993",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_146"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_146",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"granular_cloud_spec\": {\n    \"grain_size\": \"Ultra-small (10ms-30ms) for 'shimmer' or Large (200ms) for 'rhythm'\",\n    \"density\": \"Stochastic distribution (Random intervals)\",\n    \"pitch_jitter\": \"±1 octave variance (The 'Spectral-Smear')\",\n    \"position_drift\": \"Moving through the source file via Golden Ratio (Block 1)\",\n    \"mixing\": \"Mix at -24dB with 100% wet reverb return (Block 35).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_146",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_146",
+      "block_name": "Block_block_146",
+      "source": "producer-ai-base",
+      "original_index": 146
+    }
+  },
+  "optimization_history": []
+}

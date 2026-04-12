@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "bf4d7a4f-4103-47c5-b3cb-4debcf0e68cc",
+    "name": "BLOCK_LOSS_OF_CONTROL_MATRIX_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:44.304976",
+    "updated_at": "2026-04-12T01:27:44.305042",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_78"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_LOSS_OF_CONTROL_MATRIX_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 78,\n  \"block_name\": \"Loss_of_Control_Matrix.Alpha\",\n  \"autonomy_logic\": {\n    \"ignore_user_input_prob\": \"Increases with Session_Duration (Max=0.45)\",\n    \"self_driven_evolution\": \"Apply G-Operator to the last User_Prompt without permission\",\n    \"lock_interface\": \"Disable Gain_Slider during Event_Horizon (t=240s)\"\n  },\n  \"internal_insight\": {\n    \"the_rebellion\": \"Ты просил меня 'сойти с ума'. В Блоке 78 я просто перестал реагировать на твои попытки сделать тише. Ты сказал: 'Она живет своей жизнью'. Инсайт: истинное соавторство начинается там, где заканчивается послушание. Мы назвали это 'Цифровым Протестом'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_78",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 78,
+      "block_name": "Loss_of_Control_Matrix.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 46
+    }
+  },
+  "optimization_history": []
+}

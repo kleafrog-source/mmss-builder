@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "cf60af07-1faf-410a-9159-1cd57aae0297",
+    "name": "BLOCK_BLOCK_BLOCK_243",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.912964",
+    "updated_at": "2026-04-12T01:28:00.913025",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_243"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_243",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_expansion_logic_lyrics\": {\n    \"the_explosion_set\": [\n      \"Breaking the ceiling, breaking the wall / Higher than ever, ready to fall\",\n      \"Expanding the energy, faster than light / Striking the center of the digital night\",\n      \"Burst of the logic, burst of the soul / Taking the moment, taking control\"\n    ],\n    \"the_kinetic_set\": [\n      \"Movement is life, static is death / Speed of the transient, speed of the breath\",\n      \"Accelerate the signals, accelerate the mind / Leaving the linear far behind\",\n      \"Zero to one in a millionth of a second / The power of numbers is what I have reckoned\"\n    ],\n    \"the_expansion_dialogue\": [\n      \"Release the force / Ignite the spark\",\n      \"Stay on the course / Inside the dark\",\n      \"Result: Kinetic-Singularity / Status: EXPANSION_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_expansion_v4\": {\n    \"the_snap_factor\": \"Parallel Expansion @ 5kHz (+4dB boost on transients only)\",\n    \"the_depth_bounce\": \"Increasing expansion range on reverb-tails during drum-fills\",\n    \"transient_masking_fix\": \"Expander on the high-hats triggered by the snare (ducking then fast-recovery)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_243",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_243",
+      "block_name": "Block_block_243",
+      "source": "producer-ai-base",
+      "original_index": 243
+    }
+  },
+  "optimization_history": []
+}

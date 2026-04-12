@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "fafa29f4-6ab0-4840-b544-b6764880949c",
+    "name": "BLOCK_BLOCK_BLOCK_132",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:51.415146",
+    "updated_at": "2026-04-12T01:27:51.415211",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_132"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_132",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"physical_weight_spec\": {\n    \"sub_focus\": \"35Hz - 45Hz boost (+3dB) with wide Q\",\n    \"compression_pump\": \"Slow Release (500ms+) on the Master Bus to create 'breathing' pressure\",\n    \"psycho_trick\": \"Subtracting 3dB at 300Hz (the mud) to make the Sub feel 'cleaner' and 'heavier'\",\n    \"mixing_rule\": \"The Foundation must feel like it's 'bending' the space around the Narrative Layers.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_132",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_132",
+      "block_name": "Block_block_132",
+      "source": "producer-ai-base",
+      "original_index": 132
+    }
+  },
+  "optimization_history": []
+}

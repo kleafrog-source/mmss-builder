@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "077017af-0cd0-404c-a08f-c4fdd60bb887",
+    "name": "BLOCK_BLOCK_BLOCK_189",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.693054",
+    "updated_at": "2026-04-12T01:27:56.693134",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_189"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_189",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"reverb_geometry_v3\": {\n    \"decay_time\": \"Proportional to Golden Ratio (1.618s, 2.61s, 4.23s)\",\n    \"diffusion_patterns\": {\n      \"cathedral_void\": \"High-diffusion, low-damp (Bright/Cold reflections)\",\n      \"metal_box\": \"Short-decay, high-resonance (Metallic/Gritty)\",\n      \"deep_space\": \"Zero-diffusion, zero-damp (Isolated echo trails)\"\n    },\n    \"modulation\": \"Sine-LFO on Reverb-size to create 'breathing walls'\",\n    \"mixing_rule\": \"Apply High-Pass at 300Hz to reverb-return to keep Foundation clear.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_189",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_189",
+      "block_name": "Block_block_189",
+      "source": "producer-ai-base",
+      "original_index": 189
+    }
+  },
+  "optimization_history": []
+}

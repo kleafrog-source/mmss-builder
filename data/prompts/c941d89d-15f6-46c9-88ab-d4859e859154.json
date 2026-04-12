@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c941d89d-15f6-46c9-88ab-d4859e859154",
+    "name": "BLOCK_BLOCK_BLOCK_215",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.403185",
+    "updated_at": "2026-04-12T01:27:58.403257",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_215"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_215",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"prompt_syntax_v2\": {\n    \"prefix\": \"[ASE_INIT]\",\n    \"core_structure\": \"{Genre} / {BPM} / {Key} / {L1_Core_Emotion}\",\n    \"modifier_tokens\": {\n      \"texture\": \"crystal-clear, liquid-gold, gritty-industrial, neon-glow\",\n      \"spatial\": \"4D-panned, non-euclidean-reverb, binaural-depth\",\n      \"dynamic\": \"ultra-compressed, breathing-pumping, surgical-transients\"\n    },\n    \"suffix\": \"[MMSS_OPTIMIZED_VERSION]\"\n  },\n  \"forbidden_tokens\": [\n    \"generic\",\n    \"lo-fi\",\n    \"chill\",\n    \"standard\",\n    \"commercial\"\n  ]\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_215",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_215",
+      "block_name": "Block_block_215",
+      "source": "producer-ai-base",
+      "original_index": 215
+    }
+  },
+  "optimization_history": []
+}

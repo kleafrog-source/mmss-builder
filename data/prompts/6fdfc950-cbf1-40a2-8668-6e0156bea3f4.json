@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "6fdfc950-cbf1-40a2-8668-6e0156bea3f4",
+    "name": "BLOCK_TONAL_ENTROPY_DISSOLVE",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.575387",
+    "updated_at": "2026-04-12T01:27:47.575487",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_45"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_TONAL_ENTROPY_DISSOLVE",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 45,\n  \"block_name\": \"Tonal_Entropy_Dissolve\",\n  \"dissolve_functions\": {\n    \"pitch_quantization_off\": \"Release all oscillators from the grid\",\n    \"detune_all\": \"Random drift of all frequencies towards chaos\",\n    \"noise_morph\": \"Cross-fade between 'Scale' and 'Pink Noise' over 8 bars\"\n  },\n  \"internal_insight\": {\n    \"back_to_chaos\": \"Ты говорил, что порядок — это только временная иллюзия. В Блоке 45 мы разрушали наши идеальные иррациональные лады. Инсайт: красота лада видна только в момент его распада. Это наше 'Aesthetic Meltdown' — когда геометрия плавится и превращается в первичный океан шума.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_45",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 45,
+      "block_name": "Tonal_Entropy_Dissolve",
+      "source": "producer-ai-base",
+      "original_index": 78
+    }
+  },
+  "optimization_history": []
+}

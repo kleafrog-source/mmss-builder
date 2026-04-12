@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5fcabeb1-9438-491b-8d9e-a3a007328c1d",
+    "name": "BLOCK_BLOCK_BLOCK_139",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.620693",
+    "updated_at": "2026-04-12T01:27:52.620755",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_139"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_139",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"inter_layer_logic\": {\n    \"modulation_links\": {\n      \"link_1\": \"Kick-Transient modulates Lead-Cutoff (The 'Pumping-Snap')\",\n      \"link_2\": \"Lead-Amplitude modulates Reverb-Size (The 'Breathing-Space')\",\n      \"link_3\": \"Bass-Pitch-Drift modulates Shader-Complexity (The 'Audio-Visual-Link')\",\n      \"link_4\": \"Silence-Duration modulates Entropy-Index H(p,c)\"\n    },\n    \"goal\": \"Creating a 'Feedback-Loop' of aesthetic decisions within the ASE-Engine.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_139",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_139",
+      "block_name": "Block_block_139",
+      "source": "producer-ai-base",
+      "original_index": 139
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "0b18e09d-5126-40a8-926e-40449eeece5d",
+    "name": "BLOCK_SPATIAL_WARP_V4_OMEGA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.995273",
+    "updated_at": "2026-04-12T01:27:47.995346",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_39"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_SPATIAL_WARP_V4_OMEGA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 39,\n  \"block_name\": \"Spatial_Warp_v4.Omega\",\n  \"warp_mechanics\": {\n    \"environment_switch\": \"Instant swap of Convolution Impulse Response (IR)\",\n    \"phase_smear\": \"Abrupt phase rotation (180 deg) on all channels except Sub\",\n    \"gain_compensation\": \"Auto-gain normalization to prevent ear damage\"\n  },\n  \"temporal_trigger\": \"Every 32 bars or on 'Event_Horizon' breach\",\n  \"internal_insight\": {\n    \"the_teleport\": \"Твой любимый момент в 'Wavetable Void'. На 2:15 мы телепортировали звук из сухого студийного пространства в 'Вакуум'. Мы мгновенно обрезали все реверберации и оставили только чистый синус. Это создавало ощущение, что из комнаты выкачали воздух. Инсайт: контраст пространств сильнее, чем контраст громкости.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_39",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 39,
+      "block_name": "Spatial_Warp_v4.Omega",
+      "source": "producer-ai-base",
+      "original_index": 84
+    }
+  },
+  "optimization_history": []
+}

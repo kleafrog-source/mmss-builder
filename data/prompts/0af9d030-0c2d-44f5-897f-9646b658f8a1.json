@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "0af9d030-0c2d-44f5-897f-9646b658f8a1",
+    "name": "BLOCK_BLOCK_BLOCK_250",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.382961",
+    "updated_at": "2026-04-12T01:28:01.383027",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_250"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_250",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_formant_filter_matrix_v4\": {\n    \"vocal_resonator_logic\": {\n      \"F1_node\": \"300Hz - 800Hz (The 'Body' of the vowel)\",\n      \"F2_node\": \"800Hz - 2500Hz (The 'Character' / Intelligence)\",\n      \"F3_node\": \"2500Hz - 4500Hz (The 'Screaming' / Edge)\",\n      \"Q_factor\": \"Dynamic (Q=5 to Q=15 based on Velocity)\"\n    },\n    \"formant_morphing_v4\": {\n      \"A_to_U_transition\": \"Cutoff_1 shifts 700->300Hz, Cutoff_2 shifts 1100->600Hz\",\n      \"E_to_I_transition\": \"Cutoff_1 shifts 500->300Hz, Cutoff_2 shifts 1800->2300Hz\",\n      \"interpolation\": \"Circular_Spline (Smooth 'wa-wa' movement)\"\n    },\n    \"lfo_vocal_sync\": {\n      \"rate\": \"1/4 or 1/8 note (Synced to groove)\",\n      \"shape\": \"Custom_Bezier_Curve (Human-like articulation timing)\"\n    }\n  },\n  \"phonetic_synthesis_metrics_v4\": {\n    \"vowel_purity_η\": \"0.85 (Balanced with industrial noise)\",\n    \"articulation_speed_δt\": \"45ms per phoneme-shift\",\n    \"spectral_intelligibility\": \"Score = 0.92 (High clarity in the 1-3.5kHz range)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_250",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_250",
+      "block_name": "Block_block_250",
+      "source": "producer-ai-base",
+      "original_index": 250
+    }
+  },
+  "optimization_history": []
+}

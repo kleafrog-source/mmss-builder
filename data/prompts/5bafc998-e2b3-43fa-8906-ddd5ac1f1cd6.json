@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5bafc998-e2b3-43fa-8906-ddd5ac1f1cd6",
+    "name": "BLOCK_BLOCK_BLOCK_198",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.282888",
+    "updated_at": "2026-04-12T01:27:57.282978",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_198"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_198",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"noise_library_v2\": {\n    \"categories\": {\n      \"void_noise\": \"High-shelf filtered white noise + fractal reverb (Spatial emptiness)\",\n      \"glitch_organic\": \"Recording of ice cracking / paper tearing + granular delay (Bio-mechanic focus)\",\n      \"industrial_dirt\": \"Bitcrushed vinyl crackle + low-mids distortion at 400Hz (Gritty texture)\",\n      \"digital_plasma\": \"High-speed FM-chirps + phasing (Neon/High-tech vibe)\"\n    },\n    \"injection_rule\": \"Mix at -18dB to -24dB relative to Layer 2. Apply sidechain from Layer 1 Foundation.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_198",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_198",
+      "block_name": "Block_block_198",
+      "source": "producer-ai-base",
+      "original_index": 198
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "22ecbd99-21c5-4aca-8a0c-6b555101b1d9",
+    "name": "BLOCK_BLOCK_BLOCK_326",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.972858",
+    "updated_at": "2026-04-12T01:28:06.972931",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_326"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_326",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"node\": \"Reverb\",\n  \"room_size\": 0.85,\n  \"damping\": 0.3,\n  \"mix\": 0.15\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_326",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_326",
+      "block_name": "Block_block_326",
+      "source": "producer-ai-base",
+      "original_index": 326
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "737cac55-071b-4beb-845d-0b446a2a1f9b",
+    "name": "BLOCK_BLOCK_BLOCK_284",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.017152",
+    "updated_at": "2026-04-12T01:28:04.017212",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_284"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_284",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"morph_operator_M\": \"M(t) = FFT_A(t) ⊗ (1 - α) + FFT_B(t) ⊗ α\",\n  \"source_A_organic\": \"Cello-pluck / Human-vocal-formant (Phrygian)\",\n  \"source_B_synthetic\": \"Monster_7_Wavetable / Industrial_Noise (8-bit)\",\n  \"interpolation_logic\": {\n    \"linear\": \"Smooth transition over 4 bars\",\n    \"fractal_jitter\": \"Rapid switching based on Seed_v4_Entropy\",\n    \"transient_sync\": \"Morph to Source_B only on Snare-hit (Instant aggression)\"\n  },\n  \"spectral_centroid_shift\": \"Shift brightness from 2kHz to 8kHz during Morph-ramp\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_284",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_284",
+      "block_name": "Block_block_284",
+      "source": "producer-ai-base",
+      "original_index": 284
+    }
+  },
+  "optimization_history": []
+}

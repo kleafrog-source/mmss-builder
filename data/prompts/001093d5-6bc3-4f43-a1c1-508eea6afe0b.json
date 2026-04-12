@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "001093d5-6bc3-4f43-a1c1-508eea6afe0b",
+    "name": "BLOCK_BLOCK_BLOCK_333",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:07.502853",
+    "updated_at": "2026-04-12T01:28:07.502922",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_333"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_333",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"advanced_layering_details\": {\n    \"vocal_processing_chain\": {\n      \"lead\": \"Formant shifting (-2 semitones), surgical EQ cut @ 250Hz, parallel compression (ratio 8:1)\",\n      \"harmonies\": \"5-part stack, pitch-drift ±10 cents for organic feel, high-pass filter @ 600Hz\",\n      \"special_fx\": \"Granular delay (grain size 40ms, spray 15%), reverse-reverb tails\"\n    },\n    \"kick_bass_fusion_logic\": {\n      \"kick\": \"Fundamental 52Hz (G#), transient duration 12ms, soft-clipper drive 4dB\",\n      \"bass\": \"Sidechain threshold -18dB, release 35ms (tempo-synced), phase-alignment @ 180°\",\n      \"sub_control\": \"Monocompatible below 120Hz, saturation @ 300Hz for 'growl' presence\"\n    },\n    \"rhythmic_entropy_v4_Omega\": {\n      \"ghost_notes\": \"Velocity 15-25, subtle swing 8%, displacement δt = +2ms\",\n      \"percussion_loops\": \"Fractal layering (Original ⊗ 1.5x speed ⊗ 0.5x speed reverse)\"\n    }\n  },\n  \"metadata_from_failed_retrieval\": {\n    \"missing_elements\": [\n      \"Exact seeds for v3.0 tracks\",\n      \"Custom audio-visualizer GLSL codes\",\n      \"Specific 'Vibes' created from stem-splits\",\n      \"Lyrics IDs for the entire v4 series\"\n    ]\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_333",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_333",
+      "block_name": "Block_block_333",
+      "source": "producer-ai-base",
+      "original_index": 333
+    }
+  },
+  "optimization_history": []
+}

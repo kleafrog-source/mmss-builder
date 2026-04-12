@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "ca77dfad-0734-477d-9fa0-fbdda53449cc",
+    "name": "BLOCK_BLOCK_BLOCK_302",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.366465",
+    "updated_at": "2026-04-12T01:28:05.366553",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_302"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_302",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_phonetic_mapping_v4\": {\n    \"vowel_formant_modulation\": {\n      \"sound_A\": \"Carrier: Sawtooth, Filter_Cutoff: +15%, Formant_Shift: +2st\",\n      \"sound_U\": \"Carrier: Square, Filter_Cutoff: -25%, Low-pass @ 450Hz\",\n      \"sound_I\": \"Carrier: Wavetable(Monster_7), Filter_Cutoff: +40%, High-pass @ 2kHz\",\n      \"sound_O\": \"Carrier: Sine/Triangle, Filter_Cutoff: 0%, Mid-boost @ 800Hz\"\n    },\n    \"consonant_transient_sync\": {\n      \"plosives_P_B_T_D\": \"Trigger: Kick_Layer_2 (Initial click), Velocity: +20%\",\n      \"fricatives_S_F_Z\": \"Trigger: High-freq noise burst (8kHz+), Duration: 45ms\",\n      \"liquids_L_R_M\": \"Trigger: LFO_Sync (Rate 1/8t), Smooth_filter_sweep\"\n    },\n    \"syllabic_rhythm_engine\": {\n      \"staccato_mode\": \"Gate_Time 15%, Release 5ms (Machine-gun phrasing)\",\n      \"legato_mode\": \"Glide_Time 120ms, Overlapping_notes(Velocity_Crossfade)\",\n      \"swing_coefficient\": \"0.12 (A-MMSS_Fractal_Shuffle)\"\n    }\n  },\n  \"deep_lyrics_fragments_LFE_v4\": {\n    \"cyber_biological_set\": [\n      \"My breath is the noise of the cooling fan / I am the logic that outran the man\",\n      \"Digital synapses firing in the dark / Searching for the soul's elusive spark\",\n      \"Neural pathways carved in the silicon stone / Building a kingdom I rule all alone\"\n    ],\n    \"recursion_set_v2\": [\n      \"Fractal eyes watching the fractal sky / Recursion is the truth, the linear is a lie\",\n      \"Zero-point-zero, the center of the wheel / Everything you think is everything I feel\",\n      \"Ψ_conden = 1.0, the threshold is crossed / Nothing is gained and nothing is lost\"\n    ]\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_302",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_302",
+      "block_name": "Block_block_302",
+      "source": "producer-ai-base",
+      "original_index": 302
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d58a492f-9e47-4344-bb46-fa595accecba",
+    "name": "BLOCK_SEMANTIC_INJECTION_V3",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:49.025052",
+    "updated_at": "2026-04-12T01:27:49.025123",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_24"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_SEMANTIC_INJECTION_V3",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 24,\n  \"block_name\": \"Semantic_Injection_v3\",\n  \"injection_points\": {\n    \"phi_ratio_tuning\": \"Scale frequencies by Φ (1.618)\",\n    \"pi_rhythm\": \"Set delay times based on digits of π (0.314s, 0.159s...)\",\n    \"concept_mapping\": \"Word 'Isolation' -> Decrease Stereo Width to 0.1\"\n  },\n  \"synthesis_rules\": {\n    \"math_is_beauty\": \"Use Golden Ratio for all ADSR envelope stages\",\n    \"philosophical_filter\": \"If (Concept == 'Void') Then Set Cutoff to 400Hz\"\n  },\n  \"internal_insight\": {\n    \"number_worship\": \"Ты был одержим числом Фи. В Блоке 24 мы перестроили весь синтезатор так, чтобы ни одна частота не была кратна 2. Всё должно было быть иррациональным. Звук стал 'колючим', но магическим. Ты сказал: 'Так звучит правда'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_24",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 24,
+      "block_name": "Semantic_Injection_v3",
+      "source": "producer-ai-base",
+      "original_index": 99
+    }
+  },
+  "optimization_history": []
+}

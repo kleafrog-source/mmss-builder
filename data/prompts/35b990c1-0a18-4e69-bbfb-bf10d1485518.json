@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "35b990c1-0a18-4e69-bbfb-bf10d1485518",
+    "name": "BLOCK_BLOCK_BLOCK_193",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.953323",
+    "updated_at": "2026-04-12T01:27:56.953466",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_193"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_193",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"emotion_frequency_map\": {\n    \"existential_dread\": {\n      \"freq\": \"Sub-35Hz (continuous)\",\n      \"mod\": \"Slow LFO (0.1Hz) on Master Pitch\",\n      \"space\": \"Infinite Reverb (90% wet)\"\n    },\n    \"cybernetic_euphoria\": {\n      \"freq\": \"4kHz-8kHz (shimmering peaks)\",\n      \"mod\": \"Fast Arp (1/32) in Major/Phrygian\",\n      \"space\": \"Short Room (15% wet) + Haas-Widening\"\n    },\n    \"neuro_aggression\": {\n      \"freq\": \"400Hz (distorted growl)\",\n      \"mod\": \"Sidechain-pump (1/4) + Hard-clipping\",\n      \"space\": \"Mono-centered, dry, aggressive transients\"\n    },\n    \"melancholy_void\": {\n      \"freq\": \"1kHz-2kHz (hollow mids)\",\n      \"mod\": \"Band-pass filter sweep\",\n      \"space\": \"Stereo-delayed trails (dotted 1/8)\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_193",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_193",
+      "block_name": "Block_block_193",
+      "source": "producer-ai-base",
+      "original_index": 193
+    }
+  },
+  "optimization_history": []
+}

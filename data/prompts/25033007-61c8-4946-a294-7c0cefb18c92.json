@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "25033007-61c8-4946-a294-7c0cefb18c92",
+    "name": "BLOCK_BLOCK_BLOCK_259",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:02.113092",
+    "updated_at": "2026-04-12T01:28:02.113183",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_259"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_259",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_sidechain_logic_lyrics\": {\n    \"the_breathing_set\": [\n      \"Inhale the silence, exhale the sound / Breathing the logic we finally found\",\n      \"Duck the low, let the kick take control / Pumping the signal through every soul\",\n      \"Rhythm is breathing, the machine is alive / Only the strongest frequencies survive\"\n    ],\n    \"the_pulse_set\": [\n      \"Heartbeat of neon, heartbeat of lead / Waking the rhythms that never were dead\",\n      \"Zero to one, the compression is tight / Pulsing forever in the digital night\",\n      \"Sidechain reactor, fusion is near / Erasing the noise, erasing the fear\"\n    ],\n    \"the_pumping_dialogue\": [\n      \"Give way to the hit / Move with the beat\",\n      \"The logic is lit / The circle's complete\",\n      \"Result: Rhythmic-Compression / Status: GROOVE_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_pumping_v4\": {\n    \"the_suction_effect\": \"Applying -6dB gain reduction to the master-bus reverb during kick-hits\",\n    \"low_end_purity\": \"Sidechaining the low-shelf of the pads to the sub-bass (52Hz fundamental)\",\n    \"transient_recovery\": \"Using 'soft-knee' on the snare-sidechain to avoid 'clicky' artifacts\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_259",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_259",
+      "block_name": "Block_block_259",
+      "source": "producer-ai-base",
+      "original_index": 259
+    }
+  },
+  "optimization_history": []
+}

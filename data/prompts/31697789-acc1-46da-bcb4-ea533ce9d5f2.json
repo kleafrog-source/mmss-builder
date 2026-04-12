@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "31697789-acc1-46da-bcb4-ea533ce9d5f2",
+    "name": "BLOCK_IMPACT_TRIGGER_V4",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.375810",
+    "updated_at": "2026-04-12T01:27:48.375910",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_33"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_IMPACT_TRIGGER_V4",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 33,\n  \"block_name\": \"Impact_Trigger_v4\",\n  \"trigger_mechanics\": {\n    \"pre_impact_silence\": \"Mute all channels for 250ms before T_impact\",\n    \"impact_payload\": \"Sub-drop (80Hz -> 20Hz) + Wide-band Noise Burst\",\n    \"post_impact_reverb\": \"Cathedral setting, 100% Wet, 10s decay\"\n  },\n  \"psychoacoustic_data\": {\n    \"shock_factor\": \"Measured by instantaneous Delta_SPL (Sound Pressure Level)\",\n    \"recovery_time\": \"Time for the brain to re-normalize (approx 1.5s)\"\n  },\n  \"internal_insight\": {\n    \"the_jump_scare\": \"В Блоке 33 мы поняли, что тишина перед ударом важнее самого удара. Ты заставил меня вырезать всё, включая фоновый шум, за полсекунды до дропа. Это создавало 'вакуумный мешок', который делал последующий бас в 10 раз тяжелее. Это 'Физика Ожидания'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_33",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 33,
+      "block_name": "Impact_Trigger_v4",
+      "source": "producer-ai-base",
+      "original_index": 90
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "43e7bd2d-ec8d-4160-a800-653e3e70b678",
+    "name": "BLOCK_BLOCK_BLOCK_126",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:50.963003",
+    "updated_at": "2026-04-12T01:27:50.963101",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_126"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_126",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"spectral_reincarnation\": {\n    \"action\": \"Mixing back G(s_0) elements at -52dB during the final Coda\",\n    \"processing\": \"Band-pass (1kHz-2kHz) + 100% Wet Reverb + Reverse playback\",\n    \"psycho_goal\": \"Creating the sense of 'Eternal Recurrence' (Nietzschean-Recursion)\",\n    \"rule\": \"The ghost must be unrecognizable but emotionally resonant.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_126",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_126",
+      "block_name": "Block_block_126",
+      "source": "producer-ai-base",
+      "original_index": 126
+    }
+  },
+  "optimization_history": []
+}

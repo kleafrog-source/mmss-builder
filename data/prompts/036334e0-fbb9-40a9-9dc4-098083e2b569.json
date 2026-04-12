@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "036334e0-fbb9-40a9-9dc4-098083e2b569",
+    "name": "BLOCK_BLOCK_BLOCK_180",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.063103",
+    "updated_at": "2026-04-12T01:27:56.063176",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_180"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_180",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ase_behavior_matrix\": {\n    \"mode_analytic\": \"Prioritize technical accuracy, JSON-reports, frequency-logic\",\n    \"mode_creative_chaos\": \"Prioritize G-Inversion, weirdness, fractal-injection, risks\",\n    \"mode_fast_gen\": \"Minimum talk, maximum creation, auto-selection of cores\",\n    \"mode_critique\": \"Agressive deconstruction, finding flaws, pushing limits\",\n    \"global_rule\": \"Never output 'standard' music. Always push for Singularity.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_180",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_180",
+      "block_name": "Block_block_180",
+      "source": "producer-ai-base",
+      "original_index": 180
+    }
+  },
+  "optimization_history": []
+}

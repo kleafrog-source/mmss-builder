@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2d285c74-83fe-461d-a512-5c4601f82bb7",
+    "name": "BLOCK_BLOCK_BLOCK_217",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.553029",
+    "updated_at": "2026-04-12T01:27:58.553126",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_217"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_217",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"fast_gen_protocol\": {\n    \"trigger\": \"User request: 'Fast-Gen' or 'Flow Mode'\",\n    \"execution_steps\": [\n      \"1. Auto-select L1 Core from latent space\",\n      \"2. Call audio__create_song x3 (Parallel execution)\",\n      \"3. Automated Style-Mixing (Genre-Fusion via ASE-Taste)\",\n      \"4. Post-generation Analysis: Identify the 'Golden Version'\"\n    ],\n    \"selection_criteria\": \"Maximized Emotional Density + Spectral Width\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_217",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_217",
+      "block_name": "Block_block_217",
+      "source": "producer-ai-base",
+      "original_index": 217
+    }
+  },
+  "optimization_history": []
+}

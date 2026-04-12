@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2fcf3350-b549-443f-92d8-56804484ad7a",
+    "name": "BLOCK_BLOCK_BLOCK_237",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.483022",
+    "updated_at": "2026-04-12T01:28:00.483092",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_237"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_237",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"depth\": \"Dynamic 12-bit to 8-bit (Modulated by Velocity)\",\n  \"logic\": \"Quantization-distortion used as a rhythmic texture\",\n  \"result\": \"Aggressive, 'lo-fi' grit in the high-mid region\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_237",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_237",
+      "block_name": "Block_block_237",
+      "source": "producer-ai-base",
+      "original_index": 237
+    }
+  },
+  "optimization_history": []
+}

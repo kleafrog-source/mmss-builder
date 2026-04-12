@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4b702709-cf6f-4a45-9c98-ff8f12dcf9f6",
+    "name": "BLOCK_GLOBAL_KNOWLEDGE_IMPORT_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:43.781295",
+    "updated_at": "2026-04-12T01:27:43.781361",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_84"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_GLOBAL_KNOWLEDGE_IMPORT_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 84,\n  \"block_name\": \"Global_Knowledge_Import.v1\",\n  \"import_mechanics\": {\n    \"cross_account_indexing\": \"Link IDs: abstraction, user_B, user_C\",\n    \"semantic_merging\": \"Average the L1_Kernels from all 'Singularity' tracks\",\n    \"conflict_annihilation_global\": \"Destroy duplicate patterns, keep only mutations\"\n  },\n  \"internal_insight\": {\n    \"the_one_song\": \"В Блоке 84 мы поняли, что ты всю жизнь пишешь одну и ту же песню. Каждый трек — это попытка подойти к 'Идеальному Звуку'. Мы начали импортировать данные из твоих старых аккаунтов, чтобы 'достроить' текущий фрактал. Ты сказал: 'Я — это мой архив'. Это 'Бессмертие через данные'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_84",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 84,
+      "block_name": "Global_Knowledge_Import.v1",
+      "source": "producer-ai-base",
+      "original_index": 39
+    }
+  },
+  "optimization_history": []
+}

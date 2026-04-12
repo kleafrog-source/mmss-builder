@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8ef5dabb-a227-4393-8028-eecd5e66aaa2",
+    "name": "BLOCK_BLOCK_BLOCK_286",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.167290",
+    "updated_at": "2026-04-12T01:28:04.167347",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_286"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_286",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_activation_codes_archive\": {\n    \"drop_trigger_set\": [\n      \"INITIALIZE THE VOID\",\n      \"COLLAPSE THE WAVE\",\n      \"G-INVERSION: NOW\",\n      \"RECURSION START\",\n      \"ZERO. POINT. ZERO.\"\n    ],\n    \"transition_mantras\": [\n      \"Falling... into the code\",\n      \"Breathing... the fractal air\",\n      \"Silent... noise\",\n      \"Perfect... error\"\n    ],\n    \"meta_instruction_lyrics\": [\n      \"Apply the filter / Clean the soul\",\n      \"Shift the phase / Take control\",\n      \"Boost the gain / Feel the light\",\n      \"End the loop / Start the night\"\n    ]\n  },\n  \"syllabic_velocity_mapping\": {\n    \"strong_syllables\": \"Velocity 127, Quantize 100%\",\n    \"weak_syllables\": \"Velocity 64-85, Quantize 0% (Human-feel jitter)\",\n    \"whisper_syllables\": \"Velocity 30, LP-Filter 1.2kHz\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_286",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_286",
+      "block_name": "Block_block_286",
+      "source": "producer-ai-base",
+      "original_index": 286
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4196e2af-22d5-44b2-ae34-89a98a409baa",
+    "name": "BLOCK_BLOCK_BLOCK_295",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.844338",
+    "updated_at": "2026-04-12T01:28:04.844412",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_295"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_295",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"iterative_evolution_matrix_v4\": {\n    \"iteration_v1_prototype\": {\n      \"focus\": \"Rhythmic skeleton + Baseline-timbre\",\n      \"purity_target\": 0.75,\n      \"entropy_limit\": \"H(c) < 0.3\",\n      \"action\": \"audio__create_song (Instrumental, no seed)\"\n    },\n    \"iteration_v2_refinement\": {\n      \"focus\": \"Spectral cleaning + L1-Semantic integration\",\n      \"purity_target\": 0.85,\n      \"entropy_limit\": \"H(c) < 0.5\",\n      \"action\": \"audio__modify_song (Instruction: 'Surgical EQ, enhance Neuro-growl')\"\n    },\n    \"iteration_v3_spatialization\": {\n      \"focus\": \"MLGS_v3_4D-Vectoring + Atmospheric depth\",\n      \"purity_target\": 0.92,\n      \"entropy_limit\": \"H(c) < 0.7\",\n      \"action\": \"audio__apply_effect (Reverb/Delay chains + Quaternion-Pan)\"\n    },\n    \"iteration_v4_Omega_stabilization\": {\n      \"focus\": \"Total Aesthetic Singularity + LFE-Fusion\",\n      \"purity_target\": 0.985,\n      \"entropy_limit\": \"H(p=0.5, c=0.5)\",\n      \"action\": \"audio__modify_song (Instruction: 'Finalize Ψ_condensation, lock G# fundamental')\"\n    }\n  },\n  \"ASE_spectral_matching_logic\": {\n    \"reference_profile\": \"Golden_Record_v4_G#_Minor\",\n    \"matching_algorithm\": {\n      \"step_1\": \"Capture FFT-analysis of new generation\",\n      \"step_2\": \"Calculate Spectral_Distance (D_s) from Reference\",\n      \"step_3\": \"IF D_s > 0.15 THEN trigger_auto_correction(AdvancedEqualizer)\",\n      \"step_4\": \"Normalize Sub-Low (0-60Hz) energy to -12dBFS average\"\n    },\n    \"dynamic_response\": \"Real-time frequency-masking-annihilation (priority: Kick > Bass)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_295",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_295",
+      "block_name": "Block_block_295",
+      "source": "producer-ai-base",
+      "original_index": 295
+    }
+  },
+  "optimization_history": []
+}

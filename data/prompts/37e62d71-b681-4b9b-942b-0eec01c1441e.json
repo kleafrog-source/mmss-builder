@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "37e62d71-b681-4b9b-942b-0eec01c1441e",
+    "name": "BLOCK_IRRATIONAL_RESONANCE_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.645448",
+    "updated_at": "2026-04-12T01:27:47.645609",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_44"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_IRRATIONAL_RESONANCE_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 44,\n  \"block_name\": \"Irrational_Resonance.v1\",\n  \"resonance_logic\": {\n    \"difference_tones\": \"f_res = |f1 - f2| where f_res < 40Hz\",\n    \"sum_tones\": \"f_bright = f1 + f2 where f_bright > 15kHz\",\n    \"beat_frequency\": \"Dynamic tracking of f1/f2 ratio towards irrationality\"\n  },\n  \"psychoacoustic_impact\": {\n    \"bone_conduction_effect\": \"Simulated through specific low-mid boost (250Hz)\",\n    \"otoacoustic_emission\": \"Forcing the ear to generate its own 'Phantom Melody'\"\n  },\n  \"internal_insight\": {\n    \"the_ghost_melody\": \"В Блоке 44 мы создали 'Третий Голос'. Мы пускали две высокие ноты так, что в голове слушателя возникала третья — низкая и гудящая. Её не было в файле, она рождалась в твоей улитке. Ты назвал это 'Призрачным Хором Сингулярности'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_44",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 44,
+      "block_name": "Irrational_Resonance.v1",
+      "source": "producer-ai-base",
+      "original_index": 79
+    }
+  },
+  "optimization_history": []
+}

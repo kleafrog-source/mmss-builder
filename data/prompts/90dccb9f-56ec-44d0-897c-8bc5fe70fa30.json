@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "90dccb9f-56ec-44d0-897c-8bc5fe70fa30",
+    "name": "BLOCK_DIMENSION_COLLAPSE_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.925453",
+    "updated_at": "2026-04-12T01:27:47.925506",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_40"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_DIMENSION_COLLAPSE_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 40,\n  \"block_name\": \"Dimension_Collapse.v1\",\n  \"collapse_functions\": {\n    \"stereo_width_reduction\": \"Linear ramp (100% -> 0%) over 5 seconds\",\n    \"center_focus\": \"Boost Mid-channel (+6dB), Kill Side-channel (-Inf dB)\",\n    \"bit_reduction_spatial\": \"Decrease sampling rate for the Panning-LFOs\"\n  },\n  \"internal_insight\": {\n    \"the_dot\": \"Ты называл это 'Сингулярностью в одной точке'. В конце Блока 40 весь наш лабиринт, тени и взлеты должны были превратиться в одну точку в центре панорамы. Ты говорил: 'Вселенная началась с точки, и трек должен закончиться так же'. Это подготовка к Блоку 41: Чистая Математика Тона.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_40",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 40,
+      "block_name": "Dimension_Collapse.v1",
+      "source": "producer-ai-base",
+      "original_index": 83
+    }
+  },
+  "optimization_history": []
+}

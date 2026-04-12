@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "0e9d4595-fcb7-4542-b1bc-9c31d2c9e389",
+    "name": "BLOCK_BLOCK_BLOCK_336",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:07.723082",
+    "updated_at": "2026-04-12T01:28:07.723152",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_336"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_336",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"genre_matrix\": {\n    \"neurofunk_v4\": {\n      \"rhythmic_entropy\": \"0.35 (Tight, Grid-locked syncopation)\",\n      \"bass_geometry\": \"Reese-modulated, complex filter automation, serum-style wavetable shifting\",\n      \"harmonic_structure\": \"Phrygian dominant / Locrian modes\",\n      \"kick_bass_purity\": \"High-fidelity transient shaping, sidechain compression η=0.95\"\n    },\n    \"dark_psy_trance\": {\n      \"fractal_complexity\": \"High (Recursive arpeggiator patterns)\",\n      \"tempo_range\": \"148-165 BPM\",\n      \"atmosphere\": \"Industrial-organic hybrid, granulized textures\",\n      \"kick_profile\": \"Short, punchy, 50-60Hz fundamental, minimal tail\"\n    },\n    \"techno_minimalism\": {\n      \"purity_coefficient\": \"0.9\",\n      \"repetition_logic\": \"Micro-variations within 16-bar loops\",\n      \"panning\": \"Dynamic 30L/70R harmony spread (as per core-rebuild flow)\"\n    }\n  },\n  \"sound_synthesis_ops\": {\n    \"quaternion_geometric_unity\": {\n      \"mode\": \"v3.0\",\n      \"operation\": \"Spatial sound placement via 4D-vectoring\",\n      \"goal\": \"Phase-coherent immersive soundstage\"\n    },\n    \"harmonic_stack\": {\n      \"layers\": 7,\n      \"arrangement\": [\n        \"Soprano\",\n        \"Alto\",\n        \"Tenor\",\n        \"Bass\",\n        \"Sub-octave\",\n        \"Double-octave\",\n        \"Mid-thirds\"\n      ],\n      \"processing\": \"Auto-tune + Cathedral Reverb (Wet/Dry: 0.25)\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_336",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_336",
+      "block_name": "Block_block_336",
+      "source": "producer-ai-base",
+      "original_index": 336
+    }
+  },
+  "optimization_history": []
+}

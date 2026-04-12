@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8d4d0740-1294-44be-84de-ae328c0c5e4f",
+    "name": "BLOCK_BLOCK_BLOCK_166",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.092881",
+    "updated_at": "2026-04-12T01:27:55.092947",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_166"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_166",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"resonance_filtering\": {\n    \"notch_points\": [\n      \"250Hz (Mud-cut)\",\n      \"400Hz (Boxy-cut)\",\n      \"800Hz (Nasal-cut)\"\n    ],\n    \"peak_boosts\": [\n      \"1.2kHz (The Grit)\",\n      \"3.5kHz (The Edge)\",\n      \"12kHz (The Fractal-Air)\"\n    ],\n    \"filter_morphing\": \"Sweep 24dB Resonant Band-pass from 100Hz to 10kHz (1 bar duration)\",\n    \"q_factor\": \"High (Q > 4.0) for 'whistling' harmonics during G-Inversion peaks.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_166",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_166",
+      "block_name": "Block_block_166",
+      "source": "producer-ai-base",
+      "original_index": 166
+    }
+  },
+  "optimization_history": []
+}

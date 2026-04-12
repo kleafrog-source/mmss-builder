@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9397c096-19b3-4f5f-b171-8e8a917ca1c0",
+    "name": "BLOCK_BLOCK_BLOCK_323",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.782848",
+    "updated_at": "2026-04-12T01:28:06.782917",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_323"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_323",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"reversed_engineering_steps\": [\n    \"Step_0: Stem-split (audio__split_stems) -> Extract Vocal / Drums / Bass\",\n    \"Step_1: Analysis (audio__caption) -> Identify core BPM and Harmonic Key\",\n    \"Step_2: Rhythm Extraction -> Kick/Snare MIDI-proxy creation\",\n    \"Step_3: Polyrhythmic Injection -> Overlay 12/8 percussion grid over 4/4 bass\",\n    \"Step_4: Harmonic Re-stacking -> Re-generate vocals with 7-part symmetry\"\n  ],\n  \"polyrhythm_presets\": {\n    \"neuro_glitch\": \"4:3 (Kick vs Snare ghost-notes)\",\n    \"psy_cyclic\": \"5:4 (Arpeggiator vs Main Kick)\",\n    \"complex_idm\": \"7:8 (Hi-hat patterns vs Bassline)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_323",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_323",
+      "block_name": "Block_block_323",
+      "source": "producer-ai-base",
+      "original_index": 323
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a61ebec2-5c1a-4fb4-9ee5-74a458944a39",
+    "name": "BLOCK_BLOCK_BLOCK_204",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.692978",
+    "updated_at": "2026-04-12T01:27:57.693046",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_204"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_204",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"custom_macros\": {\n    \"/inversion\": \"Execute audio__modify_song with prompt: 'Apply G-Inversion operator, flip all aesthetic polarities, reverse phase of Layer 3'\",\n    \"/fractalize\": \"Activate A_MMSS_FRACTAL_PACKAGE for current clip. Increase complexity x1.618\",\n    \"/4d_vector\": \"Call audio__apply_effect(Pan) with MLGS_QUATERNION coefficients. Set w-axis to 0.7\",\n    \"/strip_noise\": \"Apply Surgical-EQ (HighPass at 40Hz, Notch at 250Hz and 400Hz) to all non-kick stems\",\n    \"/singularity\": \"Finalize track. Run ASE-Critique, maximize Emotional Density, set Entropy H(p=0.5, c=0.5)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_204",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_204",
+      "block_name": "Block_block_204",
+      "source": "producer-ai-base",
+      "original_index": 204
+    }
+  },
+  "optimization_history": []
+}

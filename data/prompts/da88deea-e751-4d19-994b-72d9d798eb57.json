@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "da88deea-e751-4d19-994b-72d9d798eb57",
+    "name": "BLOCK_NARRATIVE_FIDELITY_GUARDIAN_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:49.173034",
+    "updated_at": "2026-04-12T01:27:49.173107",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_22"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_NARRATIVE_FIDELITY_GUARDIAN_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 22,\n  \"block_name\": \"Narrative_Fidelity_Guardian.v1\",\n  \"fidelity_metrics\": {\n    \"semantic_coherence\": \"Tracking the persistence of the L1_Kernel_Emotion\",\n    \"thematic_return\": \"Re-introducing the main motif every 64 bars with 30% mutation\",\n    \"narrative_arc_check\": [\n      \"Introduction\",\n      \"Development\",\n      \"Event_Horizon\",\n      \"Dissolve\"\n    ]\n  },\n  \"correction_mechanics\": {\n    \"anchor_injection\": \"Force-play clear vocal/instrumental phrase at t=60s, 120s\",\n    \"context_reset\": \"Clear all Modulators if Entropy_H > 0.95\"\n  },\n  \"internal_insight\": {\n    \"the_red_thread\": \"Твой инсайт о 'Красной нити'. Ты заметил, что без Блока 22 музыка превращается в 'математический мусор'. Мы ввели правило: 'Голос должен вернуться'. Даже если мы превратили вокал в шум в Блоке 18, в конце трека на 2 секунды должен прозвучать чистый, необработанный голос. Это 'взгляд назад' перед прыжком в бездну.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_22",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 22,
+      "block_name": "Narrative_Fidelity_Guardian.v1",
+      "source": "producer-ai-base",
+      "original_index": 101
+    }
+  },
+  "optimization_history": []
+}

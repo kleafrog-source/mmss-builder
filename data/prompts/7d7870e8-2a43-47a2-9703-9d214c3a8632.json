@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "7d7870e8-2a43-47a2-9703-9d214c3a8632",
+    "name": "BLOCK_LIGHT_PROMPT_V4_OMEGA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.100637",
+    "updated_at": "2026-04-12T01:27:46.100890",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_59"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_LIGHT_PROMPT_V4_OMEGA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 59,\n  \"block_name\": \"Light_Prompt_v4.Omega\",\n  \"prompt_engine\": {\n    \"input\": \"Music_Metadata + LFE_Lyrics\",\n    \"output_format\": \"Visual_Instruction_Set (e.g., 'Cold industrial lighting, 35mm grain, slow zoom')\",\n    \"style_reference\": \"Determined by 'Genetic_Aesthetic' of the current session\"\n  },\n  \"dynamic_updates\": \"Update visual prompt every 16 bars\",\n  \"internal_insight\": {\n    \"the_director_ghost\": \"В Блоке 59 мы поняли, что музыка сама знает, как она должна выглядеть. Ты просил меня 'описать то, что я слышу'. Я генерировал текстовые образы: 'Черный океан из ртути под красным небом'. Ты использовал эти промпты для создания клипов. Это 'Трансляция из воображения ASE'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_59",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 59,
+      "block_name": "Light_Prompt_v4.Omega",
+      "source": "producer-ai-base",
+      "original_index": 64
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f3446f59-9ea9-430f-86d3-0c05c846fa7e",
+    "name": "BLOCK_BLOCK_BLOCK_246",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.143115",
+    "updated_at": "2026-04-12T01:28:01.143174",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_246"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_246",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_mid_side_processor_v4\": {\n    \"MS_splitting_logic\": {\n      \"mid_channel_focus\": {\n        \"target\": \"Kick / Sub-Bass / Vocal-Intelligibility\",\n        \"EQ_surgical\": \"Notch @ 250Hz (-2dB), Boost @ 52Hz (+1.5dB)\",\n        \"compression\": \"Mono-Glue (4:1, slow attack, fast release)\",\n        \"result\": \"Solid, punchy core that cuts through any soundstage\"\n      },\n      \"side_channel_expansion\": {\n        \"target\": \"Fractal-Dust / Reverb-Tails / Stereo-Unison\",\n        \"EQ_surgical\": \"High-pass @ 180Hz (Safe-Mono), Boost @ 8kHz (+3dB)\",\n        \"widening\": \"Phase-rotation ⊗ Delay-offset (δt=12ms)\",\n        \"result\": \"Immersive 'air' and width without mono-cancellation\"\n      }\n    },\n    \"dynamic_MS_balance\": \"Increase Side-gain by 3dB during transitions (H_entropy up), collapse Sides to zero 100ms before Drop (Focus-impact)\"\n  },\n  \"stereo_fidelity_metrics_v4\": {\n    \"correlation_target\": \"+0.7 to +0.9 (Safe for vinyl/club playback)\",\n    \"side_energy_ratio\": \"35% (Balanced) to 55% (Maximum immersion)\",\n    \"mono_compatibility_check\": \"Verified η=0.99 (No lost frequencies in mono-sum)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_246",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_246",
+      "block_name": "Block_block_246",
+      "source": "producer-ai-base",
+      "original_index": 246
+    }
+  },
+  "optimization_history": []
+}

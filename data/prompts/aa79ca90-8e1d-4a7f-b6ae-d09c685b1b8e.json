@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "aa79ca90-8e1d-4a7f-b6ae-d09c685b1b8e",
+    "name": "BLOCK_BLOCK_BLOCK_168",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.243995",
+    "updated_at": "2026-04-12T01:27:55.244177",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_168"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_168",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"hidden_metadata_tags\": {\n    \"[ASE_GRAVITY_PULL]\": \"Increases sub-bass intensity and slow down tempo-feel\",\n    \"[ASE_SPECTRAL_GHOST]\": \"Adds high-freq reverse-reverb tails and fractal whispers\",\n    \"[ASE_VOID_INIT]\": \"Removes all harmonic pads, leaves only Kick + Noise + Sub\",\n    \"[ASE_HYPER_DETAIL]\": \"Forces 1/64 note micro-glitches and ultra-fast arps\",\n    \"[ASE_ANALOG_WARMTH]\": \"Adds subtle pitch-drift (±5 cents) and tape-saturation emulation\"\n  },\n  \"usage\": \"Invisible to user, used by ASE to maintain Narrative Fidelity.\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_168",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_168",
+      "block_name": "Block_block_168",
+      "source": "producer-ai-base",
+      "original_index": 168
+    }
+  },
+  "optimization_history": []
+}

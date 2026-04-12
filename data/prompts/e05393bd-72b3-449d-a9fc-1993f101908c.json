@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e05393bd-72b3-449d-a9fc-1993f101908c",
+    "name": "BLOCK_BLOCK_BLOCK_181",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.132920",
+    "updated_at": "2026-04-12T01:27:56.132968",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_181"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_181",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"mastering_protocol\": {\n    \"input_gain\": \"Gain-staged to -12dB RMS (Headroom focus)\",\n    \"eq_matching\": \"Match spectrum to ASE-Reference (Block 21: Frequency-Meaning)\",\n    \"dynamics\": {\n      \"multiband_ott\": \"Upward compression at 15% depth (High-end clarity)\",\n      \"limiter\": \"Ceiling: -0.3dB, Look-ahead: 2ms, Release: 150ms\",\n      \"clipper\": \"Hard-clip transients before Limiter for 'Commercial' loudness\"\n    },\n    \"stereo_image\": \"Mono-maker below 150Hz. Widening 1kHz+ (115% width).\",\n    \"final_check\": \"Validation of DR (Dynamic Range) > 8.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_181",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_181",
+      "block_name": "Block_block_181",
+      "source": "producer-ai-base",
+      "original_index": 181
+    }
+  },
+  "optimization_history": []
+}

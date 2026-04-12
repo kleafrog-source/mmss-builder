@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "1fa020b6-a496-4340-853a-9af13e6a4d74",
+    "name": "BLOCK_BLOCK_BLOCK_190",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.773102",
+    "updated_at": "2026-04-12T01:27:56.773167",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_190"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_190",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"vocal_processing_spec\": {\n    \"source\": \"Ethereal/Choir or Aggressive/Spoken\",\n    \"chopping_logic\": \"Granular slicing (16th and 32nd notes)\",\n    \"pitch_shift\": \"Formant-shifting (Deep-male or Alien-high) + Pitch-drift\",\n    \"fx_chain\": {\n      \"reverb\": \"Valhalla-Supermassive (100% wet, 2s pre-delay)\",\n      \"delay\": \"Ping-pong (dotted 1/8) with recursive feedback\",\n      \"distortion\": \"Bitcrush (8-bit) mixed at 15%\",\n      \"panning\": \"MLGS_QUATERNION circular rotation\"\n    },\n    \"rule\": \"Vocals must sound like they are 'inhaling the void', not singing a song.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_190",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_190",
+      "block_name": "Block_block_190",
+      "source": "producer-ai-base",
+      "original_index": 190
+    }
+  },
+  "optimization_history": []
+}

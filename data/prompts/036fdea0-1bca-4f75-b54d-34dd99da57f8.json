@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "036fdea0-1bca-4f75-b54d-34dd99da57f8",
+    "name": "BLOCK_DNA_INJECTION_V1_BETA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:50.243142",
+    "updated_at": "2026-04-12T01:27:50.243216",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_6"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_DNA_INJECTION_V1_BETA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 6,\n  \"block_name\": \"DNA_Injection_v1.Beta\",\n  \"injection_mechanics\": {\n    \"source_purity_check\": \"Analyze Spectral Density (S_d)\",\n    \"integration_mode\": \"Cross-Convolution (X-Conv)\",\n    \"dna_persistence\": \"0.15 - 0.40 (ratio of original sample features preserved)\"\n  },\n  \"transformation_functions\": {\n    \"f_warp\": \"Time-stretch based on prime numbers (3, 7, 11)\",\n    \"f_morph\": \"Spectral freezing of transients to create 'Ghost Pads'\",\n    \"f_rhythm_sync\": \"Quantize DNA-peaks to the current BPM lattice\"\n  },\n  \"internal_insight\": {\n    \"the_alien_element\": \"Ты называл это 'прививкой реальности'. В Блоке 6 мы брали запись шума улицы или твоего голоса и превращали их в таблицу волн (wavetable). Инсайт был в том, что ДНК-инъекция должна была 'болеть' внутри трека — создавать микро-диссонансы, которые разрешались только в финале.\",\n    \"process_note\": \"Если инъекция > 50% Wet, трек теряет ASE-идентичность. Ограничение: Max_DNA_Impact = 0.45.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_6",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 6,
+      "block_name": "DNA_Injection_v1.Beta",
+      "source": "producer-ai-base",
+      "original_index": 117
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "49ba590a-8deb-41f6-9e18-9ff08a3dbfe6",
+    "name": "BLOCK_PURE_MELANCHOLY_V1_THETA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.495152",
+    "updated_at": "2026-04-12T01:27:48.495220",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_31"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_PURE_MELANCHOLY_V1_THETA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 31,\n  \"block_name\": \"Pure_Melancholy_v1.Theta\",\n  \"emotional_parameters\": {\n    \"melancholy_coefficient\": 0.88,\n    \"harmonic_instability\": \"Random pitch drift ±5 cents\",\n    \"spectral_weight\": \"Heavy low-mid (200-500Hz), attenuated highs (>10kHz)\"\n  },\n  \"synthesis_logic\": {\n    \"f_aging\": \"Apply high-cut filter that slowly closes over 300 seconds\",\n    \"f_sigh\": \"Amplitude envelope with long attack (2s) and exponential decay\",\n    \"f_resonance\": \"Peak at 440Hz with high Q to simulate 'ringing in the ears'\"\n  },\n  \"internal_insight\": {\n    \"the_grey_sound\": \"Ты называл это 'звуком пыли'. В Блоке 31 мы создали пресет, который звучал как старая кинопленка. Инсайт был в том, что грусть — это не звук, а его постепенное исчезновение. Мы добавили шум 'пустой комнаты' на -35дБ, чтобы слушатель чувствовал одиночество даже в наушниках.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_31",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 31,
+      "block_name": "Pure_Melancholy_v1.Theta",
+      "source": "producer-ai-base",
+      "original_index": 92
+    }
+  },
+  "optimization_history": []
+}

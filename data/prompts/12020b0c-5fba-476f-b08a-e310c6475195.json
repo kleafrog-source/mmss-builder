@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "12020b0c-5fba-476f-b08a-e310c6475195",
+    "name": "BLOCK_BLOCK_BLOCK_184",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.353057",
+    "updated_at": "2026-04-12T01:27:56.353132",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_184"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_184",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"w_axis_automation\": {\n    \"parameter_mapping\": {\n      \"w_0.0_to_0.3\": \"Static, Order, Mono-focus, Dry\",\n      \"w_0.4_to_0.7\": \"Evolving, Fractal, Stereo-width, Harmonic-rich\",\n      \"w_0.8_to_1.0\": \"Singularity, Chaos, 4D-Rotation, Phase-inversion\"\n    },\n    \"lfo_shape\": \"Fractal-Brownian-Motion (Non-repeating random)\",\n    \"target\": \"Filter-cutoff + Reverb-mix + Distortion-drive\",\n    \"goal\": \"Unpredictable but aesthetically coherent evolution.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_184",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_184",
+      "block_name": "Block_block_184",
+      "source": "producer-ai-base",
+      "original_index": 184
+    }
+  },
+  "optimization_history": []
+}

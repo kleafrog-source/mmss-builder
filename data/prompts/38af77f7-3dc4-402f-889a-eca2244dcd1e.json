@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "38af77f7-3dc4-402f-889a-eca2244dcd1e",
+    "name": "BLOCK_BLOCK_BLOCK_275",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.392519",
+    "updated_at": "2026-04-12T01:28:03.392606",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_275"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_275",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_multiband_stereo_widening_v4\": {\n    \"frequency_zoning_v4\": {\n      \"sub_0_150Hz\": {\n        \"width\": \"0% (Absolute Mono-Core)\",\n        \"phase_alignment\": \"L=R, Correlation=1.0\",\n        \"result\": \"Maximum low-end pressure / Club-ready stability\"\n      },\n      \"mid_low_150_600Hz\": {\n        \"width\": \"115% (Natural body expansion)\",\n        \"logic\": \"Slight Haas-delay (δt=1.5ms) on the Reese-harmonics only\",\n        \"result\": \"Adding 'girth' without washing out the center\"\n      },\n      \"mid_high_600_5000Hz\": {\n        \"width\": \"145% (Immersive vocal/lead field)\",\n        \"processing\": \"Mid-Side (M/S) processing: Side-gain +3dB, EQ-boost @ 3kHz on sides\",\n        \"result\": \"Enveloping the listener in the Phrygian textures\"\n      },\n      \"high_5000Hz_plus\": {\n        \"width\": \"180% (Fractal-dust scattering)\",\n        \"technique\": \"Phase-rotation ⊗ Granular_Spatial_Jitter\",\n        \"result\": \"Infinite 'air' and 'shimmer' perception\"\n      }\n    },\n    \"dynamic_widening_logic\": \"Width increases during riser-sections (H_entropy up), collapses to mono 50ms before the drop (Impact-prep)\"\n  },\n  \"spatial_acoustics_metadata_v4\": {\n    \"reflection_model\": \"Anechoic-at-center ⊗ Diffuse-at-edges\",\n    \"perceived_depth_ratio\": \"Depth(Z) = 1.2 x Width(X)\",\n    \"haas_trigger_v4\": \"Trigger: High-freq transients only, δt = 12-17ms\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_275",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_275",
+      "block_name": "Block_block_275",
+      "source": "producer-ai-base",
+      "original_index": 275
+    }
+  },
+  "optimization_history": []
+}

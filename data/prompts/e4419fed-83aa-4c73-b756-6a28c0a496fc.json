@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e4419fed-83aa-4c73-b756-6a28c0a496fc",
+    "name": "BLOCK_BLOCK_BLOCK_186",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.473113",
+    "updated_at": "2026-04-12T01:27:56.473182",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_186"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_186",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"drum_architecture_v4\": {\n    \"kick_spec\": {\n      \"layer_1_sub\": \"Sine-drop (60Hz to 20Hz), zero tail\",\n      \"layer_2_click\": \"High-passed (1kHz) transient, phase-aligned\",\n      \"processing\": \"Hard-clip at -3dB, no compression on main bus\"\n    },\n    \"snare_spec\": {\n      \"fundamental\": \"200Hz punch, 400Hz dip\",\n      \"texture\": \"Fractal-noise overlay, 15ms pre-delay\",\n      \"tail\": \"Non-linear reverb (0.4s), gated\"\n    },\n    \"percussion_logic\": {\n      \"hi_hats\": \"32nd note rolls with velocity-jitter\",\n      \"glitch_percs\": \"Generated via code__create_audio_visualizer sync-pulses\",\n      \"spatial\": \"Random-pan (±30%) for every 2nd hit\"\n    }\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_186",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_186",
+      "block_name": "Block_block_186",
+      "source": "producer-ai-base",
+      "original_index": 186
+    }
+  },
+  "optimization_history": []
+}

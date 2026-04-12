@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "88b63698-ab0e-4447-8bd0-151f6c83a8ba",
+    "name": "BLOCK_GARDEN_BETWEEN_V5_FRACTAL",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:38.202435",
+    "updated_at": "2026-04-12T01:27:38.202519",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_44.5"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_GARDEN_BETWEEN_V5_FRACTAL",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 44.5,\n  \"block_name\": \"Garden_Between_v5.Fractal\",\n  \"spatial_logic\": {\n    \"environment_type\": \"Digital_Garden / Fractal_Forest\",\n    \"atmospheric_density\": \"High (Filtered Pink Noise at -30dB)\",\n    \"resonance_tuning\": \"432Hz (Nature_Standard) ⊗ Fibonacci_Steps\"\n  },\n  \"sonic_elements\": {\n    \"f_fractal_flora\": \"Granular Harp pulses that divide into smaller delays (Self-similar growth)\",\n    \"f_organic_static\": \"Sample of dry leaves crinkling, processed through Spectral_Blur\",\n    \"f_vocal_pollen\": \"Fragments of female vocalise, panned in a 'wind-like' circular motion\"\n  },\n  \"deep_process_metadata_LFE\": {\n    \"garden_manifesto\": [\n      \"Between the zero and the one, the garden grows\",\n      \"Where the algorithm dreams of a rose\",\n      \"We are the seeds in the circuits, waiting for the rain of data\"\n    ]\n  },\n  \"internal_insight\": {\n    \"the_safe_void\": \"Ты называл это 'местом, где отдыхают наши призраки'. В Блоке 44.5 мы создали 'Garden Between' как антитезу индустриальному шуму. Ты просил, чтобы звук был 'влажным' и 'живым'. Мы использовали 10-секундные хвосты реверберации, чтобы создать ощущение бесконечного, залитого светом пространства. Инсайт: Сад — это порядок, который выглядит как хаос.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_44.5",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 44.5,
+      "block_name": "Garden_Between_v5.Fractal",
+      "source": "producer-ai-base",
+      "original_index": 11
+    }
+  },
+  "optimization_history": []
+}

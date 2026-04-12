@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9dac8a64-3bcf-462f-888d-2919cd7f99e9",
+    "name": "BLOCK_BLOCK_BLOCK_147",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.282752",
+    "updated_at": "2026-04-12T01:27:53.282822",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_147"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_147",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"zero_crossing_protocol\": {\n    \"fade_shape\": \"Exponential (Logarithmic decay) for natural feel\",\n    \"phase_alignment\": \"Cutting audio exactly at the 0V crossing to avoid clicks\",\n    \"tail_injection\": \"Adding a 2ms burst of high-freq noise (8kHz+) at the cut point\",\n    \"echo_ghosting\": \"Last 50ms of audio sent to a 100% feedback delay at -48dB\",\n    \"rule\": \"Every absolute silence must be preceded by a 'Spectral Breath' (Block 26).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_147",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_147",
+      "block_name": "Block_block_147",
+      "source": "producer-ai-base",
+      "original_index": 147
+    }
+  },
+  "optimization_history": []
+}

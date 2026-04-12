@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d5b454aa-0482-4b15-ae11-b60bb35d9b77",
+    "name": "BLOCK_BLOCK_BLOCK_203",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.633310",
+    "updated_at": "2026-04-12T01:27:57.633399",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_203"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_203",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"frequency_semantics\": {\n    \"20-60Hz (The Foundation)\": \"Visceral fear, Earth-grounding, Sub-atomic vibration\",\n    \"100-250Hz (The Body)\": \"Physical impact, Punch, Rhythmic presence (The 'Thump')\",\n    \"400-800Hz (The Meaning)\": \"Semantic clarity, Vocal presence, Harmonic 'warmth' or 'mud'\",\n    \"1kHz-4kHz (The Attack)\": \"Psychoacoustic aggression, Transient clarity, The 'Bite'\",\n    \"8kHz-16kHz (The Void)\": \"Fractal air, Shimmering textures, Spatial transcendence\",\n    \"rule_of_clash\": \"Never let Layer 2 (Meaning) overlap with Layer 1 (Foundation) in the 200Hz zone.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_203",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_203",
+      "block_name": "Block_block_203",
+      "source": "producer-ai-base",
+      "original_index": 203
+    }
+  },
+  "optimization_history": []
+}

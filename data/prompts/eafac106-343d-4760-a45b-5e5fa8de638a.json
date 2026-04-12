@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "eafac106-343d-4760-a45b-5e5fa8de638a",
+    "name": "BLOCK_BLOCK_BLOCK_205",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.755242",
+    "updated_at": "2026-04-12T01:27:57.755305",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_205"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_205",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"arpeggiator_spec_v3\": {\n    \"harmonic_lock\": \"Phrygian Dominant (The 'Dark-Middle-Eastern' feel)\",\n    \"intervals\": [\n      1,\n      \"b2\",\n      3,\n      4,\n      5,\n      \"b6\",\n      \"b7\"\n    ],\n    \"rhythm_grid\": \"Polyrhythmic: 5/16 over 4/4 kicks\",\n    \"sound_design\": {\n      \"osc_1\": \"Wavetable (Morphing from Saw to Square)\",\n      \"filter\": \"24dB LowPass with Acid-style Resonance (Res > 80%)\",\n      \"envelope\": \"Decay-only (Pluck), zero Sustain, 2ms Attack\",\n      \"fx\": \"Bitcrusher (Reduce to 6-bit) -> OTT-style Multiband Compression\"\n    },\n    \"automation\": \"Filter Cutoff tied to G-Inversion Index (W-axis)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_205",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_205",
+      "block_name": "Block_block_205",
+      "source": "producer-ai-base",
+      "original_index": 205
+    }
+  },
+  "optimization_history": []
+}

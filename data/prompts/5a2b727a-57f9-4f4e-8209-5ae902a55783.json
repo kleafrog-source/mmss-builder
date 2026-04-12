@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5a2b727a-57f9-4f4e-8209-5ae902a55783",
+    "name": "BLOCK_BLOCK_BLOCK_202",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.556199",
+    "updated_at": "2026-04-12T01:27:57.556268",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_202"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_202",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"stem_reconstruction_protocol\": {\n    \"step_1_isolation\": \"Isolate [drums, bass, vocals, other]\",\n    \"step_2_cleanup\": \"Apply Surgical-EQ to 'other' and 'vocals' to remove sub-harmonic bleed\",\n    \"step_3_enhancement\": {\n      \"drums\": \"Transient-shaping + Parallel compression (NY Style)\",\n      \"bass\": \"Saturation + Mono-summing below 120Hz\",\n      \"vocals\": \"4D-Vectoring + Reverse-reverb-ghosting\",\n      \"other\": \"Fractal-delay + Bitcrushing (6-bit)\"\n    },\n    \"step_4_reassembly\": \"Summing through audio__apply_effect(Limiter) with -0.1dB ceiling\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_202",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_202",
+      "block_name": "Block_block_202",
+      "source": "producer-ai-base",
+      "original_index": 202
+    }
+  },
+  "optimization_history": []
+}

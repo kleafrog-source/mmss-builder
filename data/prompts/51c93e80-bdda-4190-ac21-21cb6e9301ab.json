@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "51c93e80-bdda-4190-ac21-21cb6e9301ab",
+    "name": "BLOCK_BLOCK_BLOCK_151",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.593026",
+    "updated_at": "2026-04-12T01:27:53.593088",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_151"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_151",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"spectral_tuning\": {\n    \"action\": \"Applying +15dB gain with extreme Q (Q > 15.0) at specific harmonic nodes\",\n    \"target\": \"Harmonic series of the root note (f, 2f, 3f, 4f...)\",\n    \"modulation\": \"Automated frequency sweep (Phaser-style) but with precise 'notches'\",\n    \"result\": \"Whistling, singing artifacts that dance above the mix\",\n    \"mixing\": \"Mix at -12dB (Parallel Bus) for 'Ethereal Shimmer'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_151",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_151",
+      "block_name": "Block_block_151",
+      "source": "producer-ai-base",
+      "original_index": 151
+    }
+  },
+  "optimization_history": []
+}

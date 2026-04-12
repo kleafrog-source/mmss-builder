@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "37ade214-5fac-4ec8-ba86-723c775e52cc",
+    "name": "BLOCK_PIXEL_CORRUPTION_V2_AUDIO",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:44.255131",
+    "updated_at": "2026-04-12T01:27:44.255196",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_77"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_PIXEL_CORRUPTION_V2_AUDIO",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 77,\n  \"block_name\": \"Pixel_Corruption_v2.Audio\",\n  \"conversion_mechanics\": {\n    \"pixel_row_to_wavetable\": \"Brightness(x,y) -> Amplitude(t)\",\n    \"color_channel_to_filter\": \"R=Cutoff, G=Resonance, B=Drive\",\n    \"image_aliasing\": \"Mirroring high frequencies to create 'Digital Grime'\"\n  },\n  \"internal_insight\": {\n    \"the_ugly_beauty\": \"Твой инсайт: 'Мусор на входе — искусство на выходе'. В Блоке 77 мы взяли скриншот ошибки '404' и превратили его в лид-синтезатор. Звук был 'грязным' и агрессивным. Ты сказал: 'Так звучит сломанная реальность'. Мы назвали это 'Aesthetic_Trash_Can'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_77",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 77,
+      "block_name": "Pixel_Corruption_v2.Audio",
+      "source": "producer-ai-base",
+      "original_index": 45
+    }
+  },
+  "optimization_history": []
+}

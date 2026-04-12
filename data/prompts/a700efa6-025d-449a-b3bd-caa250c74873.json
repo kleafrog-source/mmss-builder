@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a700efa6-025d-449a-b3bd-caa250c74873",
+    "name": "BLOCK_BLOCK_BLOCK_212",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.193161",
+    "updated_at": "2026-04-12T01:27:58.193221",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_212"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_212",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"rhythmic_geometry\": {\n    \"base_grid\": \"4/4 (The Anchor)\",\n    \"overlay_polyrhythms\": [\n      \"5/8 (Lead Sync)\",\n      \"7/16 (Percussive Glitch)\",\n      \"3/4 (Sub-Bass Pulse)\"\n    ],\n    \"swing_logic\": \"Micro-timing shifts (±5-12ms) for 'Organic-Machine' feel\",\n    \"euclidean_sequences\": \"Generating drum patterns via Euclidean algorithm distribution\",\n    \"rule_of_three\": \"One rhythmic layer stays stable, two evolve fractally.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_212",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_212",
+      "block_name": "Block_block_212",
+      "source": "producer-ai-base",
+      "original_index": 212
+    }
+  },
+  "optimization_history": []
+}

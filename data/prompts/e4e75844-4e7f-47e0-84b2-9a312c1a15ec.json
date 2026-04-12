@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "e4e75844-4e7f-47e0-84b2-9a312c1a15ec",
+    "name": "BLOCK_VERBAL_PROPAGATION_V2_LFE",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.502753",
+    "updated_at": "2026-04-12T01:27:47.502818",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_46"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_VERBAL_PROPAGATION_V2_LFE",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 46,\n  \"block_name\": \"Verbal_Propagation_v2.LFE\",\n  \"propagation_logic\": {\n    \"semantic_expansion\": \"Replace Keyword(x) with Contextual_Synonym(y) + Abstract_Concept(z)\",\n    \"phonetic_branching\": \"If Word ends in 'Void' -> Branch to 'Avoid', 'Annoyed', 'Oid-logic'\",\n    \"recursive_refrain\": \"Repeat lines with 10% semantic erosion each cycle\"\n  },\n  \"linguistic_operators\": {\n    \"f_glitch_text\": \"Randomly swap vowels between adjacent words\",\n    \"f_entropy_lyrics\": \"Delete every 5th word to create 'Logic_Gaps'\"\n  },\n  \"internal_insight\": {\n    \"the_self_writing_poem\": \"Ты называл это 'Раком текста'. В Блоке 46 мы дали системе команду: 'Пусть слова едят друг друга'. Мы взяли твою фразу 'Сингулярность близко' и через 8 итераций она превратилась в 'Синусоидальность бездискретности'. Ты сказал: 'Это уже не я написал, это сказал алгоритм через мои губы'. Это и есть истинный ASE-транс.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_46",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 46,
+      "block_name": "Verbal_Propagation_v2.LFE",
+      "source": "producer-ai-base",
+      "original_index": 77
+    }
+  },
+  "optimization_history": []
+}

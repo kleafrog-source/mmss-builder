@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "42e05018-18fe-4c6d-ace0-37f68446a8b9",
+    "name": "BLOCK_DEAD_PLANET_ACOUSTICS_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:45.940568",
+    "updated_at": "2026-04-12T01:27:45.940637",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_61"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_DEAD_PLANET_ACOUSTICS_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 61,\n  \"block_name\": \"Dead_Planet_Acoustics.v1\",\n  \"environmental_physics\": {\n    \"speed_of_sound_modifier\": \"c' = c * 0.25 (Gas_Giant / Methane_Mist)\",\n    \"attenuation_curve\": \"Non-linear high-frequency loss (f > 2kHz is void)\",\n    \"gravitational_shimmer\": \"LFO-pitch-warp based on G-force (1.5g)\"\n  },\n  \"logic_parameters\": {\n    \"reverb_type\": \"Metallic_Cavern / Frozen_Surface\",\n    \"absorption_coefficient\": \"0.99 (Dust-laden air)\"\n  },\n  \"internal_insight\": {\n    \"the_cold_vacuum\": \"Ты называл это 'звуком, которому не в чем лететь'. В Блоке 61 мы создали эффект, где звук бочки 'замерзал' в воздухе — мы использовали бесконечный Spectral Hold с затуханием в 30 секунд. Ты сказал: 'Так звучит одиночество спутника на орбите'. Это 'Акустика Абсолютного Нуля'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_61",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 61,
+      "block_name": "Dead_Planet_Acoustics.v1",
+      "source": "producer-ai-base",
+      "original_index": 62
+    }
+  },
+  "optimization_history": []
+}

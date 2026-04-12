@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "468b3cde-f53e-4867-844f-e79a146bf60f",
+    "name": "BLOCK_BLOCK_BLOCK_134",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:51.922801",
+    "updated_at": "2026-04-12T01:27:51.922870",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_134"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_134",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"industrial_sublime_v3\": {\n    \"aesthetic_keys\": {\n      \"reverb\": \"Infinite, cold, metallic, non-linear (Block 60)\",\n      \"bass\": \"Monolithic, static, sub-35Hz focus (Block 41)\",\n      \"textures\": \"Rhythmic cable-hum, digital-interference, steam-hiss\",\n      \"melodies\": \"Phrygian/Locrian, ultra-slow, single-note focus (Block 74)\"\n    },\n    \"behavior\": \"ASE must prioritize 'Architectural-Scale' over 'Human-Emotion'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_134",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_134",
+      "block_name": "Block_block_134",
+      "source": "producer-ai-base",
+      "original_index": 134
+    }
+  },
+  "optimization_history": []
+}

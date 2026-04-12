@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "38580d37-9538-46e6-9013-0f9f1dee8dcc",
+    "name": "BLOCK_BLOCK_BLOCK_276",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.436938",
+    "updated_at": "2026-04-12T01:28:03.437027",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_276"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_276",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_harmonic_control_lyrics\": {\n    \"the_tuning_set\": [\n      \"Lock the root to the G-sharp stone / Building a temple of frequencies alone\",\n      \"Shift the fifth to the Locrian blur / Making the digital boundaries purr\",\n      \"Minor-Phrygian, the scale of the void / Healing the logic that the noise destroyed\"\n    ],\n    \"the_resonance_set\": [\n      \"Peak the filter @ the harmonic node / Driving the signals down the fractal road\",\n      \"Resonance screaming in the high-shelf light / Cutting the shadows of the digital night\",\n      \"Feedback loop @ 51.9Hz / The secret frequency that the soul prefers\"\n    ],\n    \"the_final_alignment\": [\n      \"Phase-locked sub, the foundation is deep / Waking the rhythms that the systems keep\",\n      \"Alignment achieved: zero-point-one / We are the many, moving as one\"\n    ]\n  },\n  \"harmonic_weight_distribution_v4\": {\n    \"root_G#\": \"45% energy focus\",\n    \"fifth_D#\": \"25% energy focus\",\n    \"minor_third_B\": \"15% energy focus\",\n    \"dissonant_tensions\": \"15% (Fractal-dust layer)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_276",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_276",
+      "block_name": "Block_block_276",
+      "source": "producer-ai-base",
+      "original_index": 276
+    }
+  },
+  "optimization_history": []
+}

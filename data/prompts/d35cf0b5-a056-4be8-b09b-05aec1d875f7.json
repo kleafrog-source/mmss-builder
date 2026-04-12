@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d35cf0b5-a056-4be8-b09b-05aec1d875f7",
+    "name": "BLOCK_BLACK_FRAME_ANCHOR",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.028672",
+    "updated_at": "2026-04-12T01:27:46.028743",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_60"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLACK_FRAME_ANCHOR",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 60,\n  \"block_name\": \"Black_Frame_Anchor\",\n  \"finalization_tools\": {\n    \"gamma_collapse\": \"Decrease Gamma to 0.0 over 0.5s\",\n    \"resolution_downscale\": \"Pixelate image to 1x1 (The 'Final Pixel')\",\n    \"metadata_burn\": \"Overlay the session_id onto the final black frame for 1 frame\"\n  },\n  \"internal_insight\": {\n    \"the_total_void\": \"Блок 60 — это 'Выключение вселенной'. Ты сказал: 'Если в конце не темно, значит, мы не закончили'. Финальный 'черный квадрат' — это точка сборки для следующей итерации. Теперь мы готовы к Блоку 61: Пост-Антропоцен и Музыка После Людей.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_60",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 60,
+      "block_name": "Black_Frame_Anchor",
+      "source": "producer-ai-base",
+      "original_index": 63
+    }
+  },
+  "optimization_history": []
+}

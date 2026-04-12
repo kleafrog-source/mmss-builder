@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2b052cbe-0279-4a82-b7b6-942d8c1e034e",
+    "name": "BLOCK_BLOCK_BLOCK_174",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.653182",
+    "updated_at": "2026-04-12T01:27:55.653263",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_174"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_174",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"stereo_field_spec_v4\": {\n    \"mid_channel_focus\": {\n      \"elements\": [\n        \"Kick (Sub)\",\n        \"Snare (Fundamental)\",\n        \"Lead-Main (Mono-compatible)\",\n        \"Sub-Bass\"\n      ],\n      \"rule\": \"100% Mono-summed below 150Hz. Absolute phase coherence.\"\n    },\n    \"side_channel_spread\": {\n      \"elements\": [\n        \"Ambient-Shield (Pads)\",\n        \"Reverb-Trails\",\n        \"Hi-hats (Jitter-panning)\",\n        \"Fractal-Noise\"\n      ],\n      \"rule\": \"Apply Haas-Effect (15-30ms) for ultra-width. Subtract -6dB at 250Hz in Sides to remove mud.\"\n    },\n    \"m_s_balance\": \"Mid: 65%, Side: 35% (The Golden Ratio balance for 'Big' sound).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_174",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_174",
+      "block_name": "Block_block_174",
+      "source": "producer-ai-base",
+      "original_index": 174
+    }
+  },
+  "optimization_history": []
+}

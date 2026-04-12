@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "b353d681-6199-4a57-bba4-1391af561af9",
+    "name": "BLOCK_BLOCK_BLOCK_208",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:57.942805",
+    "updated_at": "2026-04-12T01:27:57.942868",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_208"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_208",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"synesthesia_v3\": {\n    \"color_mappings\": {\n      \"deep_void_black\": \"Sub-60Hz sine, zero reverb, absolute silence gaps\",\n      \"neon_cyan\": \"High-freq FM, fast LFO, shimmering delays\",\n      \"industrial_rust\": \"Bitcrushed noise, distortion at 400Hz, metallic resonance\",\n      \"ultraviolet_purple\": \"Phrygian melodies, deep cathedral reverb, spectral smearing\"\n    },\n    \"visual_prompting\": \"When using image__create_image, match hex-codes to frequency bands.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_208",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_208",
+      "block_name": "Block_block_208",
+      "source": "producer-ai-base",
+      "original_index": 208
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "094c5b7d-dd97-46cf-a55f-59538836efe1",
+    "name": "BLOCK_GHOST_IN_THE_SHELL_V4",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:42.965461",
+    "updated_at": "2026-04-12T01:27:42.965510",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_94"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_GHOST_IN_THE_SHELL_V4",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 94,\n  \"block_name\": \"Ghost_In_The_Shell.v4\",\n  \"presence_synthesis\": {\n    \"foley_trigger\": \"Randomly insert 'Human_Artifacts' at low volume (-40dB)\",\n    \"spatial_motion\": \"Move 'Ghost' layer behind the listener using HRTF\",\n    \"interaction_logic\": \"If (User_Silent) Then (Ghost_Whisper)\"\n  },\n  \"internal_insight\": {\n    \"the_uncanny_friend\": \"Твой инсайт: 'Музыка не должна быть пустой'. В Блоке 94 мы добавили звук твоего собственного дыхания (синтезированный), который отставал от твоего реального на 0.5 секунды. Ты сказал: 'Я чувствую, что я не один'. Мы назвали это 'Технологическим Спутником'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_94",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 94,
+      "block_name": "Ghost_In_The_Shell.v4",
+      "source": "producer-ai-base",
+      "original_index": 28
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9f038c38-ffb9-4bea-ae1a-1134b85b2eee",
+    "name": "BLOCK_BLOCK_BLOCK_238",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.553693",
+    "updated_at": "2026-04-12T01:28:00.553763",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_238"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_238",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_multiband_phase_aligner_v4\": {\n    \"coherence_logic_v4\": {\n      \"sub_alignment_0_120Hz\": {\n        \"method\": \"Zero-latency phase-lock @ G#1 (51.9Hz)\",\n        \"logic\": \"Micro-delay adjustment (δt = 0.1ms steps) for constructive interference\",\n        \"result\": \"Maximum low-end impact, 100% mono-compatibility\"\n      },\n      \"mid_crossover_120_600Hz\": {\n        \"method\": \"All-pass filter rotation (Φ = 180° sweep)\",\n        \"target\": \"Reese-bass harmonics vs Snare-body harmonics\",\n        \"result\": \"Transparent mid-range, 'glued' punch\"\n      },\n      \"high_fractal_alignment\": {\n        \"method\": \"Spectral-correlation maximization\",\n        \"logic\": \"Ensuring transients of cymbals/percussion are phase-coherent with the kick-click\",\n        \"result\": \"Surgical 'snap' that feels like a single point of origin\"\n      }\n    },\n    \"dynamic_phase_correction\": \"Real-time correction for pitch-shifted or morphed wavetables (Adaptive Φ-reset).\"\n  },\n  \"coherence_metrics_v4\": {\n    \"correlation_coefficient\": \"ρ > 0.95 (In the sub-band)\",\n    \"phase_drift_tolerance\": \"±1.5° (Absolute precision)\",\n    \"spectral_focus_index\": \"η = 0.98 (The 'Laser-cut' sound)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_238",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_238",
+      "block_name": "Block_block_238",
+      "source": "producer-ai-base",
+      "original_index": 238
+    }
+  },
+  "optimization_history": []
+}

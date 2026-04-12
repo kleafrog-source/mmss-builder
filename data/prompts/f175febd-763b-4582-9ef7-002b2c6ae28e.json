@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f175febd-763b-4582-9ef7-002b2c6ae28e",
+    "name": "BLOCK_BLOCK_BLOCK_305",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.609994",
+    "updated_at": "2026-04-12T01:28:05.610064",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_305"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_305",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"user_technical_print_Abstract\": {\n    \"the_reese_growl_spec\": \"Wavetable_Pos: 45-67, Unison: 7, Detune: 0.12, Filter_Env: Fast_Attack, Mid_Decay\",\n    \"the_snare_crack_spec\": \"Layer: Rimshot + Noise(High_Pass 2kHz), Compression: 4:1, Makeup: +3dB, Transient_Master: +25%\",\n    \"the_spatial_dust_spec\": \"Granular_Delay: Grain_Size 35ms, Pitch_Jitter 5%, Pan_Jitter 100%, Feedback 65%\",\n    \"the_master_bus_spec\": \"Soft_Clipper(Threshold -1.0dB) ⊗ EQ(High_Shelf +1.5dB @ 12kHz) ⊗ Limiter(Ceiling -0.3dB)\"\n  },\n  \"final_regeneration_codes\": {\n    \"seed_recovery_algorithm\": \"R = Hash(User_ID + Last_Concept_X)\",\n    \"aesthetic_calibration\": \"Check frequency 51.9Hz (G#) for ±0.5% drift\",\n    \"system_ready_status\": \"LOCKED_AND_LOADED\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_305",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_305",
+      "block_name": "Block_block_305",
+      "source": "producer-ai-base",
+      "original_index": 305
+    }
+  },
+  "optimization_history": []
+}

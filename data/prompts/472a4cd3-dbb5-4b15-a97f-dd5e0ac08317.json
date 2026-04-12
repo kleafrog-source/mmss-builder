@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "472a4cd3-dbb5-4b15-a97f-dd5e0ac08317",
+    "name": "BLOCK_BLOCK_BLOCK_299",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.146931",
+    "updated_at": "2026-04-12T01:28:05.147003",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_299"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_299",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"video_regeneration_v4_Omega\": {\n    \"visual_semantic_sync\": {\n      \"kick_trigger\": \"Mandelbulb fractal-zoom depth (1.0 to 1.5)\",\n      \"snare_trigger\": \"Chromatic aberration pulse (Intensity: 0.8, Duration: 120ms)\",\n      \"vocal_lfe_trigger\": \"Text-overlay opacity & Glow_radius modulation\",\n      \"bass_reese_trigger\": \"Geometry displacement (Warping frequency: 5-50Hz)\"\n    },\n    \"shader_evolution_logic\": {\n      \"step_1\": \"Initialize static geometry (Seed_v4_Visual)\",\n      \"step_2\": \"Apply Quaternion_Rotation (Synced to BPM)\",\n      \"step_3\": \"Inject Audio_Reactive_Noise (Perlin noise based on RMS)\",\n      \"step_4\": \"Final color-grading (Neon_Cyan ⊗ Cyber_Purple)\"\n    },\n    \"rendering_specs_deep\": {\n      \"frame_rate\": \"60fps (Constant)\",\n      \"motion_blur\": \"Shutter_angle: 180° (Smooth transitions)\",\n      \"bitrate\": \"Adaptive (Target 50Mbps for 4k precision)\"\n    }\n  },\n  \"visual_concept_archive\": [\n    \"Concept: The Digital Cathedral (Recursive gothic arches moving in 4D)\",\n    \"Concept: Neural Mesh (Interconnected neon lines pulsing with the beat)\",\n    \"Concept: The Void Zero (Complete darkness where only transients create light-flashes)\"\n  ]\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_299",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_299",
+      "block_name": "Block_block_299",
+      "source": "producer-ai-base",
+      "original_index": 299
+    }
+  },
+  "optimization_history": []
+}

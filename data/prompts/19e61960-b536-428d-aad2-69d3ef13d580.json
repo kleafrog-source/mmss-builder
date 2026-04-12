@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "19e61960-b536-428d-aad2-69d3ef13d580",
+    "name": "BLOCK_BLOCK_BLOCK_220",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:58.763214",
+    "updated_at": "2026-04-12T01:27:58.763425",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_220"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_220",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"semantic_core_l1\": {\n    \"components\": {\n      \"emotion\": \"The visceral trigger (e.g., Neuro-Dread, Ecstatic-Void)\",\n      \"concept\": \"The intellectual anchor (e.g., 4D-Geometry, Fractal-Biology)\",\n      \"soundscape\": \"The physical environment (e.g., Sub-Arctic Industrial, Deep-Space Void)\"\n    },\n    \"interaction_rule\": \"E x C x S = Narrative_Fidelity\",\n    \"stability_index\": \"Must be > 0.85 for successful Hyperloop execution\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_220",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_220",
+      "block_name": "Block_block_220",
+      "source": "producer-ai-base",
+      "original_index": 220
+    }
+  },
+  "optimization_history": []
+}

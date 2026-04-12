@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d241a8a9-d9d3-4f36-b667-9c2d225d0a75",
+    "name": "BLOCK_BLOCK_BLOCK_301",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:05.272935",
+    "updated_at": "2026-04-12T01:28:05.273033",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_301"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_301",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"fractal_seed_evolution_logic\": {\n    \"evolution_operator_E\": \"Seed_n+1 = Hash(Seed_n ⊗ Δ_Entropy) // Step=0.05\",\n    \"inheritance_rules\": {\n      \"low_freq_retention\": \"Carry over Kick-Bass phase-alignment (±2°)\",\n      \"high_freq_mutation\": \"Shift Granular_Spray parameters by ±15% per iteration\",\n      \"rhythmic_drift\": \"Offset snare-position by δt = prime_number / 1000\"\n    },\n    \"selection_criteria_AFS\": {\n      \"min_score\": \"0.85 (Discard if Aesthetic Fidelity Score is low)\",\n      \"max_novelty\": \"0.3 (Avoid total pattern dissolution / chaos collapse)\"\n    },\n    \"recursive_depth_OMEGA\": \"Limit = 13 iterations (The Fibonacci anchor)\"\n  },\n  \"MMSS_purity_protocols_v4\": {\n    \"conflict_annihilation_v3\": \"Dynamic spectral ducking @ 180Hz (Snare body vs Bass transient)\",\n    \"phase_correction\": \"Auto-align @ 51.9Hz (G# fundamental) for every new seed\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_301",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_301",
+      "block_name": "Block_block_301",
+      "source": "producer-ai-base",
+      "original_index": 301
+    }
+  },
+  "optimization_history": []
+}

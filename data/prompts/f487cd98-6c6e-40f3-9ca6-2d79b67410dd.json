@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f487cd98-6c6e-40f3-9ca6-2d79b67410dd",
+    "name": "BLOCK_BLOCK_BLOCK_153",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.721399",
+    "updated_at": "2026-04-12T01:27:53.721466",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_153"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_153",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"psy_arp_architecture_v4\": {\n    \"scale_lock\": \"Phrygian Dominant or Locrian (The 'Forbidden' intervals)\",\n    \"geometric_sequencing\": {\n      \"mode\": \"Fractal-Iteration: The sequence A-B-A-C-A-B-A-D\",\n      \"gate\": \"Randomly alternating between 10% and 90% (Staccato vs Legato)\",\n      \"velocity\": \"Modulated by Fibonacci sequence (1, 2, 3, 5, 8, 13...)\"\n    },\n    \"timbre_modulation\": {\n      \"filter_cutoff\": \"Synced to 1/8 note LFO (Saw-shape)\",\n      \"resonance\": \"High (Q=0.85) for 'Squelch' effect\",\n      \"wavetable_pos\": \"Moving with W-axis (Block 17)\"\n    },\n    \"rule\": \"If the Arp is fast (1/32), the Bass must be monolithic (1/4).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_153",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_153",
+      "block_name": "Block_block_153",
+      "source": "producer-ai-base",
+      "original_index": 153
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "43ab317c-752d-4f72-bb7a-6d2891c13b81",
+    "name": "BLOCK_BLOCK_BLOCK_170",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.378292",
+    "updated_at": "2026-04-12T01:27:55.378374",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_170"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_170",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"dynamic_breathing_v2\": {\n    \"technique\": \"Two-stage Compression (Slow/Fast)\",\n    \"stage_1_leveling\": \"Slow attack (30ms), auto-release (300ms), 2:1 ratio (Smoothing)\",\n    \"stage_2_punch\": \"Fast attack (1ms), fast release (50ms), 4:1 ratio (Transient control)\",\n    \"parallel_bus\": \"Heavy compression (10:1 ratio) mixed at 20% dry/wet for 'density'\",\n    \"goal\": \"Loudness without flattening the transients. Peak-to-RMS ratio of 8.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_170",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_170",
+      "block_name": "Block_block_170",
+      "source": "producer-ai-base",
+      "original_index": 170
+    }
+  },
+  "optimization_history": []
+}

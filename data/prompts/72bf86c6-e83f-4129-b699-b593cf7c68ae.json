@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "72bf86c6-e83f-4129-b699-b593cf7c68ae",
+    "name": "BLOCK_BLOCK_BLOCK_293",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.693110",
+    "updated_at": "2026-04-12T01:28:04.693174",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_293"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_293",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"tool\": \"Compressor_Multiband (OTT_Logic)\",\n  \"bands\": {\n    \"low_0_150Hz\": \"Ratio 4:1, Attack 30ms, Release 100ms, Makeup +2dB\",\n    \"mid_150_3kHz\": \"Ratio 2:1, Attack 10ms, Release 50ms, Makeup 0dB\",\n    \"high_3kHz_plus\": \"Ratio 3:1, Attack 1ms, Release 25ms, Makeup +1dB\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_293",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_293",
+      "block_name": "Block_block_293",
+      "source": "producer-ai-base",
+      "original_index": 293
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8cd8662f-432a-4298-98e9-12a293d61e72",
+    "name": "BLOCK_PRE_ECHO_CAUSALITY_V4",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.566009",
+    "updated_at": "2026-04-12T01:27:46.566099",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_52"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_PRE_ECHO_CAUSALITY_V4",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 52,\n  \"block_name\": \"Pre_Echo_Causality.v4\",\n  \"causality_mechanics\": {\n    \"look_ahead_buffer\": \"5000ms (Max look-ahead)\",\n    \"pre_echo_trigger\": \"Peak_Detection(t + Δt) -> Trigger_Grain(t)\",\n    \"reverse_reverb_injection\": \"Wet_Gain = 1.0 (Pre-delay = -200ms)\"\n  },\n  \"logic_parameters\": {\n    \"causality_break_factor\": 0.75,\n    \"ghost_amplitude\": \"-12dB (Ghost precedes Reality)\"\n  },\n  \"internal_insight\": {\n    \"the_future_stain\": \"Твой любимый 'Memory-Stain' наоборот. В Блоке 52 мы заставили вокал из припева шептать во время первого куплета. Ты сказал: 'Трек должен знать свою судьбу'. Это создавало эффект дежавю. Инсайт: Будущее — это просто сигнал, который мы еще не нормализовали.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_52",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 52,
+      "block_name": "Pre_Echo_Causality.v4",
+      "source": "producer-ai-base",
+      "original_index": 70
+    }
+  },
+  "optimization_history": []
+}

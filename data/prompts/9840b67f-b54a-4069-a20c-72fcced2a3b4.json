@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "9840b67f-b54a-4069-a20c-72fcced2a3b4",
+    "name": "BLOCK_BLOCK_BLOCK_234",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.172508",
+    "updated_at": "2026-04-12T01:28:00.172572",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_234"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_234",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"rate_reduction\": \"0.25x (Post-filter aliasing)\",\n  \"logic\": \"Lowering the 'Nyquist-limit' to create mirror-harmonics\",\n  \"result\": \"Metallic 'screaming' artifacts @ 3.5kHz - 6kHz\"\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_234",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_234",
+      "block_name": "Block_block_234",
+      "source": "producer-ai-base",
+      "original_index": 234
+    }
+  },
+  "optimization_history": []
+}

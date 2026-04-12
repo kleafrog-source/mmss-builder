@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "0cace87c-12a0-469f-94e6-b596e61f32d0",
+    "name": "BLOCK_BLOCK_BLOCK_330",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:07.272884",
+    "updated_at": "2026-04-12T01:28:07.272961",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_330"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_330",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"A_MMSS_FRACTAL_PACKAGE\": {\n    \"mode\": \"Recursive Texture Overlay\",\n    \"iteration_depth\": 3,\n    \"feedback_loop\": {\n      \"coefficient\": 0.45,\n      \"delay\": \"δt = prime_number_ms (e.g., 17ms, 31ms) to avoid phase cancellation\",\n      \"spectral_shaping\": \"Tilt-filter +3dB/octave on feedback\"\n    },\n    \"seed_evolution\": \"Seed_next = Hash(Seed_current + Rhythmic_Entropy)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_330",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_330",
+      "block_name": "Block_block_330",
+      "source": "producer-ai-base",
+      "original_index": 330
+    }
+  },
+  "optimization_history": []
+}

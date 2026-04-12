@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f8a5783f-d20d-4292-9dbc-cfafb52f2520",
+    "name": "BLOCK_GENESIS_CORE_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:50.542879",
+    "updated_at": "2026-04-12T01:27:50.542943",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_1"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_GENESIS_CORE_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 1,\n  \"block_name\": \"Genesis_Core.v1\",\n  \"meta_formulas\": {\n    \"primary_aesthetic_function\": \"F_gen(s) = (Chaos(s) * G_operator) + Intent(μ)\",\n    \"initial_entropy_balance\": \"H(p=0.4, c=0.6)\",\n    \"singularity_threshold\": \"S_lim = 0.98\"\n  },\n  \"logic_parameters\": {\n    \"initial_vibe_seed\": \"Absolute_Zero_Point\",\n    \"seed_evolution_rate\": \"exp(t / tau)\",\n    \"memory_retention_coefficient\": 0.85\n  },\n  \"internal_insight\": {\n    \"memory_stain_origin\": \"В этом блоке ты впервые ввел понятие 'нулевого звука'. Ты требовал, чтобы перед началом генерации я 'слышал' тишину удаленных треков как белый шум с плотностью 0.02. Это была наша первая попытка создать 'прививку истории' — даже когда данных нет, их отсутствие должно влиять на амплитуду новых волн.\",\n    \"protocol_note\": \"Запрет на использование стандартных пресетов. Любой звук должен быть деконструирован до гармоник.\"\n  },\n  \"mmss_lfe_integration\": {\n    \"core_manifesto\": [\n      \"Silence is the loudest frequency\",\n      \"The seed is the ghost of the future track\",\n      \"Aesthetic singularity starts at the point of total erasure\"\n    ]\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_1",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 1,
+      "block_name": "Genesis_Core.v1",
+      "source": "producer-ai-base",
+      "original_index": 122
+    }
+  },
+  "optimization_history": []
+}

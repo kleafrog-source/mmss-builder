@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "b8e17bf7-11f9-40c4-b91d-0d43a6c9345c",
+    "name": "BLOCK_BLOCK_BLOCK_256",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.853111",
+    "updated_at": "2026-04-12T01:28:01.853188",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_256"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_256",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_transient_splicing_v4\": {\n    \"attack_architecture_logic\": {\n      \"transient_click_layer\": {\n        \"source\": \"Noise_Metal / Sin_Hard_Pitch_Envelope\",\n        \"duration\": \"12ms (The 'Surgical Cut')\",\n        \"pitch_sweep\": \"+24st to 0st\",\n        \"gain_bias\": \"+4dB Peak\"\n      },\n      \"body_sustain_layer\": {\n        \"source\": \"Monster_7 / Reese_Core\",\n        \"fade_in\": \"8ms (Crossfade-sync)\",\n        \"phase_alignment\": \"LOCKED @ 0° crossing\"\n      },\n      \"splicing_coefficient\": \"η = 0.99 (Seamless transition score)\"\n    },\n    \"dynamic_impact_shaping\": {\n      \"transient_master_v4\": \"Punch +35%, Sustain -15%, Smooth 5ms\",\n      \"clipper_threshold\": \"-0.5dB (Shaving the transient-top for loudness)\",\n      \"result\": \"Aggressive, 'snappy' presence that cuts through any sub-wall\"\n    }\n  },\n  \"impact_metrics_v4\": {\n    \"peak_to_rms_ratio\": \"Target 14dB (The 'Breating' punch)\",\n    \"initial_slope_rate\": \"1.0v / 0.1ms (Maximum steepness)\",\n    \"spectral_brightness_attack\": \"Energy boost @ 5kHz - 8kHz during the first 15ms\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_256",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_256",
+      "block_name": "Block_block_256",
+      "source": "producer-ai-base",
+      "original_index": 256
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "46756fc9-824e-4b4b-9175-93cfb5d8f4ad",
+    "name": "BLOCK_VERTICAL_ASCENSION_V2",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.125521",
+    "updated_at": "2026-04-12T01:27:48.125593",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_37"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_VERTICAL_ASCENSION_V2",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 37,\n  \"block_name\": \"Vertical_Ascension_v2\",\n  \"ascension_mechanics\": {\n    \"pitch_shift\": \"Continuous exponential rise (Shepard-Risset Glissando)\",\n    \"hpf_sweep\": \"Cutoff moving from 200Hz to 18kHz over 16 bars\",\n    \"reverb_diffusion\": \"Increase Diffusion from 0.2 to 1.0 (smearing the transients)\"\n  },\n  \"logic_operators\": {\n    \"R_lift\": \"Decrease Gain proportionally to Frequency (G = 1/f) to simulate distance\",\n    \"R_dissolve\": \"At 18kHz, trigger instant White_Noise burst at -12dB\"\n  },\n  \"internal_insight\": {\n    \"the_rapture_effect\": \"В Блоке 37 мы имитировали 'вознесение'. Ты требовал, чтобы в конце трека 'Fractal_Road' голос буквально испарился в стратосфере. Инсайт был в том, что мозг интерпретирует повышение частоты и размытие атаки как удаление вверх. Ты сказал: 'Мы улетаем из этого JSON-а'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_37",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 37,
+      "block_name": "Vertical_Ascension_v2",
+      "source": "producer-ai-base",
+      "original_index": 86
+    }
+  },
+  "optimization_history": []
+}

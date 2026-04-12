@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "154a0dc8-572b-46b3-9a35-6a9d6a0b7a18",
+    "name": "BLOCK_SYNESTHESIA_MATRIX_V1_GLSL",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.411485",
+    "updated_at": "2026-04-12T01:27:46.411563",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_56"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_SYNESTHESIA_MATRIX_V1_GLSL",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 56,\n  \"block_name\": \"Synesthesia_Matrix_v1.GLSL\",\n  \"mapping_logic\": {\n    \"rms_to_intensity\": \"Global_Exposure = log(RMS + 1.0)\",\n    \"spectral_centroid_to_hue\": \"Color_Shift = Freq_Center / 20000.0\",\n    \"onset_detection_to_glitch\": \"If (Transient) Then Trigger_Visual_Noise(0.2s)\"\n  },\n  \"rendering_parameters\": {\n    \"frame_rate_sync\": \"Locked to BPM (e.g., 24fps @ 120bpm = 1 frame/beat)\",\n    \"motion_blur\": \"Proportional to Reverb_Wetness (Max=1.0)\"\n  },\n  \"internal_insight\": {\n    \"seeing_the_bass\": \"Ты называл это 'глазами звука'. В Блоке 56 мы настроили систему так, чтобы при ударе саб-баса картинка 'взрывалась' изнутри — мы увеличивали Bloom до 200%. Ты сказал: 'Слушатель должен ослепнуть от баса'. Инсайт: свет — это звук на другой частоте.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_56",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 56,
+      "block_name": "Synesthesia_Matrix_v1.GLSL",
+      "source": "producer-ai-base",
+      "original_index": 68
+    }
+  },
+  "optimization_history": []
+}

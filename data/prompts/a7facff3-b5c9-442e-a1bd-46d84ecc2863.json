@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a7facff3-b5c9-442e-a1bd-46d84ecc2863",
+    "name": "BLOCK_BLOCK_BLOCK_158",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:54.107225",
+    "updated_at": "2026-04-12T01:27:54.107374",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_158"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_158",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"fractal_snare_spec\": {\n    \"fundamental_lock\": \"200Hz - 250Hz (The Punch)\",\n    \"noise_geometry\": {\n      \"layer_1_white\": \"Gated white noise, 5ms attack, 150ms decay\",\n      \"layer_2_metallic\": \"FM-synthesis 'cling', 12-bit crushed\",\n      \"layer_3_fractal\": \"Micro-glitch burst (1/128 notes) at the very end of the tail\"\n    },\n    \"spatial_offset\": \"Left channel delayed by 5ms, Right channel delayed by 12ms (The 'Widening Crack')\",\n    \"mixing_rule\": \"Snare must be the loudest transient in the 1kHz-4kHz range.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_158",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_158",
+      "block_name": "Block_block_158",
+      "source": "producer-ai-base",
+      "original_index": 158
+    }
+  },
+  "optimization_history": []
+}

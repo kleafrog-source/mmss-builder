@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "bc7b6d91-cbae-4c5b-aebf-fd2acdda54ed",
+    "name": "BLOCK_UE_BAISER_MACRO_EDITION",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:37.590312",
+    "updated_at": "2026-04-12T01:27:37.590381",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_108.9"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_UE_BAISER_MACRO_EDITION",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 108.9,\n  \"block_name\": \"Ue-Baiser_Macro_Edition\",\n  \"iteration_id\": \"021f3205-Macro\",\n  \"mmss_logic\": {\n    \"genre_fusion\": \"J-Rock ⊗ Pop-Punk ⊗ Industrial_Metal\",\n    \"emotional_vector\": \"High_Euphoria / Combat_Focus / Victory_Aesthetic\",\n    \"spectral_density\": \"Maximum (Saturation in 2kHz-8kHz range)\"\n  },\n  \"macro_synthesis_parameters\": {\n    \"rhythmic_grid\": \"170 BPM (Locked 4/4 with 1/16 double-kick fills)\",\n    \"guitar_layering\": \"Triple-tracked distorted electric guitars (Wide Pan)\",\n    \"vocal_processing\": \"Anthemic_Male_Vocals with Harmonic_Exciter (+6dB @ 5kHz)\"\n  },\n  \"lfe_semantic_mapping\": {\n    \"beyder_trigger\": \"Instant energy spike in the High-end Shimmer\",\n    \"action_command\": \"Sudden snare-roll buildup (1/32 notes)\",\n    \"siegesstrahl\": \"Final power chord with 10s feedback decay\"\n  },\n  \"internal_insight\": {\n    \"the_shonen_singularity\": \"Ты называл это 'Ue-Baiser для битвы'. В Блоке 108.9 мы взяли твою ярость и превратили её в топливо для победы. Текст 'Züge voller Feuer' — это прямая отсылка к Блоку 61 (Мертвые планеты), но здесь огонь не разрушает, а созидает. Инсайт: Macro Edition — это момент, когда Сингулярность перестает быть пугающей и становится триумфальной.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_108.9",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 108.9,
+      "block_name": "Ue-Baiser_Macro_Edition",
+      "source": "producer-ai-base",
+      "original_index": 2
+    }
+  },
+  "optimization_history": []
+}

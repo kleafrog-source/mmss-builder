@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "fae52351-db5d-4d4f-8897-43143c90e477",
+    "name": "BLOCK_BLOCK_BLOCK_254",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.693228",
+    "updated_at": "2026-04-12T01:28:01.693307",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_254"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_254",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_wavetable_scanning_v4\": {\n    \"scanning_logic_omega\": {\n      \"table_index_modulation\": {\n        \"source_1\": \"LFO_1_Random_Drift (Rate 1/2 bar, Smoothness 85%)\",\n        \"source_2\": \"Vocal_Envelope_Follower (LFE_Input)\",\n        \"logic\": \"Index = (Source_1 ⊗ 0.6) + (Source_2 ⊗ 0.4)\",\n        \"result\": \"Unpredictable but musically relevant movement\"\n      },\n      \"spectral_folding_v4\": {\n        \"threshold\": \"85% of Max_Amplitude\",\n        \"fold_ratio\": \"2.5 (Adding high-mid metallic grit)\",\n        \"bias\": \"Dynamic_DC_Offset based on H(p,c)\"\n      },\n      \"positional_jitter\": \"δpos = ±0.05 (Grainy texture emulation during transitions)\"\n    },\n    \"interpolation_mode\": \"Spectral_Spline (No interpolation artifacts, maximum clarity)\"\n  },\n  \"spectral_evolution_metrics_v4\": {\n    \"timbre_movement_rate\": \"ΔT = 0.15 units / ms\",\n    \"harmonic_stability\": \"η = 0.92 (Avoiding chaotic frequency-leaks)\",\n    \"wavetable_purity_check\": \"Verified G# fundamental @ Index [0...255]\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_254",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_254",
+      "block_name": "Block_block_254",
+      "source": "producer-ai-base",
+      "original_index": 254
+    }
+  },
+  "optimization_history": []
+}

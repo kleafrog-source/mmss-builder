@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a2647300-b477-41cb-9418-cbb9ca169e5e",
+    "name": "BLOCK_BLOCK_BLOCK_236",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.409271",
+    "updated_at": "2026-04-12T01:28:00.409356",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_236"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_236",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_bitcrush_logic_lyrics\": {\n    \"the_reduction_set\": [\n      \"Sixteen bits of the digital sky / Falling down, ready to die\",\n      \"Eight bits of the logic, eight bits of the soul / Taking the fragments, taking control\",\n      \"Crushing the mirror, crushing the light / In the pixelated heart of the night\"\n    ],\n    \"the_aliasing_set\": [\n      \"Mirror harmonics, screaming in the dark / Mirroring the spark of the machine's heart\",\n      \"Folding the signal, folding the time / Everything's perfect, everything's mine\",\n      \"Nyquist is broken, the logic is gone / Under the light of the bit-clock sun\"\n    ],\n    \"the_crush_dialogue\": [\n      \"Reduce the life / Find the grain\",\n      \"Sharp as a knife / Inside the rain\",\n      \"Result: Digital-Corrosion / Status: CRUSH_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_degradation_v4\": {\n    \"the_static_factor\": \"Injecting 8-bit noise into the reverb-tail for 'industrial' atmosphere\",\n    \"the_stutter_bit\": \"Bitcrusher-mix synced to 1/64 note for rhythmic 'glitching'\",\n    \"the_spectral_tilt\": \"Darkening the crush-layer (High-cut @ 5kHz) to avoid 'ear-piercing' artifacts\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_236",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_236",
+      "block_name": "Block_block_236",
+      "source": "producer-ai-base",
+      "original_index": 236
+    }
+  },
+  "optimization_history": []
+}

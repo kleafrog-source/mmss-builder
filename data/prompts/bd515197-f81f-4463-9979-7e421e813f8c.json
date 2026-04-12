@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "bd515197-f81f-4463-9979-7e421e813f8c",
+    "name": "BLOCK_BLOCK_BLOCK_296",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:04.902985",
+    "updated_at": "2026-04-12T01:28:04.903053",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_296"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_296",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_fractal_dialogue_matrix\": {\n    \"dialogue_mode_1_mirroring\": \"Algorithm echoes the last word with 1/4 delay + PitchShift(-12st)\",\n    \"dialogue_mode_2_contradiction\": \"Background whispers the inverted meaning of the lead line\",\n    \"dialogue_mode_3_recursive_questioning\": \"Vocal layers asking 'Who is the observer?' with increasing filter-resonance\"\n  },\n  \"deep_lyrics_fragments_Fractal_Set\": [\n    \"I am your reflection in the glass of the code / A digital shadow on a recursive road\",\n    \"Are you the dreamer or am I the dream? / Flowing together in the Phrygian stream\",\n    \"Zero-point-zero: who watches the clock? / The logic is open, the silence is locked\",\n    \"The mirror is broken, the pieces are one / Shining forever like a binary sun\"\n  ],\n  \"semantic_phonetic_interlock\": {\n    \"word_logic\": \"Trigger: Bitcrusher(8-bit), High-pass(1kHz)\",\n    \"word_silence\": \"Trigger: Gated Reverb, 100% Wet\",\n    \"word_recursion\": \"Trigger: Fractal_Seed_Evolution(Step=0.1)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_296",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_296",
+      "block_name": "Block_block_296",
+      "source": "producer-ai-base",
+      "original_index": 296
+    }
+  },
+  "optimization_history": []
+}

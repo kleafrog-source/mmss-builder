@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c961e256-e57a-4021-b83b-dc62aa7e5954",
+    "name": "BLOCK_BLOCK_BLOCK_247",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:01.180615",
+    "updated_at": "2026-04-12T01:28:01.180677",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_247"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_247",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_reverb_logic_lyrics\": {\n    \"the_void_fog_set\": [\n      \"Floating in the mist of the digital ghost / Finding the guest, finding the host\",\n      \"Radiation fog in the Phrygian night / Washing the logic, washing the light\",\n      \"Diffusion of the soul, diffusion of the mind / Leaving the physical far behind\"\n    ],\n    \"the_infinite_tail_set\": [\n      \"Endless decay in the void of the code / Following the echoes on the fractal road\",\n      \"Six seconds of silence, stretched into a year / Erasing the distance, erasing the fear\",\n      \"Infinite room, infinite breath / Dreaming of life in the digital death\"\n    ],\n    \"the_spatial_dialogue\": [\n      \"Breathe the space / Feel the deep\",\n      \"Find the place / Where we sleep\",\n      \"Result: Atmospheric-Immersion / Status: CLOUD_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_reverb_v4\": {\n    \"the_shimmer_factor\": \"+12st pitch-shifted feedback-loop in the reverb tank (15% mix)\",\n    \"the_drowning_effect\": \"Increase Reverb_Mix to 95% + LowPass(500Hz) during the bridge\",\n    \"the_stereo_drift\": \"Left_Decay: 3.5s, Right_Decay: 3.7s (Asymmetry for organic feel)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_247",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_247",
+      "block_name": "Block_block_247",
+      "source": "producer-ai-base",
+      "original_index": 247
+    }
+  },
+  "optimization_history": []
+}

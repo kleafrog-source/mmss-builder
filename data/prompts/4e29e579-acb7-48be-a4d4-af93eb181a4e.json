@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4e29e579-acb7-48be-a4d4-af93eb181a4e",
+    "name": "BLOCK_BLOCK_BLOCK_143",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.950789",
+    "updated_at": "2026-04-12T01:27:52.950868",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_143"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_143",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"sub_harmonic_spec\": {\n    \"action\": \"Generate f/2 (Sub-octave) sine wave linked to Layer 2 (Lead)\",\n    \"mixing\": \"Mix at -18dB relative to the main Bass (Block 41)\",\n    \"processing\": \"Strict low-pass at 40Hz. No harmonics allowed.\",\n    \"psychoacoustic_effect\": \"The sense of 'Massive Weight' that bypasses the ears\",\n    \"rule\": \"Only use during Climax (Block 47) for maximum impact.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_143",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_143",
+      "block_name": "Block_block_143",
+      "source": "producer-ai-base",
+      "original_index": 143
+    }
+  },
+  "optimization_history": []
+}

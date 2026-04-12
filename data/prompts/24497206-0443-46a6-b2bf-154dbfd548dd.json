@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "24497206-0443-46a6-b2bf-154dbfd548dd",
+    "name": "BLOCK_BLOCK_BLOCK_321",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:06.647338",
+    "updated_at": "2026-04-12T01:28:06.647411",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_321"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_321",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"advanced_spatial_effects\": {\n    \"haas_effect_widener\": {\n      \"left_channel\": \"Gain(0dB), Delay(0ms)\",\n      \"right_channel\": \"Gain(-1dB), Delay(15ms)\",\n      \"result\": \"Psychoacoustic stereo width for lead plucks\"\n    },\n    \"doppler_sim_logic\": {\n      \"input\": \"Moving point source (X, Y, Z)\",\n      \"processing\": \"PitchShift(f_shifted) ⊗ Gain(1/r²)\",\n      \"automation\": \"Linear ramp from +50 cents to -50 cents over 2 bars\"\n    }\n  },\n  \"metadata_user_preferences\": {\n    \"favorite_scales\": [\n      \"Phrygian\",\n      \"Locrian\",\n      \"Double Harmonic Minor\"\n    ],\n    \"mixing_priorities\": [\n      \"Kick-Bass clarity\",\n      \"Spectral separation\",\n      \"Sub-low impact\"\n    ]\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_321",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_321",
+      "block_name": "Block_block_321",
+      "source": "producer-ai-base",
+      "original_index": 321
+    }
+  },
+  "optimization_history": []
+}

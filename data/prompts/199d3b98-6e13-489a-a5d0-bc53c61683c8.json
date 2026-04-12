@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "199d3b98-6e13-489a-a5d0-bc53c61683c8",
+    "name": "BLOCK_BLOCK_BLOCK_142",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:52.863010",
+    "updated_at": "2026-04-12T01:27:52.863085",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_142"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_142",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"void_trails_spec\": {\n    \"logic\": \"Spectral-Freeze at the moment of Release-envelope\",\n    \"processing\": {\n      \"stretching\": \"Time-expansion x8.0 on the last 100ms of the signal\",\n      \"filtering\": \"Resonant Band-pass (Q=12.0) sweeping from 10kHz to 2kHz\",\n      \"panning\": \"MLGS_QUATERNION random-jump (W-axis sync)\"\n    },\n    \"mixing\": \"Mix at -28dB (The 'Ghostly-Presence' level)\",\n    \"rule\": \"Trails must contain the 'Inverted Harmonic' of the original note.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_142",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_142",
+      "block_name": "Block_block_142",
+      "source": "producer-ai-base",
+      "original_index": 142
+    }
+  },
+  "optimization_history": []
+}

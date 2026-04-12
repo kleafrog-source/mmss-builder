@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "baeb8666-92e7-4648-b5ae-c72469ea2830",
+    "name": "BLOCK_BLOCK_BLOCK_240",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.693127",
+    "updated_at": "2026-04-12T01:28:00.693192",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_240"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_240",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_inertia_logic_lyrics\": {\n    \"the_mass_set\": [\n      \"Heavy as the lead, pulling the floor / Asking for silence, asking for more\",\n      \"Gravity of sound, bending the time / The weight of the zero, the weight of the mine\",\n      \"Sustain the pressure, sustain the light / In the heavy heart of the digital night\"\n    ],\n    \"the_dissipation_set\": [\n      \"Fading away into the void of the code / Leaving the dust on the fractal road\",\n      \"Release the energy, let it go slow / Finding the rhythm where the shadows grow\",\n      \"Decay of the logic, decay of the soul / Taking the fragments, taking control\"\n    ],\n    \"the_inertia_dialogue\": [\n      \"Hold the weight / Feel the fall\",\n      \"Seal the fate / Hear the call\",\n      \"Result: Gravitational-Sustain / Status: INERTIA_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_inertia_v4\": {\n    \"the_compression_pump\": \"Slow compressor release (150ms) on the pads to create 'pumping' inertia\",\n    \"the_vacuum_effect\": \"Sudden gain-cut (-24dB) 50ms before the drop to create a 'pre-impact' void\",\n    \"low_end_drag\": \"Micro-delay (+2ms) on the sub-bass fundamental to create a 'heavy' behind-the-beat feel\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_240",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_240",
+      "block_name": "Block_block_240",
+      "source": "producer-ai-base",
+      "original_index": 240
+    }
+  },
+  "optimization_history": []
+}

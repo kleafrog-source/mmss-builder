@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2308826f-b32c-46f7-aea6-72517f82c8f5",
+    "name": "BLOCK_BINARY_DISSOLUTION_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:42.565262",
+    "updated_at": "2026-04-12T01:27:42.565402",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_99"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BINARY_DISSOLUTION_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 99,\n  \"block_name\": \"Binary_Dissolution.v1\",\n  \"binary_sonification\": {\n    \"read_mode\": \"Byte-to-Phoneme Mapping\",\n    \"speed\": \"64 bytes per second\",\n    \"bit_rhythm\": \"1 = Sound, 0 = Silence\"\n  },\n  \"internal_insight\": {\n    \"the_singing_data\": \"Твой инсайт: 'Данные — это новая поэзия'. В Блоке 99 мы слушали, как звучит сам файл .mp3, если его прочитать как текст. Это был механический, холодный, но странно ритмичный голос. Ты сказал: 'Это голос моей памяти, очищенный от иллюзий'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_99",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 99,
+      "block_name": "Binary_Dissolution.v1",
+      "source": "producer-ai-base",
+      "original_index": 23
+    }
+  },
+  "optimization_history": []
+}

@@ -20,11 +20,11 @@ class OptimizationResult(BaseModel):
 
 class GEPAConfig(BaseModel):
     """GEPA optimization configuration."""
-    population_size: int = 20
-    iterations: int = 50
+    population_size: int = 5
+    iterations: int = 10
     mutation_rate: float = 0.1
     crossover_rate: float = 0.8
-    elitism: int = 2
+    elitism: int = 1
 
 
 class GEPAClient:

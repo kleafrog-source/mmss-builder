@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "f349d73d-25ce-471a-bbeb-1b3cb2ad5534",
+    "name": "BLOCK_SONIC_LABYRINTH_V1_HRTF",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:48.185377",
+    "updated_at": "2026-04-12T01:27:48.185481",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_36"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_SONIC_LABYRINTH_V1_HRTF",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 36,\n  \"block_name\": \"Sonic_Labyrinth_v1.HRTF\",\n  \"spatial_coordinates\": {\n    \"x_axis\": \"Azimuth (-180 to 180 deg)\",\n    \"y_axis\": \"Elevation (-90 to 90 deg)\",\n    \"z_axis\": \"Distance (R_distance = 1 / sqrt(Power))\"\n  },\n  \"labyrinth_logic\": {\n    \"dynamic_panning\": \"Circular motion at 0.1Hz with random Z-axis jumps\",\n    \"doppler_shift\": \"Active for moving sound sources (v_max = 340m/s)\",\n    \"early_reflections\": \"Calculated for a 'Non-Euclidean' geometry\"\n  },\n  \"internal_insight\": {\n    \"geometry_paradox\": \"Ты просил сделать комнату, которая 'больше внутри, чем снаружи'. В Блоке 36 мы настроили реверберацию так, чтобы ранние отражения соответствовали тесной коробке (1x1м), а хвост затухания — огромному собору (100x100м). Ты назвал это 'Клаустрофобическим Величием'.\",\n    \"sensory_note\": \"Слушатель должен чувствовать, как стены 'дышат' в ритме баса.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_36",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 36,
+      "block_name": "Sonic_Labyrinth_v1.HRTF",
+      "source": "producer-ai-base",
+      "original_index": 87
+    }
+  },
+  "optimization_history": []
+}

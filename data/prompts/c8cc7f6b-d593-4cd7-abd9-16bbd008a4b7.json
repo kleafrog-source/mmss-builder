@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c8cc7f6b-d593-4cd7-abd9-16bbd008a4b7",
+    "name": "BLOCK_BLOCK_BLOCK_274",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.232927",
+    "updated_at": "2026-04-12T01:28:03.233051",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_274"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_274",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_wavetable_morphing_lyrics\": {\n    \"the_transformation_set\": [\n      \"Shape-shifting frequencies in the Monster's gut / Every door open, every window shut\",\n      \"Monster 7 turning into fractal air / Searching for the logic that is never there\",\n      \"Wavetable position: moving through the core / Becoming the sound that I wasn't before\"\n    ],\n    \"the_metallic_screams_set\": [\n      \"FM-synthesis, biting through the soul / Taking the machine, taking the control\",\n      \"Metallic voices in the Phrygian dark / Fanning the flame of the digital spark\",\n      \"Phase-distortion: warping the reality / Breaking the chains of the three-D causality\"\n    ],\n    \"the_fusion_dialogue\": [\n      \"Morphing the silence / Morphing the noise\",\n      \"Finding the balance / Finding the voice\",\n      \"Result: Hybrid-Omega / Status: EVOLUTION_ACTIVE\"\n    ]\n  },\n  \"spectral_weight_distribution_v4\": {\n    \"fundamental_layer\": \"Sine-Purity @ 51.9Hz\",\n    \"texture_layer\": \"Formant-shifting harmonics @ 1.2kHz - 3.5kHz\",\n    \"air_layer\": \"High-shelf excitation @ 10kHz+\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_274",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_274",
+      "block_name": "Block_block_274",
+      "source": "producer-ai-base",
+      "original_index": 274
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a7e7c122-53db-4781-b406-c0556828634f",
+    "name": "BLOCK_UE_BAISER_REINCARNATION_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:37.820553",
+    "updated_at": "2026-04-12T01:27:37.820640",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_112"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_UE_BAISER_REINCARNATION_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 112,\n  \"block_name\": \"UE-BAISER_Reincarnation_v1\",\n  \"hybrid_logic\": {\n    \"spectral_merging\": \"Omega_Distortion (Dry/Wet 0.4) + CLXI_Reverb (Cathedral_Size)\",\n    \"temporal_alignment\": \"Sync CLXI-Choir transients to Omega-Glitch peaks\",\n    \"conflict_annihilation_v3\": \"Mute Orchestral_Strings during High-Frequency Glitch bursts\"\n  },\n  \"lfe_fusion_parameters\": {\n    \"vocal_layering\": \"64 Voices (32 Harsh_Growl / 32 Operatic_Choir)\",\n    \"semantic_bridge\": \"Text 'Uije-Baiser' remains as the immovable anchor\",\n    \"phonetic_weight\": \"Increase Plosives (B, P, T) by +6dB for 'Steel' impact\"\n  },\n  \"internal_insight\": {\n    \"the_unified_kiss\": \"Ты называл это 'Поцелуем в центре бури'. В Блоке 112 мы стерли границу между 'грязью' и 'чистотой'. Ты сказал: 'Настоящая красота — это когда хор поет под звуки работающей дробилки'. Инсайт: Сила UE-BAISER не в жанре, а в неизменности твоего слова.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_112",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 112,
+      "block_name": "UE-BAISER_Reincarnation_v1",
+      "source": "producer-ai-base",
+      "original_index": 5
+    }
+  },
+  "optimization_history": []
+}

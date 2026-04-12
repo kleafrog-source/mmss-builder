@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "16422baf-d5d0-4641-9231-b211992e3c27",
+    "name": "BLOCK_BLOCK_BLOCK_241",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:00.763882",
+    "updated_at": "2026-04-12T01:28:00.763955",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_241"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_241",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ASE_transient_sustain_matrix_v4\": {\n    \"inertia_management_logic\": {\n      \"kick_sustain_control\": {\n        \"hold_time\": \"15ms (Maximum initial pressure)\",\n        \"decay_slope\": \"Logarithmic (Smooth energy dissipation)\",\n        \"release\": \"Synced to 1/16 note (45ms @ 174 BPM)\",\n        \"result\": \"Heavy punch without bleeding into the next beat\"\n      },\n      \"reese_sustain_swelling\": {\n        \"source\": \"LFO_Curved_Triangle (Rate 1/2 bar)\",\n        \"gain_modulation\": \"+3dB expansion during the sustain phase\",\n        \"result\": \"The 'Growing Bass' effect - sound gets louder as it stays\"\n      },\n      \"snare_ghost_tails\": {\n        \"gate_threshold\": \"-32dB\",\n        \"gate_hysteresis\": \"6dB (Avoiding chatter)\",\n        \"result\": \"Absolute silence between snare-crack and its reverb-cloud\"\n      }\n    },\n    \"dynamic_inertia_v4\": \"Increase sustain-time by 25% during 'breakdown' sections (H_entropy up), reduce to 10% in the 'drop' (Maximum precision).\"\n  },\n  \"inertia_metrics_v4\": {\n    \"energy_retention_index\": \"η = 0.82 (High-impact density)\",\n    \"perceived_mass_coefficient\": \"1.25 x Original_Transient\",\n    \"silence_depth\": \"-96dB (Noise-floor cleaning via digital gating)\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_241",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_241",
+      "block_name": "Block_block_241",
+      "source": "producer-ai-base",
+      "original_index": 241
+    }
+  },
+  "optimization_history": []
+}

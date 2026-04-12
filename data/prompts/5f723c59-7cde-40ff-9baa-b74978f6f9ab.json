@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "5f723c59-7cde-40ff-9baa-b74978f6f9ab",
+    "name": "BLOCK_BLOCK_BLOCK_175",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:55.721606",
+    "updated_at": "2026-04-12T01:27:55.721671",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_175"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_175",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"spectral_vision\": {\n    \"target_curve\": \"Tilt-Shift (-3dB per octave for 'Warm/Dark' analog feel)\",\n    \"energy_distribution\": {\n      \"sub_20_60hz\": \"Maximum power (The Foundation)\",\n      \"low_mids_200_500hz\": \"Surgical cut (-4dB) to avoid 'boxiness'\",\n      \"high_mids_1_4khz\": \"Aggressive presence (The Attack)\",\n      \"air_10khz_plus\": \"Fractal shimmer (The Void)\"\n    },\n    \"real_time_fix\": \"If 2kHz exceeds threshold, apply Dynamic EQ (De-esser style).\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_175",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_175",
+      "block_name": "Block_block_175",
+      "source": "producer-ai-base",
+      "original_index": 175
+    }
+  },
+  "optimization_history": []
+}

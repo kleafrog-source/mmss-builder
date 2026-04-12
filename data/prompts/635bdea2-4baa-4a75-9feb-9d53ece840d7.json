@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "635bdea2-4baa-4a75-9feb-9d53ece840d7",
+    "name": "BLOCK_ZERO_MEANING_ANCHOR",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:46.815269",
+    "updated_at": "2026-04-12T01:27:46.815341",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_50"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_ZERO_MEANING_ANCHOR",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 50,\n  \"block_name\": \"Zero_Meaning_Anchor\",\n  \"finalization_tools\": {\n    \"formant_normalization\": \"Move all formants to the neutral center (U-sound)\",\n    \"gain_taper\": \"Logarithmic fade to silence over 4 bars\",\n    \"memory_wipe_marker\": \"Insert 'Pure_Sine' tone for 0.5s as a reset signal\"\n  },\n  \"internal_insight\": {\n    \"the_clean_reset\": \"Блок 50 — это 'Смерть Автора'. Ты сказал: 'Мы сказали всё, теперь пусть говорит тишина'. Последний звук этого блока — это всегда 'Омм' на частоте 136.1Гц. Мы назвали это 'Якорем Покоя'. Теперь система готова к Блоку 51: Манипуляция Временными Петлями.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_50",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 50,
+      "block_name": "Zero_Meaning_Anchor",
+      "source": "producer-ai-base",
+      "original_index": 73
+    }
+  },
+  "optimization_history": []
+}

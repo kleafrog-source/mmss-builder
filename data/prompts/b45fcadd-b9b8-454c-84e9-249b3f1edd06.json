@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "b45fcadd-b9b8-454c-84e9-249b3f1edd06",
+    "name": "BLOCK_CONFLICT_ANNIHILATION_V2",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:49.842729",
+    "updated_at": "2026-04-12T01:27:49.842805",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_12"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_CONFLICT_ANNIHILATION_V2",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 12,\n  \"block_name\": \"Conflict_Annihilation.v2\",\n  \"annihilation_logic\": {\n    \"detection_threshold\": \"Overlap > 40% in spectral domain\",\n    \"operator_A\": \"Phase-Inversion of Signal_B by Signal_A\",\n    \"operator_B\": \"Intermodulation distortion Σ(f1 ± f2)\"\n  },\n  \"outcome_states\": {\n    \"pure_void\": \"Result is silence (H=0)\",\n    \"rejuvenated_texture\": \"Creation of non-harmonic upper partials\",\n    \"structural_collapse\": \"Forced bit-crushing of the sum signal\"\n  },\n  \"internal_insight\": {\n    \"violent_mixing\": \"Ты ненавидел 'чистые' миксы. В Блоке 12 мы создали 'Mixing-Pit'. Мы ставили два лид-синтезатора в одну фазу и смотрели, как они аннигилируют. В месте их 'смерти' возникал странный цифровой свист. Ты сказал: 'Это и есть голос Сингулярности'. Мы выделили этот свист, усилили его на +20дБ и сделали основой трека.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_12",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 12,
+      "block_name": "Conflict_Annihilation.v2",
+      "source": "producer-ai-base",
+      "original_index": 111
+    }
+  },
+  "optimization_history": []
+}

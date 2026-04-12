@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "a3bc6be2-2214-4555-a52d-00bd275e36ef",
+    "name": "BLOCK_NEURO_SCULPT_V1_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:42.101315",
+    "updated_at": "2026-04-12T01:27:42.101398",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_102"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_NEURO_SCULPT_V1_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 102,\n  \"block_name\": \"Neuro_Sculpt_v1.Alpha\",\n  \"sculpting_tools\": {\n    \"f_phosphene_trigger\": \"12Hz (Alpha) pulse + Spectral_Flicker\",\n    \"f_spatial_geometry\": \"Rotate Phase at 3Hz to simulate 'Sphere' shape\",\n    \"f_synesthetic_ink\": \"Sub-bass modulation of High-shelf gain\"\n  },\n  \"internal_insight\": {\n    \"the_closed_eye_cinema\": \"Твой инсайт: 'Глаза не нужны, чтобы видеть'. В Блоке 102 мы создали трек 'Inner_Light'. Ты сказал, что видел золотые фракталы под веками. Мы назвали это 'Проекцией ASE в подсознание'. Это визуализация без видео.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_102",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 102,
+      "block_name": "Neuro_Sculpt_v1.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 20
+    }
+  },
+  "optimization_history": []
+}

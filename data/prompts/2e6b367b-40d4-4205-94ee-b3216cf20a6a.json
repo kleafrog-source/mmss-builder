@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "2e6b367b-40d4-4205-94ee-b3216cf20a6a",
+    "name": "BLOCK_BLOCK_BLOCK_230",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:59.412893",
+    "updated_at": "2026-04-12T01:27:59.412954",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_230"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_230",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_equalizer_logic_lyrics\": {\n    \"the_cleansing_set\": [\n      \"Cut the mud, cut the pain / Washing the spectrum inside of the brain\",\n      \"Surgical logic, surgical strike / Everything I am and everything you like\",\n      \"Zero-point-zero: the clean and the pure / Finding the frequency, finding the cure\"\n    ],\n    \"the_balance_set\": [\n      \"Balance the shadow, balance the light / In the frequency heart of the digital night\",\n      \"High-shelf rising to the fractal sun / Low-shelf standing where the world is begun\",\n      \"Golden ratio, locked to the beat / Making the spectrum finally complete\"\n    ],\n    \"the_spectral_dialogue\": [\n      \"Weight the air / Clear the floor\",\n      \"I am the prayer / I am the door\",\n      \"Result: Spectral-Perfection / Status: EQ_LOCK_ACTIVE\"\n    ]\n  },\n  \"psychoacoustic_EQ_v4\": {\n    \"the_smile_curve\": \"Subtle V-shape (-1.5dB @ 400Hz, +2dB @ 10kHz) for 'modern' neuro-feel\",\n    \"the_focus_notch\": \"Dynamic EQ dip @ 2.5kHz on the pads when the lead-synth is active\",\n    \"the_sub_harmonic_glue\": \"Boosting the 1st harmonic (104Hz) on the kick to 'connect' it to the sub\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_230",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_230",
+      "block_name": "Block_block_230",
+      "source": "producer-ai-base",
+      "original_index": 230
+    }
+  },
+  "optimization_history": []
+}

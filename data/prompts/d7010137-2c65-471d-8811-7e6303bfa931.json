@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "d7010137-2c65-471d-8811-7e6303bfa931",
+    "name": "BLOCK_BLOCK_BLOCK_192",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:56.892983",
+    "updated_at": "2026-04-12T01:27:56.893043",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_192"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_192",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"negative_space_spec\": {\n    \"definition\": \"Intentional removal of all audio signals for Δt\",\n    \"usage\": \"Before the 'Drop' or at the end of a Narrative Cycle\",\n    \"types\": {\n      \"absolute_zero\": \"Total digital silence (0dB)\",\n      \"void_silence\": \"Extremely low-volume noise-floor (-48dB) + long reverb tail\",\n      \"rhythmic_gap\": \"Missing kick on the 4th beat to create 'gravity pull'\"\n    },\n    \"goal\": \"Reset the listener's ear for the next G-Inversion iteration.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_192",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_192",
+      "block_name": "Block_block_192",
+      "source": "producer-ai-base",
+      "original_index": 192
+    }
+  },
+  "optimization_history": []
+}

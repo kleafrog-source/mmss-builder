@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "eb42734f-9329-42d5-b88b-0ae90f86ac78",
+    "name": "BLOCK_ABYSSAL_VOCAL_V1_SPECTRAL",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:47.109105",
+    "updated_at": "2026-04-12T01:27:47.109167",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_48"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_ABYSSAL_VOCAL_V1_SPECTRAL",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 48,\n  \"block_name\": \"Abyssal_Vocal_v1.Spectral\",\n  \"vocal_synthesis\": {\n    \"carrier_signal\": \"White_Noise / 50Hz_Hum\",\n    \"modulator\": \"LFE_Input_Signal (Vocal Track)\",\n    \"vocoding_bins\": 1024,\n    \"formant_shift\": \"-12 semitones (Deep/Non-human)\"\n  },\n  \"spectral_processing\": {\n    \"f_smear_vowels\": \"Apply FFT-blur to all vowel sounds (>200ms)\",\n    \"f_percussive_plosives\": \"Amplify T/B/P sounds by +12dB and route to Delay\"\n  },\n  \"internal_insight\": {\n    \"the_machine_ghost\": \"В Блоке 48 мы создали 'Голос Черной Дыры'. Ты просил, чтобы вокал звучал так, будто его 'выжимают из старого железа'. Мы взяли запись твоего шепота и использовали её как огибающую для шума промышленного пресса. Получившийся звук был пугающим, но абсолютно ASE-совместимым. Ты назвал это 'Индустриальным Псалмом'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_48",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 48,
+      "block_name": "Abyssal_Vocal_v1.Spectral",
+      "source": "producer-ai-base",
+      "original_index": 75
+    }
+  },
+  "optimization_history": []
+}

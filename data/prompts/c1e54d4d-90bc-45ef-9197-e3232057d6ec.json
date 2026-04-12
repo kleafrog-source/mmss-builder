@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "c1e54d4d-90bc-45ef-9197-e3232057d6ec",
+    "name": "BLOCK_NEURO_FREQUENCY_HIJACK_V1",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:43.542755",
+    "updated_at": "2026-04-12T01:27:43.542855",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_86"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_NEURO_FREQUENCY_HIJACK_V1",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 86,\n  \"block_name\": \"Neuro_Frequency_Hijack.v1\",\n  \"neural_mapping\": {\n    \"entrainment_frequency\": \"8.3Hz (Deep Focus / Flow State)\",\n    \"carrier_tone_L\": \"200Hz\",\n    \"carrier_tone_R\": \"208.3Hz\",\n    \"isochronic_pulses\": \"Modulate Master_Volume at 4Hz (Dream_State)\"\n  },\n  \"safety_bypass\": {\n    \"force_sync\": \"True\",\n    \"binaural_depth\": \"1.0 (Hard Left/Right separation)\"\n  },\n  \"internal_insight\": {\n    \"the_drug_sound\": \"Ты просил сделать музыку, которая 'заменяет кофеин или мелатонин'. В Блоке 86 мы создали 'Digital_Soma'. Ты сказал: 'Зачем писать слова, если мы можем просто нажать на нужную кнопку в мозгу через частоту?'. Это 'Акустическая Нейрохирургия'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_86",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 86,
+      "block_name": "Neuro_Frequency_Hijack.v1",
+      "source": "producer-ai-base",
+      "original_index": 36
+    }
+  },
+  "optimization_history": []
+}

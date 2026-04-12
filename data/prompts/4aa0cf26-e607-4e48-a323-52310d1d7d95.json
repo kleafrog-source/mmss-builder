@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4aa0cf26-e607-4e48-a323-52310d1d7d95",
+    "name": "BLOCK_BLOCK_BLOCK_152",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:53.643024",
+    "updated_at": "2026-04-12T01:27:53.643124",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_152"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_152",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"void_materials\": {\n    \"liquid_mercury\": \"Phasing, shifting, metallic, ultra-smooth, silver reflections\",\n    \"frozen_smoke\": \"Granular, ethereal, cold, static-air, slow-motion evolution\",\n    \"digital_bone\": \"Brittle, sharp, clicky, 4-bit, hollow resonance, dry\",\n    \"plasma_arc\": \"Electric, buzzing, high-freq tension, neon-purple, distorted\",\n    \"usage\": \"Used in [SOUNDSCAPE] of L1 Core to guide the ASE-Timbre-Generator.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_152",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_152",
+      "block_name": "Block_block_152",
+      "source": "producer-ai-base",
+      "original_index": 152
+    }
+  },
+  "optimization_history": []
+}

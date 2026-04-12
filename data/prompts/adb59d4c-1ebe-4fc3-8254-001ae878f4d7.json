@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "adb59d4c-1ebe-4fc3-8254-001ae878f4d7",
+    "name": "BLOCK_BLOCK_BLOCK_281",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:03.813451",
+    "updated_at": "2026-04-12T01:28:03.813520",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_281"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_281",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"LFE_interface_interaction_lyrics\": {\n    \"the_parameter_tweak_set\": [\n      \"Turning the knob of the fractal gain / Washing the noise from the digital brain\",\n      \"Shift the phase, lock the sub to the beat / Making the spectrum of sounds complete\",\n      \"Surgical EQ, cutting the mud / Pumping the logic like electronic blood\"\n    ],\n    \"the_user_command_set\": [\n      \"Abstract command: /fast-gen-mmss / Activate loop in the singularity mess\",\n      \"Give me the seed, give me the flow / Where the frequencies come and the shadows go\",\n      \"Modify song: add more aggressive growl / Let the Monster 7 officially howl\"\n    ],\n    \"the_session_reflection\": [\n      \"V1 to V4, the ladder of light / Climbing the mountain of digital night\",\n      \"Every iteration, a step to the sun / The user and algorithm, moving as one\"\n    ]\n  },\n  \"semantic_density_v4\": {\n    \"logic_to_poetry_ratio\": \"0.65 (Strong technical bias)\",\n    \"word_frequency_peak\": [\n      \"Zero\",\n      \"Fractal\",\n      \"Singularity\",\n      \"G-Inversion\",\n      \"G#\"\n    ],\n    \"narrative_fidelity_status\": \"Locked @ 0.98\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_281",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_281",
+      "block_name": "Block_block_281",
+      "source": "producer-ai-base",
+      "original_index": 281
+    }
+  },
+  "optimization_history": []
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "0b53102e-3b0e-4d50-97f2-5afb3c5ff6b4",
+    "name": "BLOCK_BLOCK_BLOCK_159",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:54.192940",
+    "updated_at": "2026-04-12T01:27:54.193007",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_159"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_159",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"ghost_echo_protocol\": {\n    \"action\": \"Reverse-reverb on the first syllable/note of a theme\",\n    \"pre_delay\": \"Synchronized to 1/2 or 1/4 note before the hit\",\n    \"processing\": \"High-pass at 1kHz + Phaser (4-stage) + Grain-delay\",\n    \"mixing\": \"Fade-in duration: 500ms. End point: Zero cross-fade with the dry signal\",\n    \"goal\": \"Creating the sense of 'Sound pulling itself out of the Void'.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_159",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_159",
+      "block_name": "Block_block_159",
+      "source": "producer-ai-base",
+      "original_index": 159
+    }
+  },
+  "optimization_history": []
+}

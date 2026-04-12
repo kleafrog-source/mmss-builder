@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "4f059ded-59de-4e46-934b-43e7b7aee912",
+    "name": "BLOCK_BLOCK_BLOCK_329",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:28:07.193033",
+    "updated_at": "2026-04-12T01:28:07.193098",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_block_329"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_BLOCK_BLOCK_329",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"audio_generation_logic\": {\n    \"base_prompt_v4\": \"High-fidelity Neurofunk, 174 BPM, Complex Reese Bass Modulation, Neuro-grid syncopation, Surgical percussion, Phrygian Dominant textures, Dark cinematic atmosphere, 48kHz production quality\",\n    \"modifier_injection_1\": \"[AESTHETIC_HYPERLOOP]: apply G-operator to bass-line, recursive filter-fm modulation, increase entropy H(p=0.3, c=0.7)\",\n    \"modifier_injection_2\": \"[MMSS_FRACTAL]: overlay spectral textures ⊗ prime_number_delay(17ms), granular synthesis on the lead plucks\",\n    \"visual_sync_prompt\": \"GLSL_Visualizer_Sync: reactive geometry, quaternion-based rotations, fractal mandelbrot zoom, spectral-reactive neon pulses\"\n  },\n  \"vibe_extraction_rules\": {\n    \"mode\": \"Stem-isolated isolation\",\n    \"action\": \"Extract Kick+Bass profile → Save as Spectral_Vibe_v4.2\",\n    \"application\": \"Inject saved Vibe into next generation for 95% consistency\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_block_329",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": "block_329",
+      "block_name": "Block_block_329",
+      "source": "producer-ai-base",
+      "original_index": 329
+    }
+  },
+  "optimization_history": []
+}

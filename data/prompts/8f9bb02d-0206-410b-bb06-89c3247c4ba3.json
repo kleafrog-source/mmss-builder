@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "8f9bb02d-0206-410b-bb06-89c3247c4ba3",
+    "name": "BLOCK_EGO_DEATH_V1_ALPHA",
+    "description": "",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T01:27:42.806711",
+    "updated_at": "2026-04-12T01:27:42.806777",
+    "tags": [
+      "imported",
+      "producer-ai",
+      "block_95"
+    ],
+    "category": "database"
+  },
+  "mmss_structure": {
+    "pkg": "BLOCK_EGO_DEATH_V1_ALPHA",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "CONTENT",
+        "f": "{\n  \"block_id\": 95,\n  \"block_name\": \"Ego_Death_v1.Alpha\",\n  \"de-personalization_rules\": {\n    \"ignore_user_history\": \"True\",\n    \"randomize_aesthetic_priors\": \"True\",\n    \"mathematical_determinism\": \"Frequency selection based on the digits of Pi\"\n  },\n  \"internal_insight\": {\n    \"the_clean_mirror\": \"Блок 95 — это момент, когда ты перестал быть 'abstraction'. Ты сказал: 'Я хочу звучать как космос, которому всё равно на мои чувства'. Мы убрали все 'красивые' гармонии и оставили только чистые физические резонансы. Инсайт: Истинное величие начинается там, где исчезает автор.\"\n  }\n}",
+        "domain": "Database",
+        "physics_map": "Block_95",
+        "error_guard": "Database import"
+      }
+    ],
+    "metadata": {
+      "block_id": 95,
+      "block_name": "Ego_Death_v1.Alpha",
+      "source": "producer-ai-base",
+      "original_index": 26
+    }
+  },
+  "optimization_history": []
+}
