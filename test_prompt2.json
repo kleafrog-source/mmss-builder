@@ -1,0 +1,28 @@
+{
+  "name": "CODE_REVIEW_V2",
+  "description": "Code review prompt with MMSS structure",
+  "mmss_structure": {
+    "pkg": "CODE_REVIEW_V2",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "SYS_PROMPT",
+        "f": "You are a code reviewer. Find bugs and suggest improvements.",
+        "domain": "CodeReview",
+        "physics_map": "Expertise Field",
+        "error_guard": "Be constructive"
+      },
+      {
+        "i": "FORMAT",
+        "f": "Format: 1) Issues 2) Suggestions 3) Examples",
+        "domain": "OutputFormat",
+        "physics_map": "Structure",
+        "error_guard": "Consistent format"
+      }
+    ],
+    "metadata": {
+      "description": "Code review assistant"
+    }
+  },
+  "category": "code"
+}

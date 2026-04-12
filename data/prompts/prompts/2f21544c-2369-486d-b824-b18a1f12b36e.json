@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "id": "2f21544c-2369-486d-b824-b18a1f12b36e",
+    "name": "TEST_PROMPT",
+    "description": "Test prompt for MVP",
+    "version": "1.0.0",
+    "created_at": "2026-04-12T00:11:11.242092",
+    "updated_at": "2026-04-12T00:11:11.242920",
+    "tags": [],
+    "category": "test"
+  },
+  "mmss_structure": {
+    "pkg": "TEST_PROMPT",
+    "ver": "1.0.0",
+    "ops": [
+      {
+        "i": "TEST",
+        "f": "This is a test prompt",
+        "domain": "Test",
+        "physics_map": "TestField",
+        "error_guard": "None"
+      }
+    ]
+  },
+  "optimization_history": []
+}

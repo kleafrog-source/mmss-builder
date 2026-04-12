@@ -108,6 +108,28 @@ services:
       - pezzo-network
       - integration-network
 
+  # Prompt Manager - локальное хранилище MMSS промптов
+  prompt-manager:
+    build:
+      context: ./services/prompt_manager
+      dockerfile: Dockerfile
+    container_name: prompt-manager
+    restart: unless-stopped
+    environment:
+      PROMPT_MANAGER_PORT: 8002
+      PROMPT_DATA_DIR: /app/data
+      OPTIMIZER_URL: http://optimizer:8000
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./data/prompts:/app/data/prompts
+      - ./services/prompt_manager/src:/app/src:ro
+    depends_on:
+      optimizer:
+        condition: service_started
+    networks:
+      - integration-network
+
   # (Optional) GEPA-MCP Server - if running locally
   # Uncomment if you have gepa-mcp built locally
   # gepa-mcp:
