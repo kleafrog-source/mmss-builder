@@ -13,13 +13,13 @@ class MMSOrchestrator:
             api_key = os.environ.get("MISTRAL_API_KEY")
             if api_key and api_key.strip() and api_key != "your_mistral_api_key_here":
                 self.mistral_api = MistralNeMoAPI()
-                print("✓ Mistral API initialized successfully for Orchestrator.")
+                print("[OK] Mistral API initialized successfully for Orchestrator.")
             else:
                 self.mistral_api_error = "MISTRAL_API_KEY not set in .env file"
-                print(f"⚠ {self.mistral_api_error}")
+                print(f"[WARN] {self.mistral_api_error}")
         except Exception as e:
             self.mistral_api_error = str(e)
-            print(f"⚠ Error initializing Mistral API for Orchestrator: {self.mistral_api_error}")
+            print(f"[WARN] Error initializing Mistral API for Orchestrator: {self.mistral_api_error}")
 
     def get_agents(self):
         return self.config.get('agents', [])

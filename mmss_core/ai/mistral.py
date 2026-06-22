@@ -1,5 +1,6 @@
 import os
-from mistralai import Mistral, MistralError
+from mistralai.client import Mistral
+from mistralai.client.errors import MistralError
 
 class MistralAPIError(Exception):
     """Custom exception for Mistral API errors."""

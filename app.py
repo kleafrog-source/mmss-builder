@@ -119,16 +119,16 @@ try:
     if api_key and api_key.strip() and api_key != "your_mistral_api_key_here":
         # Pass the model from config to the constructor
         mistral_api = MistralNeMoAPI(model=app_config.get('mistral_model'))
-        print(f"✓ Mistral API инициализирован успешно с моделью: {mistral_api.model}")
+        print(f"[OK] Mistral API инициализирован успешно с моделью: {mistral_api.model}")
     else:
         mistral_api_error = "MISTRAL_API_KEY не установлен в .env файле"
-        print(f"⚠ {mistral_api_error}")
+        print(f"[WARN] {mistral_api_error}")
 except ValueError as e:
     mistral_api_error = str(e)
-    print(f"⚠ Mistral API не инициализирован: {mistral_api_error}")
+    print(f"[WARN] Mistral API не инициализирован: {mistral_api_error}")
 except Exception as e:
     mistral_api_error = str(e)
-    print(f"⚠ Ошибка инициализации Mistral API: {mistral_api_error}")
+    print(f"[WARN] Ошибка инициализации Mistral API: {mistral_api_error}")
 
 
 @app.route('/')
