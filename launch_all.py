@@ -7,8 +7,12 @@ import time
 import os
 from pathlib import Path
 
-# Setup environment
-os.environ["MISTRAL_API_KEY"] = "188W4mPcZuJC3Nu9TjuxscZyRvSmqLGq"
+# Setup environment (load from .env or existing shell variable)
+from dotenv import load_dotenv
+load_dotenv()
+
+if not os.environ.get("MISTRAL_API_KEY"):
+    print("[WARN] MISTRAL_API_KEY not set. Create .env from .env.example or export the variable.")
 os.environ["OPTIMIZER_URL"] = "http://localhost:8000"
 
 # Get project root
@@ -22,7 +26,7 @@ print("=" * 60)
 print()
 print(f"📁 Project: {project_root}")
 print(f"📂 Data dir: {data_dir}")
-print(f"🔑 Mistral API: {os.environ['MISTRAL_API_KEY'][:10]}...")
+print(f"🔑 Mistral API: {'set' if os.environ.get('MISTRAL_API_KEY') else 'NOT SET'}")
 print()
 
 # Start Optimizer

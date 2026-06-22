@@ -14,8 +14,15 @@ pause >nul
 taskkill /F /IM python.exe 2>nul
 timeout /t 2 /nobreak >nul
 
-:: Set Mistral API Key and Data Dir (absolute path without trailing spaces)
-set "MISTRAL_API_KEY=188W4mPcZuJC3Nu9TjuxscZyRvSmqLGq"
+:: Load secrets from local .env if present (do not commit .env)
+if exist "%~dp0.env" (
+    for /f "usebackq tokens=1,* delims==" %%A in ("%~dp0.env") do (
+        if not "%%A"=="" if not "%%~B"=="" set "%%A=%%~B"
+    )
+)
+if not defined MISTRAL_API_KEY (
+    echo [WARN] MISTRAL_API_KEY is not set. Create .env from .env.example and set your key.
+)
 set "PROMPT_DATA_DIR=%~dp0data\prompts"
 
 echo.
