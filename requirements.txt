@@ -9,8 +9,11 @@ WTForms>=3.1.0
 # Environment variables
 python-dotenv>=1.0.0
 
-# Mistral AI
-mistralai>=1.0.0
+# YAML config for dataset pipeline
+PyYAML>=6.0.0
+psycopg2-binary>=2.9.9
+mistralai>=0.4.2
+
 
 # Для будущих расширений (опционально):
 # numpy>=1.20.0  # Для расширенных математических вычислений

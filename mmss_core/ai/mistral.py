@@ -26,6 +26,10 @@ class MistralNeMoAPI:
         self.client = Mistral(api_key=self.api_key)
         self.model = model or os.environ.get("MISTRAL_MODEL", "mistral-small-latest")
 
+    def ping(self) -> bool:
+        self.client.models.list()
+        return True
+
     def get_response(self, question: str, history: list = None) -> str:
         """
         Gets a response from the Mistral model.

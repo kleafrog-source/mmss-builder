@@ -1,603 +1,622 @@
 {% extends "base.html" %}
 
-{% block title %}AI Ассистент MMSS{% endblock %}
+{% block title %}AI Assistant MMSS{% endblock %}
 
 {% block head %}
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 <style>
-    @keyframes fade-in-up {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+    .message pre {
+        white-space: pre-wrap;
+        word-break: break-word;
     }
-    .chat-message {
-        animation: fade-in-up 0.5s ease-out;
-    }
-    @keyframes typing-dots {
-        0%, 20% { content: '.'; }
-        40% { content: '..'; }
-        60%, 100% { content: '...'; }
-    }
-    .typing-indicator::after {
-        content: '.';
-        animation: typing-dots 1.4s linear infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.1); opacity: 0.8; }
-        100% { transform: scale(1); opacity: 1; }
-    }
-    .pulsing-icon {
-        animation: pulse 2s infinite ease-in-out;
-    }
-
-    /* Toast styles */
-    #toast-container {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-    .toast {
-        background-color: rgba(31, 41, 55, 0.8);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(75, 85, 99, 0.5);
-        border-radius: 0.5rem;
-        padding: 1rem 1.5rem;
-        color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transform: translateY(-20px);
-        animation: toast-show 0.5s ease-out forwards;
-        min-width: 250px;
-        max-width: 350px;
-    }
-    .toast.hide {
-        animation: toast-hide 0.5s ease-in forwards;
-    }
-    @keyframes toast-show {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes toast-hide {
-        from { opacity: 1; transform: translateY(0); }
-        to { opacity: 0; transform: translateY(-20px); }
-    }
-    .prompt-eye-icon {
-        cursor: pointer;
-        color: rgba(156, 163, 175, 0.5);
-        transition: color 0.3s;
-    }
-    .prompt-eye-icon:hover {
-        color: rgba(209, 213, 219, 1);
+    .progress-bar-fill {
+        transition: width 0.3s ease;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-gray-200 font-sans antialiased">
-    <div class="flex h-screen">
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-            <!-- Header -->
-            <header class="bg-gray-900/50 backdrop-blur-sm border-b border-gray-700 p-4 flex justify-between items-center">
-                <div class="flex items-center">
-                    <i class="fas fa-brain mr-3 text-blue-400"></i>
-                    <h1 id="project-title" class="text-xl font-semibold"></h1>
-                    <i id="rename-project-icon" class="fas fa-pencil-alt ml-3 text-gray-400 hover:text-white transition-colors duration-300" style="cursor: pointer;"></i>
+<div class="min-h-screen bg-slate-950 text-slate-100">
+    <div class="mx-auto flex max-w-[1600px] gap-6 p-6 lg:flex-row flex-col">
+        <section class="flex min-h-[80vh] flex-1 flex-col rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
+            <header class="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+                <div>
+                    <h1 id="project-title" class="text-xl font-semibold">Project</h1>
+                    <p class="text-sm text-slate-400">Chat, streaming and grounded generation</p>
                 </div>
+                <button id="rename-project-icon" class="rounded-lg border border-slate-700 px-3 py-2 text-sm hover:bg-slate-800">Rename</button>
             </header>
 
-            <!-- Chat Window -->
-            <main id="chat-window" class="flex-1 overflow-y-auto p-6 space-y-6">
-                <!-- Initial Message -->
-                <div class="chat-message flex items-start space-x-4">
-                    <div class="flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                        <i class="fas fa-robot text-blue-300"></i>
-                    </div>
-                    <div class="bg-gray-700 rounded-lg p-4 max-w-2xl">
-                        <p>Здравствуйте! Я AI ассистент системы MMSS. Чем могу помочь?</p>
-                    </div>
+            <main id="chat-window" class="flex-1 space-y-4 overflow-y-auto px-6 py-6">
+                <div class="message rounded-2xl bg-slate-800 p-4 text-slate-100">
+                    MMSS assistant is ready. Ollama can stream responses, Mistral remains available as an alternative provider.
                 </div>
             </main>
 
-            <!-- Input Form -->
-            <footer class="p-6">
-                <form id="aiForm" class="relative">
-                    <textarea id="user_query" class="w-full bg-gray-700 border-2 border-gray-600 rounded-lg p-4 pr-20 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow duration-300 resize-none" rows="1" placeholder="Введите ваш запрос..."></textarea>
-                    <button type="submit" id="sendBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 rounded-full h-10 w-10 flex items-center justify-center transition-transform duration-200 active:scale-90" {% if not mistral_available %}disabled{% endif %}>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+            <footer class="border-t border-slate-800 px-6 py-4">
+                <form id="aiForm" class="space-y-3">
+                    <textarea id="user_query" rows="3" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none focus:border-cyan-500" placeholder="Enter your request"></textarea>
+                    <div class="flex items-center justify-between gap-3">
+                        <label class="flex items-center gap-2 text-sm text-slate-300">
+                            <input type="checkbox" id="auto_generate_prompt" checked>
+                            Auto-generate MMSS prompt
+                        </label>
+                        <button type="submit" id="sendBtn" class="rounded-xl bg-cyan-600 px-5 py-2 font-medium text-white hover:bg-cyan-500">Send</button>
+                    </div>
                 </form>
             </footer>
-        </div>
+        </section>
 
-        <!-- Right Sidebar -->
-        <aside class="w-96 bg-gray-900/70 backdrop-blur-md border-l border-gray-700 flex flex-col">
-            <div class="p-6 border-b border-gray-700">
-                <h2 class="text-lg font-semibold">Настройки</h2>
-            </div>
-            <div class="p-6 space-y-4 flex-1 overflow-y-auto">
-                <div class="space-y-2">
-                    <button onclick="saveSession()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-transform duration-200 active:scale-95 flex items-center justify-center"><i class="fas fa-save mr-2"></i>Сохранить сессию</button>
-                    <button onclick="loadSession()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-transform duration-200 active:scale-95 flex items-center justify-center"><i class="fas fa-folder-open mr-2"></i>Загрузить сессию</button>
-                </div>
-                <hr class="border-gray-700"/>
-                <h3 class="text-md font-semibold">Настройки Промпта</h3>
-                <div class="flex items-center justify-between">
-                    <label for="auto_generate_prompt" class="flex-grow cursor-pointer">Авто-генерация MMSS</label>
-                    <input type="checkbox" id="auto_generate_prompt" class="toggle-checkbox" checked>
-                </div>
-                <div id="promptConfig" class="space-y-4">
+        <aside class="w-full lg:w-[440px] space-y-6">
+            <section class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+                <h2 class="mb-4 text-lg font-semibold">AI Settings</h2>
+                <div class="space-y-4">
                     <div>
-                        <label for="prompt_type" class="block mb-2 text-sm font-medium">Тип промпта</label>
-                        <select id="prompt_type" class="w-full bg-gray-700 border border-gray-600 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="full" selected>Полный MMSS</option>
+                        <label class="mb-2 block text-sm text-slate-300">Provider</label>
+                        <select id="provider_select" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2">
+                            <option value="ollama" {% if selected_provider == 'ollama' %}selected{% endif %}>Local Ollama</option>
+                            <option value="mistral" {% if selected_provider == 'mistral' %}selected{% endif %}>Mistral</option>
+                        </select>
+                    </div>
+
+                    <div id="provider-status" class="rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-300">
+                        <div>Ollama: <span id="ollama-status-text">{{ 'available' if provider_status.ollama_available else 'unavailable' }}</span></div>
+                        <div>Mistral: <span id="mistral-status-text">{{ 'available' if provider_status.mistral_available else 'unavailable' }}</span></div>
+                    </div>
+
+                    <div id="ollama-model-block">
+                        <label class="mb-2 block text-sm text-slate-300">Ollama model</label>
+                        <div class="flex gap-2">
+                            <select id="ollama_model" class="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2" {% if not ollama_models %}disabled{% endif %}>
+                                {% for model in ollama_models %}
+                                    <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="button" id="refresh-ollama-models" class="rounded-xl border border-slate-700 px-3 py-2 hover:bg-slate-800">Refresh</button>
+                        </div>
+                        {% if ollama_error %}
+                            <p class="mt-2 text-xs text-amber-300">{{ ollama_error }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div id="mistral-model-block">
+                        <label class="mb-2 block text-sm text-slate-300">Mistral model</label>
+                        <div class="flex gap-2">
+                            <select id="mistral_model" class="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2">
+                                {% for model in mistral_models %}
+                                    <option value="{{ model }}" {% if model == selected_mistral_model %}selected{% endif %}>{{ model }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="button" id="refresh-mistral-models" class="rounded-xl border border-slate-700 px-3 py-2 hover:bg-slate-800">Refresh</button>
+                        </div>
+                        {% if mistral_error %}
+                            <p class="mt-2 text-xs text-amber-300">{{ mistral_error }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <label class="mb-2 block text-sm text-slate-300">Prompt type</label>
+                        <select id="prompt_type" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2">
+                            <option value="full">Full MMSS</option>
                             <option value="pfr">PFR</option>
                             <option value="frp">FRP</option>
                             <option value="ammss">A-MMSS</option>
                         </select>
                     </div>
+
                     <div>
-                        <label for="domain" class="block mb-2 text-sm font-medium">Домен</label>
+                        <label class="mb-2 block text-sm text-slate-300">Domain</label>
                         {% from "domain_subdomains.html" import render_domain_select_with_subdomains %}
                         {{ render_domain_select_with_subdomains('domain', 'domain', '', false, false) }}
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+                <div class="mb-4 flex items-center justify-between">
+                    <h2 class="text-lg font-semibold">Vectorization</h2>
+                    <button type="button" id="start-vectorization" class="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-500">Start</button>
+                </div>
+                <p class="mb-3 text-sm text-slate-400">Embedding model: <span class="text-slate-200">{{ config.ollama_embedding_model }}</span></p>
+                <div class="space-y-2 text-sm">
+                    <div>Total chunks: <span id="vector-total">{{ vector_overview.total_chunks or 0 }}</span></div>
+                    <div>Embedded: <span id="vector-done">{{ vector_overview.embedded_chunks or 0 }}</span></div>
+                    <div>Pending: <span id="vector-pending">{{ vector_overview.pending_chunks or 0 }}</span></div>
+                    <div>Current job: <span id="vector-job-status">idle</span></div>
+                </div>
+                <div class="mt-4 h-3 overflow-hidden rounded-full bg-slate-800">
+                    <div id="vector-progress-bar" class="progress-bar-fill h-full bg-emerald-500" style="width: 0%;"></div>
+                </div>
+            </section>
+
+            <section class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+                <h2 class="mb-4 text-lg font-semibold">RAG Search</h2>
+                <div class="space-y-3">
+                    <textarea id="rag-query" rows="4" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2" placeholder="Ask using vector database context"></textarea>
+                    <input id="rag-top-k" type="number" min="1" max="20" value="5" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2">
+                    <button type="button" id="run-rag-query" class="rounded-xl bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-500">Ask with RAG</button>
+                    <div id="rag-answer" class="rounded-xl border border-slate-800 bg-slate-950 p-4 text-sm text-slate-200"></div>
+                    <div id="rag-sources" class="space-y-2 text-xs text-slate-400"></div>
+                </div>
+            </section>
+
+            <section class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="saveSession()" class="rounded-xl bg-emerald-600 px-4 py-2 font-medium text-white hover:bg-emerald-500">Save Session</button>
+                    <button onclick="loadSession()" class="rounded-xl bg-sky-600 px-4 py-2 font-medium text-white hover:bg-sky-500">Load Session</button>
+                </div>
+                <div class="mt-4 space-y-3">
+                    <label class="block text-sm text-slate-300">Saved sessions</label>
+                    <div class="flex gap-2">
+                        <select id="saved-session-select" class="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm">
+                            <option value="">Choose saved session</option>
+                        </select>
+                        <button type="button" id="refresh-sessions" class="rounded-xl border border-slate-700 px-3 py-2 text-sm hover:bg-slate-800">Refresh</button>
+                    </div>
+                    <button type="button" id="open-selected-session" class="w-full rounded-xl bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-500">Open Selected Session</button>
+                </div>
+            </section>
         </aside>
     </div>
 </div>
 
-<!-- Load Project Modal -->
-<div class="modal fade" id="loadProjectModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content bg-gray-800 text-white">
-            <div class="modal-header border-gray-700">
-                <h5 class="modal-title">Загрузить проект</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p>Выберите проект для загрузки:</p>
-                <div id="project-list" class="list-group"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Show Prompt Modal -->
-<div class="modal fade" id="showPromptModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-gray-800 text-white">
-            <div class="modal-header border-gray-700">
-                <h5 class="modal-title">Отправленный Промпт</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <pre id="modal-prompt-content" class="bg-gray-900 p-4 rounded-lg text-sm whitespace-pre-wrap"></pre>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Toast Container -->
-<div id="toast-container"></div>
+<div id="toast-container" class="fixed right-4 top-4 z-50 space-y-2"></div>
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>
     let conversationHistory = [];
     let currentProjectName = '';
+    let activeVectorJobId = null;
+    let vectorPollTimer = null;
+
     const chatWindow = document.getElementById('chat-window');
     const aiForm = document.getElementById('aiForm');
     const userQueryInput = document.getElementById('user_query');
     const sendBtn = document.getElementById('sendBtn');
-    const projectTitle = document.getElementById('project-title');
-    const renameIcon = document.getElementById('rename-project-icon');
-    const loadProjectModal = new bootstrap.Modal(document.getElementById('loadProjectModal'));
-    const showPromptModal = new bootstrap.Modal(document.getElementById('showPromptModal'));
+    const providerSelect = document.getElementById('provider_select');
+    const ollamaModelSelect = document.getElementById('ollama_model');
+    const mistralModelSelect = document.getElementById('mistral_model');
+    const refreshOllamaModelsBtn = document.getElementById('refresh-ollama-models');
+    const refreshMistralModelsBtn = document.getElementById('refresh-mistral-models');
+    const ollamaBlock = document.getElementById('ollama-model-block');
+    const mistralBlock = document.getElementById('mistral-model-block');
+    const savedSessionSelect = document.getElementById('saved-session-select');
 
-    // Initialize highlight.js
-    hljs.highlightAll();
-
-    document.addEventListener('DOMContentLoaded', function() {
-        setNewProject();
-        // Auto-resize textarea
-        userQueryInput.addEventListener('input', function () {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-
-        let userRequestsHistory = [];
-        let historyIndex = 0;
-
-        aiForm.addEventListener('submit', function(e) {
-            const userQuery = userQueryInput.value.trim();
-            if (userQuery) {
-                // Add to history only if it's a new query
-                if (userRequestsHistory[userRequestsHistory.length - 1] !== userQuery) {
-                    userRequestsHistory.push(userQuery);
-                }
-                historyIndex = userRequestsHistory.length;
-            }
-        });
-
-        userQueryInput.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (historyIndex > 0) {
-                    historyIndex--;
-                    userQueryInput.value = userRequestsHistory[historyIndex];
-                    userQueryInput.dispatchEvent(new Event('input', { bubbles: true }));
-                }
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (historyIndex < userRequestsHistory.length - 1) {
-                    historyIndex++;
-                    userQueryInput.value = userRequestsHistory[historyIndex];
-                    userQueryInput.dispatchEvent(new Event('input', { bubbles: true }));
-                } else {
-                    historyIndex = userRequestsHistory.length;
-                    userQueryInput.value = '';
-                    userQueryInput.dispatchEvent(new Event('input', { bubbles: true }));
-                }
-            }
-        });
-
-        // Reset history navigation when user types something that is not from history
-        userQueryInput.addEventListener('input', function() {
-            const currentValue = userQueryInput.value;
-            if (historyIndex < userRequestsHistory.length && currentValue !== userRequestsHistory[historyIndex]) {
-                historyIndex = userRequestsHistory.length;
-            }
-        });
+    document.addEventListener('DOMContentLoaded', () => {
+        currentProjectName = generateProjectName();
+        document.getElementById('project-title').textContent = currentProjectName;
+        updateProviderUI();
+        updateVectorProgress({ total_chunks: {{ vector_overview.total_chunks or 0 }}, embedded_chunks: {{ vector_overview.embedded_chunks or 0 }}, pending_chunks: {{ vector_overview.pending_chunks or 0 }} });
+        bindEvents();
+        refreshSavedSessions();
     });
 
-    function setNewProject() {
-        currentProjectName = generateProjectName();
-        projectTitle.textContent = currentProjectName;
-        conversationHistory = [];
-        chatWindow.innerHTML = '<div class="chat-message flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center"><i class="fas fa-robot text-blue-300"></i></div><div class="bg-gray-700 rounded-lg p-4 max-w-2xl"><p>Начат новый проект. Здравствуйте! Я AI ассистент системы MMSS. Чем могу помочь?</p></div></div>';
+    function bindEvents() {
+        providerSelect.addEventListener('change', saveProvider);
+        ollamaModelSelect?.addEventListener('change', saveSelectedOllamaModel);
+        mistralModelSelect?.addEventListener('change', saveSelectedMistralModel);
+        refreshOllamaModelsBtn?.addEventListener('click', refreshOllamaModels);
+        refreshMistralModelsBtn?.addEventListener('click', refreshMistralModels);
+        document.getElementById('rename-project-icon').addEventListener('click', renameProject);
+        document.getElementById('start-vectorization').addEventListener('click', startVectorization);
+        document.getElementById('run-rag-query').addEventListener('click', runRagQuery);
+        document.getElementById('auto_generate_prompt').addEventListener('change', () => {});
+        document.getElementById('refresh-sessions').addEventListener('click', refreshSavedSessions);
+        document.getElementById('open-selected-session').addEventListener('click', openSelectedSession);
+        aiForm.addEventListener('submit', submitChat);
     }
 
     function generateProjectName() {
         const d = new Date();
-        const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        const time = `${String(d.getHours()).padStart(2, '0')}-${String(d.getMinutes()).padStart(2, '0')}`;
-        return `Project_${date}_${time}`;
+        return `Project_${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}_${String(d.getHours()).padStart(2, '0')}-${String(d.getMinutes()).padStart(2, '0')}`;
     }
 
-    renameIcon.addEventListener('click', function() {
-        const newName = prompt("Введите новое имя проекта:", currentProjectName);
-        if (newName && newName.trim()) {
-            currentProjectName = newName.trim();
-            projectTitle.textContent = currentProjectName;
-            showToast(`Проект переименован в "${currentProjectName}"`, 'info');
+    function renameProject() {
+        const nextName = prompt('Project name', currentProjectName);
+        if (nextName && nextName.trim()) {
+            currentProjectName = nextName.trim();
+            document.getElementById('project-title').textContent = currentProjectName;
         }
-    });
+    }
 
-    aiForm.addEventListener('submit', async function(e) { // Make it async
-        e.preventDefault();
+    function updateProviderUI() {
+        const provider = providerSelect.value;
+        ollamaBlock.style.display = provider === 'ollama' ? 'block' : 'none';
+        mistralBlock.style.display = provider === 'mistral' ? 'block' : 'none';
+    }
+
+    async function saveProvider() {
+        try {
+            const response = await fetch('/api/settings/provider', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ provider: providerSelect.value }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || data.error || 'Provider update failed');
+            }
+            updateProviderUI();
+            showToast(`Provider: ${data.provider}`, 'success');
+        } catch (error) {
+            showToast(error.message, 'error');
+        }
+    }
+
+    async function refreshOllamaModels() {
+        refreshOllamaModelsBtn.disabled = true;
+        try {
+            const response = await fetch('/api/settings/ollama/models');
+            const data = await response.json();
+            rebuildSelect(ollamaModelSelect, data.models || [], data.selected_model);
+            if (data.error) showToast(data.error, 'error');
+        } catch (error) {
+            showToast(error.message, 'error');
+        } finally {
+            refreshOllamaModelsBtn.disabled = false;
+        }
+    }
+
+    async function refreshMistralModels() {
+        refreshMistralModelsBtn.disabled = true;
+        try {
+            const response = await fetch('/api/settings/mistral/models');
+            const data = await response.json();
+            rebuildSelect(mistralModelSelect, data.models || [], data.selected_model);
+            if (data.error) showToast(data.error, 'error');
+        } catch (error) {
+            showToast(error.message, 'error');
+        } finally {
+            refreshMistralModelsBtn.disabled = false;
+        }
+    }
+
+    function rebuildSelect(select, options, selectedValue) {
+        if (!select) return;
+        select.innerHTML = '';
+        options.forEach(model => {
+            const option = document.createElement('option');
+            option.value = model;
+            option.textContent = model;
+            option.selected = model === selectedValue;
+            select.appendChild(option);
+        });
+        select.disabled = options.length === 0;
+    }
+
+    async function saveSelectedOllamaModel() {
+        await saveModel('/api/settings/ollama/model', ollamaModelSelect.value);
+    }
+
+    async function saveSelectedMistralModel() {
+        await saveModel('/api/settings/mistral/model', mistralModelSelect.value);
+    }
+
+    async function saveModel(url, model) {
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || data.error || 'Model update failed');
+            }
+            showToast(`Model: ${data.selected_model}`, 'success');
+        } catch (error) {
+            showToast(error.message, 'error');
+        }
+    }
+
+    async function submitChat(event) {
+        event.preventDefault();
         const userQuery = userQueryInput.value.trim();
         if (!userQuery) return;
-
-        userQueryInput.value = ''; // Clear input immediately
-        userQueryInput.style.height = 'auto'; // Reset textarea height
-        sendBtn.disabled = true; // Disable button while processing
-
-        addTypingIndicator(); // Show typing indicator early
 
         const autoGenerate = document.getElementById('auto_generate_prompt').checked;
         const promptConfig = {
             prompt_type: document.getElementById('prompt_type').value,
             domain: document.getElementById('domain').value,
-            // Add other prompt config parameters from the form if necessary
-            // For example:
-            // task_context: userQuery,
-            // role_description: document.getElementById('role_description').value,
-            // instructions: document.getElementById('instructions').value,
+            enable_pfr: true,
+            enable_frp: true,
+            enable_ammss: true,
         };
 
-        let generatedPrompt = '';
+        sendBtn.disabled = true;
+        userQueryInput.value = '';
+        addMessage('user', userQuery);
 
         try {
-            if (autoGenerate) {
-                // Fetch the generated prompt first from the dedicated endpoint
-                const promptResponse = await fetch('{{ url_for("ai_generate_prompt_only") }}', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        user_query: userQuery,
-                        prompt_config: {
-                            // Ensure all expected prompt_config fields are sent to the backend
-                            prompt_type: promptConfig.prompt_type,
-                            domain: promptConfig.domain,
-                            task_context: userQuery, // Assuming user query is the task context for prompt generation
-                            // Add other dynamic prompt config variables as needed by backend
-                            enable_pfr: true, // Defaulting these for client-side generation consistency
-                            enable_frp: true,
-                            enable_ammss: true,
-                        }
-                    })
-                });
-                const promptData = await promptResponse.json();
-
-                if (promptData.error) {
-                    throw new Error(promptData.error);
-                }
-                generatedPrompt = promptData.prompt;
+            if (providerSelect.value === 'ollama') {
+                await streamOllamaResponse(userQuery, autoGenerate, promptConfig);
             } else {
-                // If not auto-generating, the final prompt is the user's query itself
-                // (or from a specific custom prompt input if one existed)
-                generatedPrompt = userQuery;
+                await fetchStandardResponse(userQuery, autoGenerate, promptConfig);
             }
+        } catch (error) {
+            addMessage('assistant', `Error: ${error.message}`);
+            showToast(error.message, 'error');
+        } finally {
+            sendBtn.disabled = false;
+        }
+    }
 
-            // After getting the prompt, add user message to chat with the prompt
-            const userMessage = { role: 'user', content: userQuery, prompt: generatedPrompt };
-            conversationHistory.push(userMessage);
-            // Render user message immediately with the eye icon
-            addMessageToChat(userMessage, conversationHistory.length - 1);
-
-            // Now, send the main request to generate AI response
-            const dataForMainRequest = {
+    async function fetchStandardResponse(userQuery, autoGenerate, promptConfig) {
+        const response = await fetch('{{ url_for("ai_generate_and_send") }}', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
                 user_query: userQuery,
+                project_name: currentProjectName,
                 auto_generate_prompt: autoGenerate,
-                prompt_config: {
-                    // Ensure all expected prompt_config fields are sent to the backend
-                    prompt_type: promptConfig.prompt_type,
-                    domain: promptConfig.domain,
-                    task_context: userQuery,
-                    enable_pfr: true,
-                    enable_frp: true,
-                    enable_ammss: true,
-                }, // Send the config used (or derived) for prompt generation
-                history: conversationHistory.filter(m => m.role === 'assistant') // Send only assistant history for chat context
-            };
+                prompt_config: promptConfig,
+                history: conversationHistory.filter(item => item.role === 'assistant'),
+            }),
+        });
+        const data = await response.json();
+        if (!response.ok || data.error) {
+            throw new Error(data.error || 'Generation failed');
+        }
+        addMessage('assistant', data.response);
+    }
 
-            const aiResponse = await fetch('{{ url_for("ai_generate_and_send") }}', {
+    async function streamOllamaResponse(userQuery, autoGenerate, promptConfig) {
+        const response = await fetch('{{ url_for("ai_generate_and_send_stream") }}', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_query: userQuery,
+                project_name: currentProjectName,
+                auto_generate_prompt: autoGenerate,
+                prompt_config: promptConfig,
+                history: conversationHistory.filter(item => item.role === 'assistant'),
+            }),
+        });
+        if (!response.ok || !response.body) {
+            throw new Error('Streaming request failed');
+        }
+
+        const assistantNode = addMessage('assistant', '');
+        const decoder = new TextDecoder();
+        const reader = response.body.getReader();
+        let buffer = '';
+        let finalText = '';
+
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || '';
+
+            for (const line of lines) {
+                if (!line.trim()) continue;
+                const payload = JSON.parse(line);
+                if (payload.type === 'chunk') {
+                    finalText += payload.content || '';
+                    assistantNode.textContent = finalText;
+                } else if (payload.type === 'error') {
+                    throw new Error(payload.error || 'Streaming error');
+                } else if (payload.type === 'done') {
+                    assistantNode.textContent = payload.response || finalText;
+                    finalText = payload.response || finalText;
+                }
+            }
+        }
+
+        const last = conversationHistory[conversationHistory.length - 1];
+        if (last && last.role === 'assistant') {
+            last.content = finalText;
+        }
+    }
+
+    function addMessage(role, content) {
+        const wrapper = document.createElement('div');
+        wrapper.className = `message rounded-2xl p-4 ${role === 'user' ? 'ml-auto max-w-3xl bg-cyan-700 text-white' : 'mr-auto max-w-3xl bg-slate-800 text-slate-100'}`;
+        wrapper.textContent = content;
+        chatWindow.appendChild(wrapper);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        conversationHistory.push({ role, content });
+        return wrapper;
+    }
+
+    async function startVectorization() {
+        try {
+            const response = await fetch('/api/vectorization/start', { method: 'POST' });
+            const data = await response.json();
+            if (!response.ok || data.error) {
+                throw new Error(data.error || 'Vectorization start failed');
+            }
+            activeVectorJobId = data.job_id;
+            document.getElementById('vector-job-status').textContent = 'running';
+            updateVectorProgress(data.overview);
+            pollVectorizationJob();
+            showToast(`Vectorization job ${activeVectorJobId} started`, 'success');
+        } catch (error) {
+            showToast(error.message, 'error');
+        }
+    }
+
+    function pollVectorizationJob() {
+        if (!activeVectorJobId) return;
+        clearTimeout(vectorPollTimer);
+        vectorPollTimer = setTimeout(async () => {
+            try {
+                const jobResponse = await fetch(`/api/vectorization/job/${activeVectorJobId}`);
+                const job = await jobResponse.json();
+                if (!jobResponse.ok || job.error) {
+                    throw new Error(job.error || 'Job polling failed');
+                }
+
+                const overviewResponse = await fetch('/api/vectorization/overview');
+                const overview = await overviewResponse.json();
+                updateVectorProgress(overview);
+                document.getElementById('vector-job-status').textContent = `${job.status} (${job.processed_chunks || 0}/${job.total_chunks || 0})`;
+
+                if (job.status === 'running' || job.status === 'pending') {
+                    pollVectorizationJob();
+                } else {
+                    activeVectorJobId = null;
+                    if (job.status === 'failed') {
+                        showToast(job.error || 'Vectorization failed', 'error');
+                    } else {
+                        showToast('Vectorization completed', 'success');
+                    }
+                }
+            } catch (error) {
+                activeVectorJobId = null;
+                showToast(error.message, 'error');
+            }
+        }, 1500);
+    }
+
+    function updateVectorProgress(overview) {
+        const total = overview.total_chunks || 0;
+        const done = overview.embedded_chunks || 0;
+        const pending = overview.pending_chunks || 0;
+        const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+        document.getElementById('vector-total').textContent = total;
+        document.getElementById('vector-done').textContent = done;
+        document.getElementById('vector-pending').textContent = pending;
+        document.getElementById('vector-progress-bar').style.width = `${percent}%`;
+    }
+
+    async function runRagQuery() {
+        const message = document.getElementById('rag-query').value.trim();
+        if (!message) return;
+        try {
+            const response = await fetch('/api/rag/query', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dataForMainRequest)
+                body: JSON.stringify({
+                    message,
+                    top_k: Number(document.getElementById('rag-top-k').value || 5),
+                }),
             });
-            const aiData = await aiResponse.json();
-
-            removeTypingIndicator(); // Remove typing indicator once AI starts responding
-
-            if (aiData.error) {
-                if (typeof aiData.error === 'string' && aiData.error.includes('429') && aiData.error.includes('capacity exceeded')) {
-                    showRateLimitError();
-                } else {
-                    showToast(`Ошибка: ${aiData.error}`, 'error');
-                    addMessageToChat({role: 'assistant', content: `**Ошибка:** ${aiData.error}`});
-                }
-            } else {
-                // Update the user message's prompt with the server-returned prompt (should be identical)
-                const lastUserMessageIndex = conversationHistory.findLastIndex(m => m.role === 'user');
-                if (lastUserMessageIndex !== -1 && aiData.prompt_used) {
-                    conversationHistory[lastUserMessageIndex].prompt = aiData.prompt_used;
-                }
-
-                const assistantMessage = { role: 'assistant', content: aiData.response };
-                conversationHistory.push(assistantMessage);
-                addMessageToChat(assistantMessage);
+            const data = await response.json();
+            if (!response.ok || data.error) {
+                throw new Error(data.error || 'RAG request failed');
             }
-
+            document.getElementById('rag-answer').textContent = data.answer || '';
+            document.getElementById('rag-sources').innerHTML = (data.chunks || []).map((chunk, index) => (
+                `<div class="rounded-lg border border-slate-800 bg-slate-950 p-3"><div class="mb-1 text-slate-300">Chunk ${index + 1} | score ${chunk.distance ?? ''}</div><div>${escapeHtml(chunk.chunk_text || '')}</div></div>`
+            )).join('');
         } catch (error) {
-            removeTypingIndicator(); // Remove typing indicator on error
-            showToast(`Ошибка обработки запроса: ${error.message}`, 'error');
-            addMessageToChat({role: 'assistant', content: `**Ошибка обработки запроса:** ${error.message}`});
-        } finally {
-            sendBtn.disabled = false; // Re-enable button
-            chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
-        }
-    });
-
-    // Modify addMessageToChat to always render the icon for user messages
-    // as the prompt parameter will always be present for user messages now.
-    function addMessageToChat(message, index) {
-        const { role, content, prompt } = message;
-        const messageWrapper = document.createElement('div');
-        messageWrapper.classList.add('chat-message', 'flex', 'items-start', 'space-x-4');
-        if (role === 'user') {
-            messageWrapper.classList.add('justify-end');
-        }
-
-        const avatar = document.createElement('div');
-        avatar.className = 'flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center';
-        avatar.innerHTML = role === 'user' ? '<i class="fas fa-user text-green-300"></i>' : '<i class="fas fa-robot text-blue-300"></i>';
-
-        const messageBubble = document.createElement('div');
-        const contentElement = document.createElement('div');
-        contentElement.className = role === 'user' ? 'bg-blue-600 rounded-lg p-4 max-w-2xl' : 'bg-gray-700 rounded-lg p-4 max-w-2xl';
-        
-        if (role === 'user') {
-            contentElement.textContent = content;
-            messageBubble.appendChild(contentElement);
-            const iconContainer = document.createElement('div');
-            iconContainer.className = 'prompt-icon-container text-right mt-1 pr-2';
-            // Now prompt will *always* be present for user messages due to refactoring.
-            iconContainer.innerHTML = `<i class="fas fa-eye prompt-eye-icon" onclick="showPromptForMessage(${index})"></i>`;
-            
-            messageBubble.appendChild(iconContainer);
-        } else {
-            contentElement.innerHTML = marked.parse(content || '');
-            contentElement.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-            });
-            messageBubble.appendChild(contentElement);
-        }
-        
-        if (role === 'user') {
-            messageWrapper.appendChild(messageBubble);
-            messageWrapper.appendChild(avatar);
-        } else {
-            messageWrapper.appendChild(avatar);
-            messageWrapper.appendChild(messageBubble);
-        }
-
-        chatWindow.appendChild(messageWrapper);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    function showPromptForMessage(index) {
-        const prompt = conversationHistory[index]?.prompt;
-        if (prompt) {
-            document.getElementById('modal-prompt-content').textContent = prompt;
-            showPromptModal.show();
+            showToast(error.message, 'error');
         }
     }
 
-    function showRateLimitError() {
-        const messageWrapper = document.createElement('div');
-        messageWrapper.classList.add('chat-message', 'flex', 'items-start', 'space-x-4');
-        
-        const avatar = document.createElement('div');
-        avatar.className = 'flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center';
-        avatar.innerHTML = '<i class="fas fa-robot text-red-400"></i>';
-
-        const contentElement = document.createElement('div');
-        contentElement.className = 'bg-gray-700 rounded-lg p-4 max-w-2xl flex items-center space-x-3';
-        contentElement.innerHTML = `
-            <i class="fas fa-stopwatch text-red-400 text-2xl pulsing-icon"></i>
-            <p>Достигнут лимит запросов к модели. Пожалуйста, подождите.</p>
-        `;
-        
-        messageWrapper.appendChild(avatar);
-        messageWrapper.appendChild(contentElement);
-        chatWindow.appendChild(messageWrapper);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-    
-    function addTypingIndicator() {
-        const indicator = '<div id="typing-indicator" class="chat-message flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center"><i class="fas fa-robot text-blue-300"></i></div><div class="bg-gray-700 rounded-lg p-4 max-w-2xl"><p class="typing-indicator">Ассистент печатает</p></div></div>';
-        chatWindow.insertAdjacentHTML('beforeend', indicator);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    function removeTypingIndicator() {
-        const indicator = document.getElementById('typing-indicator');
-        if (indicator) {
-            indicator.remove();
-        }
+    function escapeHtml(value) {
+        return value
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;');
     }
 
     function saveSession() {
-        if (!currentProjectName) {
-            showToast("Имя проекта не установлено.", 'error');
-            return;
-        }
-
         const settings = {
             auto_generate_prompt: document.getElementById('auto_generate_prompt').checked,
             prompt_type: document.getElementById('prompt_type').value,
-            domain: document.getElementById('domain').value
-        };
-
-        const data = {
-            project_name: currentProjectName,
-            history: conversationHistory,
-            settings: settings
+            domain: document.getElementById('domain').value,
+            ai_provider: providerSelect.value,
+            ollama_model: ollamaModelSelect?.value || null,
+            mistral_model: mistralModelSelect?.value || null
         };
 
         fetch('{{ url_for("save_project") }}', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.error) {
-                showToast(`Ошибка сохранения: ${result.error}`, 'error');
-            } else {
-                showToast(`Проект "${result.project_name}" успешно сохранен.`, 'success');
-            }
-        })
-        .catch(error => showToast(`Ошибка сохранения: ${error.message}`, 'error'));
+            body: JSON.stringify({
+                project_name: currentProjectName,
+                history: conversationHistory,
+                settings
+            })
+        }).then(r => r.json()).then(data => {
+            if (data.error) throw new Error(data.error);
+            showToast(`Saved ${data.project_name}`, 'success');
+            refreshSavedSessions();
+        }).catch(error => showToast(error.message, 'error'));
     }
 
     function loadSession() {
         fetch('{{ url_for("list_projects") }}')
-        .then(response => response.json())
-        .then(projects => {
-            const projectList = document.getElementById('project-list');
-            projectList.innerHTML = '';
-            if (projects.length === 0) {
-                projectList.innerHTML = '<p class="text-muted">Сохраненных проектов нет.</p>';
-            } else {
-                projects.forEach(name => {
-                    const button = document.createElement('button');
-                    button.className = 'list-group-item list-group-item-action bg-gray-700 border-gray-600 hover:bg-gray-600 text-left';
-                    button.textContent = name;
-                    button.onclick = () => loadProject(name);
-                    projectList.appendChild(button);
+            .then(r => r.json())
+            .then(projects => {
+                const projectName = prompt(`Available projects:\n${projects.join('\n')}\n\nEnter project name`);
+                if (projectName) {
+                    return loadProject(projectName);
+                }
+            })
+            .catch(error => showToast(error.message, 'error'));
+    }
+
+    function refreshSavedSessions() {
+        fetch('{{ url_for("list_projects") }}')
+            .then(r => r.json())
+            .then(projects => {
+                savedSessionSelect.innerHTML = '<option value="">Choose saved session</option>';
+                projects.forEach((projectName) => {
+                    const option = document.createElement('option');
+                    option.value = projectName;
+                    option.textContent = projectName;
+                    if (projectName === currentProjectName) {
+                        option.selected = true;
+                    }
+                    savedSessionSelect.appendChild(option);
                 });
-            }
-            loadProjectModal.show();
-        })
-        .catch(error => showToast(`Ошибка загрузки списка проектов: ${error.message}`, 'error'));
+            })
+            .catch(error => showToast(error.message, 'error'));
+    }
+
+    function openSelectedSession() {
+        const projectName = savedSessionSelect.value;
+        if (!projectName) {
+            showToast('Choose a saved session first', 'info');
+            return;
+        }
+        loadProject(projectName);
     }
 
     function loadProject(projectName) {
-        fetch(`/api/ai/project/${projectName}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                showToast(`Ошибка загрузки проекта: ${data.error}`, 'error');
-                return;
-            }
-            currentProjectName = projectName;
-            updateUI(data);
-            loadProjectModal.hide();
-            showToast(`Проект "${projectName}" успешно загружен.`, 'success');
-        })
-        .catch(error => showToast(`Ошибка загрузки проекта: ${error.message}`, 'error'));
+        return fetch(`/api/ai/project/${projectName}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) throw new Error(data.error);
+                currentProjectName = projectName;
+                document.getElementById('project-title').textContent = currentProjectName;
+                conversationHistory = data.history || [];
+                chatWindow.innerHTML = '';
+                conversationHistory.forEach(item => {
+                    const node = document.createElement('div');
+                    node.className = `message rounded-2xl p-4 ${item.role === 'user' ? 'ml-auto max-w-3xl bg-cyan-700 text-white' : 'mr-auto max-w-3xl bg-slate-800 text-slate-100'}`;
+                    node.textContent = item.content || '';
+                    chatWindow.appendChild(node);
+                });
+                if (data.settings) {
+                    document.getElementById('auto_generate_prompt').checked = !!data.settings.auto_generate_prompt;
+                    document.getElementById('prompt_type').value = data.settings.prompt_type || 'full';
+                    document.getElementById('domain').value = data.settings.domain || '';
+                    if (data.settings.ai_provider) providerSelect.value = data.settings.ai_provider;
+                    if (data.settings.ollama_model && ollamaModelSelect) ollamaModelSelect.value = data.settings.ollama_model;
+                    if (data.settings.mistral_model && mistralModelSelect) mistralModelSelect.value = data.settings.mistral_model;
+                    updateProviderUI();
+                }
+            })
+            .catch(error => showToast(error.message, 'error'));
     }
-
-    function updateUI(data) {
-        projectTitle.textContent = currentProjectName;
-
-        if (data.settings) {
-            document.getElementById('auto_generate_prompt').checked = data.settings.auto_generate_prompt;
-            document.getElementById('prompt_type').value = data.settings.prompt_type;
-            document.getElementById('domain').value = data.settings.domain;
-            document.getElementById('promptConfig').style.display = data.settings.auto_generate_prompt ? 'block' : 'none';
-        }
-
-        if (data.history) {
-            conversationHistory = data.history;
-            chatWindow.innerHTML = '';
-            conversationHistory.forEach((message, index) => {
-                addMessageToChat(message, index);
-            });
-        }
-    }
-
-    document.getElementById('auto_generate_prompt').addEventListener('change', function() {
-        document.getElementById('promptConfig').style.display = this.checked ? 'block' : 'none';
-    });
 
     function showToast(message, type = 'info') {
-        const toastContainer = document.getElementById('toast-container');
+        const palette = {
+            info: 'bg-slate-700',
+            success: 'bg-emerald-700',
+            error: 'bg-rose-700'
+        };
         const toast = document.createElement('div');
-        let styleClass = 'bg-blue-500/80 border-blue-400/50'; // Default info
-        if (type === 'error') {
-            styleClass = 'bg-red-500/80 border-red-400/50';
-        } else if (type === 'success') {
-            styleClass = 'bg-green-500/80 border-green-400/50';
-        }
-        toast.className = `toast relative ${styleClass}`;
-        toast.innerHTML = `<p>${message}</p>`;
-        toastContainer.appendChild(toast);
-
-        setTimeout(() => {
-            toast.classList.add('hide');
-            toast.addEventListener('animationend', () => toast.remove());
-        }, 5000); // Hide after 5 seconds
+        toast.className = `${palette[type] || palette.info} rounded-xl px-4 py-3 text-sm text-white shadow-xl`;
+        toast.textContent = message;
+        document.getElementById('toast-container').appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
     }
 </script>
 {% endblock %}

@@ -1,0 +1,108 @@
+👁🎨⤢precision mediump float;
+
+uniform vec2 uResolution;
+uniform float uTime;
+uniform sampler2D uData;
+uniform vec2 uMouse;
+varying vec2 vUv;
+
+#define PI 3.14159265359
+#define GOLDEN_RATIO 1.61803398875
+#define PHI_DIMENSIONS 29.0
+
+// Helper to create viscous color transitions
+vec3 getGelToEther(float t, float frequency) {
+    vec3 viscousGel = vec3(0.5, 0.3, 0.05); // Deep Amber
+    vec3 gold = vec3(1.0, 0.75, 0.2);
+    vec3 luminousEther = vec3(0.9, 0.95, 1.0); // Pale Silver
+    vec3 iridescent = 0.5 + 0.5 * cos(uTime * 0.2 + vec3(0, 2, 4) + frequency);
+    
+    vec3 gel = mix(viscousGel, gold, sin(t * 0.5) * 0.5 + 0.5);
+    vec3 ether = mix(luminousEther, iridescent, 0.3);
+    
+    return mix(gel, ether, smoothstep(0.3, 0.8, frequency + sin(uTime * 0.1) * 0.2));
+}
+
+// Rotation matrix
+mat2 rot(float a) {
+    float s = sin(a), c = cos(a);
+    return mat2(c, -s, s, c);
+}
+
+// 2D fractal pattern (Existential DNA)
+float fractalDNA(vec2 p, float bass) {
+    float d = 0.0;
+    p *= 1.5;
+    float scale = 2.618; // R_T Golden Ratio
+    for(int i = 0; i < 5; i++) {
+        p = abs(p) / dot(p,p) - 0.5;
+        p *= rot(uTime * 0.02 + bass * 0.1);
+        d += exp(-length(p) * 0.5);
+    }
+    return d * 0.2;
+}
+
+// ≬ Symbol and Geometric Lattice
+float getGeometry(vec2 uv, float highFreq) {
+    float dist = length(uv);
+    float angle = atan(uv.y, uv.x);
+    
+    // 29-sided lattice influence
+    float lattice = pow(abs(sin(angle * PHI_DIMENSIONS * 0.5)), 10.0) * exp(-dist * 2.0);
+    
+    // The Symbol ≬ (Subtle)
+    vec2 p = uv * 15.0;
+    float circleA = length(p - vec2(-0.8, 0.0));
+    float circleB = length(p - vec2(0.8, 0.0));
+    float connector = abs(p.y) + abs(p.x * 0.1);
+    float symbol = smoothstep(0.1, 0.05, abs(circleA - 0.4)) + smoothstep(0.1, 0.05, abs(circleB - 0.4));
+    symbol *= smoothstep(1.5, 0.0, abs(p.x));
+    
+    return mix(lattice, symbol, 0.3) * (0.5 + 0.5 * highFreq);
+}
+
+void main() {
+    vec2 uv = (vUv - 0.5) * 2.0;
+    uv.x *= uResolution.x / uResolution.y;
+    
+    // Frequency Analysis
+    float bass = texture2D(uData, vec2(0.1, 0.0)).r;
+    float mid = texture2D(uData, vec2(0.4, 0.0)).r;
+    float focus5kHz = texture2D(uData, vec2(0.7, 0.0)).r; // 5kHz region
+    float high = texture2D(uData, vec2(0.9, 0.0)).r;
+
+    // Temporal Generation (Slow Evolution)
+    float slowTime = uTime * 0.05;
+    vec2 p = uv * rot(slowTime);
+    
+    // The Singularity (R6: ∞)
+    float singularityPulse = focus5kHz * 0.15;
+    float d = length(uv);
+    float singularity = 0.005 / abs(d - (0.02 + singularityPulse));
+    singularity += 0.002 / abs(d - (0.4 + mid * 0.1)); // Outer ripples
+    
+    // Existential DNA Background (D_f ≈ 9.99)
+    float dna = fractalDNA(p * 0.8, bass);
+    
+    // Colors based on synthesis logic
+    vec3 baseColor = getGelToEther(slowTime, mid + focus5kHz);
+    
+    // Final Composition
+    vec3 finalColor = baseColor * dna;
+    
+    // Inject Lattice and Symbol
+    float geom = getGeometry(uv * rot(-slowTime * 0.5), high);
+    finalColor += geom * vec3(0.8, 0.9, 1.0) * 0.6;
+    
+    // Add Singularity Glow
+    finalColor += singularity * vec3(1.0, 0.9, 0.7);
+    
+    // Subtle 'Ω-Synthesis' text glow effect (simulated as spectral shimmer)
+    float textGlow = smoothstep(0.4, 0.39, abs(uv.y + 0.8)) * smoothstep(0.5, 0.0, abs(uv.x));
+    finalColor += textGlow * 0.15 * vec3(1.0, 1.0, 1.0) * (0.8 + 0.2 * sin(uTime));
+
+    // Vignette and Darkening for Depth
+    finalColor *= smoothstep(2.2, 0.5, d);
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}

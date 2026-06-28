@@ -30,7 +30,18 @@
     </div>
     <h1 class="header-title">MMSS Orchestrator</h1>
     <div class="system-info">
-        
+        <div style="display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap;">
+            <label for="orchestrator-ollama-model">Local Ollama Model</label>
+            <select id="orchestrator-ollama-model" class="prompt-type" style="max-width: 360px;">
+                {% for model in ollama_models %}
+                    <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+                {% endfor %}
+            </select>
+            <button id="refresh-orchestrator-models" class="header-btn">Refresh Models</button>
+        </div>
+        {% if ollama_error %}
+            <div style="margin-top:8px; color:#fbbf24;">{{ ollama_error }}</div>
+        {% endif %}
     </div>
     <!-- Panel for MemoryTools (presets) -->
     <div id="memory-tools-panel">

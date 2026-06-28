@@ -18,7 +18,10 @@ const agents = [
         const gridPanel = document.querySelector('.grid-panel');
         const downloadBtn = document.getElementById('download-results');
         const saveProjectBtn = document.getElementById('save-project');
+        const ollamaModelSelect = document.getElementById('orchestrator-ollama-model');
+        const refreshOllamaModelsBtn = document.getElementById('refresh-orchestrator-models');
         let agentData = {};
+        let currentProjectName = '';
 
      
         function getOperatorSymbol(agentName) {
@@ -114,6 +117,54 @@ const agents = [
                 btn.addEventListener('click', () => window.sendAgentRequest(agentName));
             });
         }
+
+        async function refreshOllamaModels() {
+            if (!ollamaModelSelect || !refreshOllamaModelsBtn) {
+                return;
+            }
+
+            refreshOllamaModelsBtn.disabled = true;
+            refreshOllamaModelsBtn.textContent = 'Refreshing...';
+            try {
+                const response = await fetch('/api/settings/ollama/models');
+                const data = await response.json();
+                ollamaModelSelect.innerHTML = '';
+                (data.models || []).forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    option.selected = model === data.selected_model;
+                    ollamaModelSelect.appendChild(option);
+                });
+                if (data.error) {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert(`Не удалось обновить модели: ${error.message}`);
+            } finally {
+                refreshOllamaModelsBtn.disabled = false;
+                refreshOllamaModelsBtn.textContent = 'Refresh Models';
+            }
+        }
+
+        async function saveSelectedOllamaModel() {
+            if (!ollamaModelSelect) {
+                return;
+            }
+            try {
+                const response = await fetch('/api/settings/ollama/model', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ model: ollamaModelSelect.value }),
+                });
+                const data = await response.json();
+                if (data.error) {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert(`Не удалось сохранить модель: ${error.message}`);
+            }
+        }
 // Загрузка проекта
         const loadProjectModal = document.getElementById('load-project-modal');
         const closeProjectModal = document.getElementById('close-project-modal');
@@ -159,6 +210,7 @@ const agents = [
                 fetch(`/api/ai/project/${projectName}`)
                     .then(response => response.json())
                     .then(data => {
+                        currentProjectName = projectName;
                         agentData = data.agents || {};
                         questionInput.value = data.question || '';
                         renderAgents(); // This rebuilds the agent cards
@@ -219,7 +271,7 @@ document.getElementById('fill-all-prompts').addEventListener('click', () => {
                 const response = await fetch('/orchestrate/send', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ agent_name: agentName, prompt: prompt }),
+                    body: JSON.stringify({ agent_name: agentName, prompt: prompt, project_name: currentProjectName }),
                 });
 
                 if (!response.ok) throw new Error('Network response was not ok.');
@@ -281,11 +333,19 @@ document.getElementById('fill-all-prompts').addEventListener('click', () => {
             agentData = JSON.parse(savedProject);
         }
 
+        if (refreshOllamaModelsBtn) {
+            refreshOllamaModelsBtn.addEventListener('click', refreshOllamaModels);
+        }
+        if (ollamaModelSelect) {
+            ollamaModelSelect.addEventListener('change', saveSelectedOllamaModel);
+        }
+
         renderAgents();
 
         saveProjectBtn.addEventListener('click', () => {
             const projectName = prompt("Введите имя проекта:", `Orchestrator_Project_${new Date().toISOString().slice(0, 16).replace('T', '_')}`);
             if (!projectName) return;
+            currentProjectName = projectName;
 
             // --- Step 9: Get state from Area-Creator ---
             let areaCreatorState = {};

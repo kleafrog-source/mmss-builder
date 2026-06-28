@@ -3,13 +3,15 @@ Flask Web Application for MMSS System
 Многоуровневая Мета-Семантическая Система - Веб-интерфейс
 """
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, Response, stream_with_context
 from mmss_activator import MMSSSystem
 from mmss_core.fractal_reassembly import FractalReassemblyEngine
 from mmss_core.temporal_navigator import TemporalNavigator
 from mmss_game.game_types import EmotionalTrigger
 from mmss_core.context_weaver import ContextWeaver
 from mmss_core.prompt_generator import MMSSPromptGenerator
+from mmss_core.ai.ollama import LocalOllamaAPI, OllamaAPIError
+from mmss_core.ai.persistence import AIPersistence
 from mmss_core.ai.mistral import MistralNeMoAPI, MistralAPIError
 from mmss_game.game_engine import MMSSGameEngine
 from mmss_game.game_types import GameType, GameDifficulty
@@ -20,6 +22,7 @@ import os
 from datetime import datetime
 import re
 import subprocess
+import threading
 import xml.etree.ElementTree as ET
 
 # Загрузка переменных окружения из .env
@@ -30,18 +33,34 @@ app.secret_key = os.environ.get('SECRET_KEY', 'mmss-system-secret-key-change-in-
 
 CONFIG_FILE = os.path.join(os.path.dirname(__file__), 'config.json')
 TASKS_FILE = os.path.join(os.path.dirname(__file__), 'TASKS.md')
+DEFAULT_OLLAMA_MODELS = [
+    "mmss-gemma4-mmss-json:latest",
+    "mmss-gemma4-q4:latest",
+    "mmss-gemma4-q4-creative:latest",
+    "embeddinggemma:300m",
+    "qwen2.5-coder:3b",
+    "qwen2.5-coder:7b",
+]
 
 def load_config():
     """Loads configuration from config.json or returns default if not found/invalid."""
     default_config = {
         "theme": "light", 
         "custom_theme_css": None,
-        "mistral_model": "mistral-small-latest" # Default model
+        "ai_provider": "ollama",
+        "ollama_base_url": os.environ.get("OLLAMA_BASE_URL", "http://127.0.0.1:11434"),
+        "ollama_timeout_seconds": int(os.environ.get("OLLAMA_TIMEOUT_SECONDS", "600")),
+        "ollama_model": "mmss-gemma4-q4:latest",
+        "ollama_embedding_model": "embeddinggemma:300m",
+        "preferred_ollama_models": DEFAULT_OLLAMA_MODELS,
+        "mistral_model": os.environ.get("MISTRAL_MODEL", "mistral-small-latest"),
     }
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
                 config = json.load(f)
+                if 'mistral_model' in config and 'ollama_model' not in config:
+                    config['ollama_model'] = config['mistral_model']
                 # Merge with default config to ensure new keys are present
                 return {**default_config, **config}
         except json.JSONDecodeError:
@@ -111,24 +130,227 @@ mmss_activated = False
 prompt_generator = MMSSPromptGenerator()
 game_engine = MMSSGameEngine()
 
-# Инициализация Mistral API (опционально, только если ключ установлен)
+# Инициализация Local Ollama
+ollama_api = LocalOllamaAPI(
+    model=app_config.get('ollama_model'),
+    base_url=app_config.get('ollama_base_url', 'http://127.0.0.1:11434'),
+    timeout_seconds=int(app_config.get('ollama_timeout_seconds', 600)),
+)
+ollama_api_error = None
+try:
+    ollama_api.ping()
+    print(f"[OK] Ollama initialized successfully with model: {ollama_api.model}")
+except OllamaAPIError as e:
+    ollama_api_error = str(e)
+    print(f"[WARN] Ollama initialization warning: {ollama_api_error}")
+
 mistral_api = None
 mistral_api_error = None
 try:
-    api_key = os.environ.get("MISTRAL_API_KEY")
-    if api_key and api_key.strip() and api_key != "your_mistral_api_key_here":
-        # Pass the model from config to the constructor
+    if os.environ.get("MISTRAL_API_KEY"):
         mistral_api = MistralNeMoAPI(model=app_config.get('mistral_model'))
-        print(f"[OK] Mistral API инициализирован успешно с моделью: {mistral_api.model}")
+        mistral_api.ping()
+        print(f"[OK] Mistral initialized successfully with model: {mistral_api.model}")
     else:
-        mistral_api_error = "MISTRAL_API_KEY не установлен в .env файле"
-        print(f"[WARN] {mistral_api_error}")
-except ValueError as e:
+        mistral_api_error = "MISTRAL_API_KEY not set"
+except (ValueError, MistralAPIError) as e:
     mistral_api_error = str(e)
-    print(f"[WARN] Mistral API не инициализирован: {mistral_api_error}")
-except Exception as e:
-    mistral_api_error = str(e)
-    print(f"[WARN] Ошибка инициализации Mistral API: {mistral_api_error}")
+    print(f"[WARN] Mistral initialization warning: {mistral_api_error}")
+
+
+persistence = AIPersistence()
+if persistence.available:
+    print("[OK] PostgreSQL persistence initialized.")
+else:
+    print(f"[WARN] PostgreSQL persistence unavailable: {persistence.error or 'psycopg2 not installed'}")
+
+
+def get_ollama_models():
+    configured = app_config.get('preferred_ollama_models') or DEFAULT_OLLAMA_MODELS
+    models = []
+    for model in configured:
+        if model and model not in models:
+            models.append(model)
+
+    try:
+        live_models = ollama_api.list_models()
+        for model in live_models:
+            if model not in models:
+                models.append(model)
+        return models, None
+    except OllamaAPIError as e:
+        return models, str(e)
+
+
+def get_mistral_models():
+    models = []
+    configured_model = app_config.get('mistral_model')
+    if configured_model:
+        models.append(configured_model)
+    if not mistral_api:
+        return models, mistral_api_error
+    try:
+        live_models = mistral_api.list_models()
+        for model in live_models:
+            if model not in models:
+                models.append(model)
+        return models, None
+    except MistralAPIError as e:
+        return models, str(e)
+
+
+def refresh_ollama_client():
+    global ollama_api, ollama_api_error
+    ollama_api = LocalOllamaAPI(
+        model=app_config.get('ollama_model'),
+        base_url=app_config.get('ollama_base_url', 'http://127.0.0.1:11434'),
+        timeout_seconds=int(app_config.get('ollama_timeout_seconds', 600)),
+    )
+    try:
+        ollama_api.ping()
+        ollama_api_error = None
+    except OllamaAPIError as e:
+        ollama_api_error = str(e)
+
+
+def refresh_mistral_client():
+    global mistral_api, mistral_api_error
+    try:
+        if os.environ.get("MISTRAL_API_KEY"):
+            mistral_api = MistralNeMoAPI(model=app_config.get('mistral_model'))
+            mistral_api.ping()
+            mistral_api_error = None
+        else:
+            mistral_api = None
+            mistral_api_error = "MISTRAL_API_KEY not set"
+    except (ValueError, MistralAPIError) as e:
+        mistral_api = None
+        mistral_api_error = str(e)
+
+
+def get_provider_status():
+    return {
+        "selected_provider": app_config.get("ai_provider", "ollama"),
+        "ollama_available": ollama_api_error is None,
+        "ollama_error": ollama_api_error,
+        "mistral_available": mistral_api is not None and mistral_api_error is None,
+        "mistral_error": mistral_api_error,
+    }
+
+
+def get_active_provider_client():
+    provider = app_config.get("ai_provider", "ollama")
+    if provider == "mistral":
+        if not mistral_api or mistral_api_error:
+            raise MistralAPIError(mistral_api_error or "Mistral is unavailable.")
+        return "mistral", mistral_api, app_config.get("mistral_model")
+    if ollama_api_error:
+        raise OllamaAPIError(ollama_api_error)
+    return "ollama", ollama_api, app_config.get("ollama_model")
+
+
+def persist_file_and_db(session_type, source_route, prompt_text, response_text, model_name, provider="ollama", project_name=None, metadata=None):
+    file_path = None
+    try:
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")
+        filename = os.path.join(CHATS_SENDEN_DIR, f"prompt_{timestamp}.txt")
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(f"--- PROMPT ---\n{prompt_text}\n\n--- RESPONSE ---\n{response_text}")
+        file_path = filename
+    except Exception as e:
+        print(f"Error saving prompt log: {e}")
+
+    try:
+        persistence.record_interaction(
+            session_type=session_type,
+            source_route=source_route,
+            prompt_text=prompt_text,
+            response_text=response_text,
+            model_name=model_name,
+            provider=provider,
+            project_name=project_name,
+            metadata=metadata or {},
+            file_path=file_path,
+        )
+    except Exception as e:
+        print(f"Error persisting interaction to PostgreSQL: {e}")
+
+    return file_path
+
+
+def persist_artifact_only(session_type, source_route, artifact_type, title, content, content_format, metadata=None, project_name=None):
+    try:
+        persistence.record_artifact(
+            session_type=session_type,
+            source_route=source_route,
+            artifact_type=artifact_type,
+            title=title,
+            content=content,
+            content_format=content_format,
+            project_name=project_name,
+            metadata=metadata or {},
+        )
+    except Exception as e:
+        print(f"Error persisting artifact to PostgreSQL: {e}")
+
+
+def build_full_prompt(user_query, prompt_config, auto_generate_prompt=True, custom_prompt=""):
+    if auto_generate_prompt and user_query:
+        prompt_config['task_context'] = user_query
+        if not prompt_config.get('domain'):
+            prompt_config['domain'] = 'Научные исследования'
+        if 'enable_pfr' not in prompt_config:
+            prompt_config['enable_pfr'] = True
+        if 'enable_frp' not in prompt_config:
+            prompt_config['enable_frp'] = True
+        if 'enable_ammss' not in prompt_config:
+            prompt_config['enable_ammss'] = True
+
+        generated_prompt = prompt_generator.generate_specialized_prompt(
+            prompt_config.get('prompt_type', 'full'),
+            prompt_config
+        )
+        return f"{generated_prompt}\n\n## Задача пользователя:\n{user_query}"
+    return custom_prompt or user_query
+
+
+def get_vectorization_overview():
+    embedding_model = app_config.get("ollama_embedding_model", "embeddinggemma:300m")
+    return persistence.get_vectorization_overview(embedding_model)
+
+
+def run_vectorization_job(job_id, embedding_model):
+    try:
+        persistence.mark_vectorization_job_running(job_id)
+        chunks = persistence.fetch_chunks_for_vectorization(embedding_model)
+        if not chunks:
+            persistence.complete_vectorization_job(job_id)
+            return
+
+        for chunk in chunks:
+            embedding = ollama_api.get_embedding(chunk["chunk_text"], model=embedding_model)
+            persistence.save_chunk_embedding(chunk["id"], embedding_model, embedding)
+            persistence.increment_vectorization_job_progress(job_id)
+
+        persistence.complete_vectorization_job(job_id)
+    except Exception as e:
+        persistence.fail_vectorization_job(job_id, str(e))
+
+
+def build_rag_prompt(user_message, rag_chunks):
+    context_blocks = []
+    for index, chunk in enumerate(rag_chunks, start=1):
+        context_blocks.append(
+            f"[Chunk {index}] source={chunk.get('source_route') or 'unknown'} "
+            f"session={chunk.get('session_type') or 'unknown'}\n{chunk.get('chunk_text', '')}"
+        )
+    context_text = "\n\n".join(context_blocks) if context_blocks else "No relevant context found."
+    return (
+        "Use the retrieved knowledge base context below to answer the user message. "
+        "If the context is insufficient, explicitly say so. Prefer grounded statements.\n\n"
+        f"Context:\n{context_text}\n\n"
+        f"User message:\n{user_message}"
+    )
 
 
 @app.route('/')
@@ -341,6 +563,20 @@ def prompt_generator_page():
                 generated_prompt, 
                 config['export_format']
             )
+
+            persist_artifact_only(
+                session_type="prompt_generator",
+                source_route="/prompt-generator",
+                artifact_type="prompt",
+                title="MMSS generated prompt",
+                content=formatted_prompt,
+                content_format=config['export_format'],
+                metadata={
+                    "prompt_type": prompt_type,
+                    "domain": config.get("domain"),
+                    "embedding_model": app_config.get("ollama_embedding_model"),
+                },
+            )
             
             return render_template('prompt_result.html', 
                                  prompt=formatted_prompt,
@@ -363,6 +599,20 @@ def api_prompt_generator():
     
     generated_prompt = prompt_generator.generate_specialized_prompt(prompt_type, config)
     formatted_prompt = prompt_generator.generate_export_format(generated_prompt, export_format)
+
+    persist_artifact_only(
+        session_type="prompt_generator",
+        source_route="/api/prompt-generator",
+        artifact_type="prompt",
+        title="MMSS generated prompt",
+        content=formatted_prompt,
+        content_format=export_format,
+        metadata={
+            "prompt_type": prompt_type,
+            "domain": config.get("domain"),
+            "embedding_model": app_config.get("ollama_embedding_model"),
+        },
+    )
     
     return jsonify({
         'prompt': formatted_prompt,
@@ -438,20 +688,30 @@ def game_play(game_type):
 
 @app.route('/ai', methods=['GET', 'POST'])
 def ai_assistant():
-    """AI ассистент с генерацией промптов и отправкой в Mistral"""
-    mistral_available = mistral_api is not None
+    """AI ассистент с переключаемыми провайдерами и RAG."""
+    ollama_models, models_error = get_ollama_models()
+    mistral_models, mistral_models_error = get_mistral_models()
+    provider_status = get_provider_status()
+    vector_overview = persistence.get_vectorization_overview(app_config.get('ollama_embedding_model'))
     return render_template('ai_assistant.html', 
                          mmss_activated=mmss_activated,
-                         mistral_available=mistral_available,
-                         mistral_error=mistral_api_error, theme=app_config['theme'], custom_theme_css=app_config['custom_theme_css'])
+                         config=app_config,
+                         provider_status=provider_status,
+                         ollama_available=provider_status["ollama_available"],
+                         ollama_error=ollama_api_error or models_error,
+                         ollama_models=ollama_models,
+                         mistral_models=mistral_models,
+                         mistral_error=mistral_api_error or mistral_models_error,
+                         selected_model=app_config.get('ollama_model'),
+                         selected_mistral_model=app_config.get('mistral_model'),
+                         selected_provider=app_config.get('ai_provider', 'ollama'),
+                         vector_overview=vector_overview,
+                         theme=app_config['theme'], custom_theme_css=app_config['custom_theme_css'])
 
 
 @app.route('/api/ai/generate-and-send', methods=['POST'])
 def ai_generate_and_send():
-    """Генерация промпта и отправка в Mistral AI"""
-    if not mistral_api:
-        return jsonify({"error": "Mistral API не инициализирован. Проверьте MISTRAL_API_KEY в .env файле"}), 400
-    
+    """Генерация промпта и отправка в выбранный AI provider."""
     try:
         data = request.get_json()
         if not data:
@@ -461,68 +721,57 @@ def ai_generate_and_send():
         prompt_config = data.get('prompt_config', {}) or {}
         auto_generate_prompt = data.get('auto_generate_prompt', True)
         custom_prompt = data.get('custom_prompt', '').strip()
+        project_name = data.get('project_name')
         
         if not user_query and not custom_prompt:
             return jsonify({"error": "Не указан запрос пользователя"}), 400
-        
-        # Генерация промпта MMSS (если включено)
-        if auto_generate_prompt and user_query:
-            # Используем user_query как контекст задачи
-            prompt_config['task_context'] = user_query
-            if not prompt_config.get('domain'):
-                prompt_config['domain'] = 'Научные исследования'  # По умолчанию
-            
-            # Установка значений по умолчанию для компонентов
-            if 'enable_pfr' not in prompt_config:
-                prompt_config['enable_pfr'] = True
-            if 'enable_frp' not in prompt_config:
-                prompt_config['enable_frp'] = True
-            if 'enable_ammss' not in prompt_config:
-                prompt_config['enable_ammss'] = True
-            
-            generated_prompt = prompt_generator.generate_specialized_prompt(
-                prompt_config.get('prompt_type', 'full'),
-                prompt_config
-            )
-            
-            # Комбинируем промпт с запросом пользователя
-            full_prompt = f"{generated_prompt}\n\n## Задача пользователя:\n{user_query}"
-        else:
-            full_prompt = custom_prompt or user_query
+        full_prompt = build_full_prompt(user_query, prompt_config, auto_generate_prompt, custom_prompt)
 
-        # Save the full prompt to a file
-        try:
-            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")
-            filename = os.path.join(CHATS_SENDEN_DIR, f"prompt_{timestamp}.txt")
-            with open(filename, 'w', encoding='utf-8') as f:
-                f.write(full_prompt)
-        except Exception as e:
-            print(f"Error saving prompt: {e}") # Log error but don't block the request
-        
-        # Отправка в Mistral
         history = data.get('history', [])
         if not isinstance(history, list):
             history = []
-        
-        # Отправка в Mistral
-        print(f"[AI] Отправка запроса в Mistral API...")
-        print(f"[AI] Промпт (первые 200 символов): {full_prompt[:200]}...")
-        
-        response = mistral_api.get_response(full_prompt, history=history)
-        
-        print(f"[AI] Получен ответ от Mistral (длина: {len(response) if response else 0})")
-        
+
+        provider, client, model_name = get_active_provider_client()
+        print(f"[AI] Sending request to {provider} with model {model_name}")
+        if provider == "ollama":
+            response = client.get_response(full_prompt, history=history, model=model_name)
+        else:
+            response = client.get_response(full_prompt, history=history)
+
         if not response or not response.strip():
-            return jsonify({"error": "Пустой ответ от Mistral API. Проверьте API ключ и попробуйте снова."}), 500
+            return jsonify({"error": f"Пустой ответ от {provider}."}), 500
+
+        persist_file_and_db(
+            session_type="ai_assistant",
+            source_route="/api/ai/generate-and-send",
+            prompt_text=full_prompt,
+            response_text=response,
+            model_name=model_name,
+            provider=provider,
+            project_name=project_name,
+            metadata={
+                "provider": provider,
+                "auto_generate_prompt": auto_generate_prompt,
+                "prompt_type": prompt_config.get("prompt_type"),
+                "domain": prompt_config.get("domain"),
+                "embedding_model": app_config.get("ollama_embedding_model"),
+            },
+        )
         
         return jsonify({
             "status": "success",
             "response": response,
             "prompt_used": full_prompt,
             "prompt_generated": auto_generate_prompt,
-            "model": mistral_api.model
+            "model": model_name,
+            "provider": provider,
         })
         
+    except OllamaAPIError as e:
+        import traceback
+        print(f"OllamaAPIError: {e}")
+        print(traceback.format_exc())
+        return jsonify({"error": f"Ошибка Ollama API: {str(e)}"}), 500
     except MistralAPIError as e:
         import traceback
         print(f"MistralAPIError: {e}")
@@ -533,6 +782,63 @@ def ai_generate_and_send():
         print(f"Exception in ai_generate_and_send: {e}")
         print(traceback.format_exc())
         return jsonify({"error": f"Ошибка: {str(e)}"}), 500
+
+
+@app.route('/api/ai/generate-and-send-stream', methods=['POST'])
+def ai_generate_and_send_stream():
+    """Streaming endpoint for Ollama responses."""
+    try:
+        data = request.get_json() or request.form.to_dict()
+        user_query = data.get('user_query', '').strip()
+        prompt_config = data.get('prompt_config', {}) or {}
+        auto_generate_prompt = data.get('auto_generate_prompt', True)
+        custom_prompt = data.get('custom_prompt', '').strip()
+        project_name = data.get('project_name')
+
+        if app_config.get("ai_provider", "ollama") != "ollama":
+            return jsonify({"error": "Streaming поддерживается только для Ollama."}), 400
+        if not user_query and not custom_prompt:
+            return jsonify({"error": "Не указан запрос пользователя"}), 400
+        if ollama_api_error:
+            return jsonify({"error": f"Ollama недоступен: {ollama_api_error}"}), 400
+
+        full_prompt = build_full_prompt(user_query, prompt_config, auto_generate_prompt, custom_prompt)
+        history = data.get('history', [])
+        if not isinstance(history, list):
+            history = []
+
+        def generate():
+            chunks = []
+            try:
+                yield json.dumps({"type": "meta", "prompt_used": full_prompt, "model": app_config.get('ollama_model')}, ensure_ascii=False) + "\n"
+                for chunk in ollama_api.stream_response(full_prompt, history=history, model=app_config.get('ollama_model')):
+                    chunks.append(chunk)
+                    yield json.dumps({"type": "chunk", "content": chunk}, ensure_ascii=False) + "\n"
+
+                response_text = "".join(chunks)
+                persist_file_and_db(
+                    session_type="ai_assistant",
+                    source_route="/api/ai/generate-and-send-stream",
+                    prompt_text=full_prompt,
+                    response_text=response_text,
+                    model_name=app_config.get('ollama_model'),
+                    provider="ollama",
+                    project_name=project_name,
+                    metadata={
+                        "provider": "ollama",
+                        "auto_generate_prompt": auto_generate_prompt,
+                        "prompt_type": prompt_config.get("prompt_type"),
+                        "domain": prompt_config.get("domain"),
+                        "embedding_model": app_config.get("ollama_embedding_model"),
+                    },
+                )
+                yield json.dumps({"type": "done", "response": response_text}, ensure_ascii=False) + "\n"
+            except Exception as e:
+                yield json.dumps({"type": "error", "error": str(e)}, ensure_ascii=False) + "\n"
+
+        return Response(stream_with_context(generate()), mimetype='application/x-ndjson')
+    except Exception as e:
+        return jsonify({"error": f"Ошибка streaming: {str(e)}"}), 500
 
 
 @app.route('/api/ai/generate-prompt-only', methods=['POST'])
@@ -557,6 +863,20 @@ def ai_generate_prompt_only():
         
         # Комбинируем промпт с запросом пользователя
         full_prompt = f"{generated_prompt}\n\n## Задача пользователя:\n{user_query}"
+
+        persist_artifact_only(
+            session_type="ai_assistant_prompt_only",
+            source_route="/api/ai/generate-prompt-only",
+            artifact_type="prompt",
+            title="AI assistant generated prompt",
+            content=full_prompt,
+            content_format="text",
+            metadata={
+                "prompt_type": prompt_config.get("prompt_type"),
+                "domain": prompt_config.get("domain"),
+                "embedding_model": app_config.get("ollama_embedding_model"),
+            },
+        )
         
         return jsonify({
             "status": "success",
@@ -586,38 +906,47 @@ def settings_page():
     """Displays the settings page and handles settings updates."""
     global app_config
     if request.method == 'POST':
-        # Update theme
         new_theme = request.form.get('theme')
         if new_theme in ['light', 'dark']:
             app_config['theme'] = new_theme
 
-        # Update Mistral model
-        new_model = request.form.get('mistral_model')
+        new_provider = request.form.get('ai_provider')
+        if new_provider in ['ollama', 'mistral']:
+            app_config['ai_provider'] = new_provider
+
+        new_model = request.form.get('ollama_model')
         if new_model:
-            app_config['mistral_model'] = new_model
-            # Update the running mistral_api instance if it exists
-            if mistral_api:
-                mistral_api.model = new_model
-                print(f"[Settings] Mistral model updated to: {new_model}")
+            app_config['ollama_model'] = new_model
+
+        new_mistral_model = request.form.get('mistral_model')
+        if new_mistral_model:
+            app_config['mistral_model'] = new_mistral_model
+
+        refresh_ollama_client()
+        refresh_mistral_client()
 
         save_config(app_config)
         flash('Настройки успешно сохранены!', 'success')
         return redirect(url_for('settings_page'))
 
-    # GET request: display the page
-    mistral_models = []
-    if mistral_api:
-        try:
-            mistral_models = mistral_api.list_models()
-        except MistralAPIError as e:
-            flash(f'Не удалось получить список моделей Mistral: {e}', 'danger')
+    ollama_models, models_error = get_ollama_models()
+    mistral_models, mistral_models_error = get_mistral_models()
+    if models_error:
+        flash(f'Не удалось получить список моделей Ollama: {models_error}', 'danger')
+    if mistral_models_error:
+        flash(f'Не удалось получить список моделей Mistral: {mistral_models_error}', 'warning')
 
-    return render_template('settings.html', 
-                         config=app_config, 
-                         mistral_models=mistral_models,
-                         selected_model=app_config.get('mistral_model'),
-                         theme=app_config['theme'], 
-                         custom_theme_css=app_config['custom_theme_css'])
+    return render_template(
+        'settings.html',
+        config=app_config,
+        ollama_models=ollama_models,
+        mistral_models=mistral_models,
+        selected_provider=app_config.get('ai_provider', 'ollama'),
+        selected_model=app_config.get('ollama_model'),
+        selected_mistral_model=app_config.get('mistral_model'),
+        theme=app_config['theme'],
+        custom_theme_css=app_config['custom_theme_css'],
+    )
 
 
 @app.route('/settings/save', methods=['POST'])
@@ -632,6 +961,10 @@ def save_settings():
         # Update app_config with new values
         app_config.update(new_config)
         save_config(app_config)
+        if 'ollama_model' in new_config or 'ollama_base_url' in new_config or 'ollama_timeout_seconds' in new_config:
+            refresh_ollama_client()
+        if 'mistral_model' in new_config:
+            refresh_mistral_client()
         
         # If theme was changed, update the theme in the session/frontend
         if 'theme' in new_config and new_config['theme'] != app_config.get('theme'):
@@ -644,6 +977,166 @@ def save_settings():
         return jsonify({"status": "error", "message": "Неверный формат JSON."}), 400
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route('/api/settings/ollama/models', methods=['GET'])
+def api_ollama_models():
+    models, error = get_ollama_models()
+    return jsonify({
+        "models": models,
+        "selected_model": app_config.get('ollama_model'),
+        "base_url": app_config.get('ollama_base_url'),
+        "error": error or ollama_api_error,
+    })
+
+
+@app.route('/api/settings/ollama/model', methods=['POST'])
+def api_update_ollama_model():
+    global app_config
+    data = request.get_json() or {}
+    new_model = (data.get('model') or '').strip()
+    if not new_model:
+        return jsonify({"status": "error", "message": "Model is required"}), 400
+
+    app_config['ollama_model'] = new_model
+    save_config(app_config)
+    refresh_ollama_client()
+    return jsonify({
+        "status": "success",
+        "selected_model": app_config.get('ollama_model'),
+        "error": ollama_api_error,
+    })
+
+
+@app.route('/api/settings/provider', methods=['POST'])
+def api_update_provider():
+    global app_config
+    data = request.get_json() or {}
+    provider = (data.get('provider') or '').strip()
+    if provider not in {'ollama', 'mistral'}:
+        return jsonify({"status": "error", "message": "Invalid provider"}), 400
+
+    app_config['ai_provider'] = provider
+    save_config(app_config)
+    return jsonify({
+        "status": "success",
+        "provider": provider,
+        "provider_status": get_provider_status(),
+    })
+
+
+@app.route('/api/settings/mistral/models', methods=['GET'])
+def api_mistral_models():
+    models, error = get_mistral_models()
+    return jsonify({
+        "models": models,
+        "selected_model": app_config.get('mistral_model'),
+        "error": error or mistral_api_error,
+    })
+
+
+@app.route('/api/settings/mistral/model', methods=['POST'])
+def api_update_mistral_model():
+    global app_config
+    data = request.get_json() or {}
+    new_model = (data.get('model') or '').strip()
+    if not new_model:
+        return jsonify({"status": "error", "message": "Model is required"}), 400
+
+    app_config['mistral_model'] = new_model
+    save_config(app_config)
+    refresh_mistral_client()
+    return jsonify({
+        "status": "success",
+        "selected_model": app_config.get('mistral_model'),
+        "error": mistral_api_error,
+    })
+
+
+@app.route('/api/vectorization/overview', methods=['GET'])
+def api_vectorization_overview():
+    if not persistence.available:
+        return jsonify({"error": persistence.error or "PostgreSQL persistence unavailable"}), 503
+    return jsonify(get_vectorization_overview())
+
+
+@app.route('/api/vectorization/start', methods=['POST'])
+def api_vectorization_start():
+    if not persistence.available:
+        return jsonify({"error": persistence.error or "PostgreSQL persistence unavailable"}), 503
+    if ollama_api_error:
+        return jsonify({"error": ollama_api_error}), 503
+
+    embedding_model = app_config.get("ollama_embedding_model", "embeddinggemma:300m")
+    job_id = persistence.create_vectorization_job(
+        embedding_model,
+        metadata={"requested_at": datetime.utcnow().isoformat() + "Z"},
+    )
+    thread = threading.Thread(target=run_vectorization_job, args=(job_id, embedding_model), daemon=True)
+    thread.start()
+    return jsonify({
+        "status": "started",
+        "job_id": job_id,
+        "embedding_model": embedding_model,
+        "overview": get_vectorization_overview(),
+    })
+
+
+@app.route('/api/vectorization/job/<job_id>', methods=['GET'])
+def api_vectorization_job(job_id):
+    if not persistence.available:
+        return jsonify({"error": persistence.error or "PostgreSQL persistence unavailable"}), 503
+    job = persistence.get_vectorization_job(job_id)
+    if not job:
+        return jsonify({"error": "Job not found"}), 404
+    return jsonify(job)
+
+
+@app.route('/api/rag/query', methods=['POST'])
+def api_rag_query():
+    if not persistence.available:
+        return jsonify({"error": persistence.error or "PostgreSQL persistence unavailable"}), 503
+    if ollama_api_error:
+        return jsonify({"error": ollama_api_error}), 503
+
+    data = request.get_json() or {}
+    user_message = (data.get('message') or '').strip()
+    top_k = int(data.get('top_k', 5) or 5)
+    if not user_message:
+        return jsonify({"error": "Message is required"}), 400
+
+    embedding_model = app_config.get("ollama_embedding_model", "embeddinggemma:300m")
+    query_embedding = ollama_api.get_embedding(user_message, model=embedding_model)
+    rag_chunks = persistence.search_similar_chunks(query_embedding, embedding_model, limit=top_k)
+
+    provider, client, model_name = get_active_provider_client()
+    rag_prompt = build_rag_prompt(user_message, rag_chunks)
+    if provider == "ollama":
+        answer = client.get_response(rag_prompt, model=model_name)
+    else:
+        answer = client.get_response(rag_prompt)
+
+    persist_file_and_db(
+        session_type="rag_query",
+        source_route="/api/rag/query",
+        prompt_text=rag_prompt,
+        response_text=answer,
+        model_name=model_name,
+        provider=provider,
+        metadata={
+            "top_k": top_k,
+            "retrieved_chunks": len(rag_chunks),
+            "embedding_model": embedding_model,
+        },
+    )
+
+    return jsonify({
+        "status": "success",
+        "provider": provider,
+        "model": model_name,
+        "answer": answer,
+        "chunks": rag_chunks,
+    })
 
 
 @app.route('/tasks')
@@ -712,7 +1205,8 @@ def edit_task():
     return jsonify({'status': 'success'})
 
 
-PROJECTS_DIR = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'projects')
+PROJECTS_DIR = os.path.join(os.path.dirname(__file__), 'mmss_core', 'ai', 'projects', 'orchestrator')
+os.makedirs(PROJECTS_DIR, exist_ok=True)
 
 CUSTOM_THEMES_DIR = os.path.join(os.path.dirname(__file__), 'static', 'custom_themes')
 os.makedirs(CUSTOM_THEMES_DIR, exist_ok=True)
@@ -790,6 +1284,16 @@ def save_project():
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(project_data, f, ensure_ascii=False, indent=4)
+        persist_artifact_only(
+            session_type="ai_project",
+            source_route="/api/ai/projects/save",
+            artifact_type="project",
+            title=project_name,
+            content=json.dumps(project_data, ensure_ascii=False, indent=2),
+            content_format="json",
+            project_name=project_name,
+            metadata={"file_path": file_path},
+        )
         return jsonify({"status": "success", "project_name": project_name})
     except Exception as e:
         return jsonify({"error": f"Failed to save project: {str(e)}"}), 500
@@ -849,11 +1353,19 @@ def run_task_in_terminal():
 @app.route('/orchestrator')
 def orchestrator():
     """Renders the MMSS Orchestrator page."""
-    return render_template('orchestrator_v2.html', theme=app_config['theme'], custom_theme_css=app_config.get('custom_theme_css'))
+    ollama_models, models_error = get_ollama_models()
+    return render_template(
+        'orchestrator_v2.html',
+        theme=app_config['theme'],
+        custom_theme_css=app_config.get('custom_theme_css'),
+        ollama_models=ollama_models,
+        ollama_error=ollama_api_error or models_error,
+        selected_model=app_config.get('ollama_model'),
+    )
 
 @app.route('/orchestrate/send', methods=['POST'])
 def orchestrate_send():
-    """Handles sending a prompt for a single agent to the Mistral API (LIVE MODE ONLY)."""
+    """Handles sending a prompt for a single agent to Local Ollama (LIVE MODE ONLY)."""
     data = request.get_json()
     agent_name = data.get('agent_name')
     prompt = data.get('prompt')
@@ -862,40 +1374,25 @@ def orchestrate_send():
         return jsonify({"error": "Agent name and prompt are required"}), 400
 
     try:
-        # Инициализируем оркестратор
-        orchestrator = MMSOrchestrator()
+        orchestrator = MMSOrchestrator(
+            model=app_config.get('ollama_model'),
+            base_url=app_config.get('ollama_base_url', 'http://127.0.0.1:11434'),
+            timeout_seconds=int(app_config.get('ollama_timeout_seconds', 600)),
+        )
         
-        # Проверяем, доступен ли Mistral
-        if orchestrator.mistral_api_error:
-            return jsonify({"error": f"Mistral API error: {orchestrator.mistral_api_error}"}), 500
-        
-        if not orchestrator.mistral_api:
-            return jsonify({"error": "Mistral API not initialized. Check MISTRAL_API_KEY in .env"}), 500
+        if orchestrator.ollama_api_error:
+            return jsonify({"error": f"Ollama API error: {orchestrator.ollama_api_error}"}), 500
 
-        # ГЕНЕРИРУЕМ КОРРЕКТНЫЙ PROMPT ДЛЯ АГЕНТА
         agents = orchestrator.get_agents()
         agent_config = next((a for a in agents if a['name'] == agent_name), None)
         if not agent_config:
             return jsonify({"error": f"Agent {agent_name} not found in config"}), 404
 
         system_prompt = orchestrator.generate_prompt(agent_config, prompt)
-        print(f"[Orchestrator] Sending to Mistral: {system_prompt[:200]}...")
+        print(f"[Orchestrator] Sending to Ollama: {system_prompt[:200]}...")
 
-        # ОТПРАВЛЯЕМ В MISTRAL — ТОЛЬКО LIVE
-        response = orchestrator.send_prompt_to_mistral(system_prompt)
+        response = orchestrator.send_prompt_to_ollama(system_prompt)
 
-        # Сохраняем лог
-        try:
-            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S_%f")
-            filename = os.path.join(CHATS_SENDEN_DIR, f"prompt_{timestamp}.txt")
-            with open(filename, 'w', encoding='utf-8') as f:
-                f.write(f"--- PROMPT ---\n{system_prompt}\n\n--- RESPONSE ---\n{response}")
-        except Exception as e:
-            print(f"Error saving orchestrator chat log: {e}")
-
-        # ВАЖНО: Mistral **не возвращает** метрики автоматически
-        # Поэтому мы ВРУЧНУЮ ДОБАВЛЯЕМ СТРОКУ " --- METRICS: {...}"
-        # Это нужно для парсинга на фронтенде
         metrics_stub = {
             "V": 0.99,
             "N": 0.98,
@@ -906,9 +1403,22 @@ def orchestrate_send():
         }
         final_response = f"{response} --- METRICS: {json.dumps(metrics_stub, ensure_ascii=False)}"
 
+        persist_file_and_db(
+            session_type="orchestrator_agent",
+            source_route="/orchestrate/send",
+            prompt_text=system_prompt,
+            response_text=final_response,
+            model_name=app_config.get('ollama_model'),
+            project_name=data.get('project_name'),
+            metadata={
+                "agent_name": agent_name,
+                "embedding_model": app_config.get("ollama_embedding_model"),
+            },
+        )
+
         return jsonify({"answer": final_response})
-    except MistralAPIError as e:
-        return jsonify({"error": f"Mistral API error: {str(e)}"}), 500
+    except OllamaAPIError as e:
+        return jsonify({"error": f"Ollama API error: {str(e)}"}), 500
     except Exception as e:
         import traceback
         print(f"Unexpected error in /orchestrate/send: {e}")
@@ -935,6 +1445,16 @@ def save_orchestrator_project():
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
+        persist_artifact_only(
+            session_type="orchestrator_project",
+            source_route="/orchestrator/save_project",
+            artifact_type="project",
+            title=project_name,
+            content=json.dumps(data, ensure_ascii=False, indent=2),
+            content_format="json",
+            project_name=project_name,
+            metadata={"file_path": file_path},
+        )
         return jsonify({"status": "success", "project_name": project_name})
     except Exception as e:
         return jsonify({"error": f"Failed to save project: {str(e)}"}), 500
@@ -943,5 +1463,3 @@ def save_orchestrator_project():
 if __name__ == '__main__':
 
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-

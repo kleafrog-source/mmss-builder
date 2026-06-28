@@ -109,3 +109,21 @@ static/vendor/
 
 
 
+data/fine-tuning/reports/inventory_20260622_200402.json
+data/fine-tuning/reports/inventory_20260622_200536.json
+data/fine-tuning/reports/inventory_20260622_201355.json
+data/fine-tuning/reports/inventory_latest.json
+data/fine-tuning/reports/pipeline_latest.json
+data/fine-tuning/reports/readiness_20260622_200402.csv
+data/fine-tuning/reports/readiness_20260622_200536.csv
+data/fine-tuning/reports/readiness_20260622_201355.csv
+data/fine-tuning/reports/readiness_latest.csv
+data/fine-tuning/reports/summary_20260622_200402.json
+data/fine-tuning/reports/summary_20260622_200536.json
+data/fine-tuning/reports/summary_20260622_201355.json
+data/fine-tuning/reports/summary_latest.json
+data/fine-tuning/staging/manifest.json
+data/fine-tuning/staging/mmss_combined_all.jsonl
+data/fine-tuning/staging/categories/mmss_categories_all.jsonl
+data/fine-tuning/staging/mmss-sound-craft/mmss_mmss-sound-craft_all.jsonl
+data/fine-tuning/staging/mmss-universal/mmss_mmss-universal_all.jsonl

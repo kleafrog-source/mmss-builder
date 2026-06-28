@@ -1,5 +1,18 @@
 {
-    "theme": "light",
+    "theme": "dark",
     "custom_theme_css": null,
-    "mistral_model": "open-mistral-nemo"
+    "ai_provider": "ollama",
+    "ollama_base_url": "http://127.0.0.1:11434",
+    "ollama_timeout_seconds": 600,
+    "ollama_model": "mmss-gemma4-mmss-json:latest",
+    "ollama_embedding_model": "embeddinggemma:300m",
+    "preferred_ollama_models": [
+        "mmss-gemma4-mmss-json:latest",
+        "mmss-gemma4-q4:latest",
+        "mmss-gemma4-q4-creative:latest",
+        "embeddinggemma:300m",
+        "qwen2.5-coder:3b",
+        "qwen2.5-coder:7b"
+    ],
+    "mistral_model": "mistral-small-latest"
 }
