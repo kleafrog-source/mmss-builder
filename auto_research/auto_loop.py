@@ -21,7 +21,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from llm.ollama_helper import run_ollama_with_fallback
+from llm.ollama_helper import list_ollama_models, run_ollama_with_fallback
 from python.score import score_config, score_from_report
 
 
@@ -32,6 +32,11 @@ LOG_PATH = PROJECT_ROOT / "logs" / "auto_research_log.jsonl"
 STOP_FLAG = PROJECT_ROOT / "auto_research" / "stop.flag"
 PROMPTS_DIR = PROJECT_ROOT / "llm" / "prompts"
 STATUS_PATH = PROJECT_ROOT / "auto_research" / "status.json"
+IMMUTABLE_PATHS = {
+    (PROJECT_ROOT / "auto_research" / "TASK.md").resolve(),
+    (PROJECT_ROOT / "auto_research" / "TASK.original.md").resolve(),
+    (PROJECT_ROOT / "auto_research" / "instructions.md").resolve(),
+}
 
 
 def _read_text(path: Path) -> str:
@@ -174,6 +179,38 @@ def _mutate_prompt(prompt_path: Path, rng: random.Random) -> Tuple[str, str]:
     return text, f"prompt_text: length {len(old)} -> {len(text)}"
 
 
+def _parse_models_override(raw: str | None) -> list[str]:
+    if not raw:
+        return []
+    raw = raw.strip()
+    if not raw:
+        return []
+    if raw.startswith("["):
+        try:
+            data = json.loads(raw)
+            if isinstance(data, list):
+                return [str(item) for item in data if str(item).strip()]
+        except Exception:
+            pass
+    return [item.strip() for item in raw.split(",") if item.strip()]
+
+
+def _is_mutable_asset(path: Path) -> bool:
+    resolved = path.resolve()
+    if resolved in IMMUTABLE_PATHS:
+        return False
+    normalized = str(resolved).replace("/", "\\").lower()
+    if "llm\\prompts\\original" in normalized:
+        return False
+    if "auto_research\\task" in normalized:
+        return False
+    return (
+        "python\\configs" in normalized
+        or "mmss_specs" in normalized
+        or "llm\\prompts\\work" in normalized
+    )
+
+
 def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
     if os.environ.get("AUTO_RESEARCH_USE_OLLAMA", "").strip().lower() not in {"1", "true", "yes", "on"}:
         return None
@@ -181,23 +218,44 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
     if not prompt_path.exists():
         return None
     try:
-        with request.urlopen("http://127.0.0.1:11434/api/tags", timeout=1.0):
-            pass
-    except Exception:
-        return None
+        models_payload = list_ollama_models(timeout_seconds=2)
+    except Exception as exc:
+        return {
+            "raw_response": "",
+            "model_used": None,
+            "_parse_error": f"ollama unavailable: {exc}",
+        }
+    model_names = [str(item.get("name")) for item in models_payload if item.get("name")]
     prompt = _prompt_template(prompt_path, context)
-    models = context.get("models") or [context.get("model", "qwen-coder-3b-cpu:latest")]
+    configured_models = context.get("models") or []
+    if configured_models:
+        models = configured_models
+    else:
+        models = [context.get("model", "qwen-coder-3b-cpu:latest"), "qwen2.5-coder:3b", "llama3"]
     try:
         response, model_used = run_ollama_with_fallback(prompt, models=models, timeout_seconds=10)
-    except Exception:
-        return None
+    except Exception as exc:
+        return {
+            "raw_response": "",
+            "model_used": None,
+            "_parse_error": f"ollama call failed: {exc}",
+            "models_seen": model_names,
+        }
     try:
         parsed = json.loads(response)
-        if isinstance(parsed, dict):
-            parsed["_model_used"] = model_used
+        if not isinstance(parsed, dict):
+            parsed = {"parsed": parsed}
+        parsed["_model_used"] = model_used
+        parsed["raw_response"] = response
+        parsed["models_seen"] = model_names
         return parsed
-    except Exception:
-        return None
+    except Exception as exc:
+        return {
+            "raw_response": response,
+            "model_used": model_used,
+            "_parse_error": str(exc),
+            "models_seen": model_names,
+        }
 
 
 def _apply_candidate(
@@ -220,6 +278,8 @@ def _apply_candidate(
 
 
 def _persist_asset(path: Path, content: Any) -> None:
+    if not _is_mutable_asset(path):
+        raise RuntimeError(f"Refusing to write immutable asset: {path}")
     if path.suffix.lower() in {".yaml", ".yml"}:
         if not isinstance(content, dict):
             raise TypeError("YAML assets must be dictionaries.")
@@ -271,6 +331,11 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
     if "llm\\prompts\\work" not in str(prompt_path).replace("/", "\\"):
         raise RuntimeError(f"Refusing to mutate non-work prompt path: {prompt_path}")
 
+    env_model = os.environ.get("AUTO_RESEARCH_OLLAMA_MODEL")
+    env_models = _parse_models_override(os.environ.get("AUTO_RESEARCH_OLLAMA_MODELS"))
+    primary_model = env_model or cfg.get("ollama_model") or "qwen-coder-3b-cpu:latest"
+    fallback_models = env_models or cfg.get("ollama_models") or [primary_model, "qwen2.5-coder:3b", "llama3"]
+
     rng = random.Random(42)
     baseline_score, baseline_report, baseline_report_path = score_config(config_path)
     best_score = baseline_score
@@ -302,11 +367,14 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
             {
                 "config": current_cfg,
                 "score": best_score,
+                "target_score": target_score,
+                "epsilon": epsilon,
+                "plateau_limit": plateau_limit,
                 "metrics": baseline_report.get("final_metrics", {}),
-                "recent_logs": _read_text(LOG_PATH)[-2000:],
+                "recent_logs": _read_recent_log_entries(10),
                 "ontology_summary": _system_summary(omega_core),
-                "model": current_cfg.get("ollama_model", "qwen-coder-3b-cpu:latest"),
-                "models": current_cfg.get("ollama_models") or ["qwen-coder-3b-cpu:latest", "qwen2.5-coder:3b", "llama3"],
+                "model": primary_model,
+                "models": fallback_models,
             }
         )
 
@@ -316,10 +384,16 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
         new_score, new_report, new_report_path = score_config(config_path)
         decision = "kept" if new_score > best_score + epsilon else "reverted"
         metrics = new_report.get("final_metrics", {})
+        ollama_model_used = None
+        ollama_raw = None
+        if isinstance(suggestion, dict):
+            ollama_model_used = suggestion.get("_model_used") or suggestion.get("model_used")
+            ollama_raw = suggestion.get("raw_response")
         summary_text = (
             f"asset={asset_kind} change={change_description} decision={decision} "
             f"score={new_score:.6f} V={metrics.get('V')} S={metrics.get('S')} "
             f"clean={metrics.get('test_acc_clean')} energy={metrics.get('energy_rel_v4')}"
+            + (f" model={ollama_model_used}" if ollama_model_used else "")
         )
 
         if decision == "reverted" and not dry_run:
@@ -343,6 +417,17 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
             "report_path": str(new_report_path),
             "baseline_report_path": str(baseline_report_path),
             "ollama_suggestion": suggestion,
+            "ollama_suggestion_raw": _truncate(ollama_raw, 4000),
+            "ollama_model_used": ollama_model_used,
+            "llm_context_snapshot": {
+                "current_score": best_score,
+                "target_score": target_score,
+                "epsilon": epsilon,
+                "plateau_limit": plateau_limit,
+                "asset_kind": asset_kind,
+                "model": primary_model,
+                "models": fallback_models,
+            },
             "summary_text": summary_text,
         }
         _log_round(round_entry)
@@ -387,12 +472,44 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
     }
 
 
+def _truncate(text: str | None, limit: int) -> str | None:
+    if text is None:
+        return None
+    if len(text) <= limit:
+        return text
+    return text[:limit] + "..."
+
+
+def _read_recent_log_entries(limit: int = 10) -> list[dict[str, Any]]:
+    if not LOG_PATH.exists():
+        return []
+    lines = LOG_PATH.read_text(encoding="utf-8").splitlines()
+    tail = lines[-limit:]
+    entries: list[dict[str, Any]] = []
+    for line in tail:
+        try:
+            entries.append(json.loads(line))
+        except Exception:
+            continue
+    return entries
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run the local OMEGA/MMSS auto-research loop.")
     parser.add_argument("--max-rounds", type=int, default=None)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--config", default=str(ACTIVE_CONFIG_PATH))
+    parser.add_argument("--use-ollama", action="store_true")
+    parser.add_argument("--ollama-model", default=None)
+    parser.add_argument("--ollama-models", default=None)
     args = parser.parse_args(argv)
+
+    if args.use_ollama:
+        os.environ["AUTO_RESEARCH_USE_OLLAMA"] = "1"
+    if args.ollama_model:
+        os.environ["AUTO_RESEARCH_OLLAMA_MODEL"] = args.ollama_model
+    if args.ollama_models:
+        os.environ["AUTO_RESEARCH_OLLAMA_MODELS"] = args.ollama_models
 
     result = run_loop(max_rounds=args.max_rounds, dry_run=args.dry_run, config_path=Path(args.config))
     print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -4,7 +4,7 @@ import json
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Any, Iterable, Optional
 from urllib import error, request
 
 
@@ -39,6 +39,29 @@ def _run_ollama_http(prompt: str, model: str, base_url: str, timeout_seconds: in
         raise OllamaAPIError("LocalOllamaAPI is unavailable.")
     api = LocalOllamaAPI(model=model, base_url=base_url, timeout_seconds=timeout_seconds)
     return api.get_response(prompt)
+
+
+def _request_json(url: str, timeout_seconds: int) -> dict[str, Any]:
+    req = request.Request(url, method="GET")
+    try:
+        with request.urlopen(req, timeout=timeout_seconds) as response:
+            raw = response.read().decode("utf-8")
+            return json.loads(raw) if raw.strip() else {}
+    except error.HTTPError as exc:
+        details = exc.read().decode("utf-8", errors="replace")
+        raise OllamaAPIError(f"Ollama HTTP {exc.code}: {details}") from exc
+    except error.URLError as exc:
+        raise OllamaAPIError(f"Ollama is unavailable at {url}: {exc.reason}") from exc
+    except json.JSONDecodeError as exc:
+        raise OllamaAPIError("Invalid JSON response from Ollama.") from exc
+
+
+def list_ollama_models(base_url: str = "http://127.0.0.1:11434", timeout_seconds: int = 2) -> list[dict[str, Any]]:
+    payload = _request_json(f"{base_url.rstrip('/')}/api/tags", timeout_seconds)
+    models = payload.get("models") or []
+    if not isinstance(models, list):
+        return []
+    return [model for model in models if isinstance(model, dict)]
 
 
 def run_ollama(
