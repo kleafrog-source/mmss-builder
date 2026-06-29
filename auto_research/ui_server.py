@@ -96,8 +96,10 @@ def _start_loop_process(
             env["AUTO_RESEARCH_OLLAMA_MODEL"] = ollama_model
         if ollama_models:
             env["AUTO_RESEARCH_OLLAMA_MODELS"] = ollama_models
+        env["PYTHONUNBUFFERED"] = "1"
         cmd = [
             sys.executable,
+            "-u",
             "-m",
             "auto_research.auto_loop",
             "--config",
@@ -109,8 +111,6 @@ def _start_loop_process(
             cmd,
             cwd=str(PROJECT_ROOT),
             env=env,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
             text=True,
         )
         return {"ok": True, "pid": _current_process.pid}
@@ -150,6 +150,7 @@ INDEX_HTML = """
     label { font-size:12px; color:var(--muted); display:block; margin-bottom:6px; }
     input, select, button, textarea { background:#07101f; color:var(--text); border:1px solid #2a3857; border-radius:10px; padding:10px 12px; font:inherit; }
     input, select, textarea { width:100%; box-sizing:border-box; }
+    select[multiple] { min-height: 164px; }
     button { cursor:pointer; background: linear-gradient(135deg, #0f172a, #172554); }
     button.primary { border-color: #2dd4bf; }
     button.danger { border-color: #ef4444; }
@@ -192,13 +193,20 @@ INDEX_HTML = """
             <option value="1">On</option>
           </select>
         </div>
-        <div style="flex:1 1 220px;">
-          <label>Primary model</label>
-          <input id="ollama_model" type="text" value="qwen-coder-3b-cpu:latest" />
-        </div>
         <div style="flex:1 1 260px;">
+          <label>Primary model</label>
+          <div class="row" style="align-items:end;">
+            <div style="flex:1 1 180px;">
+              <select id="ollama_model"></select>
+            </div>
+            <div style="width:120px;">
+              <button type="button" onclick="refreshModels()">Refresh</button>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1 1 300px;">
           <label>Fallback models</label>
-          <input id="ollama_models" type="text" value="qwen-coder-3b-cpu:latest,qwen2.5-coder:3b,llama3" />
+          <select id="ollama_models" multiple></select>
         </div>
       </div>
       <div class="row">
@@ -206,6 +214,7 @@ INDEX_HTML = """
         <button class="danger" onclick="stopLoop()">Stop</button>
         <button onclick="refreshAll()">Refresh</button>
       </div>
+      <div class="muted" id="models_hint">Loading Ollama models...</div>
 
       <div class="split">
         <div>
@@ -246,6 +255,35 @@ INDEX_HTML = """
   </main>
 
   <script>
+    let cachedModels = [];
+
+    function setSelectOptions(selectId, models, selectedValue) {
+      const select = document.getElementById(selectId);
+      const values = Array.isArray(selectedValue) ? selectedValue : [selectedValue].filter(Boolean);
+      select.innerHTML = '';
+      if (!models.length) {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'No models found';
+        select.appendChild(option);
+        return;
+      }
+      for (const model of models) {
+        const option = document.createElement('option');
+        option.value = model.name;
+        const size = model.size ? ` • ${Math.round(model.size / 1024 / 1024)} MB` : '';
+        const modified = model.modified_at ? ` • ${new Date(model.modified_at).toLocaleString()}` : '';
+        option.textContent = `${model.name}${size}${modified}`;
+        if (values.includes(model.name)) {
+          option.selected = true;
+        }
+        select.appendChild(option);
+      }
+      if (!select.multiple && !select.value && models[0]) {
+        select.value = models[0].name;
+      }
+    }
+
     async function refreshStatus() {
       const res = await fetch('/status');
       document.getElementById('status').textContent = JSON.stringify(await res.json(), null, 2);
@@ -256,7 +294,15 @@ INDEX_HTML = """
     }
     async function refreshModels() {
       const res = await fetch('/models');
-      document.getElementById('models').textContent = JSON.stringify(await res.json(), null, 2);
+      const payload = await res.json();
+      cachedModels = Array.isArray(payload.models) ? payload.models : [];
+      const currentPrimary = document.getElementById('ollama_model').value;
+      const currentFallback = Array.from(document.getElementById('ollama_models').selectedOptions).map((option) => option.value);
+      setSelectOptions('ollama_model', cachedModels, currentPrimary);
+      setSelectOptions('ollama_models', cachedModels, currentFallback);
+      document.getElementById('models').textContent = JSON.stringify(payload, null, 2);
+      const hint = payload.error ? `Ollama model refresh failed: ${payload.error}` : `Found ${cachedModels.length} model(s) from /api/tags.`;
+      document.getElementById('models_hint').textContent = hint;
     }
     async function refreshAll() {
       await Promise.all([refreshStatus(), refreshLogs(), refreshModels()]);
@@ -267,12 +313,16 @@ INDEX_HTML = """
       document.getElementById('file_content').textContent = await res.text();
     }
     async function startLoop() {
+      const primarySelect = document.getElementById('ollama_model');
+      const fallbackSelect = document.getElementById('ollama_models');
+      const fallbackModels = Array.from(fallbackSelect.selectedOptions).map((option) => option.value);
+      const selectedPrimary = primarySelect.value || (cachedModels[0] ? cachedModels[0].name : 'qwen-coder-3b-cpu:latest');
       const payload = {
         config_path: document.getElementById('config_path').value,
         max_rounds: parseInt(document.getElementById('max_rounds').value || '3', 10),
         use_ollama: document.getElementById('use_ollama').value === '1',
-        ollama_model: document.getElementById('ollama_model').value.trim(),
-        ollama_models: document.getElementById('ollama_models').value.trim()
+        ollama_model: selectedPrimary.trim(),
+        ollama_models: fallbackModels.join(',')
       };
       const res = await fetch('/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
       alert(JSON.stringify(await res.json(), null, 2));

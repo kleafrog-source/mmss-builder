@@ -228,10 +228,12 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
     model_names = [str(item.get("name")) for item in models_payload if item.get("name")]
     prompt = _prompt_template(prompt_path, context)
     configured_models = context.get("models") or []
-    if configured_models:
-        models = configured_models
+    requested_models = list(configured_models) if configured_models else [context.get("model", "qwen-coder-3b-cpu:latest"), "qwen2.5-coder:3b", "llama3"]
+    if model_names:
+        models = [name for name in requested_models if name in model_names]
+        models.extend(name for name in model_names if name not in models)
     else:
-        models = [context.get("model", "qwen-coder-3b-cpu:latest"), "qwen2.5-coder:3b", "llama3"]
+        models = requested_models
     try:
         response, model_used = run_ollama_with_fallback(prompt, models=models, timeout_seconds=10)
     except Exception as exc:
@@ -240,6 +242,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
             "model_used": None,
             "_parse_error": f"ollama call failed: {exc}",
             "models_seen": model_names,
+            "requested_models": requested_models,
         }
     try:
         parsed = json.loads(response)
@@ -248,6 +251,9 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
         parsed["_model_used"] = model_used
         parsed["raw_response"] = response
         parsed["models_seen"] = model_names
+        parsed["requested_models"] = requested_models
+        if model_names and model_used not in model_names:
+            parsed["model_not_in_api_tags"] = model_used
         return parsed
     except Exception as exc:
         return {
@@ -255,6 +261,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
             "model_used": model_used,
             "_parse_error": str(exc),
             "models_seen": model_names,
+            "requested_models": requested_models,
         }
 
 
