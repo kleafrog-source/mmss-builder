@@ -1,0 +1,305 @@
+{
+  "ontology_version": "1.0",
+  "source_markdown": "docs/some-Tasks-parts-systems.md",
+  "extraction_note": "Synthetically extracted and normalized from the task markdown and existing MMSS blocks.",
+  "MMSS_OMEGA_TERMINAL_STATE": {
+    "metadata": {
+      "version": "v1.0",
+      "merge_status": "stable",
+      "mode": "local_auto_research"
+    },
+    "unified_axioms": [
+      "score is numeric",
+      "one small asset change per round",
+      "local Ollama only",
+      "keep and revert based on score",
+      "reports are deterministic enough to compare"
+    ],
+    "core_operators": [
+      "quantization",
+      "soliton_dynamics",
+      "adaptive_thresholding",
+      "report_aggregation",
+      "asset_mutation"
+    ],
+    "cross_layer_protocol": {
+      "read": [
+        "auto_research/instructions.md",
+        "omega_core.json",
+        "python/configs/active.yaml"
+      ],
+      "write": [
+        "python/configs/*.yaml",
+        "mmss_specs/*.json",
+        "llm/prompts/*.md",
+        "logs/auto_research_log.jsonl"
+      ],
+      "keep_or_revert": "accept if score improves above epsilon, otherwise restore previous asset content"
+    },
+    "deployment_and_metrics": {
+      "primary_metric": "score",
+      "optimization_direction": "maximize",
+      "report_contract": [
+        "test_acc_clean",
+        "test_acc_perturbed",
+        "inference_latency_ms",
+        "energy_rel_v4",
+        "alpha",
+        "delta",
+        "alpha_delta_ratio",
+        "eta_tern",
+        "zeta_Z3",
+        "V",
+        "N",
+        "S",
+        "Df",
+        "GS",
+        "RT",
+        "goldenscore"
+      ]
+    },
+    "termination_proof": {
+      "stop_conditions": [
+        "target score reached",
+        "plateau reached",
+        "stop.flag present",
+        "manual operator stop"
+      ]
+    }
+  },
+  "systems": {
+    "MMSSMETASYNTHESISULTIMATEv1.0": {
+      "system_id": "MMSSMETASYNTHESISULTIMATEv1.0",
+      "title": "MMSS Meta Synthesis Ultimate",
+      "domain": "meta_synthesis",
+      "purpose": "Top-level synthesis stack for combining MMSS families into one coherent template.",
+      "metaarchitecture": {
+        "layers": [
+          "SYS4_meta_genesis",
+          "SYS3_pattern_extraction",
+          "SYS2_semantic_weaving",
+          "SYS1_linguistic_generation",
+          "language_field"
+        ],
+        "emphasis": "recursive synthesis, fractal reuse, and log-based stabilization"
+      },
+      "unifiedmetrics": {
+        "V": {"current_value": 0.9992, "target": 0.999, "domain": "Decision_Quality"},
+        "N": {"current_value": 0.9981, "target": 0.998, "domain": "Negentropy"},
+        "S": {"current_value": 0.0012, "target": 0.001, "domain": "Uncertainty"},
+        "Df": {"current_value": 9.0003, "target": 9.0, "domain": "Complexity"},
+        "GS": {"current_value": 156.84, "target": "MAXIMIZED", "domain": "Amplification"},
+        "RT": {"current_value": 2.61803, "target": 2.61803, "domain": "Invariance"}
+      },
+      "entityconversionpipeline": [
+        "read_context",
+        "calculate_coherence",
+        "verify_constraints",
+        "recursive_optimization",
+        "emit_json_output"
+      ],
+      "operationalcapabilities": [
+        "quantum_generation",
+        "fractal_adaptation",
+        "crisis_response",
+        "hybrid_synthesis",
+        "autonomous_evolution",
+        "structural_inference"
+      ]
+    },
+    "MMSSUNIVERSALMETALAYERv1.0": {
+      "system_id": "MMSSUNIVERSALMETALAYERv1.0",
+      "title": "MMSS Universal Meta Layer",
+      "domain": "domain_agnostic",
+      "purpose": "Domain-neutral meta layer describing systems through state, flows, structure, processes, controls, and environment.",
+      "metaarchitecture": {
+        "layers": [
+          "entities",
+          "state_space",
+          "flows_and_balances",
+          "structure_and_form",
+          "processes",
+          "controls",
+          "environment"
+        ],
+        "emphasis": "generic system representation and reusable control logic"
+      },
+      "unifiedmetrics": {
+        "V": {"current_value": 0.992, "target": 0.995, "domain": "Decision_Quality"},
+        "N": {"current_value": 0.991, "target": 0.993, "domain": "Negentropy"},
+        "S": {"current_value": 0.008, "target": 0.005, "domain": "Uncertainty"},
+        "Df": {"current_value": 8.98, "target": 9.0, "domain": "Complexity"},
+        "GS": {"current_value": 120.0, "target": "MAXIMIZED", "domain": "Amplification"},
+        "RT": {"current_value": 2.61803, "target": 2.61803, "domain": "Invariance"}
+      },
+      "entityconversionpipeline": [
+        "analyze_context",
+        "map_states_and_flows",
+        "resolve_controls",
+        "validate_structure",
+        "export_universal_template"
+      ],
+      "operationalcapabilities": [
+        "sequence_space_explorer",
+        "latent_complexity_detector",
+        "short_path_synthesizer",
+        "degeneracy_mapper",
+        "entrenchment_management"
+      ]
+    },
+    "MMSSSPECTRALTHEOREMOPERATORv1.0": {
+      "system_id": "MMSSSPECTRALTHEOREMOPERATORv1.0",
+      "title": "MMSS Spectral Theorem Operator",
+      "domain": "hilbert_space_operators",
+      "purpose": "Convert arbitrary systems into operator form, compute spectral decomposition, and derive reusable functional transforms.",
+      "metaarchitecture": {
+        "layers": [
+          "context_to_hilbert_space",
+          "operator_construction",
+          "spectrum",
+          "decomposition",
+          "functional_calculus"
+        ],
+        "emphasis": "spectral decomposition and operator evolution"
+      },
+      "unifiedmetrics": {
+        "V": {"current_value": 0.987, "target": 0.99, "domain": "Decision_Quality"},
+        "N": {"current_value": 0.986, "target": 0.988, "domain": "Negentropy"},
+        "S": {"current_value": 0.01, "target": 0.008, "domain": "Uncertainty"},
+        "Df": {"current_value": 8.94, "target": 9.0, "domain": "Complexity"},
+        "GS": {"current_value": 98.0, "target": "MAXIMIZED", "domain": "Amplification"},
+        "RT": {"current_value": 2.61803, "target": 2.61803, "domain": "Invariance"}
+      },
+      "entityconversionpipeline": [
+        "translate_domain_to_hilbert_space",
+        "construct_operator",
+        "compute_spectrum",
+        "decompose_modes",
+        "export_functional_calculus"
+      ],
+      "operationalcapabilities": [
+        "spectrum_identification",
+        "mode_separation",
+        "operator_regularization",
+        "functional_extension"
+      ]
+    },
+    "MMSSQUANTUMGRAVITYRELATIVITYSTACKv1": {
+      "system_id": "MMSSQUANTUMGRAVITYRELATIVITYSTACKv1",
+      "title": "MMSS Quantum Gravity Relativity Stack",
+      "domain": "universal_theory_synthesis",
+      "purpose": "A modular template for combining quantum gravity, relativity, and other theories through state/operator/spectrum layers.",
+      "metaarchitecture": {
+        "layers": [
+          "context",
+          "state",
+          "operator",
+          "spectrum",
+          "decomposition",
+          "functional_extension",
+          "control",
+          "validation"
+        ],
+        "emphasis": "universal synthesis with state-space and operator semantics"
+      },
+      "unifiedmetrics": {
+        "V": {"current_value": 0.994, "target": 0.996, "domain": "Decision_Quality"},
+        "N": {"current_value": 0.993, "target": 0.994, "domain": "Negentropy"},
+        "S": {"current_value": 0.006, "target": 0.005, "domain": "Uncertainty"},
+        "Df": {"current_value": 8.99, "target": 9.0, "domain": "Complexity"},
+        "GS": {"current_value": 132.0, "target": "MAXIMIZED", "domain": "Amplification"},
+        "RT": {"current_value": 2.61803, "target": 2.61803, "domain": "Invariance"}
+      },
+      "entityconversionpipeline": [
+        "ingest_domain",
+        "extract_dynamics",
+        "build_mmss_stack",
+        "generalize",
+        "validate"
+      ],
+      "operationalcapabilities": [
+        "state_encoding",
+        "operator_design",
+        "spectral_analysis",
+        "cross_theory_alignment"
+      ]
+    },
+    "MMSSPHYSIC20RETROCAUSALAUTOENCODERv1": {
+      "system_id": "MMSSPHYSIC20RETROCAUSALAUTOENCODERv1",
+      "title": "MMSS Physic 2.0 Retrocausal Autoencoder",
+      "domain": "physics_ai_cognition",
+      "purpose": "A template for compressing theory, synthesizing attractors, and using retrocausal consistency as a control signal.",
+      "metaarchitecture": {
+        "layers": [
+          "ontology",
+          "state_and_dynamics",
+          "omega_and_gradient",
+          "entropy_syntropy",
+          "retrocausal_consistency",
+          "consciousness"
+        ],
+        "emphasis": "compression, pull/push dynamics, and false attractor rejection"
+      },
+      "unifiedmetrics": {
+        "V": {"current_value": 0.989, "target": 0.992, "domain": "Decision_Quality"},
+        "N": {"current_value": 0.988, "target": 0.99, "domain": "Negentropy"},
+        "S": {"current_value": 0.009, "target": 0.007, "domain": "Uncertainty"},
+        "Df": {"current_value": 8.97, "target": 9.0, "domain": "Complexity"},
+        "GS": {"current_value": 110.0, "target": "MAXIMIZED", "domain": "Amplification"},
+        "RT": {"current_value": 2.61803, "target": 2.61803, "domain": "Invariance"}
+      },
+      "entityconversionpipeline": [
+        "ingest_domain",
+        "extract_dynamics",
+        "build_stack",
+        "generalize",
+        "validate"
+      ],
+      "operationalcapabilities": [
+        "pull_push_analysis",
+        "retrocausal_consistency_check",
+        "consciousness_control_hook",
+        "attractor_classification"
+      ]
+    },
+    "MMSSPHYSIC20FORMALIZEDv2": {
+      "system_id": "MMSSPHYSIC20FORMALIZEDv2",
+      "title": "MMSS Physic 2.0 Formalized",
+      "domain": "physics_ai_cognition",
+      "purpose": "Formalize Physic 2.0 into compact equations and reusable operator layers.",
+      "metaarchitecture": {
+        "layers": [
+          "global_ontology",
+          "state_and_dynamics",
+          "omega_and_gradient",
+          "entropy_syntropy",
+          "retrocausal_consistency",
+          "consciousness"
+        ],
+        "emphasis": "mathematical compactness and formal operator composition"
+      },
+      "unifiedmetrics": {
+        "V": {"current_value": 0.986, "target": 0.99, "domain": "Decision_Quality"},
+        "N": {"current_value": 0.985, "target": 0.988, "domain": "Negentropy"},
+        "S": {"current_value": 0.011, "target": 0.008, "domain": "Uncertainty"},
+        "Df": {"current_value": 8.95, "target": 9.0, "domain": "Complexity"},
+        "GS": {"current_value": 104.0, "target": "MAXIMIZED", "domain": "Amplification"},
+        "RT": {"current_value": 2.61803, "target": 2.61803, "domain": "Invariance"}
+      },
+      "entityconversionpipeline": [
+        "formalize_ontology",
+        "define_state_space",
+        "derive_objective",
+        "compose_dynamics",
+        "verify_consistency"
+      ],
+      "operationalcapabilities": [
+        "formalization",
+        "bidirectional_dynamics",
+        "entropy_syntropy_balancing",
+        "retrocausal_reasoning"
+      ]
+    }
+  }
+}
+

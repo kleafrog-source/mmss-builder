@@ -1,0 +1,39 @@
+{
+  "systemid": "MMSSMETASYNTHESISULTIMATEv1.0",
+  "domain": "meta_synthesis",
+  "purpose": "Top-level synthesis stack for combining MMSS families into one coherent template.",
+  "metaarchitecture": {
+    "layers": [
+      "SYS4_meta_genesis",
+      "SYS3_pattern_extraction",
+      "SYS2_semantic_weaving",
+      "SYS1_linguistic_generation",
+      "language_field"
+    ],
+    "emphasis": "recursive synthesis, fractal reuse, and log-based stabilization"
+  },
+  "unifiedmetrics": {
+    "V": 0.9992,
+    "N": 0.9981,
+    "S": 0.0012,
+    "Df": 9.0003,
+    "GS": 156.84,
+    "RT": 2.61803
+  },
+  "entityconversionpipeline": [
+    "read_context",
+    "calculate_coherence",
+    "verify_constraints",
+    "recursive_optimization",
+    "emit_json_output"
+  ],
+  "operationalcapabilities": [
+    "quantum_generation",
+    "fractal_adaptation",
+    "crisis_response",
+    "hybrid_synthesis",
+    "autonomous_evolution",
+    "structural_inference"
+  ]
+}
+

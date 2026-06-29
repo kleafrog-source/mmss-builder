@@ -1,0 +1,40 @@
+{
+  "systemid": "MMSSUNIVERSALMETALAYERv1.0",
+  "domain": "domain_agnostic",
+  "purpose": "Domain-neutral meta layer describing systems through state, flows, structure, processes, controls, and environment.",
+  "metaarchitecture": {
+    "layers": [
+      "entities",
+      "state_space",
+      "flows_and_balances",
+      "structure_and_form",
+      "processes",
+      "controls",
+      "environment"
+    ],
+    "emphasis": "generic system representation and reusable control logic"
+  },
+  "unifiedmetrics": {
+    "V": 0.992,
+    "N": 0.991,
+    "S": 0.008,
+    "Df": 8.98,
+    "GS": 120.0,
+    "RT": 2.61803
+  },
+  "entityconversionpipeline": [
+    "analyze_context",
+    "map_states_and_flows",
+    "resolve_controls",
+    "validate_structure",
+    "export_universal_template"
+  ],
+  "operationalcapabilities": [
+    "sequence_space_explorer",
+    "latent_complexity_detector",
+    "short_path_synthesizer",
+    "degeneracy_mapper",
+    "entrenchment_management"
+  ]
+}
+

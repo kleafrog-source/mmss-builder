@@ -1,0 +1,31 @@
+experiment_name: omega_experiment_01
+task_name: auto_research
+sigma: 0.0045
+delta_init: 0.7
+warmup_epochs: 3
+lr: 0.0012
+beta: 0.28
+gamma: 0.07
+delta_c: 0.42
+eta_disp4: 0.935
+tasks:
+  - xor
+  - gmm
+seeds:
+  - 11
+  - 17
+  - 23
+active_mmss_system: MMSSUNIVERSALMETALAYERv1.0
+active_mmss_spec: mmss_specs/MMSSUNIVERSALMETALAYERv1.0.json
+active_prompt: llm/prompts/work/mmss_synthesis.md
+ollama_model: qwen-coder-3b-cpu:latest
+ollama_models:
+  - qwen-coder-3b-cpu:latest
+  - qwen2.5-coder:3b
+  - llama3
+target_score: 0.92
+max_rounds: 12
+stop_after_no_improve: 3
+epsilon: 0.0005
+output_root: python/runs
+notes: Slightly more conservative alternative config.

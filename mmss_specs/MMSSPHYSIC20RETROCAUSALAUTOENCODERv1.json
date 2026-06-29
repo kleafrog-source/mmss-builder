@@ -1,0 +1,38 @@
+{
+  "systemid": "MMSSPHYSIC20RETROCAUSALAUTOENCODERv1",
+  "domain": "physics_ai_cognition",
+  "purpose": "A template for compressing theory, synthesizing attractors, and using retrocausal consistency as a control signal.",
+  "metaarchitecture": {
+    "layers": [
+      "ontology",
+      "state_and_dynamics",
+      "omega_and_gradient",
+      "entropy_syntropy",
+      "retrocausal_consistency",
+      "consciousness"
+    ],
+    "emphasis": "compression, pull/push dynamics, and false attractor rejection"
+  },
+  "unifiedmetrics": {
+    "V": 0.989,
+    "N": 0.988,
+    "S": 0.009,
+    "Df": 8.97,
+    "GS": 110.0,
+    "RT": 2.61803
+  },
+  "entityconversionpipeline": [
+    "ingest_domain",
+    "extract_dynamics",
+    "build_stack",
+    "generalize",
+    "validate"
+  ],
+  "operationalcapabilities": [
+    "pull_push_analysis",
+    "retrocausal_consistency_check",
+    "consciousness_control_hook",
+    "attractor_classification"
+  ]
+}
+

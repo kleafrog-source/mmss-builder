@@ -1,0 +1,2 @@
+"""Auto-research loop package."""
+

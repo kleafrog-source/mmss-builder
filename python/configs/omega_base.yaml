@@ -1,0 +1,32 @@
+experiment_name: omega_base
+task_name: auto_research
+sigma: 0.005
+delta_init: 0.72
+warmup_epochs: 2
+lr: 0.0015
+beta: 0.25
+gamma: 0.08
+delta_c: 0.4
+eta_disp4: 0.93
+tasks:
+  - xor
+  - gmm
+  - mnist
+seeds:
+  - 7
+  - 13
+  - 29
+active_mmss_system: MMSSMETASYNTHESISULTIMATEv1.0
+active_mmss_spec: mmss_specs/MMSSMETASYNTHESISULTIMATEv1.0.json
+active_prompt: llm/prompts/work/hyperparam_suggestion.md
+ollama_model: qwen-coder-3b-cpu:latest
+ollama_models:
+  - qwen-coder-3b-cpu:latest
+  - qwen2.5-coder:3b
+  - llama3
+target_score: 0.92
+max_rounds: 12
+stop_after_no_improve: 3
+epsilon: 0.0005
+output_root: python/runs
+notes: Baseline local scaffold for the auto-research loop.

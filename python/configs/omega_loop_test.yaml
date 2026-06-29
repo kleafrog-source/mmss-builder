@@ -1,0 +1,33 @@
+experiment_name: omega_loop_test
+task_name: auto_research
+sigma: 0.009
+delta_init: 0.58
+warmup_epochs: 4
+lr: 0.0008
+beta: 0.18
+gamma: 0.14
+delta_c: 0.33
+eta_disp4: 0.88
+tasks:
+  - xor
+  - gmm
+  - mnist
+seeds:
+  - 5
+  - 19
+  - 31
+active_mmss_system: MMSSPHYSIC20FORMALIZEDv2
+active_mmss_spec: mmss_specs/MMSSPHYSIC20FORMALIZEDv2.json
+active_prompt: llm/prompts/work/log_analysis.md
+ollama_model: qwen-coder-3b-cpu:latest
+ollama_models:
+  - qwen-coder-3b-cpu:latest
+  - qwen2.5-coder:3b
+  - llama3
+target_score: 0.92
+max_rounds: 6
+stop_after_no_improve: 3
+epsilon: 0.0005
+output_root: python/runs
+notes: Purposefully less optimal starting point for loop validation.
+

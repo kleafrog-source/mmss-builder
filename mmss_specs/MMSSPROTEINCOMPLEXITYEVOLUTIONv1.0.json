@@ -1,0 +1,36 @@
+{
+  "systemid": "MMSSPROTEINCOMPLEXITYEVOLUTIONv1.0",
+  "domain": "complexity_evolution",
+  "purpose": "Model short paths to complexity, degeneracy, and fold-switching as reusable MMSS patterns.",
+  "metaarchitecture": {
+    "layers": [
+      "sequence_space",
+      "short_paths",
+      "degeneracy",
+      "evolutionary_dynamics"
+    ],
+    "emphasis": "neutral drift, multimerization, allostery, fold plurality"
+  },
+  "unifiedmetrics": {
+    "V": 0.991,
+    "N": 0.989,
+    "S": 0.007,
+    "Df": 9.01,
+    "GS": 116.0,
+    "RT": 2.61803
+  },
+  "entityconversionpipeline": [
+    "scan_sequence_space",
+    "detect_latent_foundations",
+    "generate_short_paths",
+    "apply_cost_filter",
+    "export_complexity_templates"
+  ],
+  "operationalcapabilities": [
+    "sequence_space_explorer",
+    "short_path_synthesizer",
+    "degeneracy_mapper",
+    "entrenchment_management"
+  ]
+}
+
