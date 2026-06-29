@@ -80,7 +80,6 @@ def _start_loop_process(
     max_rounds: int,
     use_ollama: bool,
     ollama_model: str | None = None,
-    ollama_models: str | None = None,
 ) -> dict[str, Any]:
     global _current_process
     with _process_lock:
@@ -95,8 +94,6 @@ def _start_loop_process(
             env.pop("AUTO_RESEARCH_USE_OLLAMA", None)
         if ollama_model:
             env["AUTO_RESEARCH_OLLAMA_MODEL"] = ollama_model
-        if ollama_models:
-            env["AUTO_RESEARCH_OLLAMA_MODELS"] = ollama_models
         env["PYTHONUNBUFFERED"] = "1"
         python_executable = str(LOOP_PYTHON) if LOOP_PYTHON.exists() else sys.executable
         cmd = [
@@ -164,6 +161,11 @@ INDEX_HTML = """
     .pill { display:inline-block; padding:4px 10px; border-radius:999px; background:#0f1a33; border:1px solid #24304e; margin-right:6px; }
     .split { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
     .file-box { min-height: 420px; }
+    details { border:1px solid #24304e; border-radius:12px; background:#07101f; overflow:hidden; }
+    summary { cursor:pointer; padding:12px 14px; color:var(--text); font-weight:600; list-style:none; }
+    summary::-webkit-details-marker { display:none; }
+    .details-body { padding: 0 14px 14px; }
+    .section-toolbar { display:flex; justify-content:flex-end; margin-top: -4px; margin-bottom: 10px; }
     @media (max-width: 1100px) { main { grid-template-columns: 1fr; } .split { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -199,40 +201,48 @@ INDEX_HTML = """
           <label>Primary model</label>
           <div class="row" style="align-items:end;">
             <div style="flex:1 1 180px;">
-              <select id="ollama_model"></select>
+              <select id="ollama_model">
+                <option value="">Click Refresh to load models</option>
+              </select>
             </div>
             <div style="width:120px;">
               <button type="button" onclick="refreshModels()">Refresh</button>
             </div>
           </div>
         </div>
-        <div style="flex:1 1 300px;">
-          <label>Fallback models</label>
-          <select id="ollama_models" multiple></select>
-        </div>
       </div>
       <div class="row">
         <button class="primary" onclick="startLoop()">Start</button>
         <button class="danger" onclick="stopLoop()">Stop</button>
-        <button onclick="refreshAll()">Refresh</button>
+        <button onclick="refreshStatusAndLogs()">Refresh</button>
       </div>
-      <div class="muted" id="models_hint">Loading Ollama models...</div>
+      <div class="muted" id="models_hint">Models load only when you click Refresh.</div>
 
       <div class="split">
         <div>
           <h3>Status</h3>
-          <pre id="status">Loading...</pre>
+          <pre id="status">No refresh yet.</pre>
         </div>
-        <div>
-          <h3>Models</h3>
-          <pre id="models">Loading...</pre>
-        </div>
+        <details>
+          <summary>Models</summary>
+          <div class="details-body">
+            <div class="section-toolbar">
+              <button type="button" onclick="refreshModels()">Refresh Models</button>
+            </div>
+            <pre id="models">Click Refresh to load Ollama models.</pre>
+          </div>
+        </details>
       </div>
 
-      <div>
-        <h3>Recent Logs</h3>
-        <pre id="logs">Loading...</pre>
-      </div>
+      <details>
+        <summary>Recent Logs</summary>
+        <div class="details-body">
+          <div class="section-toolbar">
+            <button type="button" onclick="refreshLogs()">Refresh Logs</button>
+          </div>
+          <pre id="logs">No refresh yet.</pre>
+        </div>
+      </details>
     </section>
 
     <section class="card grid">
@@ -273,8 +283,8 @@ INDEX_HTML = """
       for (const model of models) {
         const option = document.createElement('option');
         option.value = model.name;
-        const size = model.size ? ` • ${Math.round(model.size / 1024 / 1024)} MB` : '';
-        const modified = model.modified_at ? ` • ${new Date(model.modified_at).toLocaleString()}` : '';
+        const size = model.size ? ` - ${Math.round(model.size / 1024 / 1024)} MB` : '';
+        const modified = model.modified_at ? ` - ${new Date(model.modified_at).toLocaleString()}` : '';
         option.textContent = `${model.name}${size}${modified}`;
         if (values.includes(model.name)) {
           option.selected = true;
@@ -299,15 +309,13 @@ INDEX_HTML = """
       const payload = await res.json();
       cachedModels = Array.isArray(payload.models) ? payload.models : [];
       const currentPrimary = document.getElementById('ollama_model').value;
-      const currentFallback = Array.from(document.getElementById('ollama_models').selectedOptions).map((option) => option.value);
       setSelectOptions('ollama_model', cachedModels, currentPrimary);
-      setSelectOptions('ollama_models', cachedModels, currentFallback);
       document.getElementById('models').textContent = JSON.stringify(payload, null, 2);
       const hint = payload.error ? `Ollama model refresh failed: ${payload.error}` : `Found ${cachedModels.length} model(s) from /api/tags.`;
       document.getElementById('models_hint').textContent = hint;
     }
-    async function refreshAll() {
-      await Promise.all([refreshStatus(), refreshLogs(), refreshModels()]);
+    async function refreshStatusAndLogs() {
+      await Promise.all([refreshStatus(), refreshLogs()]);
     }
     async function loadFile() {
       const path = document.getElementById('file_path').value;
@@ -316,28 +324,23 @@ INDEX_HTML = """
     }
     async function startLoop() {
       const primarySelect = document.getElementById('ollama_model');
-      const fallbackSelect = document.getElementById('ollama_models');
-      const fallbackModels = Array.from(fallbackSelect.selectedOptions).map((option) => option.value);
       const selectedPrimary = primarySelect.value || (cachedModels[0] ? cachedModels[0].name : 'qwen-coder-3b-cpu:latest');
       const payload = {
         config_path: document.getElementById('config_path').value,
         max_rounds: parseInt(document.getElementById('max_rounds').value || '3', 10),
         use_ollama: document.getElementById('use_ollama').value === '1',
         ollama_model: selectedPrimary.trim(),
-        ollama_models: fallbackModels.join(',')
       };
       const res = await fetch('/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
       alert(JSON.stringify(await res.json(), null, 2));
-      refreshAll();
+      refreshStatusAndLogs();
     }
     async function stopLoop() {
       const res = await fetch('/stop', {method:'POST'});
       alert(JSON.stringify(await res.json(), null, 2));
-      refreshAll();
+      refreshStatusAndLogs();
     }
-    refreshAll();
     loadFile();
-    setInterval(refreshAll, 2000);
   </script>
 </body>
 </html>
@@ -395,7 +398,6 @@ def start():
         max_rounds,
         use_ollama,
         ollama_model=str(payload.get("ollama_model") or "").strip() or None,
-        ollama_models=str(payload.get("ollama_models") or "").strip() or None,
     )
     return jsonify(result)
 

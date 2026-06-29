@@ -233,11 +233,9 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
         }
     model_names = [str(item.get("name")) for item in models_payload if item.get("name")]
     prompt = _prompt_template(prompt_path, context)
-    configured_models = context.get("models") or []
-    requested_models = list(configured_models) if configured_models else [context.get("model", "qwen-coder-3b-cpu:latest"), "qwen2.5-coder:3b", "llama3"]
+    requested_models = [context.get("model", "qwen-coder-3b-cpu:latest")]
     if model_names:
         models = [name for name in requested_models if name in model_names]
-        models.extend(name for name in model_names if name not in models)
     else:
         models = requested_models
     try:
@@ -348,9 +346,7 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
         raise RuntimeError(f"Refusing to mutate non-work prompt path: {prompt_path}")
 
     env_model = os.environ.get("AUTO_RESEARCH_OLLAMA_MODEL")
-    env_models = _parse_models_override(os.environ.get("AUTO_RESEARCH_OLLAMA_MODELS"))
     primary_model = env_model or cfg.get("ollama_model") or "qwen-coder-3b-cpu:latest"
-    fallback_models = env_models or cfg.get("ollama_models") or [primary_model, "qwen2.5-coder:3b", "llama3"]
 
     rng = random.Random(42)
     baseline_score, baseline_report, baseline_report_path = score_config(config_path)
@@ -390,7 +386,6 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
                 "recent_logs": _read_recent_log_entries(10),
                 "ontology_summary": _system_summary(omega_core),
                 "model": primary_model,
-                "models": fallback_models,
             }
         )
 
@@ -442,7 +437,6 @@ def run_loop(max_rounds: int | None = None, dry_run: bool = False, config_path: 
                 "plateau_limit": plateau_limit,
                 "asset_kind": asset_kind,
                 "model": primary_model,
-                "models": fallback_models,
             },
             "summary_text": summary_text,
         }
@@ -517,15 +511,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--config", default=str(ACTIVE_CONFIG_PATH))
     parser.add_argument("--use-ollama", action="store_true")
     parser.add_argument("--ollama-model", default=None)
-    parser.add_argument("--ollama-models", default=None)
     args = parser.parse_args(argv)
 
     if args.use_ollama:
         os.environ["AUTO_RESEARCH_USE_OLLAMA"] = "1"
     if args.ollama_model:
         os.environ["AUTO_RESEARCH_OLLAMA_MODEL"] = args.ollama_model
-    if args.ollama_models:
-        os.environ["AUTO_RESEARCH_OLLAMA_MODELS"] = args.ollama_models
 
     result = run_loop(max_rounds=args.max_rounds, dry_run=args.dry_run, config_path=Path(args.config))
     print(json.dumps(result, indent=2, ensure_ascii=False))
