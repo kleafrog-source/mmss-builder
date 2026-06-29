@@ -214,9 +214,14 @@ def _is_mutable_asset(path: Path) -> bool:
 def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
     if os.environ.get("AUTO_RESEARCH_USE_OLLAMA", "").strip().lower() not in {"1", "true", "yes", "on"}:
         return None
-    prompt_path = PROMPTS_DIR / "log_analysis.md"
+    prompt_path = PROMPTS_DIR / "work" / "log_analysis.md"
     if not prompt_path.exists():
-        return None
+        return {
+            "raw_response": "",
+            "model_used": None,
+            "_parse_error": f"missing prompt: {prompt_path}",
+            "prompt_path": str(prompt_path),
+        }
     try:
         models_payload = list_ollama_models(timeout_seconds=2)
     except Exception as exc:
@@ -224,6 +229,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
             "raw_response": "",
             "model_used": None,
             "_parse_error": f"ollama unavailable: {exc}",
+            "prompt_path": str(prompt_path),
         }
     model_names = [str(item.get("name")) for item in models_payload if item.get("name")]
     prompt = _prompt_template(prompt_path, context)
@@ -235,7 +241,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
     else:
         models = requested_models
     try:
-        response, model_used = run_ollama_with_fallback(prompt, models=models, timeout_seconds=10)
+        response, model_used = run_ollama_with_fallback(prompt, models=models, timeout_seconds=120)
     except Exception as exc:
         return {
             "raw_response": "",
@@ -243,6 +249,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
             "_parse_error": f"ollama call failed: {exc}",
             "models_seen": model_names,
             "requested_models": requested_models,
+            "prompt_path": str(prompt_path),
         }
     try:
         parsed = json.loads(response)
@@ -252,6 +259,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
         parsed["raw_response"] = response
         parsed["models_seen"] = model_names
         parsed["requested_models"] = requested_models
+        parsed["prompt_path"] = str(prompt_path)
         if model_names and model_used not in model_names:
             parsed["model_not_in_api_tags"] = model_used
         return parsed
@@ -262,6 +270,7 @@ def _try_ollama_suggestion(context: Dict[str, Any]) -> Dict[str, Any] | None:
             "_parse_error": str(exc),
             "models_seen": model_names,
             "requested_models": requested_models,
+            "prompt_path": str(prompt_path),
         }
 
 

@@ -18,6 +18,7 @@ LOG_PATH = PROJECT_ROOT / "logs" / "auto_research_log.jsonl"
 STATUS_PATH = PROJECT_ROOT / "auto_research" / "status.json"
 STOP_FLAG = PROJECT_ROOT / "auto_research" / "stop.flag"
 DEFAULT_CONFIG = PROJECT_ROOT / "python" / "configs" / "active.yaml"
+LOOP_PYTHON = PROJECT_ROOT / "mmss_core" / "ai" / "orchestrator-mmss" / "venv" / "Scripts" / "python.exe"
 
 app = Flask(__name__)
 
@@ -97,8 +98,9 @@ def _start_loop_process(
         if ollama_models:
             env["AUTO_RESEARCH_OLLAMA_MODELS"] = ollama_models
         env["PYTHONUNBUFFERED"] = "1"
+        python_executable = str(LOOP_PYTHON) if LOOP_PYTHON.exists() else sys.executable
         cmd = [
-            sys.executable,
+            python_executable,
             "-u",
             "-m",
             "auto_research.auto_loop",
