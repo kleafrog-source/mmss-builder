@@ -1,0 +1,12 @@
+{
+  "running": true,
+  "timestamp": "2026-06-29T12:33:58.760656+00:00",
+  "config_path": "python\\configs\\omega_experiment_01.yaml",
+  "round": 1,
+  "asset": "D:\\project\\mmss_specs\\MMSSUNIVERSALMETALAYERv1.0.json",
+  "decision": "reverted",
+  "best_score": 0.915675,
+  "current_score": 0.914219,
+  "summary_text": "asset=mmss_spec change=unifiedmetrics.RT: 2.61803 -> 2.61803 decision=reverted score=0.914219 V=0.862136 S=0.071181 clean=0.910499 energy=0.173716 model=qwen2.5-coder-3b-cpu:latest",
+  "report_path": "python\\runs\\auto_research\\20260629T123358756008Z\\report.json"
+}

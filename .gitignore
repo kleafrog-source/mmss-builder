@@ -127,3 +127,6 @@ data/fine-tuning/staging/mmss_combined_all.jsonl
 data/fine-tuning/staging/categories/mmss_categories_all.jsonl
 data/fine-tuning/staging/mmss-sound-craft/mmss_mmss-sound-craft_all.jsonl
 data/fine-tuning/staging/mmss-universal/mmss_mmss-universal_all.jsonl
+docs/some-Tasks-parts-systems.md
+docs/TASK-part0.md
+docs/TASK-part1.md

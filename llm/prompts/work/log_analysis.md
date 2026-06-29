@@ -13,3 +13,4 @@ Task:
 - Prefer changes that are likely to improve the canonical score.
 - Return strict JSON with keys: `asset`, `field`, `direction`, `magnitude`, `reason`.
 
+Constraint: keep the change minimal and preserve score determinism.
