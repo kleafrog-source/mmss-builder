@@ -31,6 +31,11 @@
     <h1 class="header-title">MMSS Orchestrator</h1>
     <div class="system-info">
         <div style="display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap;">
+            <label for="orchestrator-provider">Provider</label>
+            <select id="orchestrator-provider" class="prompt-type" style="max-width: 220px;">
+                <option value="ollama" {% if selected_provider == 'ollama' %}selected{% endif %}>Local Ollama</option>
+                <option value="mistral" {% if selected_provider == 'mistral' %}selected{% endif %}>Mistral</option>
+            </select>
             <label for="orchestrator-ollama-model">Local Ollama Model</label>
             <select id="orchestrator-ollama-model" class="prompt-type" style="max-width: 360px;">
                 {% for model in ollama_models %}
@@ -38,10 +43,32 @@
                 {% endfor %}
             </select>
             <button id="refresh-orchestrator-models" class="header-btn">Refresh Models</button>
+            <label for="orchestrator-mistral-model">Mistral Model</label>
+            <select id="orchestrator-mistral-model" class="prompt-type" style="max-width: 320px;">
+                {% for model in mistral_models %}
+                    <option value="{{ model }}" {% if model == selected_mistral_model %}selected{% endif %}>{{ model }}</option>
+                {% endfor %}
+            </select>
+            <button id="refresh-orchestrator-mistral-models" class="header-btn">Refresh Mistral</button>
         </div>
         {% if ollama_error %}
             <div style="margin-top:8px; color:#fbbf24;">{{ ollama_error }}</div>
         {% endif %}
+        {% if mistral_error %}
+            <div style="margin-top:8px; color:#fbbf24;">{{ mistral_error }}</div>
+        {% endif %}
+        <div id="service-health-panel" style="margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            {% for service_name, service_state in service_health.items() %}
+                <div style="padding:8px 12px; border-radius:8px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);">
+                    <strong>{{ service_name }}</strong>:
+                    {% if service_state.reachable %}
+                        <span style="color:#64ffda;">online</span>
+                    {% else %}
+                        <span style="color:#f87171;">offline</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
     <!-- Panel for MemoryTools (presets) -->
     <div id="memory-tools-panel">

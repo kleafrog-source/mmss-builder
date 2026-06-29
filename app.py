@@ -23,6 +23,7 @@ from datetime import datetime
 import re
 import subprocess
 import threading
+from urllib import request as urllib_request
 import xml.etree.ElementTree as ET
 
 # Загрузка переменных окружения из .env
@@ -238,8 +239,8 @@ def get_provider_status():
     }
 
 
-def get_active_provider_client():
-    provider = app_config.get("ai_provider", "ollama")
+def get_active_provider_client(provider: str | None = None):
+    provider = provider or app_config.get("ai_provider", "ollama")
     if provider == "mistral":
         if not mistral_api or mistral_api_error:
             raise MistralAPIError(mistral_api_error or "Mistral is unavailable.")
@@ -351,6 +352,36 @@ def build_rag_prompt(user_message, rag_chunks):
         f"Context:\n{context_text}\n\n"
         f"User message:\n{user_message}"
     )
+
+
+def get_orchestrator_provider():
+    return app_config.get("orchestrator_provider", app_config.get("ai_provider", "ollama"))
+
+
+def get_service_health_snapshot():
+    services = [
+        ("optimizer", "http://127.0.0.1:8000/health"),
+        ("mmss", "http://127.0.0.1:8001/health"),
+        ("prompt_manager", "http://127.0.0.1:8002/health"),
+    ]
+    snapshot = {}
+    for name, url in services:
+        try:
+            req = urllib_request.Request(url, method="GET")
+            with urllib_request.urlopen(req, timeout=2) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            snapshot[name] = {
+                "reachable": True,
+                "url": url,
+                "payload": payload,
+            }
+        except Exception as e:
+            snapshot[name] = {
+                "reachable": False,
+                "url": url,
+                "error": str(e),
+            }
+    return snapshot
 
 
 @app.route('/')
@@ -811,9 +842,11 @@ def ai_generate_and_send_stream():
             chunks = []
             try:
                 yield json.dumps({"type": "meta", "prompt_used": full_prompt, "model": app_config.get('ollama_model')}, ensure_ascii=False) + "\n"
-                for chunk in ollama_api.stream_response(full_prompt, history=history, model=app_config.get('ollama_model')):
-                    chunks.append(chunk)
-                    yield json.dumps({"type": "chunk", "content": chunk}, ensure_ascii=False) + "\n"
+                for event in ollama_api.stream_response_events(full_prompt, history=history, model=app_config.get('ollama_model')):
+                    chunk = event.get("content", "")
+                    if chunk:
+                        chunks.append(chunk)
+                        yield json.dumps({"type": event.get("type", "chunk"), "content": chunk}, ensure_ascii=False) + "\n"
 
                 response_text = "".join(chunks)
                 persist_file_and_db(
@@ -1354,18 +1387,24 @@ def run_task_in_terminal():
 def orchestrator():
     """Renders the MMSS Orchestrator page."""
     ollama_models, models_error = get_ollama_models()
+    mistral_models, mistral_models_error = get_mistral_models()
     return render_template(
         'orchestrator_v2.html',
         theme=app_config['theme'],
         custom_theme_css=app_config.get('custom_theme_css'),
+        selected_provider=get_orchestrator_provider(),
         ollama_models=ollama_models,
+        mistral_models=mistral_models,
         ollama_error=ollama_api_error or models_error,
+        mistral_error=mistral_api_error or mistral_models_error,
         selected_model=app_config.get('ollama_model'),
+        selected_mistral_model=app_config.get('mistral_model'),
+        service_health=get_service_health_snapshot(),
     )
 
 @app.route('/orchestrate/send', methods=['POST'])
 def orchestrate_send():
-    """Handles sending a prompt for a single agent to Local Ollama (LIVE MODE ONLY)."""
+    """Handles sending a prompt for a single agent using the selected provider."""
     data = request.get_json()
     agent_name = data.get('agent_name')
     prompt = data.get('prompt')
@@ -1389,9 +1428,13 @@ def orchestrate_send():
             return jsonify({"error": f"Agent {agent_name} not found in config"}), 404
 
         system_prompt = orchestrator.generate_prompt(agent_config, prompt)
-        print(f"[Orchestrator] Sending to Ollama: {system_prompt[:200]}...")
-
-        response = orchestrator.send_prompt_to_ollama(system_prompt)
+        provider, client, model_name = get_active_provider_client(get_orchestrator_provider())
+        print(f"[Orchestrator] Provider={provider} model={model_name} agent={agent_name}")
+        print(f"[Orchestrator] Prompt preview: {system_prompt[:500]}")
+        if provider == "ollama":
+            response = client.get_response(system_prompt, model=model_name)
+        else:
+            response = client.get_response(system_prompt)
 
         metrics_stub = {
             "V": 0.99,
@@ -1408,22 +1451,104 @@ def orchestrate_send():
             source_route="/orchestrate/send",
             prompt_text=system_prompt,
             response_text=final_response,
-            model_name=app_config.get('ollama_model'),
+            model_name=model_name,
+            provider=provider,
             project_name=data.get('project_name'),
             metadata={
                 "agent_name": agent_name,
+                "provider": provider,
                 "embedding_model": app_config.get("ollama_embedding_model"),
             },
         )
 
-        return jsonify({"answer": final_response})
+        return jsonify({"answer": final_response, "provider": provider, "model": model_name, "prompt_used": system_prompt})
     except OllamaAPIError as e:
+        print(f"[Orchestrator][OllamaAPIError] agent={agent_name} error={e}")
         return jsonify({"error": f"Ollama API error: {str(e)}"}), 500
+    except MistralAPIError as e:
+        print(f"[Orchestrator][MistralAPIError] agent={agent_name} error={e}")
+        return jsonify({"error": f"Mistral API error: {str(e)}"}), 500
     except Exception as e:
         import traceback
         print(f"Unexpected error in /orchestrate/send: {e}")
         print(traceback.format_exc())
         return jsonify({"error": f"Internal error: {str(e)}"}), 500
+
+
+@app.route('/orchestrate/send-stream', methods=['POST'])
+def orchestrate_send_stream():
+    data = request.get_json() or {}
+    agent_name = data.get('agent_name')
+    prompt = data.get('prompt')
+    if not agent_name or not prompt:
+        return jsonify({"error": "Agent name and prompt are required"}), 400
+
+    provider = get_orchestrator_provider()
+    if provider != "ollama":
+        return jsonify({"error": "Streaming is supported only for Ollama in orchestrator mode."}), 400
+
+    try:
+        orchestrator = MMSOrchestrator(
+            model=app_config.get('ollama_model'),
+            base_url=app_config.get('ollama_base_url', 'http://127.0.0.1:11434'),
+            timeout_seconds=int(app_config.get('ollama_timeout_seconds', 600)),
+        )
+        agents = orchestrator.get_agents()
+        agent_config = next((a for a in agents if a['name'] == agent_name), None)
+        if not agent_config:
+            return jsonify({"error": f"Agent {agent_name} not found in config"}), 404
+
+        system_prompt = orchestrator.generate_prompt(agent_config, prompt)
+        model_name = app_config.get('ollama_model')
+
+        def generate():
+            chunks = []
+            try:
+                yield json.dumps({"type": "meta", "prompt_used": system_prompt, "model": model_name}, ensure_ascii=False) + "\n"
+                for event in ollama_api.stream_response_events(system_prompt, model=model_name):
+                    chunk = event.get("content", "")
+                    if chunk:
+                        chunks.append(chunk)
+                        yield json.dumps({"type": event.get("type", "chunk"), "content": chunk}, ensure_ascii=False) + "\n"
+
+                response_text = "".join(chunks)
+                metrics_stub = {"V": 0.99, "N": 0.98, "S": 0.01, "D_f": 9.0, "G_S": 150.0, "R_T": 2.618}
+                final_response = f"{response_text} --- METRICS: {json.dumps(metrics_stub, ensure_ascii=False)}"
+                persist_file_and_db(
+                    session_type="orchestrator_agent",
+                    source_route="/orchestrate/send-stream",
+                    prompt_text=system_prompt,
+                    response_text=final_response,
+                    model_name=model_name,
+                    provider="ollama",
+                    project_name=data.get('project_name'),
+                    metadata={"agent_name": agent_name, "streaming": True},
+                )
+                yield json.dumps({"type": "done", "response": final_response}, ensure_ascii=False) + "\n"
+            except Exception as e:
+                print(f"[Orchestrator][StreamError] agent={agent_name} error={e}")
+                yield json.dumps({"type": "error", "error": str(e)}, ensure_ascii=False) + "\n"
+
+        return Response(stream_with_context(generate()), mimetype='application/x-ndjson')
+    except Exception as e:
+        return jsonify({"error": f"Streaming error: {str(e)}"}), 500
+
+
+@app.route('/api/orchestrator/provider', methods=['POST'])
+def api_update_orchestrator_provider():
+    global app_config
+    data = request.get_json() or {}
+    provider = (data.get('provider') or '').strip()
+    if provider not in {'ollama', 'mistral'}:
+        return jsonify({"status": "error", "message": "Invalid provider"}), 400
+    app_config['orchestrator_provider'] = provider
+    save_config(app_config)
+    return jsonify({"status": "success", "provider": provider})
+
+
+@app.route('/api/services/health', methods=['GET'])
+def api_services_health():
+    return jsonify(get_service_health_snapshot())
 
 
 

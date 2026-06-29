@@ -1,10 +1,10 @@
 {
-    "theme": "dark",
+    "theme": "light",
     "custom_theme_css": null,
-    "ai_provider": "ollama",
+    "ai_provider": "mistral",
     "ollama_base_url": "http://127.0.0.1:11434",
     "ollama_timeout_seconds": 600,
-    "ollama_model": "mmss-gemma4-mmss-json:latest",
+    "ollama_model": "mmss-qwen2.5-0.5b:latest",
     "ollama_embedding_model": "embeddinggemma:300m",
     "preferred_ollama_models": [
         "mmss-gemma4-mmss-json:latest",
@@ -14,5 +14,6 @@
         "qwen2.5-coder:3b",
         "qwen2.5-coder:7b"
     ],
-    "mistral_model": "mistral-small-latest"
+    "mistral_model": "mistral-tiny-latest",
+    "orchestrator_provider": "mistral"
 }
